@@ -6,7 +6,7 @@ Team member:
 | ------ | ------ | ------ |
 | Yu Hin Li | 1182969 | yuhinl@student.unimelb.edu.au|
 | Zizhou Zhang | ------ | ------ |
-| ------ | ------ | ------ |
+| Wendi YING | 1135843 | wyying@student.unimelb.edu.au|
 | ------ | ------ | ------ |
 | ------ | ------ | ------ |
 
