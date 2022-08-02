@@ -10,3 +10,15 @@ Team member:
 | ------ | ------ | ------ |
 | ------ | ------ | ------ |
 
+## Tech
+
+- WeChat - Communication
+- Confluence - Documentation
+- Jira - Task Management
+- Draw.io - Software design
+- Adobe XD - Prototyping
+- React - Font-end
+- Spring Boot - Back-end
+- GitHub - Version Control
+- Testing - 
+- Heroku - Deployment
