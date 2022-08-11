@@ -8,8 +8,7 @@ Team member:
 | Yu Hin Li | 1182969 | yuhinl@student.unimelb.edu.au|
 | Min Shen | 1132320 | msshe1@student.unimelb.edu.au |
 | Wendi YING | 1135843 | wyying@student.unimelb.edu.au|
-| ------ | ------ | ------ |
-| ------ | ------ | ------ |
+| Yichen Zhan | 1124601 | yiczhan@student.unimelb.edu.au |
 
 ## Tech
 
