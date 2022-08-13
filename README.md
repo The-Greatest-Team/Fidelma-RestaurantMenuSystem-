@@ -22,3 +22,9 @@ Team member:
 - GitHub - Version Control
 - Testing - 
 - Heroku - Deployment
+
+
+### BackEnd Maven instruction (Brian)
+
+If SpringApplication is unrecognised, navigate to the backend folder and rightclick "pom.xml", 
+Select Maven > reload project
