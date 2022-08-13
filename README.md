@@ -27,4 +27,4 @@ Team member:
 ### BackEnd Maven instruction (Brian)
 
 If SpringApplication is unrecognised, navigate to the backend folder and rightclick "pom.xml", 
-Select Maven > reload project
+select "add as Maven Project". Then right click again the pom.xml and select Maven --> Reload Project
