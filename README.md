@@ -28,3 +28,7 @@ Team member:
 
 If SpringApplication is unrecognised, navigate to the backend folder and rightclick "pom.xml", 
 select "add as Maven Project". Then right click again the pom.xml and select Maven --> Reload Project
+
+### Mongo DB
+Username: thegreatestteam
+password: VzI1YYho9OUMlj6R
