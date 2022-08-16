@@ -17,13 +17,4 @@ public class BackEndApplication {
 		SpringApplication.run(BackEndApplication.class, args);
 	}
 
-
-	@Bean
-	CommandLineRunner runner(StaffRepository repository){
-		return args -> {
-			Staff staff = new Staff("test1", "test1@gmail.com");
-			repository.insert(staff);
-		};
-	}
-
 }
