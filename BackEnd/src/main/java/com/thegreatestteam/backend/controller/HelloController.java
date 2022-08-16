@@ -17,6 +17,7 @@ public class HelloController {
     @GetMapping("/")
     public String index(){
         createItem();
-        return "HelloWorld from the SpringBoot application, this is The Greatest Team from COMP30022";
+        return "Hello there, this is the main page for COMP30022 IT project";
     }
+
 }
