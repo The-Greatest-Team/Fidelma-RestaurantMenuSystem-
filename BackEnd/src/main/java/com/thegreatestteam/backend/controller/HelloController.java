@@ -16,7 +16,7 @@ public class HelloController {
     }
     @GetMapping("/")
     public String index(){
-        createItem();
+        //createItem();
         return "Hello there, this is the main page for COMP30022 IT project";
     }
 
