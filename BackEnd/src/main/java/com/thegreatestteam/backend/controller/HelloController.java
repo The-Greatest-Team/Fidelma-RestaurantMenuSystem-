@@ -8,12 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-
     @Autowired
     ItemRepository itemRepository;
-    void createItem(){
-        itemRepository.save(new Food("hamburger",12.99));
-    }
     @GetMapping("/")
     public String index(){
         //createItem();
