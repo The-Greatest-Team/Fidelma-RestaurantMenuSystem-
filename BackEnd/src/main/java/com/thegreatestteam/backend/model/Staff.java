@@ -3,7 +3,7 @@ package com.thegreatestteam.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document("Staff")
 public class Staff {
 
     @Id
