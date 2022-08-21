@@ -2,6 +2,7 @@ package com.thegreatestteam.backend.controller;
 
 
 import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,17 +21,20 @@ public class StaffController {
     public StaffController(StaffRepository staffRepository){
         this.staffRepository = staffRepository;
     }
+
     // Staff dashboard
     @GetMapping
-    public List<Ingredient> getDashboard(){
-        return staffRepository.getAllIngredient();
+    public void getDashboard(){
+        List<Ingredient> ingredients = staffRepository.getAllIngredient();
+        int totalIncoming = staffRepository.getTotalIncome();
+        List<Order> orders = staffRepository.getAllOrder();
     }
 
-    // Create ingradient
+    // Create ingredients
 
 
 
-    // Manage ingradient
+    // Manage ingredients
 
 
 
