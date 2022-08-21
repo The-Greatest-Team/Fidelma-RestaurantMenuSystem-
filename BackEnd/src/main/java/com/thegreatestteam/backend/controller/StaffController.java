@@ -1,26 +1,29 @@
 package com.thegreatestteam.backend.controller;
 
 
-import com.thegreatestteam.backend.service.StaffService;
+import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/staff")
 public class StaffController {
 
-    private final StaffService staffService;
+    private final StaffRepository staffRepository;
 
     @Autowired
-    public StaffController(StaffService staffService){
-        this.staffService = staffService;
+    public StaffController(StaffRepository staffRepository){
+        this.staffRepository = staffRepository;
     }
     // Staff dashboard
     @GetMapping
-    public String getDashboard(){
-        return staffService.getIngredient();
+    public List<Ingredient> getDashboard(){
+        return staffRepository.getAllIngredient();
     }
 
     // Create ingradient
