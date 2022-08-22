@@ -21,22 +21,24 @@ public class StaffController {
         this.staffRepository = staffRepository;
         this.ingradientRepository = ingradientRepository;
     }
-
+    //Login
 
     // Staff dashboard
     @GetMapping("/staff")
     public void getDashboard(){
         System.out.println("Display Staff Dashboard");
         List<Ingredient> ingredients= ingradientRepository.findAll();
-        System.out.println("Display all ingredient: "+ ingredients);
+        //Get Order summary (Todo)
+        //Get total income (Todo)
 
+        System.out.println("Display all ingredient: "+ ingredients);
     }
 
     // Create ingredients
     @PostMapping("/staff")
-    public void addIngredients(@RequestBody Ingredient ingredient){
+    public String addIngredients(@RequestBody Ingredient ingredient){
         ingradientRepository.save(ingredient);
-        System.out.println("Add ingredient with id" + ingredient.getName());
+        return "Add ingredient with id" + ingredient.getName();
     }
 
 
