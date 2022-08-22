@@ -8,11 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface StaffRepository extends MongoRepository<Staff, String> {
-    //Return All ingredient
-    List<Ingredient> getAllIngredient();
 
-    int getTotalIncome();
-
-    List<Order> getAllOrder();
 
 }
