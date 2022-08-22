@@ -2,7 +2,7 @@ package com.thegreatestteam.backend.model;
 
 public class Ingredient extends Item{
     //Quantity in grams
-    private  int quantity;
+    private int quantity;
     public Ingredient(String name, double price, int quantity) {
         super(name, price);
         this.quantity = quantity;

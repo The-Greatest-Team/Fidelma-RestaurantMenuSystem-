@@ -25,13 +25,12 @@ public class StaffController {
 
     // Staff dashboard
     @GetMapping("/staff")
-    public void getDashboard(){
+    public List<Ingredient> getDashboard(){
         System.out.println("Display Staff Dashboard");
         List<Ingredient> ingredients= ingradientRepository.findAll();
         //Get Order summary (Todo)
         //Get total income (Todo)
-
-        System.out.println("Display all ingredient: "+ ingredients);
+        return ingredients;
     }
 
     // Create ingredients
