@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from "react";
+// import TodoList from "./TodoList";
+
+// function App() {
+//   const [todos, setTodos] = useState([{id : 1, name : "Todos 1", complete : false}])
+//   return (
+//     <>
+//     <TodoList todos = {todos}/> // this is jsx, allow us to enbedden component
+//     </>  
+//     //注意，一次只能return一个html element集合或者jsx element
+//     //所以我们把他们放到同一个empty的<></>里面视为return一个东西
+//   );
+// }
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+        <img src="../res/images/menu-pic-temp"></img>
+        </>
+    );
 }
 
 export default App;
