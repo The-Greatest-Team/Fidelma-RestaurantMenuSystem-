@@ -1,9 +1,11 @@
 package com.thegreatestteam.backend.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.awt.*;
 
+@Document("Item")
 public abstract class Item {
     private String name;
     private double price;
