@@ -1,7 +1,10 @@
 package com.thegreatestteam.backend.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Order {
-    private int id;
+    @Id
+    private Integer id;
 
 
 }

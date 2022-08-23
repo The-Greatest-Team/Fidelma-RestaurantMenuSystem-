@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Staff {
 
     @Id
-    private String id;
+    private Integer id;
 
     private String Username;
     private String firstName;
@@ -37,7 +37,7 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

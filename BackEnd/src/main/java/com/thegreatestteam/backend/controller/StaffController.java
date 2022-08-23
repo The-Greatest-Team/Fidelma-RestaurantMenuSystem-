@@ -42,21 +42,19 @@ public class StaffController {
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/delete")
-    public String deleteIngredients(@PathVariable int id){
-        ingradientRepository.deleteById(id);
-        return "Delete ingredient with id" + id;
+    @DeleteMapping("/staff/{ingradientId}/delete")
+    public String deleteIngredients(@PathVariable Integer ingradientId){
+        ingradientRepository.deleteById(ingradientId);
+        return "Delete ingredient with id" + ingradientId;
     }
 
     //Update Ingredient's quantity (Todo)
 
 
-
-
-
     // Staff Profile
     @GetMapping("/staff/{staffId}/profile")
     public String getProfile(@PathVariable String staffId){
+
 
         return "getting profile page";
     }
