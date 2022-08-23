@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Id;
 
 public class Ingredient extends Item{
     //Quantity in grams
-    @Id
-    private Integer id;
     private int quantity;
     public Ingredient(String name, double price, int quantity) {
         super(name, price);

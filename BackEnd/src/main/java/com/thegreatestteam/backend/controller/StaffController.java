@@ -42,10 +42,10 @@ public class StaffController {
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/{ingradientId}/delete")
-    public String deleteIngredients(@PathVariable Integer ingradientId){
-        ingradientRepository.deleteById(ingradientId);
-        return "Delete ingredient with id" + ingradientId;
+    @DeleteMapping("/staff/{ingredientId}/delete")
+    public String deleteIngredients(@PathVariable String ingredientId){
+        ingradientRepository.deleteById(Integer.valueOf(ingredientId));
+        return "Delete ingredient with id" + ingredientId;
     }
 
     //Update Ingredient's quantity (Todo)
