@@ -35,13 +35,23 @@ public class StaffController {
     }
 
     // Create ingredients
-    @PostMapping("/staff")
+    @PostMapping("/staff/add")
     public String addIngredients(@RequestBody Ingredient ingredient){
         ingradientRepository.save(ingredient);
         return "Add ingredient with id" + ingredient.getName();
     }
 
+    //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
+    @DeleteMapping("/staff/delete")
+    public String deleteIngredients(@PathVariable int id){
+        ingradientRepository.deleteById(id);
+        return "Delete ingredient with id" + id;
+    }
 
+    //Update Ingredient's quantity (Todo)
+
+
+<<<<<<< HEAD
     // Manage ingredients
     // delete ingradients
     // edit ingradients
@@ -51,6 +61,8 @@ public class StaffController {
     }
 
 
+=======
+>>>>>>> cdb1029accca0e026d8c2418862ddf825c0e704e
 
 
 
