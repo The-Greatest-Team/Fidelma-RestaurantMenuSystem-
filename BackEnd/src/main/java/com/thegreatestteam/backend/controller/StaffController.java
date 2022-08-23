@@ -15,38 +15,14 @@ import java.util.List;
 public class StaffController {
 
     private final StaffRepository staffRepository;
-    private final IngredientRepository ingredientRepository;
 
     @Autowired
-    public StaffController(StaffRepository staffRepository, IngredientRepository ingredientRepository){
+    public StaffController(StaffRepository staffRepository){
         this.staffRepository = staffRepository;
-        this.ingredientRepository = ingredientRepository;
     }
     //Login
 
     // Staff dashboard
-    @GetMapping("/staff/ingredient")
-    public List<Ingredient> getIngredient(){
-        List<Ingredient> ingredients= ingredientRepository.findAll();
-        return ingredients;
-    }
-
-    // Create ingredients
-    @PostMapping("/staff/ingredient")
-    public String addIngredients(@RequestBody Ingredient ingredient){
-        ingredientRepository.save(ingredient);
-        return "Add ingredient with id" + ingredient.getName();
-    }
-
-    //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/ingredient")
-    public String deleteIngredients(@PathVariable String ingredientId){
-        ingredientRepository.deleteById(Integer.valueOf(ingredientId));
-        return "Delete ingredient with id" + ingredientId;
-    }
-
-    //Update Ingredient's quantity (Todo)
-
 
     // Staff Profile
     @GetMapping("/staff/{staffId}/profile")
