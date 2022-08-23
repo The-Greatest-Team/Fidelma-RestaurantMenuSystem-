@@ -2,6 +2,7 @@ package com.thegreatestteam.backend.controller;
 
 
 import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.model.Item;
 import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.IngradientRepository;
 import com.thegreatestteam.backend.repository.StaffRepository;
@@ -42,10 +43,24 @@ public class StaffController {
 
 
     // Manage ingredients
+    // delete ingradients
+    // edit ingradients
+    @PostMapping("/staff/{ingradient}/{IngradientId}")
+    public String updateIngradient(@PathVariable Item ingradient, @PathVariable String IngradientId){
+        return ingradient.getName() +  " had been updated successfully";
+    }
+
+
 
 
 
     // Staff Profile
+    @GetMapping("/staff/{staffId}/profile")
+    public String getProfile(@PathVariable String staffId){
+
+        return "getting profile page";
+    }
+
 
 
 
