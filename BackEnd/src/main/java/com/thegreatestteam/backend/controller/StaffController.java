@@ -51,18 +51,6 @@ public class StaffController {
     //Update Ingredient's quantity (Todo)
 
 
-<<<<<<< HEAD
-    // Manage ingredients
-    // delete ingradients
-    // edit ingradients
-    @PostMapping("/staff/{ingradient}/{IngradientId}")
-    public String updateIngradient(@PathVariable Item ingradient, @PathVariable String IngradientId){
-        return ingradient.getName() +  " had been updated successfully";
-    }
-
-
-=======
->>>>>>> cdb1029accca0e026d8c2418862ddf825c0e704e
 
 
 
