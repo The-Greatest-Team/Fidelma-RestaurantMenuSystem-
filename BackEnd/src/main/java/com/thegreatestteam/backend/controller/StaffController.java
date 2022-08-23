@@ -4,7 +4,7 @@ package com.thegreatestteam.backend.controller;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.model.Item;
 import com.thegreatestteam.backend.model.Order;
-import com.thegreatestteam.backend.repository.IngradientRepository;
+import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,36 +15,33 @@ import java.util.List;
 public class StaffController {
 
     private final StaffRepository staffRepository;
-    private final IngradientRepository ingradientRepository;
+    private final IngredientRepository ingredientRepository;
 
     @Autowired
-    public StaffController(StaffRepository staffRepository, IngradientRepository ingradientRepository){
+    public StaffController(StaffRepository staffRepository, IngredientRepository ingredientRepository){
         this.staffRepository = staffRepository;
-        this.ingradientRepository = ingradientRepository;
+        this.ingredientRepository = ingredientRepository;
     }
     //Login
 
     // Staff dashboard
-    @GetMapping("/staff")
-    public List<Ingredient> getDashboard(){
-        System.out.println("Display Staff Dashboard");
-        List<Ingredient> ingredients= ingradientRepository.findAll();
-        //Get Order summary (Todo)
-        //Get total income (Todo)
+    @GetMapping("/staff/ingredient")
+    public List<Ingredient> getIngredient(){
+        List<Ingredient> ingredients= ingredientRepository.findAll();
         return ingredients;
     }
 
     // Create ingredients
-    @PostMapping("/staff/add")
+    @PostMapping("/staff/ingredient")
     public String addIngredients(@RequestBody Ingredient ingredient){
-        ingradientRepository.save(ingredient);
+        ingredientRepository.save(ingredient);
         return "Add ingredient with id" + ingredient.getName();
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/{ingredientId}/delete")
+    @DeleteMapping("/staff/ingredient")
     public String deleteIngredients(@PathVariable String ingredientId){
-        ingradientRepository.deleteById(Integer.valueOf(ingredientId));
+        ingredientRepository.deleteById(Integer.valueOf(ingredientId));
         return "Delete ingredient with id" + ingredientId;
     }
 
@@ -54,8 +51,6 @@ public class StaffController {
     // Staff Profile
     @GetMapping("/staff/{staffId}/profile")
     public String getProfile(@PathVariable String staffId){
-
-
         return "getting profile page";
     }
 
