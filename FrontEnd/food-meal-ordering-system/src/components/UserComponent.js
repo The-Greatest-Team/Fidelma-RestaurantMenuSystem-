@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import UserService from "../services/UserService";
 
@@ -16,8 +17,17 @@ class UserComponent extends React.Component{
         });
     }
 
+    testPost(){
+        UserService.postUsers();
+    }
+
     render(){
-        return(null
+        return(
+            <>
+                <form>
+                    <button onClick={this.testPost}>Click me!</button>
+                </form>
+            </>
         );
     }
 
