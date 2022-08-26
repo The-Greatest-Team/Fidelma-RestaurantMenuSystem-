@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "https://localhost:3000")
-
 public class FoodController {
 
     private final FoodRepository foodRepository;
