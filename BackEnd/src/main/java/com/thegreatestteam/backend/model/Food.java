@@ -1,9 +1,9 @@
 package com.thegreatestteam.backend.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashMap;
-
 public class Food extends Item {
 
     private HashMap<Ingredient, Integer> components;

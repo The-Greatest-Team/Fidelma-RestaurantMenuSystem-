@@ -1,8 +1,8 @@
 package com.thegreatestteam.backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class HelloController {
 
@@ -13,6 +13,11 @@ public class HelloController {
     @GetMapping("/api/users")
     public String api(){
         return "Hello this is api /users";
+    }
+
+    @PostMapping("api/users")
+    public void getPost(@RequestBody String postString){
+        System.out.println(postString);
     }
 
 
