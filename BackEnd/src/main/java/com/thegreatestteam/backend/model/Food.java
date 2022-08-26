@@ -1,5 +1,7 @@
 package com.thegreatestteam.backend.model;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.HashMap;
 
 public class Food extends Item {
@@ -38,3 +40,4 @@ public class Food extends Item {
         this.type = type;
     }
 }
+
