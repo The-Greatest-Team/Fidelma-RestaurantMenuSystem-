@@ -7,7 +7,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/test" element={<UserComponent />} />
+                <Route path="/api/users" element={<UserComponent />} />
                 <Route path="/menu" element={<Menu />} />
             </Routes>
         </BrowserRouter>
