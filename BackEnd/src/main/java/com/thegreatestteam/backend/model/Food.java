@@ -4,16 +4,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashMap;
+
+@Document("Food")
 public class Food extends Item {
 
-    private HashMap<Ingredient, Integer> components;
+    private HashMap<Ingredient, Integer> components = new HashMap<>();
     private String type;
     private int kiloJoule;
 
-    public Food(String name, double price , String type, int kiloJoule) {
+    public Food(String name, double price , String type, int kiloJoule, HashMap<Ingredient, Integer> components) {
         super(name, price);
         this.type = type;
         this.kiloJoule = kiloJoule;
+        this.components = components;
     }
 
     public int getKiloJoule() {

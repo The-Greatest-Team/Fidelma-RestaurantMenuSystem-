@@ -1,16 +1,15 @@
 package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Food;
-import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
-import com.thegreatestteam.backend.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@CrossOrigin(origins = "https://localhost:3000")
+
 public class FoodController {
 
     private final FoodRepository foodRepository;
