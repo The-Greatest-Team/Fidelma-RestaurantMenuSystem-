@@ -12,6 +12,7 @@ class UserComponent extends React.Component{
         UserService.getUsers().then((respond) => {
             this.setState({users : respond.data })
         });
+        console.log(this.state);
     }
 
     render(){
@@ -31,3 +32,5 @@ class UserComponent extends React.Component{
     }
 
 }
+
+export default UserComponent
