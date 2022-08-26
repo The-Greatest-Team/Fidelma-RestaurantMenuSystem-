@@ -11,7 +11,6 @@ public class Staff {
 
     @Id
     private Integer id;
-
     private String Username;
     private String firstName;
     private String lastName;

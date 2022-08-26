@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/staff")
 public class StaffController {
 
     private final StaffRepository staffRepository;
@@ -23,9 +24,13 @@ public class StaffController {
     //Login
 
     // Staff dashboard
+    @GetMapping("/{staffId}")
+    public String getDashboard(@PathVariable Integer staffId){
+        return "Getting Dashboard page";
+    }
 
     // Staff Profile
-    @GetMapping("/staff/{staffId}/profile")
+    @GetMapping("/{staffId}/profile")
     public String getProfile(@PathVariable String staffId){
         return "getting profile page";
     }
