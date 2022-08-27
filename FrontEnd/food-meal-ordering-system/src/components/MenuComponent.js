@@ -9,6 +9,12 @@ class MenuComponent extends React.Component{
         this.state = {foods : []}
     }
 
+    componentDidMount(){
+        MenuService.getUsers().then((respond) => {
+            this.setState({foods : respond.data })
+            console.log(this.state.foods);
+        });
+    }
 
 
     render(){
@@ -31,7 +37,32 @@ class MenuComponent extends React.Component{
                         </div>
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
-                    <div className="foodunit">
+
+                    <div>
+                        {this.state.foods.map((dish) => (
+                            <div className="foodunit">
+                            <hr />
+                            <div className="foodbox">
+                                <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
+                                
+                                <div className="textbox">
+                                    <div className="burger_name">{dish.foodName}</div>
+                                    <div className="burger_desc">{dish.foodDesc}</div>
+                                    <div className="burger_others">
+                                        <div className="burger_joules">{dish.foodJoules}</div>
+                                        <div className="burger_price">{dish.foodPrice}</div>
+                                    </div>
+                                </div>
+    
+                                <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
+                                <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+
+
+                    {/* <div className="foodunit">
                         <hr />
                         <div className="foodbox">
                             <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
@@ -67,7 +98,7 @@ class MenuComponent extends React.Component{
                             <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
                             <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
                         </div>
-                    </div>
+                    </div> */}
                     <button id="add_more_button">Add more dish</button>
                 </div>
             </>
