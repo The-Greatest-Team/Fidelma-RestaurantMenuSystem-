@@ -41,7 +41,7 @@ class MenuComponent extends React.Component{
 
                     <div>
                         {this.state.foods.map((dish) => (
-                            <div className="foodunit">
+                            <div className="foodunit" key={dish.id}>
                             <hr />
                             <div className="foodbox">
                                 <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
