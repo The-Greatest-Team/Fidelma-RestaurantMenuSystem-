@@ -8,15 +8,16 @@ import java.util.HashMap;
 @Document("Food")
 public class Food extends Item {
 
-    private HashMap<Ingredient, Integer> components = new HashMap<>();
+//    private HashMap<Ingredient, Integer> components = new HashMap<>();
     private String type;
     private int kiloJoule;
 
-    public Food(String name, double price , String type, int kiloJoule, HashMap<Ingredient, Integer> components) {
+    public Food(String name, double price , String type, int kiloJoule) {
         super(name, price);
         this.type = type;
         this.kiloJoule = kiloJoule;
-        this.components = components;
+//        HashMap<Ingredient, Integer> components
+//        this.components = components;
     }
 
     public int getKiloJoule() {
@@ -27,13 +28,13 @@ public class Food extends Item {
         this.kiloJoule = kiloJoule;
     }
 
-    public HashMap<Ingredient, Integer> getComponents() {
-        return components;
-    }
+//    public HashMap<Ingredient, Integer> getComponents() {
+//        return components;
+//    }
 
-    public void setComponents(HashMap<Ingredient, Integer> components) {
-        this.components = components;
-    }
+//    public void setComponents(HashMap<Ingredient, Integer> components) {
+//        this.components = components;
+//    }
 
     public String getType() {
         return type;
