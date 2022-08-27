@@ -1,8 +1,10 @@
 package com.thegreatestteam.backend.controller;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.service.FoodService;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +22,18 @@ public class FoodController {
 
     //Get Menu
     @GetMapping("/staff/menu/chicken")
-    public List<Food> getChickenFood(){
-        System.out.println("Chicken Menu");
-        List<Food> menu = foodRepository.findByType("chicken");
-        return menu;
+    public String getChickenFood(){
+//        System.out.println("Chicken Menu");
+//        List<Food> menu = foodRepository.findByType("chicken");
+//        Gson gson = new Gson();
+//        Food food = new Food("test2",111.2,"chicken",1211,null,null);
+//
+//
+//        String sss = gson.toJson(food);
+        return "[{\"foodName\" : \"Big Mac Chicken Burger\" ,\"foodDesc\": \"Huge chicken chop, fresh lettuce.\" ,\"foodJoules\" : \"2880kJ\" ,\"foodPrice\" : \"$13.80\" } , {\"foodName\" : \"Double Drumstick Burger\" ,\"foodDesc\" : \"Two chicken steaks, fresh tomatoes, lettuce.\" ,\"foodJoules\" : \"3150kJ\" ,\"foodPrice\" : \"$16.80\" }]";
     }
+
+
 
     @GetMapping("/staff/menu/beef")
     public List<Food> getBeefFood(){
