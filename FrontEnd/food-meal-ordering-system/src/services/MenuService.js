@@ -8,9 +8,9 @@ class UserService{
         return axios.get(USERS_REST_API_URL)
     }
 
-    // postUsers(data){
-    //     return axios.post(USERS_REST_API_URL, data);
-    // }
+    postUsers(){
+        return axios.post(USERS_REST_API_URL, "test");
+    }
     
 }
 
