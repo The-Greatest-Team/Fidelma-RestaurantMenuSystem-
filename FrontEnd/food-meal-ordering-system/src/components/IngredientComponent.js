@@ -1,6 +1,29 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
 
+const meats = [
+    createData('Pork', 150),
+    createData('Beef', 100),
+    createData('Chicken', 200),
+    createData('aaa', 150),
+    createData('sdaa', 100),
+];
+
+const vegetables = [
+    createData('Tomato', 150),
+    createData('Onion', 100),
+    createData('Lettuce', 200),
+    createData('aaa', 150),
+    createData('sdaa', 100),
+];
+
+const mystyle = {
+    display: "none"
+};
+
+function createData(type, quantity) {
+    return { type, quantity};
+}
 class IngredientComponent extends React.Component{
     constructor(props){
         super(props)
@@ -12,120 +35,105 @@ class IngredientComponent extends React.Component{
         IngredientService.postUsers();
     }
 
+    showForm = () =>{
+        if(
+            document.getElementsByClassName("editForm")&&
+            document.getElementById("main")
+        ){
+            document.getElementsByClassName("editForm").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+    }
+
     render(){
         return(
             <>
-                <header class = "ingredientHeader">
-                    <img class = "backButton" src = "svg/back.svg" alt = "back" onclick = 
-                        "window.location.href='staffDashboard.html'" />
-                </header>
-    
-                <main>
-                    <div class = "titleContainer">
-                        <div style="display: inline-block;">
-                            <img class = "material" src = "svg/material.svg" alt = "material" />
-                            <h1 class = "title">Raw Materials</h1>
-                        </div>
+                <div className = "main">
+                    <div>
+                        <img className = "backButton" src = "/res/images/back.svg" />
                     </div>
-                    <div class = "ingerdientContainer">
-                        <div class = "category">
-                            <img class = "rawMaterialIcon" src = "svg/meat.svg" alt = "meat" style = "display: inline-block;" />
-                            <h1>Meats</h1>
-                        </div>
-                        <div class = "tableContainer">
-                            <table class = "ingredientTable">
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Quantity</th>
-                                    <th>Operation</th>
-                                </tr>
-                                <tr>
-                                    <td>Beef</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Pork</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Chicken</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                            </table>
-                            <img class = "add" src = "svg/add.svg" alt = "add" onclick="showForm('addForm')" />
-                        </div>
-                        <div class = "category">
-                            <img class = "rawMaterialIcon" src = "svg/vegetable.svg" alt = "vegetable" style = 
-                            "display: inline-block;" />
-                            <h1>Vegetables</h1>
-                        </div>
-                        <div class = "tableContainer">
-                            <table class = "ingredientTable">
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Quantity</th>
-                                    <th>Operation</th>
-                                </tr>
-                                <tr>
-                                    <td>Tomato</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Onion</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Lettuce</td>
-                                    <td>100</td>
-                                    <td><button class="editButton" onclick = "showForm('editForm')">Edit</button></td>
-                                </tr>
-                            </table>
-                            <img class = "add" src = "svg/add.svg" alt = "add" onclick="showForm('addForm')" />
-                        </div>
+                    <div className = "titleContainer">
+                        <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
+                        <h1>Raw Materials</h1>
                     </div>
 
-                    <div id = "editForm" style = "display: none;" class = "editForm">
-                        <button id="close" class="closeButton" onclick="closeForm('editForm')">X</button>
+                    <div className = "ingredientContainer">
+                        <div className = "category">
+                            <img className = "rawMaterialIcon" src = "/res/images/meat.svg" />
+                            <h1>Meats</h1>
+                        </div>
+                        <div className = "tableContainer">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>quantity</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {meats.map((row) =>(
+                                        <tr
+                                            key = {row.type}
+                                        >
+                                            <td>{row.type}</td>
+                                            <td>{row.quantity}</td>
+                                            <td><button className="editButton" onClick={this.showForm()}>Edit</button></td>
+                                        </tr>
+                                            
+                                    ))}
+                                </tbody>
+                            </table>
+                            <img className = "add" src = "/res/images/add.svg" />
+                        </div>
+                        <div className = "category">
+                            <img className = "rawMaterialIcon" src = "/res/images/vegetable.svg" />
+                            <h1>Vegetables</h1>
+                        </div>
+                        <div className = "tableContainer">
+                        <table>
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>quantity</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {vegetables.map((row) =>(
+                                        <tr
+                                            key = {row.type}
+                                        >
+                                            <td>{row.type}</td>
+                                            <td>{row.quantity}</td>
+                                            <td><button className="editButton" onClick={this.showForm()}>Edit</button></td>
+                                        </tr>
+                                            
+                                    ))}
+                                </tbody>
+                            </table>
+                            <img className = "add" src = "/res/images/add.svg" />
+                        </div>
+                    </div>
+                    <div id = "editForm" style ={{display: "none"}} className = "editForm">
+                        <button id="close" className="closeButton">X</button>
                         <form>
-                            <div class = "formTitle">
+                            <div className = "formTitle">
                                 <h1>Update Quantity</h1>
                             </div>
                 
-                            <div class = "formTitle">
+                            <div className = "formTitle">
                                 <h4>Enter the new quantity:</h4>
-                                <input class = "update" />
+                                <input className = "update" />
                             </div>
-                            <div class = "formTitle">
-                                <button class = "submitButton">Submit</button>
+                            <div className = "formTitle">
+                                <button className = "submitButton">Submit</button>
                             </div>
                         </form>
                     </div>
+                </div>
 
-                    <div id = "addForm" style = "display: none;" class="addForm">
-                        <button id="close" class="closeButton" onclick="closeForm('addForm')">X</button>
-                        <form>
-                            <div class = "formTitle">
-                                <h1>Add new ingredient</h1>
-                            </div>
-                            <div class = "formContent">
-                                <h4>Enter the new ingredient:</h4>
-                                <input class = "update" />
-                            </div>
-                            <div class = "formTitle">
-                                <h4>Enter the quantity:</h4>
-                                <input class = "update" />
-                            </div>
-                            <div class = "formContent">
-                                <button class = "submitButton">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </main>
+                
             </>
         );
     }
