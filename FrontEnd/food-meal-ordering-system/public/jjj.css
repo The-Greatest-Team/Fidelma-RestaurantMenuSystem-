@@ -1,0 +1,155 @@
+@font-face
+{
+font-family: worksans;
+src: url('../font/WorkSans-Regular.ttf');
+}
+
+html{
+    /*放大了40倍，所以size为pixel/40
+    100vw = screen width
+    */
+    font-size:10.666666666666666vw;
+}
+
+
+
+.content.top img {
+    border-style:none;
+    width:2.25rem;
+    height:2.225rem;
+    margin-left:3.5625rem;
+    margin-top: 0.8rem; 
+    /*
+    margin-top: box move downward
+    margin-left: box move to right
+    margin_bottom: others move downward
+    if in one element is contain in a parent element
+    width(parent) = margin-left+border-left+padding-left+width+margin-right+border-right+padding-right 
+    */
+
+}
+
+
+
+#editPart {
+    color : #000000;
+    font-size: 0.4rem;
+    font-family:worksans;
+}
+
+.inputPart {
+    border-style:solid;
+    /*top,right,bottom,left*/
+    border-width:0.025rem,0.025rem,0.025rem,0.025rem;
+    border-color:#707070;
+    width:7.6rem;
+    height:0.65rem;
+}
+.inputPartSpecial {
+    border-style:solid;
+    /*top,right,bottom,left*/
+    border-width:0.05rem;
+    border-color:#707070;
+    width:7.6rem;
+    height:1.55rem;
+    color : #000000;
+    font-size: 0.4rem;
+    font-family:worksans;
+}
+
+body {background-color :#FEFCF7;}
+
+
+
+#cameraImage{
+    width:2.25rem;
+    height:2.225rem;
+}
+/*box: content;border;padding(decide size of box);margin(decide position)*/
+
+.content.edit{
+    margin-left:0.5rem;
+    margin-top:0.3rem;
+}
+
+.ingredientsList{
+    border-style:none;
+    /*top,right,bottom,left*/
+    border-width:0rem;
+    width:7.6rem;
+    height:20rem;
+    color : #707070;
+    font-size: 0.4rem;
+    font-family:worksans;
+    margin-top:0rem;
+    display:none;
+}
+
+.arrow {
+    width: 0.22rem;
+    height: 0.337rem;
+}
+
+button{
+    background-color:#FEFCF7;
+    border-style:none;
+    margin-left:-0.2rem;
+}
+
+
+
+.quantity {
+    width:0.43rem;
+    height:0.43rem;
+    border-style:dashed;
+    border-width:0.025rem;
+    border-color:#707070;
+    border-style: solid;
+    display: block;
+    float:right;
+    margin-right:0.2rem;
+}
+
+
+.name {
+    color : #000000;
+    font-size: 0.45rem;
+    font-family:worksans;
+    display: block;
+    float:left;
+}
+
+.unit {
+    color : #000000;
+    font-size: 0.45rem;
+    font-family:worksans;
+    display: block;
+    float:right;
+    margin-left: auto;
+}
+
+.ingredientsList div {
+    padding-top: 0.3rem;
+    margin-bottom: 0.7rem;
+    display:block;
+}
+
+.show {display:block;}
+
+.backSign{
+    margin-left:0.625rem;
+    margin-top:0.8rem;
+    width:0.875rem;
+    height:0.875rem;
+}
+
+.icon-arrow {
+    width:0.22025rem;
+    height:0.337rem;
+    /*设置所有动画的效果：0.3s 淡出效果*/
+    transition: all .3s ease-out;
+}
+.icon-arrow-rotate {
+    /*旋转180度*/
+    transform: rotate(90deg);
+}

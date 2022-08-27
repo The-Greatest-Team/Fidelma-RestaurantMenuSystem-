@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--perfect viewport-->
+    <!--use vw(viewport width) to modify size-->
+    <!--1vw = 1% viewport width-->
+    <meta name = "viewport" content ="width=device-width, initial-scale=1.0">
+    <title>gg</title>
+    <link rel="stylesheet" href="../public/jjj.css">
+</head>
+<body>
+    <!--import libraries-->
+    <script type="text/javascript" src="../public/downward_menu.js"></script>
+    
+
+    <div>
+        <img class = "backSign" src="../public/res/images/backSign.jpg">
+    </div>
+    
+    <div id = "camera">
+        <div class = "content top">
+            <img class = "cameraImage" src="../public/res/images/camera.jpg"/>
+        </div>
+    </div> 
+
+    <div id= "editPart">
+        <div class = "content edit">
+            <h2>Name</h2>
+            <input class = "inputPart" type="text"/>
+            <h2>Price</h2>
+            <input class = "inputPart" type="text"/>
+            <h2>Description</h2>
+            <textarea class = "inputPartSpecial"></textarea>
+            <h2 class="ingredients">Ingredients 
+                <button onClick="myFunction()" class="dropbtn hamburger hamburger-plus">
+                <img src="../public/res/images/backButton.jpg" class="icon icon-arrow" onclick="rotateArrow()">
+                </button> </h2>
+            <div id="myDropdown" class="ingredientsList">
+                    <div>
+                        <span class = "name">Onion</span>
+                        <span class = "unit">g</span>
+                        <input class = "quantity" type="text"/>
+                        
+                    </div>
+                    <div>
+                        <span class = "name">Beef</span>
+                        <span class = "unit">g</span>
+                        <input class = "quantity" type="text"/>
+                        
+                    </div>
+                    <div>
+                        <span class = "name">Chicken</span>
+                        <span class = "unit">g</span>
+                        <input class = "quantity" type="text"/>
+                    </div>
+            </div>
+        </div>
+    </div>        
+    <script type="text/javascript" src="../public/arrow_rotation.js"></script>
+</body>
+</html>
