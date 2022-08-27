@@ -3,7 +3,7 @@ package com.thegreatestteam.backend.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HelloController {
 
     @GetMapping("/")

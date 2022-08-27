@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@CrossOrigin(origins = "https://localhost:3000")
 public class FoodController {
-
     private final FoodRepository foodRepository;
     @Autowired
     public FoodController(FoodRepository foodRepository){
@@ -54,9 +52,4 @@ public class FoodController {
         return "Add food " + food.getName();
     }
 
-//    @PostMapping("/staff/test")
-//    public String testREQ(@RequestBody Food food){
-//        System.out.println(food.getName());
-//        return food.getName();
-//    }
 }
