@@ -9,36 +9,7 @@ class MenuComponent extends React.Component{
         this.state = {foods : []}
     }
 
-    componentDidMount(){
-        MenuService.getUsers().then((respond) => {
-            this.setState({foods : respond.data })
-            console.log(this.state.foods);
-        });
-    }
 
-    accessEditingMode(){
-        let editBtn =  document.getElementById("editBtn");
-        let addBtns = document.getElementsByClassName("addDishBtn");
-        let delBtns = document.getElementsByClassName("delDishBtn")
-        if (editBtn.innerHTML == "Edit"){
-            editBtn.innerHTML = "Editing";
-            document.getElementById("add_more_button").style.display = "flex";
-            
-            for(let i = 0; i < addBtns.length; i++){
-                addBtns[i].style.display = "none"
-                delBtns[i].style.display = "block"
-            }
-    
-        } else {
-            editBtn.innerHTML = "Edit";
-            document.getElementById("add_more_button").style.display = "None";
-    
-            for(let i = 0; i < addBtns.length; i++){
-                addBtns[i].style.display = "block"
-                delBtns[i].style.display = "none"
-            }
-        }
-    }
 
     render(){
         return(

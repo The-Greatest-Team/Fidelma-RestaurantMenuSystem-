@@ -13,6 +13,7 @@ import java.io.IOException;
 @Service
 public class FoodService {
 
+    @Autowired
     private final FoodRepository foodRepository;
 
     public FoodService(FoodRepository foodRepository) {

@@ -55,4 +55,9 @@ public class FoodController {
         return "Add food " + food.getName();
     }
 
+    @GetMapping("/staff/menu/NewDish")
+    public String getAddFoodPage(){
+        return "Add Food Page";
+    }
+
 }
