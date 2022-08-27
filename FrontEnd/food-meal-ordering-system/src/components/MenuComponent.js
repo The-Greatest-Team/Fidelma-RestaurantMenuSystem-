@@ -6,13 +6,13 @@ class MenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {users : []}
+        this.state = {foods : []}
     }
 
     componentDidMount(){
         MenuService.getUsers().then((respond) => {
-            this.setState({users : respond.data })
-            console.log(this.state.users);
+            this.setState({foods : respond.data })
+            console.log(this.state.foods);
         });
     }
 
