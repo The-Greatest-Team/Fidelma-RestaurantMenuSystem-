@@ -1,13 +1,13 @@
 package com.thegreatestteam.backend.controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
+
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.service.FoodService;
-import org.apache.tomcat.util.json.JSONParser;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,12 +25,27 @@ public class FoodController {
     public String getChickenFood(){
 //        System.out.println("Chicken Menu");
 //        List<Food> menu = foodRepository.findByType("chicken");
-//        Gson gson = new Gson();
-//        Food food = new Food("test2",111.2,"chicken",1211,null,null);
-//
-//
 //        String sss = gson.toJson(food);
-        return "[{\"foodName\" : \"Big Mac Chicken Burger\" ,\"foodDesc\": \"Huge chicken chop, fresh lettuce.\" ,\"foodJoules\" : \"2880kJ\" ,\"foodPrice\" : \"$13.80\" } , {\"foodName\" : \"Double Drumstick Burger\" ,\"foodDesc\" : \"Two chicken steaks, fresh tomatoes, lettuce.\" ,\"foodJoules\" : \"3150kJ\" ,\"foodPrice\" : \"$16.80\" }]";
+        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
+        Integer id = 0;
+        List<Food> menu = foodRepository.findByType("chicken");
+        System.out.println(menu.size());
+        for (Food chickenFood:
+             menu) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id",id);
+            jsonObject.put("foodName", chickenFood.getName());
+            jsonObject.put("foodDesc", chickenFood.getDescription());
+            jsonObject.put("foodJoules", chickenFood.getKiloJoule());
+            jsonObject.put("foodPrice", chickenFood.getPrice());
+            result.add(jsonObject);
+            id += 1;
+        }
+
+        System.out.println(result.toString());
+
+        return result.toString();
+//        return "[{\"foodName\" : \"Big Mac Chicken Burger\" ,\"foodDesc\": \"Huge chicken chop, fresh lettuce.\" ,\"foodJoules\" : \"2880kJ\" ,\"foodPrice\" : \"$13.80\" } , {\"foodName\" : \"Double Drumstick Burger\" ,\"foodDesc\" : \"Two chicken steaks, fresh tomatoes, lettuce.\" ,\"foodJoules\" : \"3150kJ\" ,\"foodPrice\" : \"$16.80\" }]";
     }
 
 

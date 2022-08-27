@@ -1,6 +1,7 @@
 package com.thegreatestteam.backend.model;
 
 import org.bson.types.Binary;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.awt.*;
@@ -11,18 +12,23 @@ import java.util.Map;
 @Document("Food")
 public class Food extends Item {
 
+//    @Id
+//    private String id;
     private Map<String, Integer> components;
+
     private String type;
     private Binary image;
 
+    private String description;
     private int kiloJoule;
 
-    public Food(String name, double price , String type, int kiloJoule, Map<String, Integer> components,Binary image) {
+    public Food(String name, double price , String type, int kiloJoule, Map<String, Integer> components,Binary image, String description){
         super(name, price);
         this.type = type;
         this.kiloJoule = kiloJoule;
         this.components = components;
         this.image = image;
+        this.description = description;
     }
 
     public int getKiloJoule() {
@@ -56,5 +62,17 @@ public class Food extends Item {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+//    public String getId() {
+//        return id;
+//    }
 }
 

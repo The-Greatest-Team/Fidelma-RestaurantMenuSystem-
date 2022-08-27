@@ -50,8 +50,8 @@ class MenuComponent extends React.Component{
                                     <div className="burger_name">{dish.foodName}</div>
                                     <div className="burger_desc">{dish.foodDesc}</div>
                                     <div className="burger_others">
-                                        <div className="burger_joules">{dish.foodJoules}</div>
-                                        <div className="burger_price">{dish.foodPrice}</div>
+                                        <div className="burger_joules">{dish.foodJoules}KJ</div>
+                                        <div className="burger_price">${dish.foodPrice}</div>
                                     </div>
                                 </div>
     
