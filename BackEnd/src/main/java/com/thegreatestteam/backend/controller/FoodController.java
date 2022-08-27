@@ -5,6 +5,7 @@ import com.thegreatestteam.backend.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
 import java.util.List;
 
 @RestController
@@ -18,15 +19,44 @@ public class FoodController {
     }
 
     //Get Menu
-    @GetMapping("/staff/Chicken")
+    @GetMapping("/staff/menu/chicken")
     public List<Food> getChickenFood(){
-        List<Food> menu = foodRepository.findAll();
+        System.out.println("Chicken Menu");
+        List<Food> menu = foodRepository.findByType("chicken");
         return menu;
     }
+
+    @GetMapping("/staff/menu/beef")
+    public List<Food> getBeefFood(){
+        System.out.println("Beef Menu");
+        List<Food> menu = foodRepository.findByType("beef");
+        return menu;
+    }
+
+    @GetMapping("/staff/menu/side")
+    public List<Food> getSideFood(){
+        System.out.println("Side Menu");
+        List<Food> menu = foodRepository.findByType("side");
+        return menu;
+    }
+
+    @GetMapping("/staff/menu/chip")
+    public List<Food> getChipFood(){
+        System.out.println("Chip Menu");
+        List<Food> menu = foodRepository.findByType("chip");
+        return menu;
+    }
+
 
     @PostMapping("/staff/menu")
     public String addFood(@RequestBody Food food){
         foodRepository.save(food);
         return "Add food " + food.getName();
     }
+
+//    @PostMapping("/staff/test")
+//    public String testREQ(@RequestBody Food food){
+//        System.out.println(food.getName());
+//        return food.getName();
+//    }
 }
