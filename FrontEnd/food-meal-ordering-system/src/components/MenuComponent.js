@@ -45,13 +45,13 @@ class MenuComponent extends React.Component{
             <>
                 <div>
                     <div className="menu_head">
-                        <img id="menupic" src="./res/images/menu_pic_temp" alt="menu picture" />
-                        <img className="logo" src="./res/images/projectIcon.png" alt="logo" />
+                        <img id="menupic" src="/res/images/menu_pic_temp.png" alt="menu picture" />
+                        <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         <div id="menuword">menu</div>
                     </div>
 
                     <div className="nav">
-                        <input name="returnBtn" type="image" src="./res/images/arrow.png" alt="return button icon" />
+                        <input name="returnBtn" type="image" src="/res/images/arrow.png" alt="return button icon" />
                         <span>Table No.</span>
                     </div>
                     <div className="inner_menu_container">
@@ -63,7 +63,7 @@ class MenuComponent extends React.Component{
                     <div className="foodunit">
                         <hr />
                         <div className="foodbox">
-                            <img src="./res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
+                            <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
                             
                             <div className="textbox">
                                 <div className="burger_name">Big_Mac_Chicken_Burger</div>
@@ -74,14 +74,14 @@ class MenuComponent extends React.Component{
                                 </div>
                             </div>
 
-                            <input className="addDishBtn" name="addDishBtn" type="image" src="./res/images/add_button.png" alt="add button icon" />
-                            <input className="delDishBtn" name="delDishBtn" type="image" src="./res/images/delete_btn.png" alt="delete button icon" />
+                            <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
+                            <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
                         </div>
                     </div>
                     <div className="foodunit">
                         <hr />
                         <div className="foodbox">
-                            <img src="./res/images/Double_Drumstick_Burger.png" alt="Double_Drumstick_Burger_picture" />
+                            <img src="/res/images/Double_Drumstick_Burger.png" alt="Double_Drumstick_Burger_picture" />
                             
                             <div className="textbox">
                                 <div className="burger_name">Double_Drumstick_Burger</div>
@@ -93,8 +93,8 @@ class MenuComponent extends React.Component{
                                 </div>
                             </div>
 
-                            <input className="addDishBtn" name="addDishBtn" type="image" src="./res/images/add_button.png" alt="add button icon" />
-                            <input className="delDishBtn" name="delDishBtn" type="image" src="./res/images/delete_btn.png" alt="delete button icon" />
+                            <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
+                            <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
                         </div>
                     </div>
                     <button id="add_more_button">Add more dish</button>
