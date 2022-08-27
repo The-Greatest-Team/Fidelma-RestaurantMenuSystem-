@@ -48,6 +48,7 @@ public class FoodController {
 
     @PostMapping("/staff/menu")
     public String addFood(@RequestBody Food food){
+        System.out.println(food.getComponents());
         foodRepository.save(food);
         return "Add food " + food.getName();
     }

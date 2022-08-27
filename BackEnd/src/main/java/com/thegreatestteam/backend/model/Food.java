@@ -1,23 +1,26 @@
 package com.thegreatestteam.backend.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.web.bind.annotation.GetMapping;
 
+import java.awt.*;
+import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 @Document("Food")
 public class Food extends Item {
 
-//    private HashMap<Ingredient, Integer> components = new HashMap<>();
+    private Map<String, Integer> components;
     private String type;
+    private Image imgae;
+    private File image;
     private int kiloJoule;
 
-    public Food(String name, double price , String type, int kiloJoule) {
+    public Food(String name, double price , String type, int kiloJoule, Map<String, Integer> components) {
         super(name, price);
         this.type = type;
         this.kiloJoule = kiloJoule;
-//        HashMap<Ingredient, Integer> components
-//        this.components = components;
+        this.components = components;
     }
 
     public int getKiloJoule() {
@@ -28,13 +31,13 @@ public class Food extends Item {
         this.kiloJoule = kiloJoule;
     }
 
-//    public HashMap<Ingredient, Integer> getComponents() {
-//        return components;
-//    }
+    public Map<String, Integer> getComponents() {
+        return components;
+    }
 
-//    public void setComponents(HashMap<Ingredient, Integer> components) {
-//        this.components = components;
-//    }
+    public void setComponents(Map<String, Integer> components) {
+        this.components = components;
+    }
 
     public String getType() {
         return type;
