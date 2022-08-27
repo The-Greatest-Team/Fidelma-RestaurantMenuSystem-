@@ -11,7 +11,7 @@ class UserService{
     postUsers(){
         return axios.post(USERS_REST_API_URL, "test");
     }
-
+    
 }
 
 export default new UserService()
