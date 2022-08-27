@@ -2,18 +2,20 @@ package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.repository.FoodRepository;
+import com.thegreatestteam.backend.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class FoodController {
     private final FoodRepository foodRepository;
+    private final FoodService foodService;
     @Autowired
-    public FoodController(FoodRepository foodRepository){
+    public FoodController(FoodRepository foodRepository, FoodService foodService){
         this.foodRepository = foodRepository;
+        this.foodService = foodService;
     }
 
     //Get Menu
