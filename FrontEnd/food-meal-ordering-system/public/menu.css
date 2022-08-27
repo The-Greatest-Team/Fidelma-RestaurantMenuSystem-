@@ -150,3 +150,253 @@ body{
     border:#707070 solid;
 }
 
+/*
+staff.css
+*/
+
+@font-face {
+    font-family: "WorkSans";
+    src: url("font/WorkSans-Regular.ttf");
+}
+
+* {
+    font-family: "WorkSans";
+}
+
+body{
+    background-color: #FEFCF7;
+}
+
+.dashboardHeader{
+    margin-top: 10%;
+    margin-left: 8%;
+}
+
+.dashboardImg{
+    height: 40%;
+    width: 15%;
+}
+
+.staffName{
+    display: inline-block;
+}
+
+.editButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.dashboardIcon{
+    height: 20%;
+    width: 10%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.dashboardBar{
+    margin-top: 100px;
+    margin-left: 8%;
+    margin-right: 8%;
+    background-color: #F01E1E;
+    border-radius: 15px;
+}
+
+.dashboardContent{
+    display: inline-block;
+}
+
+.dashboardContent h2{
+    margin-left: 5%;
+}
+
+main h2{
+    color: #FFFFFF;
+}
+
+img{
+    height: 40%;
+    width: 15%;
+    display: inline-block;
+}
+
+.material{
+    margin-left: 5%; 
+    padding-top: 30px;
+}
+
+.rawMaterialIcon{
+    height: 15%;
+    width: 10%;
+    margin-left: 3%;
+    margin-top: 5%;
+}
+
+.backButton{
+    height: 10%;
+    width: 5%;
+}
+
+.titleContainer{
+    background-color: #F01E1E;
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.ingredientContainer{
+    background-color: #FFFFFF; 
+    margin-left: 2%; 
+    margin-right: 2%; 
+    padding-bottom: 100px;
+}
+
+.title{
+    color: #FFFFFF; 
+    font-size: 60px;
+    display: inline-block;
+    margin-left: 30%;
+}
+
+.tableContainer{
+    background-color: #FEFCF7; 
+    margin-left: 3%; 
+    margin-right: 3%; 
+    padding-top: 50px;
+}
+
+.ingredientHeader{
+    margin-top: 5%;
+}
+
+.ingredientTable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 88%;
+    margin-left: 50px;
+    height: 400px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+th{
+    font-size: 30px;
+}
+
+td{
+    font-size: 20px;
+    
+}
+
+tr {
+    background-color: #FFFFFF;
+}
+
+h2{
+    margin-left: 3%;
+    font-size: 40px;
+}
+
+.add{
+    height: 5%;
+    width: 5%;
+    margin-left: 50px;
+    margin-top: 3%;
+}
+
+.editForm{
+    width: 80%;
+    height: 27%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 12px;
+    background: #FEFCF7;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.submitButton{
+    width: 91%; 
+    height: 100px;
+    font-size: 40px;
+    color: #FFFFFF;
+    background-color: #F01E1E;
+    border-style: none;
+}
+
+.update{
+    background-color: #FFFFFF;
+    width: 90%; 
+    height: 100px; 
+    font-size: 50px;
+}
+
+.closeButton {
+    background:#F01E1E;
+    padding: 4px 12px;
+    font-size: 30px;
+    font-weight: 400;
+    border-radius: 4px;
+    text-decoration: none;
+    border-width: 0;
+    color: #FFFFFF;
+    margin-top: 20px;
+    position: relative;
+    cursor: pointer;
+    float:right;
+} 
+
+.editButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 20px;
+    border-radius: 4px;
+    padding: 4px 12px;
+} 
+
+.addForm{
+    width: 80%;
+    height: 40%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 12px;
+    background: #FEFCF7;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.category  h1{
+    display: inline-block;
+}
+
+.formTitle{
+    margin-top: 5%; 
+    margin-left: 5%;
+}
+
+.formTitle h1 {
+    font-size: 60px;
+}
+
+.formContent{
+    margin-top: 8%; 
+    margin-left: 5%;
+}
+
+.formTitle, .formContent h4{
+    font-size: 30px;
+}
