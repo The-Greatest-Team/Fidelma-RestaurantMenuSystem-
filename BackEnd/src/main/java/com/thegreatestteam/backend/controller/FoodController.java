@@ -18,8 +18,8 @@ public class FoodController {
     }
 
     //Get Menu
-    @GetMapping("/staff/menu")
-    public List<Food> getMenuForStaff(){
+    @GetMapping("/staff/Chicken")
+    public List<Food> getChickenFood(){
         List<Food> menu = foodRepository.findAll();
         return menu;
     }

@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import axios from "axios";
 
 export default function menu(){
-
-    // const state = [state, s]
-
+    
     function accessEditingMode(){
         let editBtn =  document.getElementById("editBtn");
         let addBtns = document.getElementsByClassName("addDishBtn");
@@ -28,13 +26,6 @@ export default function menu(){
             }
         }
     }
-
-    axios.get("http://localhost:3000/menu")
-        // .then((res) = {
-        //     if (res.status === 200){
-                
-        //     }
-        // })
 
     return (
         <div>
