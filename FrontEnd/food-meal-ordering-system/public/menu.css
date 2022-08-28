@@ -156,7 +156,7 @@ staff.css
 
 @font-face {
     font-family: "WorkSans";
-    src: url("/font/WorkSans-Regular.ttf");
+    src: url("res/font/WorkSans-Regular.ttf");
 }
 
 * {
