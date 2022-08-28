@@ -26,8 +26,8 @@ public class StaffController {
     //Login
 
     // Staff dashboard
-    @GetMapping("/{staffId}")
-    public String getDashboard(@PathVariable Integer staffId){
+    @GetMapping("/dashboard")
+    public String getDashboard(){
         return "Getting Dashboard page";
     }
 
