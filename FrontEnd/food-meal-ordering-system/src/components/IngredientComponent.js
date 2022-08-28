@@ -1,5 +1,6 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
+// import Dialog from "../components/Dialog"
 
 const meats = [
     createData('Pork', 150),
@@ -17,34 +18,59 @@ const vegetables = [
     createData('sdaa', 100),
 ];
 
-const mystyle = {
-    display: "none"
-};
-
 function createData(type, quantity) {
     return { type, quantity};
 }
+
+const Portal = () =>{
+    const wrap = (ev) => {
+        ev.stopPropagation();
+    };
+    return (
+        <div id = "editForm" className = "editForm">
+            <form>
+                <div className = "formTitle">
+                    <h1>Update Quantity</h1>
+                </div>
+                <div className = "formTitle">
+                    <h4>Enter the new quantity:</h4>
+                    <input className = "update" />
+                </div>
+                <div className = "formContent">
+                    <button className = "submitButton">Submit</button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+
 class IngredientComponent extends React.Component{
     constructor(props){
         super(props)
-
-        this.state = {foods : []}
+        this.state = {
+            show:false,
+            foods : []
+        };
     }
 
     testPost(){
         IngredientService.postUsers();
     }
 
-    showForm = () =>{
-        if(
-            document.getElementsByClassName("editForm")&&
-            document.getElementById("main")
-        ){
-            document.getElementsByClassName("editForm").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
+    handleClick = (e) =>{
+        e.stopPropagation();
+        this.setState({
+            show:true,
+        });
     }
 
+    close = () =>{
+        this.setState({
+            show:false,
+        });
+    }
+    
     render(){
         return(
             <>
@@ -52,9 +78,9 @@ class IngredientComponent extends React.Component{
                     <div>
                         <img className = "backButton" src = "/res/images/back.svg" />
                     </div>
-                    <div className = "titleContainer">
+                    <div className = "titleContainer" onClick={this.close}>
                         <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
-                        <h1>Raw Materials</h1>
+                        <h1 className = "title">Raw Materials</h1>
                     </div>
 
                     <div className = "ingredientContainer">
@@ -63,7 +89,7 @@ class IngredientComponent extends React.Component{
                             <h1>Meats</h1>
                         </div>
                         <div className = "tableContainer">
-                            <table>
+                            <table className = "ingredientTable">
                                 <thead>
                                     <tr>
                                         <th>Type</th>
@@ -78,7 +104,8 @@ class IngredientComponent extends React.Component{
                                         >
                                             <td>{row.type}</td>
                                             <td>{row.quantity}</td>
-                                            <td><button className="editButton" onClick={this.showForm()}>Edit</button></td>
+                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
+                                            {this.state.show && <Portal />}</td>
                                         </tr>
                                             
                                     ))}
@@ -91,7 +118,7 @@ class IngredientComponent extends React.Component{
                             <h1>Vegetables</h1>
                         </div>
                         <div className = "tableContainer">
-                        <table>
+                        <table className = "ingredientTable">
                                 <thead>
                                     <tr>
                                         <th>Type</th>
@@ -106,7 +133,8 @@ class IngredientComponent extends React.Component{
                                         >
                                             <td>{row.type}</td>
                                             <td>{row.quantity}</td>
-                                            <td><button className="editButton" onClick={this.showForm()}>Edit</button></td>
+                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
+                                            {this.state.show && <Portal />}</td>
                                         </tr>
                                             
                                     ))}
@@ -115,22 +143,7 @@ class IngredientComponent extends React.Component{
                             <img className = "add" src = "/res/images/add.svg" />
                         </div>
                     </div>
-                    <div id = "editForm" style ={{display: "none"}} className = "editForm">
-                        <button id="close" className="closeButton">X</button>
-                        <form>
-                            <div className = "formTitle">
-                                <h1>Update Quantity</h1>
-                            </div>
-                
-                            <div className = "formTitle">
-                                <h4>Enter the new quantity:</h4>
-                                <input className = "update" />
-                            </div>
-                            <div className = "formTitle">
-                                <button className = "submitButton">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                    
                 </div>
 
                 
