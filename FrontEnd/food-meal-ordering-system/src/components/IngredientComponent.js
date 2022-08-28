@@ -1,6 +1,5 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
-// import Dialog from "../components/Dialog"
 
 const meats = [
     createData('Pork', 150),
@@ -75,8 +74,8 @@ class IngredientComponent extends React.Component{
         return(
             <>
                 <div className = "main">
-                    <div>
-                        <img className = "backButton" src = "/res/images/back.svg" />
+                    <div className="ingredientHeader">
+                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="../staff/dashboard"}/>
                     </div>
                     <div className = "titleContainer" onClick={this.close}>
                         <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
