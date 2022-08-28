@@ -227,8 +227,8 @@ img{
 }
 
 .rawMaterialIcon{
-    height: 15%;
-    width: 10%;
+    height: 18%;
+    width: 12%;
     margin-left: 3%;
     margin-top: 5%;
 }
@@ -249,21 +249,21 @@ img{
     background-color: #FFFFFF; 
     margin-left: 2%; 
     margin-right: 2%; 
-    padding-bottom: 100px;
+    padding-bottom: 6.25em;
 }
 
 .title{
     color: #FFFFFF; 
-    font-size: 60px;
+    font-size: 1.8em;
     display: inline-block;
-    margin-left: 30%;
+    margin-left: 25%;
 }
 
 .tableContainer{
     background-color: #FEFCF7; 
     margin-left: 3%; 
     margin-right: 3%; 
-    padding-top: 50px;
+    padding-top: 2em;
 }
 
 .ingredientHeader{
@@ -274,24 +274,24 @@ img{
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 88%;
-    margin-left: 50px;
-    height: 400px;
+    margin-left: 1.3em;
+    height: 25em;
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 0.05em solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 0.5em;
     text-align: center;
     
 }
 
 th{
-    font-size: 30px;
+    font-size: 1.2em;
 }
 
 td{
-    font-size: 20px;
+    font-size: 1em;
     
 }
 
@@ -305,16 +305,16 @@ h2{
 }
 
 .add{
-    height: 5%;
-    width: 5%;
-    margin-left: 50px;
+    height: 7%;
+    width: 7%;
+    margin-left: 1.3em;
     margin-top: 3%;
 }
 
 .editForm{
-    width: 80%;
-    height: 27%;
-    padding: 20px;
+    width: 75%;
+    height: 40%;
+    padding: 1em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 12px;
     background: #FEFCF7;
@@ -326,9 +326,9 @@ h2{
 }
 
 .submitButton{
-    width: 91%; 
-    height: 100px;
-    font-size: 40px;
+    width: 83%; 
+    height: 2em;
+    font-size: 1.2em;
     color: #FFFFFF;
     background-color: #F01E1E;
     border-style: none;
@@ -336,9 +336,17 @@ h2{
 
 .update{
     background-color: #FFFFFF;
-    width: 90%; 
-    height: 100px; 
-    font-size: 50px;
+    width: 82%; 
+    height: 1.2em; 
+    font-size: 1.2em;
+}
+
+.formTitle h1 {
+    font-size: 1.6em;
+}
+
+.formTitle, .formContent h4{
+    font-size: 1.2em;
 }
 
 .closeButton {
@@ -384,19 +392,12 @@ h2{
 }
 
 .formTitle{
-    margin-top: 5%; 
+    margin-top: 20%; 
     margin-left: 5%;
 }
 
-.formTitle h1 {
-    font-size: 60px;
-}
 
 .formContent{
     margin-top: 8%; 
     margin-left: 5%;
-}
-
-.formTitle, .formContent h4{
-    font-size: 30px;
 }
