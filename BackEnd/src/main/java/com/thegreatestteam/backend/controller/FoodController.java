@@ -85,8 +85,13 @@ public class FoodController {
     }
 
     @PostMapping("/staff/menu/NewDish")
-    public void addNewFood(@RequestBody Food food ){
+    public void addNewFood(@RequestBody Food food , @PathVariable String type){
 //        System.out.println(jsonObject.toJSONString());
+//        if (type == "chicken"){
+//            food.setType("chicken");
+//        }
+        foodRepository.save(food);
+        System.out.println(food);
     }
 
 }

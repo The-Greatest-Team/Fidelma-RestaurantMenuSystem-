@@ -7,22 +7,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ingredient extends Item{
     //Quantity in grams
     private int quantity;
-    private String type;
+//    private String type;
 
-    public Ingredient(String name, double price, int quantity, String type) {
+    public Ingredient(String name, double price, int quantity ) {
         super(name, price);
         this.quantity = quantity;
-        this.type = type;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
+//
     public int getQuantity() {
         return quantity;
     }

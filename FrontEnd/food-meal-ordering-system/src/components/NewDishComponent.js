@@ -26,7 +26,8 @@ class NewDishComponent extends React.Component{
     
  saveDish = (e) =>{
     e.preventDefault();
-    let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,onion:this.state.onion,beef:this.state.beef,chicken:this.state.chicken};
+    let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
+    let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
     console.log("dish=> " +JSON.stringify(dish));
     NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/chicken');
