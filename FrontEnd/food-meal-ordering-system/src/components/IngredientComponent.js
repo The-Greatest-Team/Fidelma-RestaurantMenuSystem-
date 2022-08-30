@@ -86,7 +86,7 @@ class IngredientComponent extends React.Component{
             <>
                 <div className = "main">
                     <div className="ingredientHeader">
-                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="../staff/dashboard"}/>
+                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
                     </div>
                     <div className = "titleContainer" onClick={this.close}>
                         <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
