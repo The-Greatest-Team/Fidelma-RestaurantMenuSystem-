@@ -43,9 +43,9 @@ class MenuComponent extends React.Component{
 
     jumpToEditingPage(id){
         console.log(id);
-        this.props.history.push("/staff/menu/NewDish", {
-            dishId: id
-        });
+        this.props.history.push({pathname : '/staff/menu/NewDish', query : {
+            dishId : id
+        }})
     }
 
     render(){
