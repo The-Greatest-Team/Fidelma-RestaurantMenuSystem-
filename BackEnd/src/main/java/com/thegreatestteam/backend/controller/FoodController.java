@@ -29,13 +29,13 @@ public class FoodController {
 //        List<Food> menu = foodRepository.findByType("chicken");
 //        String sss = gson.toJson(food);
         ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
-        Integer id = 0;
+//        Integer id = 0;
         List<Food> menu = foodRepository.findByType("chicken");
         System.out.println(menu.size());
         for (Food chickenFood:
              menu) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",id);
+            jsonObject.put("id",chickenFood.getId());
             jsonObject.put("foodName", chickenFood.getName());
             jsonObject.put("foodDesc", chickenFood.getDescription());
             jsonObject.put("foodJoules", chickenFood.getKiloJoule());
@@ -46,7 +46,7 @@ public class FoodController {
                 jsonObject.put("isSoldOut",false);
             }
             result.add(jsonObject);
-            id += 1;
+//            id += 1;
         }
 
         System.out.println(result.toString());
@@ -77,14 +77,6 @@ public class FoodController {
         return menu;
     }
 
-
-    @PostMapping("/staff/menu")
-    public String addFood(@RequestBody Food food){
-        System.out.println(food.getComponents());
-        foodRepository.save(food);
-        return "Add food " + food.getName();
-    }
-
     @GetMapping("/staff/menu/NewDish")
     public String getAddFoodPage(){
         return "Add Food Page";
@@ -96,6 +88,8 @@ public class FoodController {
 //        if (type == "chicken"){
 //            food.setType("chicken");
 //        }
+        System.out.println("ID :" + food.getId());
+
         foodRepository.save(food);
         System.out.println(food);
     }
