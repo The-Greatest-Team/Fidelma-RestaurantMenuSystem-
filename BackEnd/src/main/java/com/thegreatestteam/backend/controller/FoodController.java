@@ -14,6 +14,8 @@ import java.util.List;
 public class FoodController {
     private final FoodRepository foodRepository;
     private final FoodService foodService;
+
+
     @Autowired
     public FoodController(FoodRepository foodRepository, FoodService foodService){
         this.foodRepository = foodRepository;
@@ -38,6 +40,11 @@ public class FoodController {
             jsonObject.put("foodDesc", chickenFood.getDescription());
             jsonObject.put("foodJoules", chickenFood.getKiloJoule());
             jsonObject.put("foodPrice", chickenFood.getPrice());
+            if(foodService.checkAvailability(chickenFood) == false){
+                jsonObject.put("isSoldOut", true);
+            }else{
+                jsonObject.put("isSoldOut",false);
+            }
             result.add(jsonObject);
             id += 1;
         }
@@ -45,7 +52,6 @@ public class FoodController {
         System.out.println(result.toString());
 
         return result.toString();
-//        return "[{\"foodName\" : \"Big Mac Chicken Burger\" ,\"foodDesc\": \"Huge chicken chop, fresh lettuce.\" ,\"foodJoules\" : \"2880kJ\" ,\"foodPrice\" : \"$13.80\" } , {\"foodName\" : \"Double Drumstick Burger\" ,\"foodDesc\" : \"Two chicken steaks, fresh tomatoes, lettuce.\" ,\"foodJoules\" : \"3150kJ\" ,\"foodPrice\" : \"$16.80\" }]";
     }
 
 
@@ -85,7 +91,7 @@ public class FoodController {
     }
 
     @PostMapping("/staff/menu/NewDish")
-    public void addNewFood(@RequestBody Food food , @PathVariable String type){
+    public void addNewFood(@RequestBody Food food){
 //        System.out.println(jsonObject.toJSONString());
 //        if (type == "chicken"){
 //            food.setType("chicken");
