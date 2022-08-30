@@ -2,23 +2,34 @@ import React from "react";
 import IngredientService from "../services/IngredientService";
 
 const meats = [
-    createData('Pork', 150),
-    createData('Beef', 100),
-    createData('Chicken', 200),
-    createData('aaa', 150),
-    createData('sdaa', 100),
+    createData('Pork', 150, 10),
+    createData('Beef', 100, 10),
+    createData('Chicken', 200, 10),
+    createData('aaa', 150, 10),
+    createData('sdaa', 100, 10),
 ];
 
 const vegetables = [
-    createData('Tomato', 150),
-    createData('Onion', 100),
-    createData('Lettuce', 200),
-    createData('aaa', 150),
-    createData('sdaa', 100),
+    createData('Tomato', 150, 10),
+    createData('Onion', 100, 10),
+    createData('Lettuce', 200, 10),
+    createData('aaa', 150, 10),
+    createData('sdaa', 100, 10),
 ];
 
-function createData(type, quantity) {
-    return { type, quantity};
+// const ingredients = [
+//     createData('Beef', 150, 10.0, 'meats'),
+//     createData('Beef', 150, 10.0, 'meats'),
+//     createData('Beef', 150, 10.0, 'meats'),
+//     createData('Beef', 150, 10.0, 'meats'),
+//     createData('Beef', 150, 10.0, 'vegetables'),
+//     createData('Beef', 150, 10.0, 'vegetables'),
+//     createData('Beef', 150, 10.0, 'vegetables'),
+//     createData('Beef', 150, 10.0, 'vegetables'),
+// ]
+
+function createData(name, quantity, price, type) {
+    return { name, quantity, price, type};
 }
 
 const Portal = () =>{
@@ -92,17 +103,19 @@ class IngredientComponent extends React.Component{
                                 <thead>
                                     <tr>
                                         <th>Type</th>
-                                        <th>quantity</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
                                         <th>Operation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {meats.map((row) =>(
                                         <tr
-                                            key = {row.type}
+                                            key = {row.name}
                                         >
-                                            <td>{row.type}</td>
+                                            <td>{row.name}</td>
                                             <td>{row.quantity}</td>
+                                            <td>{row.price}</td>
                                             <td><button className="editButton" onClick={this.handleClick}>Edit</button>
                                             {this.state.show && <Portal />}</td>
                                         </tr>
@@ -121,17 +134,19 @@ class IngredientComponent extends React.Component{
                                 <thead>
                                     <tr>
                                         <th>Type</th>
-                                        <th>quantity</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
                                         <th>Operation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {vegetables.map((row) =>(
                                         <tr
-                                            key = {row.type}
+                                            key = {row.name}
                                         >
-                                            <td>{row.type}</td>
+                                            <td>{row.name}</td>
                                             <td>{row.quantity}</td>
+                                            <td>{row.price}</td>
                                             <td><button className="editButton" onClick={this.handleClick}>Edit</button>
                                             {this.state.show && <Portal />}</td>
                                         </tr>
