@@ -40,7 +40,7 @@ public class FoodController {
             jsonObject.put("foodDesc", chickenFood.getDescription());
             jsonObject.put("foodJoules", chickenFood.getKiloJoule());
             jsonObject.put("foodPrice", chickenFood.getPrice());
-            if(foodService.checkAvailability(chickenFood) == false){
+            if(!foodService.checkAvailability(chickenFood)){
                 jsonObject.put("isSoldOut", true);
             }else{
                 jsonObject.put("isSoldOut",false);
@@ -82,12 +82,27 @@ public class FoodController {
         return "Add Food Page";
     }
 
-    @PostMapping("/staff/menu/NewDish")
-    public void addNewFood(@RequestBody Food food){
-//        System.out.println(jsonObject.toJSONString());
-//        if (type == "chicken"){
-//            food.setType("chicken");
-//        }
+    @PostMapping("/staff/menu/{type}/NewDish")
+    public void addNewFood(@RequestBody Food food, @PathVariable String type){
+        switch (type){
+            case "chicken":
+                food.setType("chicken");
+                break;
+            case "beef":
+                food.setType("beef");
+                break;
+            case "chips":
+                food.setType("chips");
+                break;
+            case "sides":
+                food.setType("sides");
+                break;
+            default:
+                food.setType(null);
+
+        }
+
+
         System.out.println("ID :" + food.getId());
 
         foodRepository.save(food);
