@@ -4,12 +4,12 @@ font-family: worksans;
 src: url('/res/font/WorkSans-Regular.ttf');
 }
 
-html{
+/* html{ */
     /*放大了40倍，所以size为pixel/40
     100vw = screen width
     */
-    font-size:10.666666666666666vw;
-}
+    /* font-size:10.666666666666666vw; */
+/* } */
 
 
 .content.top img {

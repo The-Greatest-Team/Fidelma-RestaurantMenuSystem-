@@ -17,6 +17,29 @@ class MenuComponent extends React.Component{
         });
     }
 
+    accessEditingMode(){
+        let editBtn =  document.getElementById("editBtn");
+        let addBtnAreas = document.getElementsByClassName("addDishArea");
+        let delBtns = document.getElementsByClassName("delDishBtn");
+        if (editBtn.innerHTML === "Edit"){
+            editBtn.innerHTML = "Editing";
+            document.getElementById("add_more_button").style.display = "flex";
+            
+            for(let i = 0; i < addBtnAreas.length; i++){
+                addBtnAreas[i].style.display = "none"
+                delBtns[i].style.display = "block"
+            }
+
+        } else {
+            editBtn.innerHTML = "Edit";
+            document.getElementById("add_more_button").style.display = "None";
+
+            for(let i = 0; i < addBtnAreas.length; i++){
+                addBtnAreas[i].style.display = "block"
+                delBtns[i].style.display = "none"
+            }
+        }
+    };
 
     render(){
         return(
@@ -54,8 +77,14 @@ class MenuComponent extends React.Component{
                                         <div className="burger_price">${dish.foodPrice}</div>
                                     </div>
                                 </div>
-    
-                                <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
+                                {
+                                    dish.isSoldOut === false && 
+                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
+                                }
+                                {
+                                    dish.isSoldOut === true &&
+                                    <div className="soldOutDiv addDishArea">Sold Out</div>
+                                }
                                 <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
                             </div>
                         </div>
