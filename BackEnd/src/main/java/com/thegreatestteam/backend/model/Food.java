@@ -4,6 +4,7 @@ import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.Generated;
 import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
@@ -12,8 +13,8 @@ import java.util.Map;
 @Document("Food")
 public class Food extends Item {
 
-//    @Id
-//    private String id;
+    @Id
+    private String id;
     private Map<String, Integer> components;
 
     private String type;
