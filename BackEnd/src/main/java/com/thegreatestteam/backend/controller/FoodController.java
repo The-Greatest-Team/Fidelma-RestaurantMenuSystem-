@@ -84,4 +84,9 @@ public class FoodController {
         return "Add Food Page";
     }
 
+    @PostMapping("/staff/menu/NewDish")
+    public void addNewFood(@RequestBody Food food ){
+//        System.out.println(jsonObject.toJSONString());
+    }
+
 }
