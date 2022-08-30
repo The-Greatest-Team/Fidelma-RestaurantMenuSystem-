@@ -36,14 +36,13 @@ class DashboardComponent extends React.Component{
                             <h2>Order Summary</h2>
                         </div>
                     </div>
-                    <div className = "dashboardBar">
+                    <div className = "dashboardBar" onClick={()=>window.location.href="/staff/ingredient"}>
                         <div className = "dashboardContent">
-                            <img className = "dashboardIcon" src = "/res/images/material.svg" alt = "material" 
-                                onClick={()=>window.location.href="../staff/ingredient"}/>
+                            <img className = "dashboardIcon" src = "/res/images/material.svg" alt = "material" />
                             <h2>Raw Materials</h2>
                         </div>
                     </div>
-                    <div className = "dashboardBar">
+                    <div className = "dashboardBar" onClick={()=>window.location.href="/staff/menu/chicken"}>
                         <div className = "dashboardContent">
                             <img className = "dashboardIcon" src = "/res/images/menu.svg" alt = "menu" />
                             <h2>Menu</h2>

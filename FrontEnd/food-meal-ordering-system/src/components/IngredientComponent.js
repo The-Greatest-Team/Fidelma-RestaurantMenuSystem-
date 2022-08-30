@@ -2,19 +2,19 @@ import React from "react";
 import IngredientService from "../services/IngredientService";
 
 const meats = [
-    createData('Pork', 150, 10),
-    createData('Beef', 100, 10),
-    createData('Chicken', 200, 10),
-    createData('aaa', 150, 10),
-    createData('sdaa', 100, 10),
+    createData('Pork', 150, 10.00),
+    createData('Beef', 100, 10.00),
+    createData('Chicken', 200, 10.00),
+    createData('Lamb', 150, 10.00),
+    createData('Fish', 100, 10.00),
 ];
 
 const vegetables = [
-    createData('Tomato', 150, 10),
-    createData('Onion', 100, 10),
-    createData('Lettuce', 200, 10),
-    createData('aaa', 150, 10),
-    createData('sdaa', 100, 10),
+    createData('Tomato', 150, 10.00),
+    createData('Onion', 100, 10.00),
+    createData('Lettuce', 200, 10.00),
+    createData('Garlic', 150, 10.00),
+    createData('Mushroom', 100, 10.00),
 ];
 
 // const ingredients = [
@@ -86,7 +86,7 @@ class IngredientComponent extends React.Component{
             <>
                 <div className = "main">
                     <div className="ingredientHeader">
-                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="../staff/dashboard"}/>
+                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
                     </div>
                     <div className = "titleContainer" onClick={this.close}>
                         <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
