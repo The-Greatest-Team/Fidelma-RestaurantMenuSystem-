@@ -1,7 +1,7 @@
 @font-face
 {
 font-family: worksans;
-src: url('../font/WorkSans-Regular.ttf');
+src: url('/res/font/WorkSans-Regular.ttf');
 }
 
 html{
@@ -10,7 +10,6 @@ html{
     */
     font-size:10.666666666666666vw;
 }
-
 
 
 .content.top img {
@@ -77,12 +76,12 @@ body {background-color :#FEFCF7;}
     /*top,right,bottom,left*/
     border-width:0rem;
     width:7.6rem;
-    height:20rem;
+    height:5rem;
     color : #707070;
     font-size: 0.4rem;
     font-family:worksans;
     margin-top:0rem;
-    display:none;
+    /* display:none; */
 }
 
 .arrow {

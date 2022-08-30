@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const USERS_REST_API_URL = 'http://localhost:8080/staff/menu';
+const DISH_REST_API_URL = 'http://localhost:8080/staff/menu';
 
-class UserService{
+class NewDIshService{
 
-    getUsers(){
-        return axios.get(USERS_REST_API_URL)
+    getDishes(){
+        return axios.get(DISH_REST_API_URL)
     }
 
-    postUsers(data){
-        return axios.post(USERS_REST_API_URL, data);
+    createNewDIish(dish) {
+        return axios.post(DISH_REST_API_URL,dish)
     }
     
 }
 
-export default new UserService()
+export default new NewDIshService()
