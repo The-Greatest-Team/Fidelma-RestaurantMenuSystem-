@@ -123,7 +123,6 @@ class IngredientComponent extends React.Component{
                                     ))}
                                 </tbody>
                             </table>
-                            <img className = "add" src = "/res/images/add.svg" />
                         </div>
                         <div className = "category">
                             <img className = "rawMaterialIcon" src = "/res/images/vegetable.svg" />
@@ -154,7 +153,6 @@ class IngredientComponent extends React.Component{
                                     ))}
                                 </tbody>
                             </table>
-                            <img className = "add" src = "/res/images/add.svg" />
                         </div>
                     </div>
                     
