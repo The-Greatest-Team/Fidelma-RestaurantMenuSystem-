@@ -10,9 +10,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/api/users" element={<UserComponent />} />
-                <Route path="/staff/menu/chicken" element={<MenuComponent />} />
+                <Route path="/staff/menu/chicken/:id" element={<MenuComponent />} />
                 <Route path="/staff/ingredient" element={<IngredientComponent />} />
-                <Route path="/staff/menu/NewDish" element={<NewDishComponent/>} />
+                <Route path="/staff/menu/NewDish/:id" element={<NewDishComponent/>} />
                 <Route path="/staff/dashboard" element={<DashboardComponent/>} />
             </Routes>
         </BrowserRouter>

@@ -9,13 +9,13 @@ class MenuComponent extends React.Component{
         this.state = {foods : []}
     }
 
-    componentDidMount(){
-        MenuService.getUsers().then((respond) => {
-            this.setState({foods : (respond.data)});
-            console.log(typeof(this.state.foods));
-            console.log((respond.data));
-        });
-    }
+    // componentDidMount(){
+    //     MenuService.getUsers().then((respond) => {
+    //         this.setState({foods : (respond.data)});
+    //         console.log(typeof(this.state.foods));
+    //         console.log((respond.data));
+    //     });
+    // }
 
     accessEditingMode(){
         let editBtn =  document.getElementById("editBtn");
@@ -43,9 +43,8 @@ class MenuComponent extends React.Component{
 
     jumpToEditingPage(id){
         console.log(id);
-        this.props.history.push({pathname : '/staff/menu/NewDish', query : {
-            dishId : id
-        }})
+        console.log(this.props)
+        // window.location.href="/staff/menu/NewDish/2"
     }
 
     render(){
@@ -57,6 +56,8 @@ class MenuComponent extends React.Component{
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         <div id="menuword">menu</div>
                     </div>
+
+                    <button onClick={this.jumpToEditingPage.bind(this,"jk")}>TestBtn</button>
 
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/dashboard"} src="/res/images/arrow.png" alt="return button icon" />
@@ -71,7 +72,7 @@ class MenuComponent extends React.Component{
 
                     <div>
                         {this.state.foods.map((dish) => (
-                            <div className="foodunit" key={dish.id} onClick={this.jumpToEditingPage(dish.id)}>
+                            <div className="foodunit" key={dish.foodName} onClick={this.jumpToEditingPage(dish.id)}>
                             <hr />
                             <div className="foodbox">
                                 <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
