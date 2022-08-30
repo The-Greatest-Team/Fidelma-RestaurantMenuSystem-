@@ -41,6 +41,13 @@ class MenuComponent extends React.Component{
         }
     };
 
+    jumpToEditingPage(id){
+        console.log(id);
+        this.props.history.push("/staff/menu/NewDish", {
+            dishId: id
+        });
+    }
+
     render(){
         return(
             <>
@@ -64,7 +71,7 @@ class MenuComponent extends React.Component{
 
                     <div>
                         {this.state.foods.map((dish) => (
-                            <div className="foodunit" key={dish.id}>
+                            <div className="foodunit" key={dish.id} onClick={this.jumpToEditingPage(dish.id)}>
                             <hr />
                             <div className="foodbox">
                                 <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
