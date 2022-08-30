@@ -20,7 +20,6 @@ public class FoodService {
     }
 
     public boolean checkAvailability(Food food){
-        boolean available = true;
 
         for(String ingredientName: food.getComponents().keySet()){
             Ingredient ingredient = ingredientRepository.findByName(ingredientName);
@@ -28,14 +27,12 @@ public class FoodService {
             Integer requiredQuantity = food.getComponents().get(ingredientName).intValue();
 
             if(currentQuantity - requiredQuantity < 0 ){
-                System.out.println("currentQuantity: " + currentQuantity);
-                System.out.println("requiredQuantity: " + requiredQuantity);
-
-                available = false;
+//                System.out.println("currentQuantity: " + currentQuantity);
+//                System.out.println("requiredQuantity: " + requiredQuantity);
+                return false;
             }
         }
-
-        return available;
+        return true;
     }
 
 //    public void addImage(Food food, MultipartFile file) throws IOException {

@@ -52,7 +52,7 @@ class MenuComponent extends React.Component{
                     </div>
 
                     <div className="nav">
-                        <input name="returnBtn" type="image" src="/res/images/arrow.png" alt="return button icon" />
+                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/dashboard"} src="/res/images/arrow.png" alt="return button icon" />
                         <span>Table No.</span>
                     </div>
                     <div className="inner_menu_container">
@@ -129,7 +129,7 @@ class MenuComponent extends React.Component{
                             <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
                         </div>
                     </div> */}
-                    <button id="add_more_button">Add more dish</button>
+                    <button id="add_more_button" onClick={()=>window.location.href="/staff/menu/NewDish"}>Add more dish</button>
                 </div>
             </>
         );
