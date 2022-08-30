@@ -9,6 +9,7 @@ class NewDishComponent extends React.Component{
         this.state = {
             name:'',
             price:'',
+            kiloJoule : '',
             description:'',
             onion:'',
             beef:'',
@@ -25,7 +26,7 @@ class NewDishComponent extends React.Component{
     
  saveDish = (e) =>{
     e.preventDefault();
-    let dish = {name:this.state.name,price:this.state.price,description:this.state.description,onion:this.state.onion,beef:this.state.beef,chicken:this.state.chicken};
+    let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,onion:this.state.onion,beef:this.state.beef,chicken:this.state.chicken};
     console.log("dish=> " +JSON.stringify(dish));
     NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/chicken');
@@ -56,6 +57,11 @@ chickenHandler = (event) => {
     this.setState({chicken:event.target.value});
 }
 
+
+kjHandler = (event) => {
+    this.setState({kiloJoule:event.target.value});
+}
+
 back(){
     this.props.history.push('/staff/menu/chicken');
 }
@@ -83,6 +89,9 @@ back(){
                             <h2>Price</h2>
                             <input className = "inputPart" type="text" placeholder="Price" name = "price"
                             value = {this.state.price} onChange={this.priceHandler}/>
+                            <h2>kiloJoule</h2>
+                            <input className = "inputPart" type="text" placeholder="KilJoule" name = "kilojoule"
+                            value = {this.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial" placeholder="Description" name = "description"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
@@ -91,7 +100,7 @@ back(){
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                    <div>
+                                <div>
                                         <span className = "name">Onion</span>
                                         <span className = "unit">g</span>
                                         <input className = "quantity" type="text" placeholder="Onion Quantity" name = "onion"
