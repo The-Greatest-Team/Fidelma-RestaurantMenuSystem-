@@ -54,21 +54,22 @@ class MenuComponent extends React.Component{
                     <div className="menu_head">
                         <img id="menupic" src="/res/images/menu_pic_temp.png" alt="menu picture" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
-                        <div id="menuword">menu</div>
+                        
                     </div>
 
-                    <button onClick={this.jumpToEditingPage.bind(this,"jk")}>TestBtn</button>
-
+                    <div id ="menuBox"><span id="menuword">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/dashboard"} src="/res/images/arrow.png" alt="return button icon" />
-                        <span>Table No.</span>
+                        <span>Table No.16</span>
                     </div>
                     <div className="inner_menu_container">
-                        <div>
-                            <h2>Chicken</h2>
+                        <div className = "menuTitle">
+                            <h2 id = "menuTitleWord">Chicken</h2>
                         </div>
-                        <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
+                        <button id="editBtn" type="button" onClick={this.accessEditingMode}><span id="editt">Edit</span></button>
                     </div>
+
+                    <hr className="separateLine"/>
 
                     <div>
                         {this.state.foods.map((dish) => (
@@ -98,46 +99,7 @@ class MenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-
-
-                    {/* <div className="foodunit">
-                        <hr />
-                        <div className="foodbox">
-                            <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
-                            
-                            <div className="textbox">
-                                <div className="burger_name">Big_Mac_Chicken_Burger</div>
-                                <div className="burger_desc">Huge chicken chop, fresh lettuce.</div>
-                                <div className="burger_others">
-                                    <div className="burger_joules">2880KJ</div>
-                                    <div className="burger_price">$13.80</div>
-                                </div>
-                            </div>
-
-                            <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
-                            <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
-                        </div>
-                    </div>
-                    <div className="foodunit">
-                        <hr />
-                        <div className="foodbox">
-                            <img src="/res/images/Double_Drumstick_Burger.png" alt="Double_Drumstick_Burger_picture" />
-                            
-                            <div className="textbox">
-                                <div className="burger_name">Double_Drumstick_Burger</div>
-                                <div className="burger_desc">Two chicken steaks, 
-                                    fresh tomatoes, lettuce.</div>
-                                <div className="burger_others">
-                                    <div className="burger_joules">3150KJ</div>
-                                    <div className="burger_price">$16.80</div>
-                                </div>
-                            </div>
-
-                            <input className="addDishBtn" name="addDishBtn" type="image" src="/res/images/add_button.png" alt="add button icon" />
-                            <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
-                        </div>
-                    </div> */}
-                    <button id="add_more_button" onClick={()=>window.location.href="/staff/menu/NewDish"}>Add more dish</button>
+                    <button id="add_more_button" onClick={()=>this.props.history.push('/staff/menu/NewDish/:id')}>Add more dish</button>
                 </div>
             </>
         );

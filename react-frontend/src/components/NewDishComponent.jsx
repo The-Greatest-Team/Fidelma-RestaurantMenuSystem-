@@ -1,7 +1,7 @@
-import React from "react";
+import React,{Component} from "react";
 import NewDishService from "../services/NewDishService";
 
-class NewDishComponent extends React.Component{
+class NewDishComponent extends Component{
 
     constructor(props){
         super(props)
@@ -63,15 +63,16 @@ kjHandler = (event) => {
     this.setState({kiloJoule:event.target.value});
 }
 
-back(){
+back = (e) => {
+    e.preventDefault();
     this.props.history.push('/staff/menu/chicken');
 }
     render(){
         return(
             <>
-                <div>
+                <div  >
                     <div>
-                        <button className = "backButton" onClick={this.back}>
+                        <button onClick={this.back} className = "min" >
                         <img className = "backSign" src="/res/images/backSign.jpg"/>
                         </button>
                     </div>
@@ -84,46 +85,46 @@ back(){
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">
-                            <label>Name</label>
-                            <input className = "inputPart" type="text" placeholder="Name" name = "name" 
+                            <h2>Name</h2>
+                            <input className = "inputPart" type="text"  name = "name" 
                             value = {this.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="text" placeholder="Price" name = "price"
+                            <input className = "inputPart" type="text"  name = "price"
                             value = {this.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="text" placeholder="KilJoule" name = "kilojoule"
+                            <input className = "inputPart" type="text"  name = "kilojoule"
                             value = {this.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
-                            <textarea className = "inputPartSpecial" placeholder="Description" name = "description"
+                            <textarea className = "inputPartSpecial"  name = "description"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
-                                <button  className="dropbtn hamburger hamburger-plus">
+                                <button  className="min">
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
                                 <div>
                                         <span className = "name">Onion</span>
                                         <span className = "unit">g</span>
-                                        <input className = "quantity" type="text" placeholder="Onion Quantity" name = "onion"
+                                        <input className = "quantity" type="text"  name = "onion"
                                         value = {this.state.onion} onChange={this.onionHandler}/>
                                         
                                     </div>
                                     <div>
                                         <span className = "name">Beef</span>
                                         <span className = "unit">g</span>
-                                        <input className = "quantity" type="text" placeholder="Beef Quantity" name = "beef"
+                                        <input className = "quantity" type="text"  name = "beef"
                                         value = {this.state.beef} onChange={this.beefHandler}/>
                                         
                                     </div>
                                     <div>
                                         <span className = "name">Chicken</span>
                                         <span className = "unit">g</span>
-                                        <input className = "quantity" type="text" placeholder="Chicken Quantity" name = "chicken"
+                                        <input className = "quantity" type="text"  name = "chicken"
                                         value = {this.state.chicken} onChange={this.chickenHandler}/>
                                     </div>
                             </div>
                         </div>
-                        <button className = "saveButton" onClick = {this.saveDish}>Save</button>
+                        <div id = "saveButton"> <button className = "min"  onClick = {this.saveDish} id = "save" >Save</button></div>
                         </form> 
                         
                     </div>   
