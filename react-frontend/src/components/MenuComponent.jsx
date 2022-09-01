@@ -9,13 +9,13 @@ class MenuComponent extends React.Component{
         this.state = {foods : []}
     }
 
-    // componentDidMount(){
-    //     MenuService.getUsers().then((respond) => {
-    //         this.setState({foods : (respond.data)});
-    //         console.log(typeof(this.state.foods));
-    //         console.log((respond.data));
-    //     });
-    // }
+    componentDidMount(){
+        MenuService.getUsers().then((respond) => {
+            this.setState({foods : (respond.data)});
+            console.log(typeof(this.state.foods));
+            console.log((respond.data));
+        });
+    }
 
     accessEditingMode(){
         let editBtn =  document.getElementById("editBtn");
@@ -99,7 +99,7 @@ class MenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-                    <button id="add_more_button" onClick={()=>this.props.history.push('/staff/menu/NewDish/:id')}>Add more dish</button>
+                    <button id="add_more_button" onClick={()=>this.props.history.push("/staff/NewDish")}>Add more dish</button>
                 </div>
             </>
         );

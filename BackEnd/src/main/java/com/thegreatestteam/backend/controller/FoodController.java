@@ -82,25 +82,25 @@ public class FoodController {
         return "Add Food Page";
     }
 
-    @PostMapping("/staff/menu/{type}/NewDish")
-    public void addNewFood(@RequestBody Food food, @PathVariable String type){
-        switch (type){
-            case "chicken":
-                food.setType("chicken");
-                break;
-            case "beef":
-                food.setType("beef");
-                break;
-            case "chips":
-                food.setType("chips");
-                break;
-            case "sides":
-                food.setType("sides");
-                break;
-            default:
-                food.setType(null);
-
-        }
+    @PostMapping("/staff/NewDish")
+    public void addNewFood(@RequestBody Food food){
+//        switch (type){
+//            case "chicken":
+//                food.setType("chicken");
+//                break;
+//            case "beef":
+//                food.setType("beef");
+//                break;
+//            case "chips":
+//                food.setType("chips");
+//                break;
+//            case "sides":
+//                food.setType("sides");
+//                break;
+//            default:
+//                food.setType(null);
+//
+//        }
 
 
         System.out.println("ID :" + food.getId());
