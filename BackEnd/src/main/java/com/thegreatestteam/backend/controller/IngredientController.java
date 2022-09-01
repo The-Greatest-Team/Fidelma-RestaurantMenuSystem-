@@ -37,4 +37,10 @@ public class IngredientController {
         ingredientRepository.deleteById(Integer.valueOf(ingredientId));
         return "Delete ingredient with id" + ingredientId;
     }
+
+    @GetMapping("/staff/menu/NewDish")
+    public List<Ingredient> addNewDish(){
+        List<Ingredient> ingredients= ingredientRepository.findAll();
+        return ingredients;
+    }
 }

@@ -16,7 +16,6 @@ import java.util.List;
 
 @RequestMapping("/staff")
 public class StaffController {
-
     private final StaffRepository staffRepository;
 
     @Autowired
@@ -37,16 +36,13 @@ public class StaffController {
         return "getting profile page";
     }
 
-
-
-
     // Edit profile
-
-
 
 
     // Order summary
 
 
     // edit menu
+
+
 }

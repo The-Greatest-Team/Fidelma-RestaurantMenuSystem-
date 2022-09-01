@@ -1,7 +1,9 @@
 package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Food;
+import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
+import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import java.util.List;
 public class FoodController {
     private final FoodRepository foodRepository;
     private final FoodService foodService;
-
 
     @Autowired
     public FoodController(FoodRepository foodRepository, FoodService foodService){
@@ -77,11 +78,6 @@ public class FoodController {
         return menu;
     }
 
-    @GetMapping("/staff/menu/NewDish")
-    public String getAddFoodPage(){
-        return "Add Food Page";
-    }
-
     @PostMapping("/staff/NewDish")
     public void addNewFood(@RequestBody Food food){
 //        switch (type){
@@ -99,10 +95,7 @@ public class FoodController {
 //                break;
 //            default:
 //                food.setType(null);
-//
 //        }
-
-
         System.out.println("ID :" + food.getId());
         food.setType("chicken");
         foodRepository.save(food);
