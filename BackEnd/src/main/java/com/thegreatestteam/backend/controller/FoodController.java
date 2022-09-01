@@ -104,7 +104,7 @@ public class FoodController {
 
 
         System.out.println("ID :" + food.getId());
-
+        food.setType("chicken");
         foodRepository.save(food);
         System.out.println(food);
     }
