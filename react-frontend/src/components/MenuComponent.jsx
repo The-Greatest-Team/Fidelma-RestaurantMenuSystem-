@@ -41,12 +41,6 @@ class MenuComponent extends React.Component{
         }
     };
 
-    jumpToEditingPage(id){
-        console.log(id);
-        console.log(this.props)
-        // window.location.href="/staff/menu/NewDish/2"
-    }
-
     render(){
         return(
             <>
@@ -66,14 +60,14 @@ class MenuComponent extends React.Component{
                         <div className = "menuTitle">
                             <h2 id = "menuTitleWord">Chicken</h2>
                         </div>
-                        <button id="editBtn" type="button" onClick={this.accessEditingMode}><span id="editt">Edit</span></button>
+                        <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
 
                     <hr className="separateLine"/>
 
                     <div>
                         {this.state.foods.map((dish) => (
-                            <div className="foodUnit" key={dish.foodName} onClick={this.jumpToEditingPage(dish.id)}>
+                            <div className="foodUnit" key={dish.id}>
                             <hr />
                             <div className="foodBox">
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />

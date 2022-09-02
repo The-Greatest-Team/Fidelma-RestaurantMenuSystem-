@@ -24,15 +24,15 @@ class NewDishComponent extends Component{
         this.back = this.back.bind(this);
     }  
     
- saveDish = (e) =>{
-    e.preventDefault();
-    let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
-    let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
-    console.log("dish=> " +JSON.stringify(dish));
-    NewDishService.createNewDIish(dish).then(res =>  {
-        this.props.history.push('/staff/menu/chicken');
-    });
- }
+    saveDish = (e) =>{
+        e.preventDefault();
+        let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
+        console.log("dish=> " +JSON.stringify(dish));
+        NewDishService.createNewDIish(dish).then(res =>  {
+            this.props.history.push('/staff/menu/chicken');
+        });
+    }
     
 nameHandler = (event) =>{
     this.setState({name:event.target.value});
@@ -128,7 +128,6 @@ back = (e) => {
                         </form> 
                         
                     </div>   
-                    <script type="text/javascript" src="/arrow_rotation.js"></script>
                 </div>
             </>
         );
