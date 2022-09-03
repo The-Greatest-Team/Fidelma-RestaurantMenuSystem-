@@ -77,7 +77,12 @@ public class FoodController {
         return menu;
     }
 
-    @PostMapping("/staff/NewDish}")
+    @GetMapping("/staff/menu/newDish")
+    public List<Ingredient> getNewDishIngredient(){
+        return foodService.getAllIngredient();
+    }
+
+    @PostMapping("/staff/menu/newDish")
     public void addNewFood(@RequestBody Food food){
 //        switch (type){
 //            case "chicken":
@@ -101,13 +106,13 @@ public class FoodController {
         System.out.println(food);
     }
 
-    @GetMapping("/staff/menu/{id}/edit")
+    @GetMapping("/staff/menu/edit/{id}")
     public Food getEditDish(@PathVariable String id){
         Food food = foodRepository.findFoodById(id);
         return food;
     }
 
-    @PutMapping("/staff/menu/{id}/edit")
+    @PutMapping("/staff/menu/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodRepository.findFoodById(id);
         food.setComponents(newFood.getComponents());

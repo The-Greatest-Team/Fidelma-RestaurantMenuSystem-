@@ -7,6 +7,8 @@ import com.thegreatestteam.backend.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FoodService {
     @Autowired
@@ -33,6 +35,10 @@ public class FoodService {
             }
         }
         return true;
+    }
+
+    public List<Ingredient> getAllIngredient(){
+        return ingredientRepository.findAll();
     }
 
 //    public void addImage(Food food, MultipartFile file) throws IOException {
