@@ -77,18 +77,41 @@ public class FoodController {
         return menu;
     }
 
-    @PostMapping("/staff/NewDish/:id")
+    @PostMapping("/staff/NewDish}")
     public void addNewFood(@RequestBody Food food){
+//        switch (type){
+//            case "chicken":
+//                food.setType("chicken");
+//                break;
+//            case "beef":
+//                food.setType("beef");
+//                break;
+//            case "chips":
+//                food.setType("chips");
+//                break;
+//            case "sides":
+//                food.setType("sides");
+//                break;
+//            default:
+//                food.setType(null);
+//        }
         System.out.println("ID :" + food.getId());
         food.setType("chicken");
         foodRepository.save(food);
         System.out.println(food);
     }
 
-    @GetMapping("/staff/update")
-    public Food updateDishes(String id){
+    @GetMapping("/staff/menu/{id}/edit")
+    public Food getEditDish(@PathVariable String id){
         Food food = foodRepository.findFoodById(id);
         return food;
+    }
+
+    @PutMapping("/staff/menu/{id}/edit")
+    public void updateDish(@RequestBody Food newFood, @PathVariable String id){
+        Food food = foodRepository.findFoodById(id);
+        food.setComponents(newFood.getComponents());
+        foodRepository.save(food);
     }
 
 }
