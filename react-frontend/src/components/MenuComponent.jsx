@@ -7,6 +7,11 @@ class MenuComponent extends React.Component{
         super(props)
 
         this.state = {foods : []}
+        this.editDish = this.editDish.bind(this);
+    }
+
+    editDish(id){
+        this.props.history.push(`/staff/NewDish/${id}`,"chicken");
     }
 
     componentDidMount(){
@@ -21,6 +26,7 @@ class MenuComponent extends React.Component{
         let editBtn =  document.getElementById("editBtn");
         let addBtnAreas = document.getElementsByClassName("addDishArea");
         let delBtns = document.getElementsByClassName("delDishBtn");
+        let updateButton = document.getElementsByClassName("updateButton");
         if (editBtn.innerHTML === "Edit"){
             editBtn.innerHTML = "Editing";
             document.getElementById("add_more_button").style.display = "flex";
@@ -28,6 +34,7 @@ class MenuComponent extends React.Component{
             for(let i = 0; i < addBtnAreas.length; i++){
                 addBtnAreas[i].style.display = "none"
                 delBtns[i].style.display = "block"
+                updateButton[i].style.display = "block"
             }
 
         } else {
@@ -37,6 +44,7 @@ class MenuComponent extends React.Component{
             for(let i = 0; i < addBtnAreas.length; i++){
                 addBtnAreas[i].style.display = "block"
                 delBtns[i].style.display = "none"
+                updateButton[i].style.display = "none"
             }
         }
     };
@@ -66,15 +74,15 @@ class MenuComponent extends React.Component{
                         <div className = "menuTitle">
                             <h2 id = "menuTitleWord">Chicken</h2>
                         </div>
-                        <button id="editBtn" type="button" onClick={this.accessEditingMode}><span id="editt">Edit</span></button>
+                        <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
 
-                    <hr className="separateLine"/>
+                    
 
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodunit" key={dish.foodName} onClick={this.jumpToEditingPage(dish.id)}>
-                            <hr />
+                            <hr className="separateLine"/>
                             <div className="foodbox">
                                 <img src="/res/images/Big_Mac_Chicken_Burger.png" alt="Big_Mac_Chicken_Burger_picture" />
                                 
@@ -95,11 +103,12 @@ class MenuComponent extends React.Component{
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
                                 <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/delete_btn.png" alt="delete button icon" />
+                                <button onClick = {()=> this.editDish(dish.id)} className = 'updateButton'> Update</button>
                             </div>
                         </div>
                         ))}
                     </div>
-                    <button id="add_more_button" onClick={()=>this.props.history.push("/staff/NewDish")}>Add more dish</button>
+                    <button id="add_more_button" onClick={()=>this.props.history.push("/staff/NewDish/_chickenadd")}>Add more dish</button>
                 </div>
             </>
         );

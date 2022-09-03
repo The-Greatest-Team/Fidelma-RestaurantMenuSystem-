@@ -12,6 +12,13 @@ class NewDIshService{
         return axios.post(DISH_REST_API_URL,dish)
     }
     
+    getDishById(dishId){
+        return axios.post(DISH_REST_API_URL+'/'+dishId)
+    }
+
+    updateDish(dish,dishId){
+        return axios.put(DISH_REST_API_URL+'/'+dishId,dish)
+    }
 }
 
 export default new NewDIshService()
