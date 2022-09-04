@@ -14,67 +14,60 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class FoodController {
-    private final FoodRepository foodRepository;
     private final FoodService foodService;
 
     @Autowired
-    public FoodController(FoodRepository foodRepository, FoodService foodService){
-        this.foodRepository = foodRepository;
+    public FoodController(FoodService foodService){
         this.foodService = foodService;
     }
 
     //Get Menu
     @GetMapping("/staff/menu/chicken")
     public String getChickenFood(){
-//        System.out.println("Chicken Menu");
+////        System.out.println("Chicken Menu");
+////        List<Food> menu = foodRepository.findByType("chicken");
+////        String sss = gson.toJson(food);
+//        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
+////        Integer id = 0;
 //        List<Food> menu = foodRepository.findByType("chicken");
-//        String sss = gson.toJson(food);
-        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
-//        Integer id = 0;
-        List<Food> menu = foodRepository.findByType("chicken");
-        System.out.println(menu.size());
-        for (Food chickenFood:
-             menu) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",chickenFood.getId());
-            jsonObject.put("foodName", chickenFood.getName());
-            jsonObject.put("foodDesc", chickenFood.getDescription());
-            jsonObject.put("foodJoules", chickenFood.getKiloJoule());
-            jsonObject.put("foodPrice", chickenFood.getPrice());
-            if(!foodService.checkAvailability(chickenFood)){
-                jsonObject.put("isSoldOut", true);
-            }else{
-                jsonObject.put("isSoldOut",false);
-            }
-            result.add(jsonObject);
-        }
-
-        System.out.println(result.toString());
-
-        return result.toString();
+//        System.out.println(menu.size());
+//        for (Food chickenFood:
+//             menu) {
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.put("id",chickenFood.getId());
+//            jsonObject.put("foodName", chickenFood.getName());
+//            jsonObject.put("foodDesc", chickenFood.getDescription());
+//            jsonObject.put("foodJoules", chickenFood.getKiloJoule());
+//            jsonObject.put("foodPrice", chickenFood.getPrice());
+//            if(!foodService.checkAvailability(chickenFood)){
+//                jsonObject.put("isSoldOut", true);
+//            }else{
+//                jsonObject.put("isSoldOut",false);
+//            }
+//            result.add(jsonObject);
+//        }
+//
+//        System.out.println(result.toString());
+//
+//        return result.toString();
+        return foodService.getFood("chicken");
     }
 
 
 
     @GetMapping("/staff/menu/beef")
-    public List<Food> getBeefFood(){
-        System.out.println("Beef Menu");
-        List<Food> menu = foodRepository.findByType("beef");
-        return menu;
+    public String getBeefFood(){
+        return foodService.getFood("beef");
     }
 
     @GetMapping("/staff/menu/side")
-    public List<Food> getSideFood(){
-        System.out.println("Side Menu");
-        List<Food> menu = foodRepository.findByType("side");
-        return menu;
+    public String getSideFood(){
+        return foodService.getFood("side");
     }
 
     @GetMapping("/staff/menu/chip")
-    public List<Food> getChipFood(){
-        System.out.println("Chip Menu");
-        List<Food> menu = foodRepository.findByType("chip");
-        return menu;
+    public String getChipFood(){
+        return foodService.getFood("chip");
     }
 
     @GetMapping("/staff/menu/newDish")
@@ -100,23 +93,22 @@ public class FoodController {
 //            default:
 //                food.setType(null);
 //        }
-        System.out.println("ID :" + food.getId());
-        food.setType("chicken");
-        foodRepository.save(food);
-        System.out.println(food);
+//        System.out.println("ID :" + food.getId());
+//        food.setType("chicken");
+        foodService.addFood(food);
     }
 
     @GetMapping("/staff/menu/edit/{id}")
     public Food getEditDish(@PathVariable String id){
-        Food food = foodRepository.findFoodById(id);
-        return food;
+        return foodService.getFoodById(id);
     }
 
     @PutMapping("/staff/menu/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
-        Food food = foodRepository.findFoodById(id);
+        Food food = foodService.getFoodById(id);
         food.setComponents(newFood.getComponents());
-        foodRepository.save(food);
+        foodService.addFood(food);
     }
+
 
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface FoodRepository extends MongoRepository<Food,Integer> {
      List<Food> findByType(String type);
      Food findFoodById(String id);
+     void deleteFoodById(String id);
 }
