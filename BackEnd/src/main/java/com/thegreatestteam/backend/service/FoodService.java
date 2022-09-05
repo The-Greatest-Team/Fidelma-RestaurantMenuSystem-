@@ -16,17 +16,17 @@ public class FoodService {
     @Autowired
     private final FoodRepository foodRepository;
     @Autowired
-    private final IngredientRepository ingredientRepository;
+    private final IngredientService ingredientService;
 
-    public FoodService(IngredientRepository ingredientRepository, FoodRepository foodRepository) {
+    public FoodService(IngredientService ingredientService, FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
-        this.ingredientRepository = ingredientRepository;
+        this.ingredientService = ingredientService;
     }
 
     //Check current dish availability
     public boolean checkAvailability(Food food){
         for(String ingredientName: food.getComponents().keySet()){
-            Ingredient ingredient = ingredientRepository.findByName(ingredientName);
+            Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
             Integer currentQuantity = Integer.valueOf(ingredient.getQuantity());
             Integer requiredQuantity = food.getComponents().get(ingredientName).intValue();
             if(currentQuantity - requiredQuantity < 0 ){
@@ -70,7 +70,7 @@ public class FoodService {
 
 
     public List<Ingredient> getAllIngredient(){
-        return ingredientRepository.findAll();
+        return ingredientService.getAllIngredient();
     }
 
 //    public void addImage(Food food, MultipartFile file) throws IOException {
