@@ -35,3 +35,10 @@ select "add as Maven Project". Then right click again the pom.xml and select Mav
 ### Mongo DB
 Username: thegreatestteam
 password: VzI1YYho9OUMlj6R
+
+
+## Userful Tips:
+1. Kill port (bash terminal):
+```
+kill $(lsof -t -i:8080)
+```
