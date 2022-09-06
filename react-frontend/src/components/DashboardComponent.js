@@ -21,7 +21,8 @@ class DashboardComponent extends React.Component{
                         <img className = "dashboardImg" src = "/res/images/staff.svg" alt = "staff" />
                         <div className = "staffName">
                             <h1>Wendi YING</h1>
-                            <button className = "editButton">Edit Profile</button>
+                            <button className = "editButton" onClick={()=>window.location.href="/staff/profile"}>
+                                Edit Profile</button>
                         </div>
                     </div>
                     <div className = "dashboardBar">

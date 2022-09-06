@@ -27,8 +27,11 @@ public class FoodService {
     public boolean checkAvailability(Food food){
         for(String ingredientName: food.getComponents().keySet()){
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
-            Integer currentQuantity = Integer.valueOf(ingredient.getQuantity());
-            Integer requiredQuantity = food.getComponents().get(ingredientName).intValue();
+            Integer currentQuantity = ingredient.getQuantity();
+            Integer requiredQuantity = food.getComponents().get(ingredientName);
+            if (requiredQuantity == null){
+                requiredQuantity = 0;
+            }
             if(currentQuantity - requiredQuantity < 0 ){
                 return false;
             }

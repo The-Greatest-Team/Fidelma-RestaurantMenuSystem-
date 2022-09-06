@@ -13,7 +13,8 @@ class NewDishComponent extends Component{
             description:'',
             onion:'',
             beef:'',
-            chicken:''
+            chicken:'',
+            type:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -27,11 +28,20 @@ class NewDishComponent extends Component{
     saveDish = (e) =>{
         e.preventDefault();
         let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
-        console.log("dish=> " +JSON.stringify(dish));
+        if (this.props.location.state === "chicken") {
+            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:"chicken"};
+            console.log("dish=> " +JSON.stringify(dish));
+            NewDishService.createNewDIish(dish).then(res =>  {
+            this.props.history.push('/staff/menu/chicken');
+        });
+        }else {
+            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
+            console.log("dish=> " +JSON.stringify(dish));
         NewDishService.createNewDIish(dish).then(res =>  {
             this.props.history.push('/staff/menu/chicken');
         });
+        }
+        
     }
     
 nameHandler = (event) =>{
