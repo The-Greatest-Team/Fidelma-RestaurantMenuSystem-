@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DISH_REST_API_URL = 'http://localhost:8080/staff/NewDish';
+const DISH_REST_API_URL = 'http://localhost:8080/staff/menu/newDish';
 
 class NewDIshService{
 

@@ -93,7 +93,7 @@ class MenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-                    <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/NewDish")}>Add more dish</button>
+                    <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/menu/newDish")}>Add more dish</button>
                 </div>
             </>
         );
