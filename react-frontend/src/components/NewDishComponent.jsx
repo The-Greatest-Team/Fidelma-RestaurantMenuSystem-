@@ -7,17 +7,13 @@ class NewDishComponent extends Component{
         super(props)
 
         this.state = {
-            id:this.props.match.params.id,
             name:'',
             price:'',
             kiloJoule : '',
             description:'',
-            ingredients:[],
             onion:'',
             beef:'',
-            chicken:'',
-            element:'',
-            num:0
+            chicken:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -28,42 +24,15 @@ class NewDishComponent extends Component{
         this.back = this.back.bind(this);
     }  
     
- saveDish = (e) =>{
-    e.preventDefault();
-    let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
-    let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
-    console.log("dish=> " +JSON.stringify(dish));
-
-    // if id is -1,it is add new dish page,if not, it is the update page
-    if (this.state.id === '_chickenadd'){
+    saveDish = (e) =>{
+        e.preventDefault();
+        let components = {onion:this.state.onion, beef:this.state.beef, chicken:this.state.chicken};
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
+        console.log("dish=> " +JSON.stringify(dish));
         NewDishService.createNewDIish(dish).then(res =>  {
             this.props.history.push('/staff/menu/chicken');
         });
-    }else if (this.props.location.state ==="chicken"){
-        NewDishService.updateDish(dish,this.state.id).then(res => {
-            this.pros.history.push("/staff/menu/chicken");
-        })
     }
-
-    
- }
-
- componentDidMount(){
-    // if id is -1,it is add new dish page,if not, it is the update page
-    if (this.state.id === '_chickenadd'){
-        return
-    }else { //get value from backend
-        NewDishService.getDishById(this.state.id).then((res) => {
-            let dish = res.data;
-            this.setState({name:dish.name,
-                           price: dish.price,
-                           kiloJoule:dish.kiloJoule,
-                           description:dish.description
-                            })
-        })
-    }
-    
- }
     
 nameHandler = (event) =>{
     this.setState({name:event.target.value});
@@ -78,8 +47,7 @@ descriptionHandler = (event) => {
 }
 
 onionHandler = (event) => {
-    this.setState({element:event.target.value});
-    this.state.ingredients[this.state.num++] = this.state.element;
+    this.setState({onion:event.target.value});
 }
 
 beefHandler = (event) => {
@@ -90,6 +58,7 @@ chickenHandler = (event) => {
     this.setState({chicken:event.target.value});
 }
 
+
 kjHandler = (event) => {
     this.setState({kiloJoule:event.target.value});
 }
@@ -97,14 +66,6 @@ kjHandler = (event) => {
 back = (e) => {
     e.preventDefault();
     this.props.history.push('/staff/menu/chicken');
-}
-
-getTitle(){
-    if(this.state.id === '_chickenadd') {
-        return <h2>adding new dish</h2>
-    }else if (this.props.location.state ==="chicken") {
-        return <h2>updating</h2>
-    }
 }
     render(){
         return(
@@ -115,9 +76,7 @@ getTitle(){
                         <img className = "backSign" src="/res/images/backSign.jpg"/>
                         </button>
                     </div>
-                    {
-                        this.getTitle()
-                    }
+                    
                     <div id = "camera">
                         <div className = "content top">
                             <img className = "cameraImage" src="/res/images/camera.jpg"/>
@@ -143,25 +102,32 @@ getTitle(){
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                {
-                                    this.state.ingredients.map(
-                                        ingredient => 
-                                        <div key = {ingredient.name}>
-                                            <span className = "name"> {ingredient.name} </span>
-                                            <span className = "unit">g</span>
-        
-                                            <input className = "quantity" type="text"  name = "ingredient"
-                                            value = {this.state.element} onChange={this.onionHandler}/>
-                                        </div>
-                                    )
-                                }
+                                <div>
+                                        <span className = "name">Onion</span>
+                                        <span className = "unit">g</span>
+                                        <input className = "quantity" type="text"  name = "onion"
+                                        value = {this.state.onion} onChange={this.onionHandler}/>
+                                        
+                                    </div>
+                                    <div>
+                                        <span className = "name">Beef</span>
+                                        <span className = "unit">g</span>
+                                        <input className = "quantity" type="text"  name = "beef"
+                                        value = {this.state.beef} onChange={this.beefHandler}/>
+                                        
+                                    </div>
+                                    <div>
+                                        <span className = "name">Chicken</span>
+                                        <span className = "unit">g</span>
+                                        <input className = "quantity" type="text"  name = "chicken"
+                                        value = {this.state.chicken} onChange={this.chickenHandler}/>
+                                    </div>
                             </div>
                         </div>
                         <div id = "saveButton"> <button className = "min"  onClick = {this.saveDish} id = "save" >Save</button></div>
                         </form> 
                         
                     </div>   
-                    <script type="text/javascript" src="/arrow_rotation.js"></script>
                 </div>
             </>
         );
@@ -170,24 +136,3 @@ getTitle(){
 }
 
 export default NewDishComponent
-
-{/* <div>
-                                    <span className = "name">Onion</span>
-                                    <span className = "unit">g</span>
-                                    <input className = "quantity" type="text"  name = "onion"
-                                    value = {this.state.onion} onChange={this.onionHandler}/>
-                                        
-                                </div>
-                                <div>
-                                    <span className = "name">Beef</span>
-                                    <span className = "unit">g</span>
-                                    <input className = "quantity" type="text"  name = "beef"
-                                    value = {this.state.beef} onChange={this.beefHandler}/>
-                                        
-                                </div>
-                                <div>
-                                    <span className = "name">Chicken</span>
-                                    <span className = "unit">g</span>
-                                    <input className = "quantity" type="text"  name = "chicken"
-                                    value = {this.state.chicken} onChange={this.chickenHandler}/>
-                                </div> */}

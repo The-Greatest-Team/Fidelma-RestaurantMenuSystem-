@@ -6,6 +6,7 @@ import com.thegreatestteam.backend.model.Item;
 import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.repository.StaffRepository;
+import com.thegreatestteam.backend.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,11 @@ import java.util.List;
 
 @RequestMapping("/staff")
 public class StaffController {
-
-    private final StaffRepository staffRepository;
+    private final StaffService staffService;
 
     @Autowired
-    public StaffController(StaffRepository staffRepository){
-        this.staffRepository = staffRepository;
+    public StaffController(StaffService staffService){
+        this.staffService = staffService;
     }
     //Login
 
@@ -37,16 +37,13 @@ public class StaffController {
         return "getting profile page";
     }
 
-
-
-
     // Edit profile
-
-
 
 
     // Order summary
 
 
     // edit menu
+
+
 }

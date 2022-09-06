@@ -17,13 +17,13 @@ body{
     background-color: #FEFCF7;
 }
 
-.menu_head{
+.menuHead{
     position: relative;
     width: auto;
     max-width: 100%;
 }
 
-.menu_head .logo{
+.menuHead .logo{
     width: 16vw;
     height: 16vw;
     position: absolute;
@@ -34,13 +34,13 @@ body{
     margin: auto;
 }
 
-#menupic{
+#menuPic{
     width:100vw;
     height:57.333333333vw;
     z-index: 1;
 }
 
-#menuword{
+#menuWord{
     font-family:"Sakura";
     
     color: #FEFCF7;
@@ -87,7 +87,7 @@ body{
 
 
 
-.inner_menu_container{
+.innerMenuContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -97,12 +97,12 @@ body{
 }
 
 
-.inner_menu_container div{
+.innerMenuContainer div{
     margin-left: 1em;
 }
 
 /* change */
-.inner_menu_container button{
+.innerMenuContainer button{
     margin-right: 2vw;
     font-size: 4vw;
     width: 18vw;
@@ -135,43 +135,42 @@ body{
     height:0px;
     background-color:#B9B3B3;
     border-bottom:0.05vw solid #B9B3B3;
-    margin-bottom: 3vw;
 }
 
-.foodunit {
+.foodUnit {
     display: flex;
     flex-direction: column;
 }
 
-.foodbox {
+.foodBox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.foodbox img {
+.foodBox img {
     width : 6em;
     height: 6em;
     margin: 0.5em;
 }
 
-.foodbox .textbox .burger_desc{
+.foodBox .textBox .burgerDesc{
     width: 80%;
     margin-left: 0.5em;
 } 
 
-.foodbox .textbox .burger_others{
+.foodBox .textBox .burgerOthers{
     display: flex;
     flex-direction: row;
     margin-top: 1em;
 }
 
-.foodbox .textbox .burger_others .burger_price{
+.foodBox .textBox .burgerOthers .burgerPrice{
     margin-left: 2em;
 } 
 
-.foodbox input{
+.foodBox input{
     margin-right: 3vw;
     max-width: 3em;
     max-height: 3em;
@@ -182,12 +181,8 @@ body{
     display: none;
 }
 
-.updateButton {
-    display: none;
-}
-
 /* change */
-#add_more_button{
+#addMoreButton{
     display: none;
     margin-left: auto;
     margin-right: auto;
