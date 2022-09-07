@@ -1,5 +1,6 @@
 package com.thegreatestteam.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
@@ -24,32 +25,6 @@ public class FoodController {
     //Get Menu
     @GetMapping("/staff/menu/chicken")
     public String getChickenFood(){
-////        System.out.println("Chicken Menu");
-////        List<Food> menu = foodRepository.findByType("chicken");
-////        String sss = gson.toJson(food);
-//        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
-////        Integer id = 0;
-//        List<Food> menu = foodRepository.findByType("chicken");
-//        System.out.println(menu.size());
-//        for (Food chickenFood:
-//             menu) {
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.put("id",chickenFood.getId());
-//            jsonObject.put("foodName", chickenFood.getName());
-//            jsonObject.put("foodDesc", chickenFood.getDescription());
-//            jsonObject.put("foodJoules", chickenFood.getKiloJoule());
-//            jsonObject.put("foodPrice", chickenFood.getPrice());
-//            if(!foodService.checkAvailability(chickenFood)){
-//                jsonObject.put("isSoldOut", true);
-//            }else{
-//                jsonObject.put("isSoldOut",false);
-//            }
-//            result.add(jsonObject);
-//        }
-//
-//        System.out.println(result.toString());
-//
-//        return result.toString();
         return foodService.getFood("chicken");
     }
 
@@ -77,24 +52,6 @@ public class FoodController {
 
     @PostMapping("/staff/menu/newDish")
     public void addNewFood(@RequestBody Food food){
-//        switch (type){
-//            case "chicken":
-//                food.setType("chicken");
-//                break;
-//            case "beef":
-//                food.setType("beef");
-//                break;
-//            case "chips":
-//                food.setType("chips");
-//                break;
-//            case "sides":
-//                food.setType("sides");
-//                break;
-//            default:
-//                food.setType(null);
-//        }
-//        System.out.println("ID :" + food.getId());
-//        food.setType("chicken");
         foodService.addFood(food);
     }
 
@@ -110,5 +67,9 @@ public class FoodController {
         foodService.addFood(food);
     }
 
+    @DeleteMapping("/staff/menu/newDish/{id}")
+    public void deleteFood(@PathVariable String id){
+        foodService.deleteFood(id);
+    }
 
 }

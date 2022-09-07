@@ -77,6 +77,10 @@ public class FoodService {
         return ingredientService.getAllIngredient();
     }
 
+    public void deleteFood(String id){
+        foodRepository.deleteFoodById(id);
+    }
+
 //    public void addImage(Food food, MultipartFile file) throws IOException {
 //        food.setImage( new Binary(BsonBinarySubType.BINARY, file.getBytes()));
 //        foodRepository.save(food);
