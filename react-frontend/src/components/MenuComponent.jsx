@@ -80,11 +80,11 @@ class MenuComponent extends React.Component{
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 
                                 <div className="textBox">
-                                    <div className="burgerName">{dish.foodName}</div>
-                                    <div className="burgerDesc">{dish.foodDesc}</div>
+                                    <div className="burgerName">{dish.name}</div>
+                                    <div className="burgerDesc">{dish.description}</div>
                                     <div className="burgerOthers">
-                                        <div className="burgerJoules">{dish.foodJoules}KJ</div>
-                                        <div className="burgerPrice">${dish.foodPrice}</div>
+                                        <div className="burgerJoules">{dish.kiloJoule}KJ</div>
+                                        <div className="burgerPrice">${dish.price}</div>
                                     </div>
                                 </div>
                                 {

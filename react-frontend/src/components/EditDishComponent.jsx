@@ -70,8 +70,6 @@ descriptionHandler = (event) => {
     this.setState({description:event.target.value});
 }
 
-
-
 onionHandler(event,ingredient) {
     var key = ingredient.name;
     var value = event.target.value;
@@ -121,16 +119,16 @@ back = (e) => {
                         <div className = "content edit">
                             <h2>Name</h2>
                             <input className = "inputPart" type="text"  name = "name"
-                            placeholder = {this.props.location.state.foodName} onChange={this.nameHandler}/>
+                            placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
                             <input className = "inputPart" type="text"  name = "price"
-                            placeholder = {this.props.location.state.foodPrice} onChange={this.priceHandler}/>
+                            placeholder = {this.props.location.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
                             <input className = "inputPart" type="text"  name = "kilojoule"
-                            placeholder = {this.props.location.state.foodJoules} onChange={this.kjHandler}/>
+                            placeholder = {this.props.location.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
-                            placeholder = {this.props.location.state.foodDesc} onChange={this.descriptionHandler}></textarea>
+                            placeholder = {this.props.location.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />

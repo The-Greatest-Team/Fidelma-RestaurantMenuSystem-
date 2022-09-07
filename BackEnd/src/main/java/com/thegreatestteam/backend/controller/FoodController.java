@@ -24,24 +24,24 @@ public class FoodController {
 
     //Get Menu
     @GetMapping("/staff/menu/chicken")
-    public String getChickenFood(){
+    public List<Food> getChickenFood(){
         return foodService.getFood("chicken");
     }
 
 
 
     @GetMapping("/staff/menu/beef")
-    public String getBeefFood(){
+    public List<Food> getBeefFood(){
         return foodService.getFood("beef");
     }
 
     @GetMapping("/staff/menu/side")
-    public String getSideFood(){
+    public List<Food> getSideFood(){
         return foodService.getFood("side");
     }
 
     @GetMapping("/staff/menu/chip")
-    public String getChipFood(){
+    public List<Food> getChipFood(){
         return foodService.getFood("chip");
     }
 
@@ -55,15 +55,15 @@ public class FoodController {
         foodService.addFood(food);
     }
 
-//    @GetMapping("/staff/menu/edit/{id}")
-//    public Food getEditDish(@PathVariable String id){
-//        return foodService.getFoodById(id);
-//    }
-
     @GetMapping("/staff/menu/edit/{id}")
-    public List<Ingredient> getEditDish(){
-        return foodService.getAllIngredient();
+    public Food getEditDish(@PathVariable String id){
+        return foodService.getFoodById(id);
     }
+
+//    @GetMapping("/staff/menu/edit/{id}")
+//    public List<Ingredient> getEditDish(){
+//        return foodService.getAllIngredient();
+//    }
 
 
     @PutMapping("/staff/menu/edit/{id}")
