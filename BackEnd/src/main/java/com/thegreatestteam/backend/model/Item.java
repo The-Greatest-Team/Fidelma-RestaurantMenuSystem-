@@ -30,11 +30,4 @@ public abstract class Item {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

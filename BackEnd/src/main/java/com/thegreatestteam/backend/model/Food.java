@@ -20,7 +20,7 @@ public class Food extends Item {
     private String description;
     private int kiloJoule;
 
-    public Food(String name, double price , String type, int kiloJoule, Map<String, Integer> components, String description){
+    public Food(String name, double price , String type, int kiloJoule, Map<String, Integer> components,Binary image, String description){
         super(name, price);
         this.type = type;
         this.kiloJoule = kiloJoule;
@@ -28,7 +28,6 @@ public class Food extends Item {
 //        this.image = image;
         this.description = description;
     }
-
 
     public int getKiloJoule() {
         return kiloJoule;

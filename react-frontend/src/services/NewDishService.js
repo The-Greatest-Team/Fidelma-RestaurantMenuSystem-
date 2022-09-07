@@ -4,7 +4,7 @@ const DISH_REST_API_URL = 'http://localhost:8080/staff/menu/newDish';
 
 class NewDIshService{
 
-    getDishes(){
+    getIngredients(){
         return axios.get(DISH_REST_API_URL)
     }
 
