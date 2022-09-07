@@ -1,5 +1,6 @@
 package com.thegreatestteam.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
@@ -66,5 +67,9 @@ public class FoodController {
         foodService.addFood(food);
     }
 
+    @DeleteMapping("/staff/menu/newDish/{id}")
+    public void deleteFood(@PathVariable String id){
+        foodService.deleteFood(id);
+    }
 
 }
