@@ -23,7 +23,7 @@ public class FoodController {
 
     //Get Menu
     @GetMapping("/staff/menu/chicken")
-    public String getChickenFood(){
+    public List<Food> getChickenFood(){
 ////        System.out.println("Chicken Menu");
 ////        List<Food> menu = foodRepository.findByType("chicken");
 ////        String sss = gson.toJson(food);
@@ -56,17 +56,17 @@ public class FoodController {
 
 
     @GetMapping("/staff/menu/beef")
-    public String getBeefFood(){
+    public List<Food> getBeefFood(){
         return foodService.getFood("beef");
     }
 
     @GetMapping("/staff/menu/side")
-    public String getSideFood(){
+    public List<Food> getSideFood(){
         return foodService.getFood("side");
     }
 
     @GetMapping("/staff/menu/chip")
-    public String getChipFood(){
+    public List<Food> getChipFood(){
         return foodService.getFood("chip");
     }
 

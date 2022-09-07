@@ -39,28 +39,31 @@ public class FoodService {
         return true;
     }
 
-    //Get food
-    public String getFood(String type){
-        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
-        List<Food> menu = foodRepository.findByType(type);
-
-        for (Food food: menu) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",food.getId());
-            jsonObject.put("foodName", food.getName());
-            jsonObject.put("foodDesc", food.getDescription());
-            jsonObject.put("foodJoules", food.getKiloJoule());
-            jsonObject.put("foodPrice", food.getPrice());
-            if(!checkAvailability(food)){
-                jsonObject.put("isSoldOut", true);
-            }else{
-                jsonObject.put("isSoldOut",false);
-            }
-            result.add(jsonObject);
-        }
-
-//        System.out.println(result.toString());
-        return result.toString();
+//    Get food
+//    public String getFood(String type){
+//        ArrayList<JSONObject> result = new ArrayList<JSONObject>() ;
+//        List<Food> menu = foodRepository.findByType(type);
+//
+//        for (Food food: menu) {
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.put("id",food.getId());
+//            jsonObject.put("foodName", food.getName());
+//            jsonObject.put("foodDesc", food.getDescription());
+//            jsonObject.put("foodJoules", food.getKiloJoule());
+//            jsonObject.put("foodPrice", food.getPrice());
+//            if(!checkAvailability(food)){
+//                jsonObject.put("isSoldOut", true);
+//            }else{
+//                jsonObject.put("isSoldOut",false);
+//            }
+//            result.add(jsonObject);
+//        }
+//
+////        System.out.println(result.toString());
+//        return result.toString();
+//    }
+    public List<Food> getFood(String type){
+        return foodRepository.findByType(type);
     }
 
     public void addFood(Food food){
