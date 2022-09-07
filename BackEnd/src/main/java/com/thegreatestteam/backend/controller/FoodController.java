@@ -55,10 +55,16 @@ public class FoodController {
         foodService.addFood(food);
     }
 
+//    @GetMapping("/staff/menu/edit/{id}")
+//    public Food getEditDish(@PathVariable String id){
+//        return foodService.getFoodById(id);
+//    }
+
     @GetMapping("/staff/menu/edit/{id}")
-    public Food getEditDish(@PathVariable String id){
-        return foodService.getFoodById(id);
+    public List<Ingredient> getEditDish(){
+        return foodService.getAllIngredient();
     }
+
 
     @PutMapping("/staff/menu/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
