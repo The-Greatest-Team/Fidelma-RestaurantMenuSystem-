@@ -51,6 +51,7 @@ public class FoodService {
             jsonObject.put("foodDesc", food.getDescription());
             jsonObject.put("foodJoules", food.getKiloJoule());
             jsonObject.put("foodPrice", food.getPrice());
+            jsonObject.put("type", food.getType());
             if(!checkAvailability(food)){
                 jsonObject.put("isSoldOut", true);
             }else{

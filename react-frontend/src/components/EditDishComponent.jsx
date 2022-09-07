@@ -1,12 +1,12 @@
 import React,{Component} from "react";
-import NewDishService from "../services/NewDishService";
+import EditDishService from "../services/EditDishService";
 
-class NewDishComponent extends Component{
- 
+class EditDishComponent extends Component{
     constructor(props){
         super(props)
 
         this.state = {
+            id:this.props.match.params.id,
             name:'',
             price:'',
             kiloJoule : '',
@@ -23,33 +23,37 @@ class NewDishComponent extends Component{
         this.onionHandler = this.onionHandler.bind(this);
         this.beefHandler = this.beefHandler.bind(this);
         this.chickenHandler = this.chickenHandler.bind(this);
-        this.saveDish = this.saveDish.bind(this);
+        this.editDish = this.editDish.bind(this);
         this.back = this.back.bind(this);
     }  
     
     componentDidMount(){
-        NewDishService.getIngredients().then((respond) => {
-            this.setState({ingredients : (respond.data)});
-            console.log(typeof(this.state.ingredients));
-            console.log((respond.data));
+        EditDishService.getDishById(this.state.id).then((respond) => {
+            let dish = respond.data;
+            console.log(typeof(dish.components));
+            console.log(dish.components);
+            let objectArray = Object.entries(dish.components);
+            this.setState({ingredients : objectArray});
+            console.log(objectArray);
         });
     }
 
-    saveDish = (e) =>{
+    editDish = (e) =>{
         e.preventDefault();
         let components = this.state.typedComponents;
-        if (this.props.location.state === "chicken") {
+        if (this.props.location.state.type === "chicken") {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:"chicken"};
             console.log("dish=> " +JSON.stringify(dish));
-            NewDishService.createNewDIish(dish).then(res =>  {
-            this.props.history.push('/staff/menu/chicken');
-        });
+            EditDishService.editDish(dish,this.state.id).then( res=> {
+                this.props.history.push('/staff/menu/chicken');
+            });
+
         }else {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
             console.log("dish=> " +JSON.stringify(dish));
-        NewDishService.createNewDIish(dish).then(res =>  {
-            this.props.history.push('/staff/menu/chicken');
-        });
+            EditDishService.editDish(dish,this.state.id).then( res=> {
+                this.props.history.push('/staff/dashboard');
+            });
         }
         
     }
@@ -89,9 +93,12 @@ kjHandler = (event) => {
 
 back = (e) => {
     e.preventDefault();
-    if (this.props.location.state === 'chicken'){
+    console.log(this.props.location.state)
+    if (this.props.location.state.type === 'chicken') {
+        
         this.props.history.push('/staff/menu/chicken');
-    }
+    } 
+    
 }
     render(){
         return(
@@ -102,6 +109,7 @@ back = (e) => {
                         <img className = "backSign" src="/res/images/backSign.jpg"/>
                         </button>
                     </div>
+                    <h2>updating</h2>
                     
                     <div id = "camera">
                         <div className = "content top">
@@ -112,17 +120,17 @@ back = (e) => {
                         <form>            
                         <div className = "content edit">
                             <h2>Name</h2>
-                            <input className = "inputPart" type="text"  name = "name" 
-                            value = {this.state.name} onChange={this.nameHandler}/>
+                            <input className = "inputPart" type="text"  name = "name"
+                            placeholder = {this.props.location.state.foodName} onChange={this.nameHandler}/>
                             <h2>Price</h2>
                             <input className = "inputPart" type="text"  name = "price"
-                            value = {this.state.price} onChange={this.priceHandler}/>
+                            placeholder = {this.props.location.state.foodPrice} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
                             <input className = "inputPart" type="text"  name = "kilojoule"
-                            value = {this.state.kiloJoule} onChange={this.kjHandler}/>
+                            placeholder = {this.props.location.state.foodJoules} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
-                            value = {this.state.description} onChange={this.descriptionHandler}></textarea>
+                            placeholder = {this.props.location.state.foodDesc} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
@@ -151,17 +159,17 @@ back = (e) => {
                                 {
                                     this.state.ingredients.map(
                                          ingredient =>
-                                         <div key = {ingredient.name}>
-                                            <span className = "name">{ingredient.name}</span>
+                                        <div key = {ingredient[0]}>
+                                            <span className = "name">{ingredient[0]}</span>
                                             <span className = "unit">g</span>
                                             <input className = "quantity" type="text"  name = "onion"
-                                             onChange={e => this.onionHandler(e,ingredient)}/>
+                                            placeholder = {ingredient[1]} onChange={e => this.onionHandler(e,ingredient)}/>
                                         </div>
                                     )
                                 }
                             </div>
                         </div>
-                        <div id = "saveButton"> <button className = "min"  onClick = {this.saveDish} id = "save" >Save</button></div>
+                        <div id = "saveButton"> <button className = "min"  onClick = {this.editDish} id = "save" >Save</button></div>
                         </form> 
                         
                     </div>   
@@ -172,25 +180,4 @@ back = (e) => {
 
 }
 
-export default NewDishComponent
-
-{/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                        value = {this.state.onion} onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                        value = {this.state.beef} onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                        value = {this.state.chicken} onChange={this.chickenHandler}/>
-                                    </div> */}
+export default EditDishComponent

@@ -21,6 +21,7 @@ class MenuComponent extends React.Component{
         let editBtn =  document.getElementById("editBtn");
         let addBtnAreas = document.getElementsByClassName("addDishArea");
         let delBtns = document.getElementsByClassName("delDishBtn");
+        let updateButton = document.getElementsByClassName("updateButton");
         if (editBtn.innerHTML === "Edit"){
             editBtn.innerHTML = "Editing";
             document.getElementById("addMoreButton").style.display = "flex";
@@ -28,6 +29,7 @@ class MenuComponent extends React.Component{
             for(let i = 0; i < addBtnAreas.length; i++){
                 addBtnAreas[i].style.display = "none"
                 delBtns[i].style.display = "block"
+                updateButton[i].style.display = "block"
             }
 
         } else {
@@ -37,9 +39,14 @@ class MenuComponent extends React.Component{
             for(let i = 0; i < addBtnAreas.length; i++){
                 addBtnAreas[i].style.display = "block"
                 delBtns[i].style.display = "none"
+                updateButton[i].style.display = "none"
             }
         }
     };
+
+    editDish(dish) {
+        this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
+    }
 
     render(){
         return(
@@ -89,7 +96,7 @@ class MenuComponent extends React.Component{
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
                                 <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" />
-                            </div>
+                                <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>                            </div>
                         </div>
                         ))}
                     </div>
