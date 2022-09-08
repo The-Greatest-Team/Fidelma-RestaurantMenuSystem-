@@ -38,6 +38,22 @@ class NewDishComponent extends Component{
     saveDish = (e) =>{
         e.preventDefault();
         let components = this.state.typedComponents;
+        var find = 0;
+        let objectArr = Object.entries(components);
+        console.log(components);
+        console.log(objectArr);
+        console.log(this.state.ingredients);
+        for (var i = 0 ; i < this.state.ingredients.length;i++) {
+            find = 0;
+            for (var j = 0; j < objectArr.length;j++) {
+                if (objectArr[j][0] === this.state.ingredients[i].name) {
+                    find = 1;
+                }
+            }
+            if (find == 0) { //staff does not give the input for this ingredient
+                components[this.state.ingredients[i].name] = 0;
+            }
+        }
         if (this.props.location.state === "chicken") {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:"chicken"};
             console.log("dish=> " +JSON.stringify(dish));
