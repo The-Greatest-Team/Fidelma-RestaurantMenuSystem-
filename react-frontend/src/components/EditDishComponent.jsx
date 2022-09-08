@@ -16,7 +16,8 @@ class EditDishComponent extends Component{
             chicken:'',
             type:'',
             ingredients:[],
-            typedComponents:{}
+            typedComponents:{},
+            allIngredients:[]
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -29,33 +30,48 @@ class EditDishComponent extends Component{
     
     componentDidMount(){
         EditDishService.getDishById(this.state.id).then((respond) => {
-            let dish = respond.data;
-            console.log(typeof(dish.components));
-            console.log(dish.components);
-            let objectArray = Object.entries(dish.components);
-            this.setState({ingredients : objectArray});
-            console.log(objectArray);
+            // let dish = respond.data;
+            // console.log(typeof(dish.components));
+            // console.log(dish.components);
+            // let objectArray = Object.entries(dish.components);
+            this.setState({allIngredients : (respond.data)});
+            console.log(this.props.location.state);
+            let objectArr = Object.entries(this.props.location.state.components);
+            console.log(objectArr);
+            console.log(this.state.allIngredients);
+            var find = 0;
+            for (var i = 0; i < this.state.allIngredients.length ;i++) {
+                find = 0;
+                for (var j = 0; j < objectArr.length;j++) {
+                    if (this.state.allIngredients[i].name === objectArr[j][0]) {
+                        find = 1;
+                    }
+                }
+                if (find == 0) {
+                    objectArr[this.state.allIngredients[i].name] = 0;
+                }
+            }
+
+            console.log(objectArr);
+            this.setState({ingredients:objectArr});
+            console.log(this.state.ingredients);
         });
     }
 
     editDish = (e) =>{
         e.preventDefault();
         let components = this.state.typedComponents;
-        if (this.props.location.state.type === "chicken") {
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:"chicken"};
-            console.log("dish=> " +JSON.stringify(dish));
-            EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/menu/chicken');
-            });
+        console.log(Object.entries(components));
+        let arr = Object.entries(this.state.typedComponents);
 
-        }else {
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
+        
+
+
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/dashboard');
+                this.props.history.push('/staff/menu/' + this.props.location.state.type);
             });
-        }
-        
     }
     
 nameHandler = (event) =>{
@@ -71,8 +87,10 @@ descriptionHandler = (event) => {
 }
 
 onionHandler(event,ingredient) {
-    var key = ingredient.name;
+    var key = ingredient[0];
     var value = event.target.value;
+    console.log(key);
+    console.log(value);
     this.state.typedComponents[key] = value;
 }
 

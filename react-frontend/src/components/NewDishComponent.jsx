@@ -54,19 +54,12 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-        if (this.props.location.state === "chicken") {
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:"chicken"};
-            console.log("dish=> " +JSON.stringify(dish));
-            NewDishService.createNewDIish(dish).then(res =>  {
-            this.props.history.push('/staff/menu/chicken');
-        });
-        }else {
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components};
-            console.log("dish=> " +JSON.stringify(dish));
+
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
+        console.log("dish=> " +JSON.stringify(dish));
         NewDishService.createNewDIish(dish).then(res =>  {
-            this.props.history.push('/staff/menu/chicken');
+        this.props.history.push('/staff/menu/' + this.props.location.state);
         });
-        }
         
     }
     
