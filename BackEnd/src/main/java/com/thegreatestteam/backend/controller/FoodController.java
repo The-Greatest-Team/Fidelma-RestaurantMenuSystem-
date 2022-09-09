@@ -69,6 +69,10 @@ public class FoodController {
     @PutMapping("/staff/menu/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
+        food.setName(newFood.getName());
+        food.setPrice(newFood.getPrice());
+        food.setKiloJoule(newFood.getKiloJoule());
+        food.setDescription(newFood.getDescription());
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
     }
