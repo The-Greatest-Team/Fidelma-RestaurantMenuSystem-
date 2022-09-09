@@ -70,12 +70,12 @@ class MenuComponent extends React.Component{
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
 
-                    <hr className="separateLine"/>
+                    
 
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
-                            <hr />
+                           <hr className="separateLine"/>
                             <div className="foodBox">
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 

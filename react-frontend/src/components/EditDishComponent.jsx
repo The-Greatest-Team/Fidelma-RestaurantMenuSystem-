@@ -62,11 +62,69 @@ class EditDishComponent extends Component{
         e.preventDefault();
         let components = this.state.typedComponents;
         console.log(Object.entries(components));
-        let arr = Object.entries(this.state.typedComponents);
+        console.log(this.state.ingredients);
+        let arr = Object.entries(components);
+        var found = 0;
+        for (var k = 0; k < this.state.ingredients.length;k++) {
+            found = 0;
+            for (var z = 0; z < arr.length;z++) {
+                if (arr[z][0] == this.state.ingredients[k][0]) {
+                    found = 1;
+                }
+            }
 
-        
+            if (found == 0) {
+                components[this.state.ingredients[k][0]] = this.state.ingredients[k][1];
+            }
+        }
+        arr = Object.entries(components);
+        var find = 0;
+        for (var i = 0; i < this.state.allIngredients.length; i++) {
+            find = 0;
+            for (var j = 0; j < arr.length; j++) {
+                if (arr[j][0] == this.state.allIngredients[i].name) {
+                    find = 1;
+                }
+            }
+            if (find == 0) {
+                components[this.state.allIngredients[i].name] = 0;
+            }
+        }
+        console.log(components);
 
+        if (!this.state.name) {
 
+            this.state.name = this.props.location.state.name;
+        }
+
+        if (!this.state.price) {
+
+            this.state.price = this.props.location.state.price;
+        }
+
+        if (!this.state.kiloJoule) {
+
+            this.state.kiloJoule = this.props.location.state.kiloJoule;
+        }
+
+        if (!this.state.description) {
+
+            this.state.description = this.props.location.state.description;
+        }
+
+        let componentsArr = Object.entries(components);
+        console.log(componentsArr);
+        for (var l = 0;l<componentsArr.length;l++) {
+            if (!componentsArr[l][1]) {
+                var value;
+                for (var h = 0; h < this.state.ingredients.length;h++){
+                    if (this.state.ingredients[h][0] === componentsArr[l][0]) {
+                        value = this.state.ingredients[h][1];
+                    }
+                }
+                components[componentsArr[l][0]] = value;
+            }
+        }
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             EditDishService.editDish(dish,this.state.id).then( res=> {
@@ -109,12 +167,8 @@ kjHandler = (event) => {
 
 back = (e) => {
     e.preventDefault();
-    console.log(this.props.location.state)
-    if (this.props.location.state.type === 'chicken') {
-        
-        this.props.history.push('/staff/menu/chicken');
-    } 
-    
+    console.log(this.props.location.state);
+    this.props.history.push('/staff/menu/' + this.props.location.state.type);
 }
     render(){
         return(
