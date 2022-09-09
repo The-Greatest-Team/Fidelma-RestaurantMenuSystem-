@@ -70,12 +70,12 @@ class MenuComponent extends React.Component{
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
 
-                    <hr className="separateLine"/>
+                    
 
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
-                            <hr />
+                           <hr className="separateLine"/>
                             <div className="foodBox">
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 
@@ -88,11 +88,11 @@ class MenuComponent extends React.Component{
                                     </div>
                                 </div>
                                 {
-                                    dish.isSoldOut === false && 
+                                    dish.soldOut === false &&
                                     <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" />
                                 }
                                 {
-                                    dish.isSoldOut === true &&
+                                    dish.soldOut === true &&
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
                                 <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" />

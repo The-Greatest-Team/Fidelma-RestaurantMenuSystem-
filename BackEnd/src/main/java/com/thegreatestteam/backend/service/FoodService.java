@@ -26,6 +26,7 @@ public class FoodService {
     //Check current dish availability
     public boolean checkAvailability(Food food){
         for(String ingredientName: food.getComponents().keySet()){
+
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
             Integer currentQuantity = ingredient.getQuantity();
             Integer requiredQuantity = food.getComponents().get(ingredientName);
@@ -33,15 +34,19 @@ public class FoodService {
                 requiredQuantity = 0;
             }
             if(currentQuantity - requiredQuantity < 0 ){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     //Get food
     public List<Food> getFood(String type){
-        return foodRepository.findByType(type);
+        List<Food> foods = foodRepository.findByType(type);
+        for (Food food : foods){
+            food.setSoldOut(checkAvailability(food));
+        }
+        return foods;
     }
 
     public void addFood(Food food){

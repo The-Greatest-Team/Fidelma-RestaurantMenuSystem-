@@ -17,6 +17,8 @@ public class Food extends Item {
     private String type;
     private Binary image;
 
+    private Boolean isSoldOut;
+
     private String description;
     private int kiloJoule;
 
@@ -27,6 +29,7 @@ public class Food extends Item {
         this.components = components;
 //        this.image = image;
         this.description = description;
+        this.isSoldOut = false;
     }
 
     public int getKiloJoule() {
@@ -69,5 +72,12 @@ public class Food extends Item {
         this.description = description;
     }
 
+    public Boolean getSoldOut() {
+        return isSoldOut;
+    }
+
+    public void setSoldOut(Boolean soldOut) {
+        isSoldOut = soldOut;
+    }
 }
 
