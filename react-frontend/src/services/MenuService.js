@@ -1,15 +1,15 @@
 import axios from "axios";
 
-const USERS_REST_API_URL = 'http://localhost:8080/staff/menu/chicken';
+const USERS_REST_API_URL = 'http://localhost:8080/staff/menu/';
 
 class UserService{
 
-    getUsers(){
-        return axios.get(USERS_REST_API_URL)
+    getUsers(type){
+        return axios.get(USERS_REST_API_URL + type)
     }
 
-    postUsers(){
-        return axios.post(USERS_REST_API_URL, "test");
+    postUsers(type){
+        return axios.post(USERS_REST_API_URL+type, "test");
     }
     
 }

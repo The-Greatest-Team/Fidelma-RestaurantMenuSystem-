@@ -43,7 +43,7 @@ class DashboardComponent extends React.Component{
                             <h2>Raw Materials</h2>
                         </div>
                     </div>
-                    <div className = "dashboardBar" onClick={()=>window.location.href="/staff/menu/chicken"}>
+                    <div className = "dashboardBar" onClick={()=>window.location.href="/staff/mainMenu"}>
                         <div className = "dashboardContent">
                             <img className = "dashboardIcon" src = "/res/images/menu.svg" alt = "menu" />
                             <h2>Menu</h2>

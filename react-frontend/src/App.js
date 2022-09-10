@@ -2,6 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
+import MainMenuComponent from './components/MainMenuComponent';
 import MenuComponent from './components/MenuComponent';
 import NewDishComponent from './components/NewDishComponent';
 import EditDishComponent from './components/EditDishComponent';
@@ -16,7 +17,9 @@ function App() {
                 <div>
                     <Switch> 
                           <Route path="/" exact component ={MenuComponent}></Route>
+                          <Route path="/staff/mainMenu" component={MainMenuComponent}></Route>
                           <Route path="/staff/menu/chicken" component={MenuComponent}></Route>
+                          <Route path="/staff/menu/beef" component={MenuComponent}></Route>
                           <Route path="/staff/menu/newDish" component={NewDishComponent}></Route>
                           <Route path="/staff/menu/edit/:id" component={EditDishComponent}></Route>
                           <Route path="/staff/ingredient" component={IngredientComponent}></Route>
