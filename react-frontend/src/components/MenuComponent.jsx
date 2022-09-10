@@ -1,5 +1,6 @@
 import React from "react";
 import MenuService from "../services/MenuService";
+import NewDishService from "../services/NewDishService";
 
 class MenuComponent extends React.Component{
 
@@ -7,6 +8,15 @@ class MenuComponent extends React.Component{
         super(props)
 
         this.state = {foods : []}
+        this.deleteDish = this.deleteDish.bind(this);
+    }
+
+    deleteDish(id) {
+        NewDishService.deleteDish(id).then(
+            res => {
+                this.setState({foods:this.state.foods.filter(food => food.id !== id)});
+            }
+        )
     }
 
     componentDidMount(){
@@ -95,7 +105,7 @@ class MenuComponent extends React.Component{
                                     dish.soldOut === true &&
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
-                                <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" />
+                                <button onClick = {() => this.deleteDish(dish.id)}><input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" /></button>
                                 <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>                            </div>
                         </div>
                         ))}

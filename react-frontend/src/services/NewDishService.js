@@ -11,6 +11,10 @@ class NewDIshService{
     createNewDIish(dish) {
         return axios.post(DISH_REST_API_URL,dish)
     }
+
+    deleteDish(dishId) {
+        return axios.delete(DISH_REST_API_URL+'/' + dishId);
+    }
     
 }
 
