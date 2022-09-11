@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Ingredient")
 public class Ingredient extends Item{
     //Quantity in grams
-    private int quantity;
+    private Double quantity;
 //    private String type;
 
-    public Ingredient(String name, double price, int quantity ) {
+    public Ingredient(String name, double price, Double quantity ) {
         super(name, price);
         this.quantity = quantity;
     }
@@ -22,7 +22,7 @@ public class Ingredient extends Item{
 //        this.type = type;
 //    }
 //
-    public int getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 

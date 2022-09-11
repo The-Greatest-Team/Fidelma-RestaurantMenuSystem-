@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("${frontend.host}")
 @RestController
 public class FoodController {
     private final FoodService foodService;

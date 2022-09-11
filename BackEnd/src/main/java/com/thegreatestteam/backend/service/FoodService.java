@@ -28,10 +28,10 @@ public class FoodService {
         for(String ingredientName: food.getComponents().keySet()){
 
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
-            Integer currentQuantity = ingredient.getQuantity();
-            Integer requiredQuantity = food.getComponents().get(ingredientName);
+            Double currentQuantity = ingredient.getQuantity();
+            Double requiredQuantity = food.getComponents().get(ingredientName);
             if (requiredQuantity == null){
-                requiredQuantity = 0;
+                requiredQuantity = 0.0;
             }
             if(currentQuantity - requiredQuantity < 0 ){
                 return true;
