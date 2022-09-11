@@ -16,7 +16,9 @@ class NewDishComponent extends Component{
             chicken:'',
             type:'',
             ingredients:[],
-            typedComponents:{}
+            typedComponents:{},
+            checkCode:{},
+            checkPrice:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -58,50 +60,53 @@ class NewDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
         console.log("dish=> " +JSON.stringify(dish));
         NewDishService.createNewDIish(dish).then(res =>  {
-        this.props.history.push('/staff/menu/' + this.props.location.state);
+        this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
         });
         
     }
     
-nameHandler = (event) =>{
-    this.setState({name:event.target.value});
-}
-
-priceHandler = (event) => {
-    this.setState({price:event.target.value});
-}
-
-descriptionHandler = (event) => {
-    this.setState({description:event.target.value});
-}
-
-
-
-onionHandler(event,ingredient) {
-    var key = ingredient.name;
-    var value = event.target.value;
-    this.state.typedComponents[key] = value;
-}
-
-beefHandler = (event) => {
-    this.setState({beef:event.target.value});
-}
-
-chickenHandler = (event) => {
-    this.setState({chicken:event.target.value});
-}
-
-
-kjHandler = (event) => {
-    this.setState({kiloJoule:event.target.value});
-}
-
-back = (e) => {
-    e.preventDefault();
-    if (this.props.location.state === 'chicken'){
-        this.props.history.push('/staff/menu/chicken');
+    nameHandler = (event) =>{
+        this.setState({name:event.target.value});
     }
-}
+
+    priceHandler = (event) => {
+        // let value = event.target.value.replace('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$','')
+        // this.setState({ checkPrice: value })
+        this.setState({price:event.target.value});
+    }
+
+    descriptionHandler = (event) => {
+        this.setState({description:event.target.value});
+    }
+
+
+
+    onionHandler(event,ingredient) {
+        // let v = event.target.value.replace(/[^\d]/, '');
+        // this.state.checkCode[ingredient.name] = v;
+        var key = ingredient.name;
+        var value = event.target.value;
+        this.state.typedComponents[key] = value;
+    }
+
+    beefHandler = (event) => {
+        this.setState({beef:event.target.value});
+    }
+
+    chickenHandler = (event) => {
+        this.setState({chicken:event.target.value});
+    }
+
+
+    kjHandler = (event) => {
+        this.setState({kiloJoule:event.target.value});
+    }
+
+    back = (e) => {
+        e.preventDefault();
+        this.props.history.push('/staff/menu/'+ this.props.location.state,this.props.location.state);
+    }
+
     render(){
         return(
             <>
@@ -124,10 +129,10 @@ back = (e) => {
                             <input className = "inputPart" type="text"  name = "name" 
                             value = {this.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="text"  name = "price"
-                            value = {this.state.price} onChange={this.priceHandler}/>
+                            <input className = "inputPart" type="number"  name = "price"
+                            value={this.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="text"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule"
                             value = {this.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
@@ -163,8 +168,8 @@ back = (e) => {
                                          <div key = {ingredient.name}>
                                             <span className = "name">{ingredient.name}</span>
                                             <span className = "unit">g</span>
-                                            <input className = "quantity" type="text"  name = "onion"
-                                             onChange={e => this.onionHandler(e,ingredient)}/>
+                                            <input className = "quantity" type="number" name = "onion"
+                                             onChange={e => this.onionHandler(e,ingredient)}  />
                                         </div>
                                     )
                                 }

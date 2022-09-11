@@ -128,7 +128,7 @@ class EditDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/menu/' + this.props.location.state.type);
+                this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state);
             });
     }
     
@@ -168,7 +168,7 @@ kjHandler = (event) => {
 back = (e) => {
     e.preventDefault();
     console.log(this.props.location.state);
-    this.props.history.push('/staff/menu/' + this.props.location.state.type);
+    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state);
 }
     render(){
         return(
@@ -193,10 +193,10 @@ back = (e) => {
                             <input className = "inputPart" type="text"  name = "name"
                             placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="text"  name = "price"
+                            <input className = "inputPart" type="number"  name = "price"
                             placeholder = {this.props.location.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="text"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule"
                             placeholder = {this.props.location.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
@@ -232,7 +232,7 @@ back = (e) => {
                                         <div key = {ingredient[0]}>
                                             <span className = "name">{ingredient[0]}</span>
                                             <span className = "unit">g</span>
-                                            <input className = "quantity" type="text"  name = "onion"
+                                            <input className = "quantity" type="number"  name = "onion"
                                             placeholder = {ingredient[1]} onChange={e => this.onionHandler(e,ingredient)}/>
                                         </div>
                                     )
