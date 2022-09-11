@@ -10,6 +10,7 @@ import IngredientComponent from './components/IngredientComponent';
 import DashboardComponent from './components/DashboardComponent';
 import ProfileComponent from './components/ProfileComponent';
 import EnterComponent from './components/EnterComponent';
+import DescriptionComponent from './components/DescriptionComponent';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                           <Route path="/staff/dashboard" component={DashboardComponent}></Route>
                           <Route path="/staff/profile" component={ProfileComponent}></Route>
                           <Route path="/enterPage" component={EnterComponent}></Route>
+                          <Route path="/dishDescription" component={DescriptionComponent}></Route>
                     </Switch>
                 </div>
         </Router>
