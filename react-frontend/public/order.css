@@ -8,6 +8,7 @@
     src:url('res/font/Auttera.ttf');
 }
 
+/* For enter page */
 .orderMain{
     background-image: url("res/images/orderBackground.jpg");
     background-repeat: no-repeat;
@@ -62,4 +63,71 @@
     height:0px;
     background-color:#B9B3B3;
     border-bottom:0.05vw solid #B9B3B3;
+}
+
+/* For dish description */
+.dishHead {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    border-style: solid;
+    border-width: 0.4vw;
+    border-color: #000000;
+    text-align: center;
+}
+
+.dishHead h4{
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+}
+
+.dishPhoto{
+    width: 100%;
+    height: 100%;
+}
+
+.photoContainer{
+    margin-top: 2%;
+    padding-bottom: 4%;
+}
+
+.dishSeparateLine{
+    margin:auto;
+    width:100%;
+    margin-top:1.06666666vw;
+    height:0px;
+    background-color:#B9B3B3;
+    border-bottom:0.05vw solid #B9B3B3;
+}
+
+.descriptionTitle{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right :3%;
+}
+
+.dishPrice{
+    color: #F01E1E;
+    text-align: right;
+}
+
+.descriptionContent{
+    margin-top: 1%;
+    margin-left: 8%;
+    margin-right :8%;
+}
+
+.descriptionContent p{
+    font-size: 5vw;
+    color: grey
+}
+
+.allIngredient{
+    margin-top: 1%;
+    margin-left: 8%;
+    margin-right :5%;
+    font-size: 5vw;
 }
