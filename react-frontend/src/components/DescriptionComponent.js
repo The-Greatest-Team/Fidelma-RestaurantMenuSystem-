@@ -34,7 +34,7 @@ class DescriptionComponent extends React.Component{
             <>
                 <div>
                     <div className = "dishHead">
-                        <h4><strong>Classic Beef Burger</strong></h4>
+                        <h4>Classic Beef Burger</h4>
                     </div>
                     <div className = "photoContainer">
                         <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
