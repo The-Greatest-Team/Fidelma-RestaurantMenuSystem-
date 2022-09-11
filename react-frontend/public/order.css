@@ -131,3 +131,33 @@
     margin-right :5%;
     font-size: 5vw;
 }
+
+.removeDish{
+    margin-left: 34%;
+    margin-top: 2.5%;
+}
+
+.addDish{
+    margin-right: 34%;
+    margin-top: 2.5%;
+    transform:rotate(180deg);
+}
+
+.dishQuantity img{
+    background-color: #FEFCF7;
+    width: 5vw;
+}
+
+.dishQuantity{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+}
+
+.currQuantity{
+    background-color: #FFFFFF;
+    padding: 1vw 6vw 1vw 6vw;
+    border-radius: 6.66666666vw;
+    border-style: solid;
+    border-width: 0.5vw;
+}

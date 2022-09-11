@@ -5,6 +5,10 @@ class DescriptionComponent extends React.Component{
 
     constructor(props){
         super(props)
+
+        this.state = {
+            quantity: '1',
+        }
     }
 
     testPost(){
@@ -36,7 +40,9 @@ class DescriptionComponent extends React.Component{
                         <p className = "allIngredient">Beef patties, Onions, Fresh tomato, Lettuce, Salts</p>
                     </div>
                     <div className = "dishQuantity">
-
+                        <img className = "removeDish" src = "/res/images/back.svg"/>
+                        <div className = "currQuantity">{this.state.quantity}</div>
+                        <img className = "addDish" src = "/res/images/back.svg"/>
                     </div>
                 </div>
             </>
