@@ -1,0 +1,65 @@
+@font-face {
+    font-family:"Sakura";
+    src:url('res/font/Sakura.ttf');
+}
+
+@font-face {
+    font-family:"Auttera";
+    src:url('res/font/Auttera.ttf');
+}
+
+.orderMain{
+    background-image: url("res/images/orderBackground.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Worksans";
+    
+}
+
+.orderHead{
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+.orderHead .logo{
+    width: 16vw;
+    height: 16vw;
+    margin-top: 20vw;
+}
+
+.tableNum{
+    text-align: center;
+    margin-top: 10vw;
+}
+
+.tableNum h4{
+    color: #FFFFFF;
+    font-size: 6vw;
+}
+
+.startOrder{
+    text-align: center;
+    margin-top: 10vw;
+    padding-bottom: 119.9vw;
+}
+
+.orderButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+}
+
+.orderSeparateLine{
+    margin:auto;
+    width:53.666666666vw;
+    margin-top:1.06666666vw;
+    height:0px;
+    background-color:#B9B3B3;
+    border-bottom:0.05vw solid #B9B3B3;
+}
