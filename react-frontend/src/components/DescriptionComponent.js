@@ -7,7 +7,7 @@ class DescriptionComponent extends React.Component{
         super(props)
 
         this.state = {
-            quantity: '1',
+            quantity: 1,
         }
     }
 
@@ -15,6 +15,20 @@ class DescriptionComponent extends React.Component{
         DescriptionService.postUsers();
     }
 
+    removeDish(){
+        if(this.state.quantity > 0){
+            this.setState({
+                quantity:this.state.quantity - 1
+            });
+        }
+        
+    }
+
+    addDish(){
+        this.setState({
+            quantity:this.state.quantity + 1
+        });
+    }
     render(){
         return(
             <>
@@ -40,9 +54,9 @@ class DescriptionComponent extends React.Component{
                         <p className = "allIngredient">Beef patties, Onions, Fresh tomato, Lettuce, Salts</p>
                     </div>
                     <div className = "dishQuantity">
-                        <img className = "removeDish" src = "/res/images/back.svg"/>
+                        <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
                         <div className = "currQuantity">{this.state.quantity}</div>
-                        <img className = "addDish" src = "/res/images/back.svg"/>
+                        <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                 </div>
             </>
