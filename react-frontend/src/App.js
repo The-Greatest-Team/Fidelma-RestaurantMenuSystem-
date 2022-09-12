@@ -12,6 +12,8 @@ import ProfileComponent from './components/ProfileComponent';
 import EnterComponent from './components/EnterComponent';
 import DescriptionComponent from './components/DescriptionComponent';
 import ConfirmComponent from './components/ConfirmComponent';
+import CustomerMainMenuComponent from './components/CustomerMainMenuComponent';
+import CustomerMenuComponent from './components/CustomerMenuComponent';
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
                           <Route path="/" exact component ={MenuComponent}></Route>
                           <Route path="/staff/mainMenu" component={MainMenuComponent}></Route>
                           <Route path="/staff/menu/chicken" component={MenuComponent}></Route>
+                          <Route path="/customer/mainMenu" component={CustomerMainMenuComponent}></Route>
+                          <Route path="/customer/menu/beef" component={CustomerMenuComponent}></Route>
+                          <Route path="/customer/menu/chicken" component={CustomerMenuComponent}></Route>
                           <Route path="/staff/menu/beef" component={MenuComponent}></Route>
                           <Route path="/staff/menu/newDish" component={NewDishComponent}></Route>
                           <Route path="/staff/menu/edit/:id" component={EditDishComponent}></Route>

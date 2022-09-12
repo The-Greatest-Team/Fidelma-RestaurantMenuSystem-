@@ -27,7 +27,7 @@ class EnterComponent extends React.Component{
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "startOrder">
-                        <button className = "orderButton">Start Order</button>
+                        <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button>
                     </div>
                     
                 </div>
