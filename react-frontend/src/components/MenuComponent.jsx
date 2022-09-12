@@ -1,13 +1,13 @@
 import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
-import ShoppingCartComponent from "./ShoppingCartComponent";
+
 class MenuComponent extends React.Component{
 
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], foodsCountInCart : []}
+        this.state = {foods : []}
         this.deleteDish = this.deleteDish.bind(this);
     }
 
@@ -66,27 +66,6 @@ class MenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    storeInCart(dish){ 
-        let storeDish = {
-            id : dish.id,
-            name : dish.name,
-            price : dish.price
-        }
-        let cart = this.state.foodsInCart
-        let foodCounts = this.state.foodsCountInCart
-        let foodIndexInCart = cart.findIndex(x => x.id == dish.id) 
-        if (foodIndexInCart == -1){
-            cart.push(storeDish)
-            foodCounts.push(1)
-        } else {
-            foodCounts[foodIndexInCart] += 1
-        }
-        console.log(this.state.foodsInCart)
-        console.log(this.state.foodsCountInCart)
-    }
-
-   
-
     render(){
         return(
             <>
@@ -133,7 +112,7 @@ class MenuComponent extends React.Component{
                                 </div>
                                 {
                                     dish.soldOut === false &&
-                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" onClick={() => this.storeInCart(dish)}/>
+                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon"/>
                                 }
                                 {
                                     dish.soldOut === true &&
@@ -146,8 +125,6 @@ class MenuComponent extends React.Component{
                     </div>
                     <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/menu/newDish",this.props.location.state)}>Add more dish</button>
                 </div>
-
-                <ShoppingCartComponent />
             </>
         );
     }
