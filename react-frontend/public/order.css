@@ -161,3 +161,128 @@
     border-style: solid;
     border-width: 0.5vw;
 }
+
+/* For confirm page */
+.confirmHead{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    background-color: #F01E1E;
+    padding-bottom: 3%;
+}
+
+.confirmHead h4{
+    display: inline-block;
+    margin-left: 28%;
+    margin-top: 4%;
+    color: #FFFFFF;
+}
+
+.orderBackButton{
+    height: 10%;
+    width: 6%;
+    margin-left:2vw;
+    margin-bottom: 1.5%;
+}
+
+.orderTitle{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 7%;
+}
+
+.orderTableNum, .orderPhoneNum{
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderPhoneNum h4{
+    font-size: 5.5vw;
+}
+
+.confirmSeparateLine{
+    margin:auto;
+    width:90%;
+    margin-top:2.66666666vw;
+    height:0px;
+    background-color:#B9B3B3;
+    border-bottom:0.05vw solid #B9B3B3;
+}
+
+.item1 {grid-area: image; }
+.item2 {grid-area: name; }
+.item3 {grid-area: addDetail; }
+.item4 {grid-area: quantity; }
+.item5 {
+    grid-area: price; 
+    color: #F01E1E;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "image name name quantity price"
+    "image addDetail addDetail quantity price"
+    ;
+    grid-gap: 2vw;
+    padding: 5vw;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 3vw 0;
+    font-size: 4vw;
+}
+
+.gridPhoto{
+    width: 20vw;
+    height: 200vw;
+}
+
+.addComment{
+    border-radius: 4vw;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 20vw;
+}
+
+.addComment h4{
+    font-size: 4.5vw;
+}
+
+.orderComment{
+    margin-left: 2%;
+    width: 98%;
+    height: 50%;
+}
+
+.commentTitle{
+    padding-top: 3%;
+    margin-left: 2%;
+    padding-bottom: 5%;
+}
+
+.totalCost h4{
+    display: inline-block;
+    padding: 5vw;
+}
+
+.finishOrder div{
+    display: inline-block;
+}
+
+.finishOrder{
+    margin-top: 23%;
+    box-shadow: 0 2vw 4vw 0 rgba(0, 0, 0, 0.2), 0 3vw 8vw 0 rgba(0, 0, 0, 0.19);
+}
+
+.finishOrderButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+    margin-left: 5%;
+}
