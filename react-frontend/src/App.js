@@ -14,6 +14,7 @@ import DescriptionComponent from './components/DescriptionComponent';
 import ConfirmComponent from './components/ConfirmComponent';
 import CustomerMainMenuComponent from './components/CustomerMainMenuComponent';
 import CustomerMenuComponent from './components/CustomerMenuComponent';
+import SubmitComponent from './components/SubmitComponent';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                           <Route path="/enterPage" component={EnterComponent}></Route>
                           <Route path="/dishDescription" component={DescriptionComponent}></Route>
                           <Route path="/confirmPage" component={ConfirmComponent}></Route>
+                          <Route path="/submitPage" component={SubmitComponent}></Route>
                     </Switch>
                 </div>
         </Router>
