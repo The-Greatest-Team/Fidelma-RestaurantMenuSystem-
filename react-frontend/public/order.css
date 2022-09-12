@@ -286,3 +286,42 @@
     padding: 1vw 3vw 1vw 3vw;
     margin-left: 5%;
 }
+
+/* For submit page */
+.submitHead{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    background-color: #F01E1E;
+    padding-bottom: 3%;
+}
+
+.submitHead h4{
+    text-align: center;
+    padding-top: 5%;
+    color: #FFFFFF;
+}
+
+.thanks{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.thanks h5{
+    font-size: 6vw;
+}
+
+.success{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.success h5{
+    font-size: 4vw;
+}
+
+.success p{
+    font-size: 4vw;
+    margin-top: 80%;
+}
