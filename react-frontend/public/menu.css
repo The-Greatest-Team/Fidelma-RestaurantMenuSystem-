@@ -185,6 +185,10 @@ body{
     display: none;
 }
 
+.updateButton{
+    display:none;
+}
+
 /* change */
 #addMoreButton{
     display: none;
