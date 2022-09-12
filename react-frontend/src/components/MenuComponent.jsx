@@ -59,7 +59,10 @@ class MenuComponent extends React.Component{
         this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
     }
 
-    capitalizeFirst = str => {
+    capitalizeFirst (str) {
+        if (!str) {
+            return "s";
+        }
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
@@ -102,7 +105,11 @@ class MenuComponent extends React.Component{
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
-                            <h2 id = "menuTitleWord">{this.capitalizeFirst(this.props.location.state)}</h2>
+                            <h2 id = "menuTitleWord">{
+                            
+                                this.capitalizeFirst(this.props.location.state)
+                            
+                            }</h2>
                         </div>
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
