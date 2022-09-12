@@ -1,6 +1,8 @@
 import React from "react";
 import EnterService from "../services/EnterService";
 
+import enterPageVideo from "../video/burger.mp4";
+
 class EnterComponent extends React.Component{
 
     constructor(props){
@@ -14,6 +16,7 @@ class EnterComponent extends React.Component{
     render(){
         return(
             <>
+                <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/>
                 <div className = "orderMain">
                     <div className="orderHead">
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />

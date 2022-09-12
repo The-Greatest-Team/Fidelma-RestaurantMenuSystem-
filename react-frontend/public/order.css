@@ -10,12 +10,27 @@
 
 /* For enter page */
 .orderMain{
-    background-image: url("res/images/orderBackground.jpg");
+    /* background-image: url("res/images/orderBackground.jpg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: "Worksans";
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top:0;
     
+}
+
+.backgroundVideo{
+    position:absolute;
+    width: 100%;
+    left:50%;
+    top: 50%;
+    height:100%;
+    object-fit: cover;
+    transform:translate(-50%,-50%);
+    z-index :-1;
 }
 
 .orderHead{
