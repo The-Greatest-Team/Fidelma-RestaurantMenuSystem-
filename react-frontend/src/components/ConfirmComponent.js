@@ -70,7 +70,7 @@ class ConfirmComponent extends React.Component{
                             <h4><strong>Total:</strong></h4>
                             <h4><strong>$70.8</strong></h4>
                         </div> 
-                        <button className = "finishOrderButton">Order Now</button>
+                        <button className = "finishOrderButton" onClick={()=>this.props.history.push("/submitPage",this.props.location.state)}>Order Now</button>
                         
                     </div>
                 </div>
