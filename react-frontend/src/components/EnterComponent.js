@@ -20,10 +20,12 @@ class EnterComponent extends React.Component{
                     </div>
                     <div className = "tableNum">
                         <h4>Table No.</h4>
+                        <input className = "tableInput"/>
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "tableNum">
                         <h4>Phone Number</h4>
+                        <input className = "tableInput"/>
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "startOrder">

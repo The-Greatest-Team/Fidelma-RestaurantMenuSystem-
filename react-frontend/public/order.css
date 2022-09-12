@@ -59,12 +59,15 @@
 .orderSeparateLine{
     margin:auto;
     width:53.666666666vw;
-    margin-top:1.06666666vw;
+    margin-top:3.06666666vw;
     height:0px;
     background-color:#B9B3B3;
     border-bottom:0.05vw solid #B9B3B3;
 }
 
+.tableInput{
+    width: 30%;
+}
 /* For dish description */
 .dishHead {
     flex-direction: row;
