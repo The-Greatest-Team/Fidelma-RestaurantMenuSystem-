@@ -1,7 +1,5 @@
 import React from "react";
 import MenuService from "../services/MenuService";
-import NewDishService from "../services/NewDishService";
-import ShoppingCartComponent from "./ShoppingCartComponent";
 class CustomerMenuComponent extends React.Component{
 
     constructor(props){
@@ -17,12 +15,7 @@ class CustomerMenuComponent extends React.Component{
             console.log(typeof(this.state.foods));
             console.log((respond.data));
         });
-    }
-
-   
-
-    editDish(dish) {
-        this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
+        
     }
 
     capitalizeFirst (str) {
@@ -47,11 +40,13 @@ class CustomerMenuComponent extends React.Component{
         } else {
             foodCounts[foodIndexInCart] += 1
         }
+    }
+
+    
+    showCart(){
         console.log(this.state.foodsInCart)
         console.log(this.state.foodsCountInCart)
     }
-
-   
 
     render(){
         return(
@@ -66,7 +61,7 @@ class CustomerMenuComponent extends React.Component{
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
-                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
+                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/customer/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
                         <span>Table No.16</span>
                     </div>
                     <div className="innerMenuContainer">
@@ -110,7 +105,7 @@ class CustomerMenuComponent extends React.Component{
                     </div>
                 </div>
 
-                <ShoppingCartComponent />
+                <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
             </>
         );
     }
