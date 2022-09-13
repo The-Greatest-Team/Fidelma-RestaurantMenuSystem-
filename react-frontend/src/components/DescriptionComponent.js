@@ -58,6 +58,10 @@ class DescriptionComponent extends React.Component{
                         <div className = "currQuantity">{this.state.quantity}</div>
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
+                    <div className = "addToOrder">
+                        <img src = "/res/images/shoppingCart.png"/>
+                        <button className = "addToOrderButton">Add to order</button>
+                    </div>
                 </div>
             </>
         );

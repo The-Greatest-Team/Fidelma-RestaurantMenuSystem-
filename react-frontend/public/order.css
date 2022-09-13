@@ -10,12 +10,27 @@
 
 /* For enter page */
 .orderMain{
-    background-image: url("res/images/orderBackground.jpg");
+    /* background-image: url("res/images/orderBackground.jpg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: "Worksans";
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top:0;
     
+}
+
+.backgroundVideo{
+    position:absolute;
+    width: 100%;
+    left:50%;
+    top: 50%;
+    height:100%;
+    object-fit: cover;
+    transform:translate(-50%,-50%);
+    z-index :-1;
 }
 
 .orderHead{
@@ -163,6 +178,21 @@
     border-radius: 6.66666666vw;
     border-style: solid;
     border-width: 0.5vw;
+}
+
+.addToOrder{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addToOrderButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+    margin-top: 5%;
 }
 
 /* For confirm page */
@@ -327,4 +357,33 @@
 .success p{
     font-size: 4vw;
     margin-top: 80%;
+}
+
+/* For character selection page */
+.introTitle{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.characterTitle{
+    text-align: center;
+    margin-top: 15%;
+}
+
+.characterContainer{
+    margin-top: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 20vw;
+    text-align: center;
+}
+
+.characterButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+    margin-top: 5%;
 }
