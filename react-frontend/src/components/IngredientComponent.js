@@ -1,5 +1,6 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
+import IngredientPopupComponent from "./IngredientPopupComponent";
 
 const meats = [
     createData('Pork', 150, 10.00),
@@ -64,8 +65,18 @@ class IngredientComponent extends React.Component{
         this.state = {
             show:false,
             foods : [],
-            allIngredients:[]
+            allIngredients:[],
+            displayAddPopup:false
         };
+    }
+
+    openAddPopup = () => {
+        this.setState({displayAddPopup:true});
+    }
+
+    closeAddPopup = () => {
+        this.setState({displayAddPopup:false});
+        
     }
 
     componentDidMount(){
@@ -90,6 +101,7 @@ class IngredientComponent extends React.Component{
         this.setState({
             show:false,
         });
+        
     }
     
     render(){
@@ -110,7 +122,7 @@ class IngredientComponent extends React.Component{
                                 <thead>
                                     <tr>
                                         <th>Type</th>
-                                        <th>Quantity</th>
+                                        <th>Quantity(g)</th>
                                         <th>Price</th>
                                         <th>Operation</th>
                                     </tr>
@@ -130,7 +142,9 @@ class IngredientComponent extends React.Component{
                                     ))}
                                 </tbody>
                             </table>
-                            <button className="addIngredient">add</button>
+                            <button className="addIngredient" onClick={this.openAddPopup}>add</button>
+                            {this.state.displayAddPopup && <IngredientPopupComponent closeAddPopup = {this.closeAddPopup} />}
+                            
                         </div>
                     </div>
                 </div>
