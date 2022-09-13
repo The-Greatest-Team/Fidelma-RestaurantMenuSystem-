@@ -1,0 +1,74 @@
+import React from "react";
+
+
+class CustomerMainMenuComponent extends React.Component{
+
+    constructor(props){
+        super(props)
+
+        this.state = {foodsInCart : [], foodsCountInCart : []}
+    }
+
+    componentDidMount(){
+        if (typeof(this.props.location.state) != "undefined"){
+            this.state.foodsInCart = this.props.location.state[0]
+            this.state.foodsCountInCart = this.props.location.state[1]
+        }
+    }
+
+    showCart(){
+        console.log(this.props.location.state)
+        // let background = document.getElementById("normlaStateMenu")
+        // background.style.color = 707070
+    }
+
+    goToChicken(){
+        this.props.history.push("/customer/menu/" + "chicken", [this.state.foodsInCart, this.state.foodsCountInCart, "chicken"])
+    }
+
+    goToBeef(){
+        this.props.history.push("/customer/menu/" + "beef" ,[this.state.foodsInCart, this.state.foodsCountInCart, "beef"])
+    }
+
+    render(){
+        return(
+            <>
+                <div>
+                    <div className="menuHead">
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
+                        
+                    </div>
+
+                    <div id ="menuBox"><span id="menuWord">menu</span></div>
+                    <div className="nav">
+                        <span>Table No.</span>
+                    </div>
+
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Chicken </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                        <div className = "mainMenuDescription">Description.</div>
+                        <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Beef </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                        <div className = "mainMenuDescription">Description.</div>
+                        <button className = "mainMenuEnterButton" onClick={()=>this.goToBeef()}>View more</button>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
+
+                </div>
+            </>
+        );
+    }
+
+}
+
+export default CustomerMainMenuComponent

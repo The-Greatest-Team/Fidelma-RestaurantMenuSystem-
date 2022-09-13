@@ -1,0 +1,9 @@
+#shoppingCart {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0%;
+    width: 15vw;
+    height: 15vw;
+}

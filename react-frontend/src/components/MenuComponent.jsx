@@ -1,5 +1,6 @@
 import React from "react";
 import MenuService from "../services/MenuService";
+import NewDishService from "../services/NewDishService";
 
 class MenuComponent extends React.Component{
 
@@ -7,10 +8,20 @@ class MenuComponent extends React.Component{
         super(props)
 
         this.state = {foods : []}
+        this.deleteDish = this.deleteDish.bind(this);
+    }
+
+
+    deleteDish(id) {
+        NewDishService.deleteDish(id).then(
+            res => {
+                this.setState({foods:this.state.foods.filter(food => food.id !== id)});
+            }
+        )
     }
 
     componentDidMount(){
-        MenuService.getUsers().then((respond) => {
+        MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
@@ -48,24 +59,36 @@ class MenuComponent extends React.Component{
         this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
     }
 
+    capitalizeFirst (str) {
+        if (!str) {
+            return "s";
+        }
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     render(){
         return(
             <>
                 <div>
+                    {console.log(typeof(this.props.location.state))}
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuPic.png" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
-                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/dashboard"} src="/res/images/arrow.png" alt="return button icon" />
+                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
                         <span>Table No.16</span>
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
-                            <h2 id = "menuTitleWord">Chicken</h2>
+                            <h2 id = "menuTitleWord">{
+                            
+                                this.capitalizeFirst(this.props.location.state)
+                            
+                            }</h2>
                         </div>
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
@@ -89,18 +112,18 @@ class MenuComponent extends React.Component{
                                 </div>
                                 {
                                     dish.soldOut === false &&
-                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" />
+                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon"/>
                                 }
                                 {
                                     dish.soldOut === true &&
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
-                                <input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" />
+                                <button onClick = {() => this.deleteDish(dish.id)}><input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" /></button>
                                 <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>                            </div>
                         </div>
                         ))}
                     </div>
-                    <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/menu/newDish","chicken")}>Add more dish</button>
+                    <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/menu/newDish",this.props.location.state)}>Add more dish</button>
                 </div>
             </>
         );

@@ -246,3 +246,54 @@ img{
     margin-top: 8%; 
     margin-left: 3%;
 }
+
+/* For profile */
+.profileTitle h3{
+    text-align: center;
+}
+
+.titleSeparateLine{
+    margin:auto;
+    width:92.666666666vw;
+    margin-top:5.06666666vw;
+    height:0px;
+    background-color:#B9B3B3;
+    border-bottom:0.05vw solid #B9B3B3;
+}
+
+.profileImg{
+    height: 28%;
+    width: 28%;
+    margin-left: 36%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.left{
+    text-align: left;
+    margin-left: 8%;
+}
+
+.right{
+    text-align: right;
+    margin-right: 8%;
+}
+
+.profileContent h4{
+    font-size: 1em;
+}
+
+.profileContent{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.profileSeparateLine{
+    margin:auto;
+    width:83.666666666vw;
+    margin-top:1.06666666vw;
+    height:0px;
+    background-color:#B9B3B3;
+    border-bottom:0.05vw solid #B9B3B3;
+}
