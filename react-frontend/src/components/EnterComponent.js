@@ -1,7 +1,7 @@
 import React from "react";
 import EnterService from "../services/EnterService";
 
-import enterPageVideo from "../video/burger.mp4";
+import enterPageVideo from "../video/burger2.mp4";
 
 class EnterComponent extends React.Component{
 
