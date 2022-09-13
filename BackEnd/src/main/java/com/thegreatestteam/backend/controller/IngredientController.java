@@ -37,7 +37,7 @@ public class IngredientController {
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-    @PutMapping("/staff/ingredient/{id}")
+    @PutMapping("/staff/ingredient/{name}")
     public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String name){
         Ingredient currentIngredient = ingredientService.findIngredientByName(name);
         currentIngredient.setName(ingredient.getName());
