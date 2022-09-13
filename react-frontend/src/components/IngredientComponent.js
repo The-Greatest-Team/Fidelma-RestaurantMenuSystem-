@@ -135,8 +135,8 @@ class IngredientComponent extends React.Component{
                                             <td>{row.name}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <Portal />}</td>
+                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button></td>
+                                            {/* {this.state.show && <Portal />} */}
                                         </tr>
                                             
                                     ))}

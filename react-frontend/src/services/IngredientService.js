@@ -11,6 +11,10 @@ class IngredientService{
     postUsers(){
         return axios.post(USERS_REST_API_URL, "test");
     }
+
+    getIngredientById(id) {
+        return axios.get(USERS_REST_API_URL+'/' + id);
+    }
     
 }
 
