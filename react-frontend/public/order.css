@@ -180,6 +180,21 @@
     border-width: 0.5vw;
 }
 
+.addToOrder{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addToOrderButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+    margin-top: 5%;
+}
+
 /* For confirm page */
 .confirmHead{
     flex-direction: row;
