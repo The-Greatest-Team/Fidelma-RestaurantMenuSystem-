@@ -20,7 +20,7 @@ Team member:
 - React - Font-end
 - Spring Boot - Back-end
 - GitHub - Version Control
-- Testing - 
+- Testing - JUnit/ Spring Framework Testing  
 - Heroku - Deployment
 
 ## How to start the app?
