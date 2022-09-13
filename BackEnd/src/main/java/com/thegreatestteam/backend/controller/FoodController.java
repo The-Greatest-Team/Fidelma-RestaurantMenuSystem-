@@ -52,11 +52,7 @@ public class FoodController {
     public void addNewFood(@RequestBody Food food){
         foodService.addFood(food);
     }
-//
-//    @GetMapping("/staff/menu/edit/{id}")
-//    public Food getEditDish(@PathVariable String id){
-//        return foodService.getFoodById(id);
-//    }
+
 
     @GetMapping("/staff/menu/edit/{id}")
     public List<Ingredient> getEditDish(){

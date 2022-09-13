@@ -26,4 +26,8 @@ public class Ingredient extends Item{
         return quantity;
     }
 
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
 }
