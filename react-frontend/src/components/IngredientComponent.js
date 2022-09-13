@@ -28,6 +28,9 @@ const vegetables = [
 //     createData('Beef', 150, 10.0, 'vegetables'),
 // ]
 
+
+
+
 function createData(name, quantity, price, type) {
     return { name, quantity, price, type};
 }
@@ -60,8 +63,16 @@ class IngredientComponent extends React.Component{
         super(props)
         this.state = {
             show:false,
-            foods : []
+            foods : [],
+            allIngredients:[]
         };
+    }
+
+    componentDidMount(){
+        IngredientService.getIngredients().then((respond) => {
+            this.setState({allIngredients : (respond.data)});
+            console.log(this.state.allIngredients);
+        });
     }
 
     testPost(){
@@ -94,10 +105,6 @@ class IngredientComponent extends React.Component{
                     </div>
 
                     <div className = "ingredientContainer">
-                        <div className = "category">
-                            <img className = "rawMaterialIcon" src = "/res/images/meat.svg" />
-                            <h1>Meats</h1>
-                        </div>
                         <div className = "tableContainer">
                             <table className = "ingredientTable">
                                 <thead>
@@ -109,7 +116,7 @@ class IngredientComponent extends React.Component{
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {meats.map((row) =>(
+                                    {this.state.allIngredients.map((row) =>(
                                         <tr
                                             key = {row.name}
                                         >
@@ -123,39 +130,9 @@ class IngredientComponent extends React.Component{
                                     ))}
                                 </tbody>
                             </table>
-                        </div>
-                        <div className = "category">
-                            <img className = "rawMaterialIcon" src = "/res/images/vegetable.svg" />
-                            <h1>Vegetables</h1>
-                        </div>
-                        <div className = "tableContainer">
-                        <table className = "ingredientTable">
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {vegetables.map((row) =>(
-                                        <tr
-                                            key = {row.name}
-                                        >
-                                            <td>{row.name}</td>
-                                            <td>{row.quantity}</td>
-                                            <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <Portal />}</td>
-                                        </tr>
-                                            
-                                    ))}
-                                </tbody>
-                            </table>
+                            <button className="addIngredient">add</button>
                         </div>
                     </div>
-                    
                 </div>
 
                 

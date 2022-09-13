@@ -4,7 +4,7 @@ const USERS_REST_API_URL = 'http://localhost:8080/staff/ingredient';
 
 class IngredientService{
 
-    getUsers(){
+    getIngredients(){
         return axios.get(USERS_REST_API_URL)
     }
 
