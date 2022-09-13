@@ -5,17 +5,20 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], foodsCountInCart : []}
+        this.state = {foods : [], foodsInCart : [], foodsCountInCart : [], cartOpen : false}
     }
 
 
     componentDidMount(){
-        MenuService.getUsers(this.props.location.state).then((respond) => {
+        MenuService.getUsers(this.props.location.state[2]).then((respond) => {
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
         });
-        
+        if (typeof(this.props.location.state) != "undefined"){
+            this.state.foodsInCart = this.props.location.state[0]
+            this.state.foodsCountInCart = this.props.location.state[1]
+        }
     }
 
     capitalizeFirst (str) {
@@ -46,12 +49,25 @@ class CustomerMenuComponent extends React.Component{
     showCart(){
         console.log(this.state.foodsInCart)
         console.log(this.state.foodsCountInCart)
+        // let background = document.getElementById("normlaStateMenu")
+        // background.style.color = 707070
+        this.state.cartOpen = true
+
+    }
+
+
+    closeCart(){
+        console.log("close cart")
+    }
+
+    returnMainMenu(){
+        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart, this.state.foodsCountInCart])
     }
 
     render(){
         return(
             <>
-                <div>
+                <div id="normlaStateMenu" onClick={() => this.closeCart()}>
                     {console.log(typeof(this.props.location.state))}
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -61,21 +77,19 @@ class CustomerMenuComponent extends React.Component{
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
-                        <input name="returnBtn" type="image" onClick={()=>window.location.href="/customer/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
+                        <input name="returnBtn" type="image" onClick={() => this.returnMainMenu()} src="/res/images/arrow.png" alt="return button icon" />
                         <span>Table No.16</span>
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
                             <h2 id = "menuTitleWord">{
                             
-                                this.capitalizeFirst(this.props.location.state)
+                                this.capitalizeFirst(this.props.location.state[2])
                             
                             }</h2>
                         </div>
                     </div>
-
                     
-
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
@@ -103,9 +117,10 @@ class CustomerMenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-                </div>
+                    
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
 
-                <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
+                </div>
             </>
         );
     }

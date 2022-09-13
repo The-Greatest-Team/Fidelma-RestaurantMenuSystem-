@@ -128,7 +128,7 @@ class EditDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state);
+                this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
             });
     }
     
