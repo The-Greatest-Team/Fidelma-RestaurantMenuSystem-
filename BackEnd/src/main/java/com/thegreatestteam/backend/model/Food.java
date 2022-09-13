@@ -79,5 +79,17 @@ public class Food extends Item {
     public void setSoldOut(Boolean soldOut) {
         isSoldOut = soldOut;
     }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "name="+ getName() +
+                "price="+getPrice()+
+                "components=" + components +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", kiloJoule=" + kiloJoule +
+                '}';
+    }
 }
 

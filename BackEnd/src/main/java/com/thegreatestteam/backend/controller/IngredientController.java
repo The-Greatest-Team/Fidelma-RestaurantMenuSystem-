@@ -27,14 +27,22 @@ public class IngredientController {
 
     // Create ingredients
     @PostMapping("/staff/ingredient")
-    public void addIngredients(@RequestBody Ingredient ingredient){
+    public void addIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/ingredient")
-    public void deleteIngredients(@PathVariable String ingredientId){
+    @DeleteMapping("/staff/ingredient/{ingredientId}")
+    public void deleteIngredient(@PathVariable String ingredientId){
         ingredientService.deleteIngredientById(ingredientId);
+    }
+
+    @PutMapping("/staff/ingredient/{name}")
+    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String name){
+        Ingredient currentIngredient = ingredientService.findIngredientByName(name);
+        currentIngredient.setName(ingredient.getName());
+        currentIngredient.setQuantity(ingredient.getQuantity());
+        ingredientService.addIngredient(currentIngredient);
     }
 
     @GetMapping("/staff/menu/NewDish")
