@@ -38,7 +38,7 @@ password: VzI1YYho9OUMlj6R
 
 
 ## Userful Tips:
-1. Kill port (bash terminal):
+1. Kill port (bash terminal), replace [portNumber] with the portnumber you want to kill:
 ```
-kill $(lsof -t -i:8080)
+kill $(lsof -t -i:[portNumber])
 ```
