@@ -15,6 +15,7 @@ import ConfirmComponent from './components/ConfirmComponent';
 import CustomerMainMenuComponent from './components/CustomerMainMenuComponent';
 import CustomerMenuComponent from './components/CustomerMenuComponent';
 import SubmitComponent from './components/SubmitComponent';
+import CharacterComponent from './components/CharacterComponent';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Router>
                 <div>
                     <Switch> 
-                          <Route path="/" exact component ={MenuComponent}></Route>
+                          <Route path="/" exact component ={CharacterComponent}></Route>
                           <Route path="/staff/mainMenu" component={MainMenuComponent}></Route>
                           <Route path="/staff/menu/chicken" component={MenuComponent}></Route>
                           <Route path="/customer/mainMenu" component={CustomerMainMenuComponent}></Route>
