@@ -345,3 +345,30 @@
 }
 
 /* For character selection page */
+.introTitle{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.characterTitle{
+    text-align: center;
+    margin-top: 15%;
+}
+
+.characterContainer{
+    margin-top: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 20vw;
+    text-align: center;
+}
+
+.characterButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+    margin-top: 5%;
+}
