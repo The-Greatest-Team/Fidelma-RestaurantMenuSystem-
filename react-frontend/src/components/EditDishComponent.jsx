@@ -168,7 +168,7 @@ kjHandler = (event) => {
 back = (e) => {
     e.preventDefault();
     console.log(this.props.location.state);
-    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state);
+    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
 }
     render(){
         return(
@@ -206,26 +206,6 @@ back = (e) => {
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                {/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                         onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                         onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                         onChange={this.chickenHandler}/>
-                                    </div> */}
                                 {
                                     this.state.ingredients.map(
                                          ingredient =>
