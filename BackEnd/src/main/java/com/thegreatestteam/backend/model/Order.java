@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Order {
     @Id
-    private Integer id;
+    private String id;
 
     @NonNull
     private Integer tableNumber;
@@ -17,7 +17,7 @@ public class Order {
     private HashMap<String,Integer> cart;
 
 
-    public Order(Integer id, @NonNull Integer tableNumber, @NonNull String phoneNumer, HashMap<String, Integer> cart) {
+    public Order(String id, @NonNull Integer tableNumber, @NonNull String phoneNumer, HashMap<String, Integer> cart) {
         this.id = id;
         this.tableNumber = tableNumber;
         this.phoneNumer = phoneNumer;
