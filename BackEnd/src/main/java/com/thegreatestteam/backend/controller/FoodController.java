@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin("${frontend.host}")
 @RestController
+@RequestMapping("/staff/menu")
 public class FoodController {
     private final FoodService foodService;
 
@@ -23,44 +24,44 @@ public class FoodController {
     }
 
     //Get Menu
-    @GetMapping("/staff/menu/chicken")
+    @GetMapping("/chicken")
     public List<Food> getChickenFood(){
         return foodService.getFood("chicken");
     }
 
-    @GetMapping("/staff/menu/beef")
+    @GetMapping("/beef")
     public List<Food> getBeefFood(){
         return foodService.getFood("beef");
     }
 
-    @GetMapping("/staff/menu/side")
+    @GetMapping("/side")
     public List<Food> getSideFood(){
         return foodService.getFood("side");
     }
 
-    @GetMapping("/staff/menu/chip")
+    @GetMapping("/chip")
     public List<Food> getChipFood(){
         return foodService.getFood("chip");
     }
 
-    @GetMapping("/staff/menu/newDish")
+    @GetMapping("/newDish")
     public List<Ingredient> getNewDishIngredient(){
         return foodService.getAllIngredient();
     }
 
-    @PostMapping("/staff/menu/newDish")
+    @PostMapping("/newDish")
     public void addNewFood(@RequestBody Food food){
         foodService.addFood(food);
     }
 
 
-    @GetMapping("/staff/menu/edit/{id}")
+    @GetMapping("/edit/{id}")
     public List<Ingredient> getEditDish(){
         return foodService.getAllIngredient();
     }
 
 
-    @PutMapping("/staff/menu/edit/{id}")
+    @PutMapping("/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
         food.setName(newFood.getName());
@@ -71,7 +72,7 @@ public class FoodController {
         foodService.addFood(food);
     }
 
-    @DeleteMapping("/staff/menu/newDish/{id}")
+    @DeleteMapping("/newDish/{id}")
     public void deleteFood(@PathVariable String id){
         foodService.deleteFood(id);
     }

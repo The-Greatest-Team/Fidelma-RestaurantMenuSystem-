@@ -41,7 +41,7 @@ public class StaffController {
         return "getting profile page";
     }
     // Add staff (one time operation)
-    @PostMapping("/staff/addStaff")
+    @PostMapping("/addStaff")
     public void addStaff(@RequestBody Staff staff){
         staffService.addStaff(staff);
     }
@@ -54,7 +54,7 @@ public class StaffController {
 
     // get raw material
 
-    @GetMapping("/staff/dashboard/ingredients")
+    @GetMapping("/dashboard/ingredients")
     public List<Ingredient> displayAllIngredients(){
         return ingredientService.getAllIngredient();
     }

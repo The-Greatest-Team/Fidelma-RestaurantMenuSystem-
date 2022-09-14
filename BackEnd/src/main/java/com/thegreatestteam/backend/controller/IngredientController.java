@@ -11,6 +11,7 @@ import java.util.List;
 
 @CrossOrigin("${frontend.host}")
 @RestController
+@RequestMapping("/staff")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -20,24 +21,24 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/staff/ingredient")
+    @GetMapping("/ingredient")
     public List<Ingredient> getIngredient(){
         return ingredientService.getAllIngredient();
     }
 
     // Create ingredients
-    @PostMapping("/staff/ingredient")
+    @PostMapping("/ingredient")
     public void addIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/ingredient/{ingredientId}")
+    @DeleteMapping("/ingredient/{ingredientId}")
     public void deleteIngredient(@PathVariable String ingredientId){
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-    @PutMapping("/staff/ingredient/{name}")
+    @PutMapping("/ingredient/{name}")
     public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String name){
         Ingredient currentIngredient = ingredientService.findIngredientByName(name);
         currentIngredient.setName(ingredient.getName());
@@ -45,10 +46,6 @@ public class IngredientController {
         ingredientService.addIngredient(currentIngredient);
     }
 
-    @GetMapping("/staff/menu/NewDish")
-    public List<Ingredient> addNewDish(){
-        return ingredientService.getAllIngredient();
-    }
 
 
 }
