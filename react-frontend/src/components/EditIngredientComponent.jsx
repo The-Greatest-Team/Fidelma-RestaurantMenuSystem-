@@ -7,11 +7,11 @@ class EditIngredientComponent extends Component {
         super(props)
 
         this.state = {
-            type:'',
+            name:'',
             quantity:'',
             price:''
         }
-        this.typeHandler = this.typeHandler.bind(this);
+        this.nameHandler = this.nameHandler.bind(this);
         this.quantityHandler = this.quantityHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
         this.saveIngredient = this.saveIngredient.bind(this);
@@ -23,15 +23,15 @@ class EditIngredientComponent extends Component {
             let ingredient = res.data;
            
             this.setState({
-                type : ingredient.name,
+                name : ingredient.name,
                 quantity : ingredient.quantity,
                 price: ingredient.price    
             });
         });
     }
 
-    typeHandler = (event) =>{
-        this.setState({type:event.target.value});
+    nameHandler = (event) =>{
+        this.setState({name:event.target.value});
     }
 
     quantityHandler = (event) =>{
@@ -44,7 +44,7 @@ class EditIngredientComponent extends Component {
 
     saveIngredient = (event) => {
         event.preventDefault();
-        let ingredient = {name:this.state.type,quantity:this.state.quantity,price:this.state.price}
+        let ingredient = {name:this.state.name,quantity:this.state.quantity,price:this.state.price}
         console.log("ingredient=> " +JSON.stringify(ingredient));
         IngredientService.editIngredient(ingredient,this.props.id).then(res => {
             this.props.close();
@@ -60,9 +60,9 @@ class EditIngredientComponent extends Component {
                     <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick = {this.props.close}>x</button></h2>
                     
 
-                    <h3 className="addPopupSubTtile">Type</h3>
+                    <h3 className="addPopupSubTtile">name</h3>
                     <input className="addPopupInput" type="text"
-                    value = {this.state.type} onChange={this.typeHandler} />
+                    value = {this.state.name} onChange={this.nameHandler} />
 
                     <h3 className="addPopupSubTtile">Quantity</h3>
                     <input className="addPopupInput" type="number"

@@ -124,7 +124,7 @@ class IngredientComponent extends React.Component{
                             <table className = "ingredientTable">
                                 <thead>
                                     <tr>
-                                        <th>Type</th>
+                                        <th>Name</th>
                                         <th>Quantity(g)</th>
                                         <th>Price</th>
                                         <th>Operation</th>

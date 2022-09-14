@@ -6,18 +6,18 @@ class IngredientPopupComponent extends Component {
         super(props)
 
         this.state = {
-            type:'',
+            name:'',
             quantity:'',
             price:''
         }
-        this.typeHandler = this.typeHandler.bind(this);
+        this.nameHandler = this.nameHandler.bind(this);
         this.quantityHandler = this.quantityHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
         this.saveIngredient = this.saveIngredient.bind(this);
     }
     
-    typeHandler = (event) =>{
-        this.setState({type:event.target.value});
+    nameHandler = (event) =>{
+        this.setState({name:event.target.value});
     }
 
     quantityHandler = (event) =>{
@@ -30,7 +30,7 @@ class IngredientPopupComponent extends Component {
 
     saveIngredient = (event) => {
         event.preventDefault();
-        let ingredient = {name:this.state.type,quantity:this.state.quantity,price:this.state.price}
+        let ingredient = {name:this.state.name,quantity:this.state.quantity,price:this.state.price}
         console.log("ingredient=> " +JSON.stringify(ingredient));
         IngredientPopupService.postIngredients(ingredient).then(res => {
             this.props.closeAddPopup();
@@ -46,9 +46,9 @@ class IngredientPopupComponent extends Component {
                     <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick={this.props.closeAddPopup}>x</button></h2>
                     
 
-                    <h3 className="addPopupSubTtile">Type</h3>
+                    <h3 className="addPopupSubTtile">name</h3>
                     <input className="addPopupInput" type="text"
-                    value = {this.state.type} onChange={this.typeHandler} />
+                    value = {this.state.name} onChange={this.nameHandler} />
 
                     <h3 className="addPopupSubTtile">Quantity</h3>
                     <input className="addPopupInput" type="number"
