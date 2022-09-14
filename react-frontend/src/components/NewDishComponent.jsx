@@ -15,7 +15,11 @@ function MyDropzone() {
         <input {...getInputProps()} />
         {
           isDragActive ?
-            <p>Drop the files here ...</p> :
+          <div id = "camera">
+          <div className = "content top">
+              <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+          </div>
+      </div> :
             <div id = "camera">
                         <div className = "content top">
                             <img className = "cameraImage" src="/res/images/camera.jpg"/>
