@@ -125,6 +125,8 @@ class EditDishComponent extends Component{
                 components[componentsArr[l][0]] = value;
             }
         }
+
+        
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             EditDishService.editDish(dish,this.state.id).then( res=> {

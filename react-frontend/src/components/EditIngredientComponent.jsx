@@ -46,9 +46,9 @@ class EditIngredientComponent extends Component {
         event.preventDefault();
         let ingredient = {name:this.state.type,quantity:this.state.quantity,price:this.state.price}
         console.log("ingredient=> " +JSON.stringify(ingredient));
-        IngredientPopupService.postIngredients(ingredient).then(res => {
+        IngredientService.editIngredient(ingredient,this.props.id).then(res => {
             this.props.close();
-            window.location.reload()
+            window.location.reload();
         });
 
     }

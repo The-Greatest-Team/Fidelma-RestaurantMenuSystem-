@@ -67,7 +67,8 @@ class IngredientComponent extends React.Component{
             show:false,
             foods : [],
             allIngredients:[],
-            displayAddPopup:false
+            displayAddPopup:false,
+            ingredientId:''
         };
     }
 
@@ -91,11 +92,12 @@ class IngredientComponent extends React.Component{
         IngredientService.postUsers();
     }
 
-    handleClick = (e) =>{
+    handleClick (id,e){
         e.stopPropagation();
         this.setState({
             show:true,
         });
+        this.setState({ingredientId:id});
     }
 
     close = () =>{
@@ -131,13 +133,13 @@ class IngredientComponent extends React.Component{
                                 <tbody>
                                     {this.state.allIngredients.map((row) =>(
                                         <tr
-                                            key = {row.name}
+                                            key = {row.id}
                                         >
                                             <td>{row.name}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <EditIngredientComponent closeAddPopup = {this.closeAddPopup} id = {row.id}/>} </td>
+                                            <td><button className="editButton" onClick={e => this.handleClick(row.id,e)}>Edit</button>
+                                            {this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>} </td>
                                             {/* {this.state.show && <Portal />} */}
                                         </tr>
                                             
