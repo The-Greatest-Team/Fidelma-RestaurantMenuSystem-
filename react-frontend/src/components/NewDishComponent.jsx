@@ -1,5 +1,30 @@
-import React,{Component} from "react";
+import React,{Component,useCallback} from "react";
 import NewDishService from "../services/NewDishService";
+import {useDropzone} from 'react-dropzone'
+
+
+function MyDropzone() {
+    const onDrop = useCallback(acceptedFiles => {
+      const file = acceptedFiles[0];
+      console.log(file);
+    }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  
+    return (
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {
+          isDragActive ?
+            <p>Drop the files here ...</p> :
+            <div id = "camera">
+                        <div className = "content top">
+                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
+                        </div>
+                    </div>
+        }
+      </div>
+    )
+  }
 
 class NewDishComponent extends Component{
  
@@ -27,7 +52,8 @@ class NewDishComponent extends Component{
         this.chickenHandler = this.chickenHandler.bind(this);
         this.saveDish = this.saveDish.bind(this);
         this.back = this.back.bind(this);
-    }  
+    }
+      
     
     componentDidMount(){
         NewDishService.getIngredients().then((respond) => {
@@ -117,11 +143,8 @@ class NewDishComponent extends Component{
                         </button>
                     </div>
                     
-                    <div id = "camera">
-                        <div className = "content top">
-                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                        </div>
-                    </div> 
+                    
+                    <MyDropzone /> 
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">
