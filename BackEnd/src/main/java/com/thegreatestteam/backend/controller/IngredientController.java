@@ -48,6 +48,7 @@ public class IngredientController {
         Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientID);
         currentIngredient.setName(ingredient.getName());
         currentIngredient.setQuantity(ingredient.getQuantity());
+        currentIngredient.setPrice(ingredient.getPrice());
         ingredientService.addIngredient(currentIngredient);
     }
 
