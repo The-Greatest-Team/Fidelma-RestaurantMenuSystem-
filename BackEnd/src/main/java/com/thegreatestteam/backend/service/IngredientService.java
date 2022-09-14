@@ -29,4 +29,8 @@ public class IngredientService {
     public Ingredient findIngredientByName(String name){
         return ingredientRepository.findByName(name);
     }
+
+    public Ingredient findIngredientByID(String id){
+        return ingredientRepository.findIngredientById(id);
+    }
 }
