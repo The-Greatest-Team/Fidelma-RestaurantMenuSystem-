@@ -70,6 +70,17 @@ class IngredientComponent extends React.Component{
             displayAddPopup:false,
             ingredientId:''
         };
+
+        this.deleteIngredient = this.deleteIngredient.bind(this);
+    }
+
+    deleteIngredient (id) {
+        console.log(id);
+        IngredientService.deleteIngredient(id).then (
+            res => {
+                this.setState({allIngredients:this.state.allIngredients.filter(ingredient => ingredient.id !== id)});
+            }
+        )
     }
 
     openAddPopup = () => {
@@ -127,7 +138,8 @@ class IngredientComponent extends React.Component{
                                         <th>Name</th>
                                         <th>Quantity(g)</th>
                                         <th>Price</th>
-                                        <th>Operation</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -135,12 +147,12 @@ class IngredientComponent extends React.Component{
                                         <tr
                                             key = {row.id}
                                         >
-                                            <td>{row.name}</td>
+                                            <td>{row.id}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
                                             <td><button className="editButton" onClick={e => this.handleClick(row.id,e)}>Edit</button>
                                             {this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>} </td>
-                                            {/* {this.state.show && <Portal />} */}
+                                            <td><button className="editButton" onClick = {() => this.deleteIngredient(row.id)}>Delete</button></td>
                                         </tr>
                                             
                                     ))}
