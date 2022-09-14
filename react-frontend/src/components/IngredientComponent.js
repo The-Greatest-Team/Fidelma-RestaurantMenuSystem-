@@ -137,7 +137,7 @@ class IngredientComponent extends React.Component{
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
                                             <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <EditIngredientComponent close = {this.close} id = {row.id}/>} </td>
+                                            {this.state.show && <EditIngredientComponent closeAddPopup = {this.closeAddPopup} id = {row.id}/>} </td>
                                             {/* {this.state.show && <Portal />} */}
                                         </tr>
                                             
