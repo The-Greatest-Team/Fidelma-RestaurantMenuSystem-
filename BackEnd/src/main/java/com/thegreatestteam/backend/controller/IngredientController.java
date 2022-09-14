@@ -26,6 +26,11 @@ public class IngredientController {
         return ingredientService.getAllIngredient();
     }
 
+    @GetMapping("/ingredient/{ingredientID}")
+    public Ingredient getIngredientByID(@PathVariable String ingredientID){
+        return ingredientService.findIngredientByID(ingredientID);
+    }
+
     // Create ingredients
     @PostMapping("/ingredient")
     public void addIngredient(@RequestBody Ingredient ingredient){
@@ -38,9 +43,9 @@ public class IngredientController {
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-    @PutMapping("/ingredient/{name}")
-    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String name){
-        Ingredient currentIngredient = ingredientService.findIngredientByName(name);
+    @PutMapping("/ingredient/{ingredientID}")
+    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientID){
+        Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientID);
         currentIngredient.setName(ingredient.getName());
         currentIngredient.setQuantity(ingredient.getQuantity());
         ingredientService.addIngredient(currentIngredient);
