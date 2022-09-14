@@ -1,7 +1,8 @@
 import React,{Component} from "react";
 import IngredientPopupService from "../services/IngredientPopupService";
+import IngredientService from "../services/IngredientService";
 
-class IngredientPopupComponent extends Component {
+class EditIngredientComponent extends Component {
     constructor(props){
         super(props)
 
@@ -16,6 +17,19 @@ class IngredientPopupComponent extends Component {
         this.saveIngredient = this.saveIngredient.bind(this);
     }
     
+    componentDidMount(){
+        console.log(this.props.id);
+        IngredientService.getIngredientById(this.props.id).then( (res) => {
+            let ingredient = res.data;
+           
+            this.setState({
+                type : ingredient.name,
+                quantity : ingredient.quantity,
+                price: ingredient.price    
+            });
+        });
+    }
+
     typeHandler = (event) =>{
         this.setState({type:event.target.value});
     }
@@ -33,7 +47,7 @@ class IngredientPopupComponent extends Component {
         let ingredient = {name:this.state.type,quantity:this.state.quantity,price:this.state.price}
         console.log("ingredient=> " +JSON.stringify(ingredient));
         IngredientPopupService.postIngredients(ingredient).then(res => {
-            this.props.closeAddPopup();
+            this.props.close();
             window.location.reload()
         });
 
@@ -43,7 +57,7 @@ class IngredientPopupComponent extends Component {
         return (
             <form>
                 <div className="addPopup">
-                    <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick={this.props.closeAddPopup}>x</button></h2>
+                    <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick = {this.props.close}>x</button></h2>
                     
 
                     <h3 className="addPopupSubTtile">Type</h3>
@@ -66,4 +80,4 @@ class IngredientPopupComponent extends Component {
     }
 }
 
-export default IngredientPopupComponent
+export default EditIngredientComponent

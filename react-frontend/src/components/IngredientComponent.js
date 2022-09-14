@@ -1,6 +1,7 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
 import IngredientPopupComponent from "./IngredientPopupComponent";
+import EditIngredientComponent from "./EditIngredientComponent";
 
 const meats = [
     createData('Pork', 150, 10.00),
@@ -135,7 +136,8 @@ class IngredientComponent extends React.Component{
                                             <td>{row.name}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button></td>
+                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
+                                            {this.state.show && <EditIngredientComponent close = {this.close} id = {row.id}/>} </td>
                                             {/* {this.state.show && <Portal />} */}
                                         </tr>
                                             
