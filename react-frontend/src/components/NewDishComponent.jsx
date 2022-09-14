@@ -142,26 +142,6 @@ class NewDishComponent extends Component{
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                {/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                         onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                         onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                         onChange={this.chickenHandler}/>
-                                    </div> */}
                                 {
                                     this.state.ingredients.map(
                                          ingredient =>
@@ -187,24 +167,3 @@ class NewDishComponent extends Component{
 }
 
 export default NewDishComponent
-
-{/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                        value = {this.state.onion} onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                        value = {this.state.beef} onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                        value = {this.state.chicken} onChange={this.chickenHandler}/>
-                                    </div> */}

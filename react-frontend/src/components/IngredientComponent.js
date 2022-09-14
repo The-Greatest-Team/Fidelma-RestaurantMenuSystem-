@@ -1,5 +1,6 @@
 import React from "react";
 import IngredientService from "../services/IngredientService";
+import IngredientPopupComponent from "./IngredientPopupComponent";
 
 const meats = [
     createData('Pork', 150, 10.00),
@@ -27,6 +28,9 @@ const vegetables = [
 //     createData('Beef', 150, 10.0, 'vegetables'),
 //     createData('Beef', 150, 10.0, 'vegetables'),
 // ]
+
+
+
 
 function createData(name, quantity, price, type) {
     return { name, quantity, price, type};
@@ -60,8 +64,26 @@ class IngredientComponent extends React.Component{
         super(props)
         this.state = {
             show:false,
-            foods : []
+            foods : [],
+            allIngredients:[],
+            displayAddPopup:false
         };
+    }
+
+    openAddPopup = () => {
+        this.setState({displayAddPopup:true});
+    }
+
+    closeAddPopup = () => {
+        this.setState({displayAddPopup:false});
+        
+    }
+
+    componentDidMount(){
+        IngredientService.getIngredients().then((respond) => {
+            this.setState({allIngredients : (respond.data)});
+            console.log(this.state.allIngredients);
+        });
     }
 
     testPost(){
@@ -79,6 +101,7 @@ class IngredientComponent extends React.Component{
         this.setState({
             show:false,
         });
+        
     }
     
     render(){
@@ -94,68 +117,36 @@ class IngredientComponent extends React.Component{
                     </div>
 
                     <div className = "ingredientContainer">
-                        <div className = "category">
-                            <img className = "rawMaterialIcon" src = "/res/images/meat.svg" />
-                            <h1>Meats</h1>
-                        </div>
                         <div className = "tableContainer">
                             <table className = "ingredientTable">
                                 <thead>
                                     <tr>
                                         <th>Type</th>
-                                        <th>Quantity</th>
+                                        <th>Quantity(g)</th>
                                         <th>Price</th>
                                         <th>Operation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {meats.map((row) =>(
+                                    {this.state.allIngredients.map((row) =>(
                                         <tr
                                             key = {row.name}
                                         >
                                             <td>{row.name}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <Portal />}</td>
+                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button></td>
+                                            {/* {this.state.show && <Portal />} */}
                                         </tr>
                                             
                                     ))}
                                 </tbody>
                             </table>
-                        </div>
-                        <div className = "category">
-                            <img className = "rawMaterialIcon" src = "/res/images/vegetable.svg" />
-                            <h1>Vegetables</h1>
-                        </div>
-                        <div className = "tableContainer">
-                        <table className = "ingredientTable">
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {vegetables.map((row) =>(
-                                        <tr
-                                            key = {row.name}
-                                        >
-                                            <td>{row.name}</td>
-                                            <td>{row.quantity}</td>
-                                            <td>{row.price}</td>
-                                            <td><button className="editButton" onClick={this.handleClick}>Edit</button>
-                                            {this.state.show && <Portal />}</td>
-                                        </tr>
-                                            
-                                    ))}
-                                </tbody>
-                            </table>
+                            <button className="addIngredient" onClick={this.openAddPopup}>add</button>
+                            {this.state.displayAddPopup && <IngredientPopupComponent closeAddPopup = {this.closeAddPopup} />}
+                            
                         </div>
                     </div>
-                    
                 </div>
 
                 

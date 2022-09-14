@@ -1,0 +1,74 @@
+@font-face {
+    font-family:"kgl";
+    src:url('res/font/KGLegoHouse.ttf');
+}
+
+.addIngredient {
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    margin-left: 35vw;
+    border-style: none;
+    font-size: 4vw;
+    border-radius: 5vw;
+    width: 20vw;
+    height: 7vw;
+    text-align: center;
+    margin-top:5vw;
+}
+
+.addPopup {
+    border-style:solid;
+    border-color: #B9B3B3 ;
+    width:80vw;
+    height:100vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color:#FEFCF7 ;
+}
+
+.addPopupTitle {
+    font-size: 5.5vw;
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    margin-left: 8vw;
+}
+
+.addPopupSubTtile {
+    font-size: 5vw;
+    margin-left: 3vw;
+    margin-top:2vw;
+}
+
+.addPopupInput {
+    margin-left: 3vw;
+    margin-top:2vw;
+    margin-bottom: 2vw;
+    border-style:solid;
+    border-color: #B9B3B3;
+    width:74vw;
+}
+
+.addPopupSubmitButton{
+    width: 30vw; 
+    height: 10vw;
+    font-size: 5vw;
+    color: #FFFFFF;
+    background-color: #F01E1E;
+    border-style: none;
+    margin-left:24vw;
+    margin-top:5vw;
+}
+
+.closeAddPopup{
+    font-size:5vw;
+    font-family: "kgl" ;
+    border-style: none;
+    background-color: #FEFCF7;
+    margin-left: 5vw;
+}
+
+/* #B9B3B3 */
