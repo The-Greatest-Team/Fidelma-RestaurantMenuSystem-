@@ -89,9 +89,9 @@ public class FoodController {
     // Image interaction
 
     @PostMapping("/newDishImage")
-    public void addImage(@RequestParam("file") MultipartFile file,@RequestParam("food") Food food) throws IOException {
+    public void addImage(@RequestParam("file") MultipartFile file,@RequestParam("id") Object food) throws IOException {
         imageService.addImage(file);
-        System.out.println(food.getName());
+        System.out.println(food.);
     }
 
     @GetMapping()
