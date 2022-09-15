@@ -88,16 +88,15 @@ public class FoodController {
 
     // Image interaction
 
-    @PostMapping()
-    public void addImage(@RequestParam("title") String title, @RequestParam("image")MultipartFile image) throws IOException {
-        imageService.addImage(title,image);
+    @PostMapping("/newDishImage")
+    public void addImage(@RequestBody MultipartFile file) throws IOException {
+        imageService.addImage(file);
     }
 
     @GetMapping()
     public Image getImage(Model model, @PathVariable String id) throws Exception {
         Image image = imageService.getImageById(id);
 
-        model.addAttribute("title", image.getTitle());
         model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
         return image;
     }

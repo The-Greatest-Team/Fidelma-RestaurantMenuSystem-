@@ -10,7 +10,9 @@ function MyDropzone({childToParent}) {
     console.log(file);
     const formData = new FormData();
     formData.append("file",file);
-    console.log(formData);
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
     childToParent(formData);
     }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -104,7 +106,7 @@ class NewDishComponent extends Component{
             () => {
                 console.log("successful");
             }).catch(err => {
-                console.log(err);
+                console.log(err.response.data);
             })
         NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);

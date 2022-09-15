@@ -28,6 +28,9 @@ public class FoodService {
         for(String ingredientName: food.getComponents().keySet()){
 
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
+            if(ingredient == null){
+                return false;
+            }
             Double currentQuantity = ingredient.getQuantity();
             Double requiredQuantity = food.getComponents().get(ingredientName);
             if (requiredQuantity == null){

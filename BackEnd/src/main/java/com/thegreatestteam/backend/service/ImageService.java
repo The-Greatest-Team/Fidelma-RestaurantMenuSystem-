@@ -16,9 +16,9 @@ public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    public void addImage(String title, MultipartFile file) throws IOException {
+    public void addImage(MultipartFile file) throws IOException {
         try {
-            Image image = new Image(title);
+            Image image = new Image();
             image.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
             imageRepository.save(image);
         } catch (IOException e) {

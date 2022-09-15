@@ -16,8 +16,9 @@ class NewDIshService{
         return axios.delete(DISH_REST_API_URL+'/' + dishId);
     }
 
+    //{headers:{"Content-Type":"multipart/form-data"}}
     sendImage(image) {
-        return axios.post('http://localhost:8080/staff/menu/newDishImage',image,{headers:{"Content-Type":"multipart/form-data"}});
+        return axios.post('http://localhost:8080/staff/menu/newDishImage',image);
     }
     
 }

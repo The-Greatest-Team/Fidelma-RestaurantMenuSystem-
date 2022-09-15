@@ -8,26 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Image {
     @Id
     private String id;
-    private String title;
     private Binary image = null;
 
-    public Image(String title ) {
-        this.id = id;
-        this.title = title;
+    public Image() {
     }
 
     public String getId() {
         return id;
     }
 
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public Binary getImage() {
         return image;

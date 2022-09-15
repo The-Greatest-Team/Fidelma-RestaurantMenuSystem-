@@ -7,5 +7,4 @@ import java.awt.*;
 
 public interface ImageRepository extends MongoRepository<Image,String> {
     Image getImageById(String id);
-    Image getImageByTitle(String title);
 }
