@@ -10,6 +10,9 @@ function MyDropzone({childToParent}) {
     console.log(file);
     const formData = new FormData();
     formData.append("file",file);
+    for (var value of formData.values()) {
+        console.log(value);
+    }
     console.log(formData);
     childToParent(formData);
     }, [])
