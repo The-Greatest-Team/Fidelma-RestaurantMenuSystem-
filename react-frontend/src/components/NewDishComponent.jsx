@@ -13,6 +13,12 @@ function MyDropzone({childToParent}) {
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
     }
+    NewDishService.sendImage(formData).then(
+        () => {
+            console.log("successful");
+        }).catch(err => {
+            console.log(err.response.data);
+        })
     childToParent(formData);
     }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -102,12 +108,7 @@ class NewDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
         console.log("dish=> " +JSON.stringify(dish));
         console.log(this.state.file);
-        NewDishService.sendImage(this.state.file).then(
-            () => {
-                console.log("successful");
-            }).catch(err => {
-                console.log(err.response.data);
-            })
+        
         NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
         });
@@ -159,7 +160,7 @@ class NewDishComponent extends Component{
     render(){
         return(
             <>
-                <div  >
+                <div>
                     <div>
                         <button onClick={this.back} className = "min" >
                         <img className = "backSign" src="/res/images/backSign.jpg"/>
