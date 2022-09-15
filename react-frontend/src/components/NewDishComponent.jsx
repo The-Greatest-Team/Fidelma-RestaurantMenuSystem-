@@ -100,7 +100,12 @@ class NewDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
         console.log("dish=> " +JSON.stringify(dish));
         console.log(this.state.file);
-        NewDishService.sendImage(this.state.file);
+        NewDishService.sendImage(this.state.file).then(
+            () => {
+                console.log("successful");
+            }).catch(err => {
+                console.log(err);
+            })
         NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
         });
