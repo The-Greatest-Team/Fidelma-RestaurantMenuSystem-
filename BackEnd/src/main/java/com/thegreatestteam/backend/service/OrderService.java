@@ -16,11 +16,11 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public List<Order> getOrdersbyTableNumber(Integer tableNumber){
+    public List<Order> getOrderByTableNumber(Integer tableNumber){
         return orderRepository.findOrdersByTableNumber(tableNumber);
     }
 
-    public List<Order> getOrdersbyPhoneNumber(String phoneNumber){
+    public List<Order> getOrderByPhoneNumber(String phoneNumber){
         return orderRepository.findOrdersByPhoneNumer(phoneNumber);
     }
 }

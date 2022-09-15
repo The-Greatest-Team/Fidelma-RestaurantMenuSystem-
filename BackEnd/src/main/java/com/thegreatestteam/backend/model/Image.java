@@ -10,6 +10,10 @@ public class Image {
     private String id;
     private Binary image = null;
 
+
+
+
+
     public Image() {
     }
 
