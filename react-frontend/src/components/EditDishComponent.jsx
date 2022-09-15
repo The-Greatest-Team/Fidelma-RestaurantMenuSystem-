@@ -2,13 +2,12 @@ import React,{Component,useCallback} from "react";
 import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
 
-const formData = null;
 
 function MyDropzone({childToParent}) {
     const onDrop = useCallback(acceptedFiles => {
       const file = acceptedFiles[0];
       console.log(file);
-      formData = new FormData();
+      const formData = new FormData();
       formData.append("file",file);
       childToParent(formData);
 
