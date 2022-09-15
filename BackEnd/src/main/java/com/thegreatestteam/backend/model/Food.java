@@ -17,13 +17,16 @@ public class Food extends Item {
     private String type;
     private Binary image;
 
+    private String id;
+
     private Boolean isSoldOut;
 
     private String description;
     private int kiloJoule;
 
     public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components,Binary image, String description){
-        super(name, price, id );
+        super(name, price);
+        this.id = id;
         this.type = type;
         this.kiloJoule = kiloJoule;
         this.components = components;
