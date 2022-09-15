@@ -3,10 +3,15 @@ import NewDishService from "../services/NewDishService";
 import {useDropzone} from 'react-dropzone'
 
 
-function MyDropzone() {
+
+function MyDropzone({childToParent}) {
     const onDrop = useCallback(acceptedFiles => {
-      const file = acceptedFiles[0];
-      console.log(file);
+    const file = acceptedFiles[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append("file",file);
+    console.log(formData);
+    childToParent(formData);
     }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
   
@@ -16,15 +21,15 @@ function MyDropzone() {
         {
           isDragActive ?
           <div id = "camera">
-          <div className = "content top">
-              <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
-          </div>
-      </div> :
+            <div className = "content top">
+                <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+            </div>
+          </div> :
             <div id = "camera">
-                        <div className = "content top">
-                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                        </div>
-                    </div>
+                <div className = "content top">
+                    <img className = "cameraImage" src="/res/images/camera.jpg"/>
+                </div>
+            </div>
         }
       </div>
     )
@@ -47,7 +52,8 @@ class NewDishComponent extends Component{
             ingredients:[],
             typedComponents:{},
             checkCode:{},
-            checkPrice:''
+            checkPrice:'',
+            file:{}
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -56,8 +62,12 @@ class NewDishComponent extends Component{
         this.chickenHandler = this.chickenHandler.bind(this);
         this.saveDish = this.saveDish.bind(this);
         this.back = this.back.bind(this);
+        this.childToParent = this.childToParent.bind(this);
     }
       
+    childToParent = (childData) => {
+        this.setState({file:childData});
+    }
     
     componentDidMount(){
         NewDishService.getIngredients().then((respond) => {
@@ -89,6 +99,8 @@ class NewDishComponent extends Component{
 
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
         console.log("dish=> " +JSON.stringify(dish));
+        console.log(this.state.file);
+        NewDishService.sendImage(this.state.file);
         NewDishService.createNewDIish(dish).then(res =>  {
         this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
         });
@@ -148,7 +160,7 @@ class NewDishComponent extends Component{
                     </div>
                     
                     
-                    <MyDropzone /> 
+                    <MyDropzone childToParent={this.childToParent}/> 
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">

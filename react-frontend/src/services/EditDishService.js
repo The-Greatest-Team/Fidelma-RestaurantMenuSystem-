@@ -11,6 +11,10 @@ class EditDIshService{
     editDish(dish,dishId) {
         return axios.put(EDIT_REST_API_URL+'/'+dishId,dish);
     }
+
+    changeImage(image,id) {
+        return axios.put('http://localhost:8080/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
+    }
 }
 
 export default new EditDIshService()

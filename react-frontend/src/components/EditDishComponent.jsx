@@ -1,5 +1,39 @@
-import React,{Component} from "react";
+import React,{Component,useCallback} from "react";
 import EditDishService from "../services/EditDishService";
+import {useDropzone} from 'react-dropzone'
+
+const formData = null;
+
+function MyDropzone({childToParent}) {
+    const onDrop = useCallback(acceptedFiles => {
+      const file = acceptedFiles[0];
+      console.log(file);
+      formData = new FormData();
+      formData.append("file",file);
+      childToParent(formData);
+
+    }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  
+    return (
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {
+          isDragActive ?
+          <div id = "camera">
+            <div className = "content top">
+                <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+            </div>
+          </div> :
+            <div id = "camera">
+                <div className = "content top">
+                    <img className = "cameraImage" src="/res/images/camera.jpg"/>
+                </div>
+            </div>
+        }
+      </div>
+    )
+  }
 
 class EditDishComponent extends Component{
     constructor(props){
@@ -17,7 +51,8 @@ class EditDishComponent extends Component{
             type:'',
             ingredients:[],
             typedComponents:{},
-            allIngredients:[]
+            allIngredients:[],
+            file:{}
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -28,6 +63,10 @@ class EditDishComponent extends Component{
         this.back = this.back.bind(this);
     }  
     
+    childToParent = (childData) => {
+        this.setState({file:childData});
+    }
+
     componentDidMount(){
         EditDishService.getDishById(this.state.id).then((respond) => {
             // let dish = respond.data;
@@ -129,6 +168,8 @@ class EditDishComponent extends Component{
         
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
+            console.log(this.state.file);
+            EditDishService.changeImage(this.state.file,this.props.location.state.id);
             EditDishService.editDish(dish,this.state.id).then( res=> {
                 this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
             });
@@ -183,11 +224,8 @@ back = (e) => {
                     </div>
                     <h2>updating</h2>
                     
-                    <div id = "camera">
-                        <div className = "content top">
-                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                        </div>
-                    </div> 
+                    <MyDropzone /> 
+
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">

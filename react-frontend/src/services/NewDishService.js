@@ -15,6 +15,10 @@ class NewDIshService{
     deleteDish(dishId) {
         return axios.delete(DISH_REST_API_URL+'/' + dishId);
     }
+
+    sendImage(image) {
+        return axios.post('http://localhost:8080/staff/menu/newDishImage',image,{headers:{"Content-Type":"multipart/form-data"}});
+    }
     
 }
 
