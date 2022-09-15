@@ -13,12 +13,7 @@ function MyDropzone({childToParent}) {
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
     }
-    NewDishService.sendImage(formData).then(
-        () => {
-            console.log("successful");
-        }).catch(err => {
-            console.log(err.response.data);
-        })
+    
     childToParent(formData);
     }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -61,7 +56,7 @@ class NewDishComponent extends Component{
             typedComponents:{},
             checkCode:{},
             checkPrice:'',
-            file:{}
+            file:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -106,12 +101,24 @@ class NewDishComponent extends Component{
         }
 
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
+        console.log(typeof(dish));
         console.log("dish=> " +JSON.stringify(dish));
-        console.log(this.state.file);
-        
-        NewDishService.createNewDIish(dish).then(res =>  {
-        this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
-        });
+        this.state.file.append("food",dish);
+        for (var pair of this.state.file.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]);
+        }
+
+        NewDishService.sendImage(this.state.file).then(
+            () => {
+                console.log("successful");
+            }).catch(err => {
+                console.log(err.response.data);
+            }).then(res =>  {
+                this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
+                });
+        // NewDishService.createNewDIish(dish).then(res =>  {
+        // this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
+        // });
         
     }
     
