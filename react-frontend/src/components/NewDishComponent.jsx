@@ -9,11 +9,8 @@ function MyDropzone({childToParent}) {
     const file = acceptedFiles[0];
     console.log(file);
     const formData = new FormData();
-    formData.append("file",file);
-    for (var value of formData.values()) {
-        console.log(value);
-    }
-    console.log(formData);
+    formData.append("file", file);
+    console.log(formData.get("file"));
     childToParent(formData);
     }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
