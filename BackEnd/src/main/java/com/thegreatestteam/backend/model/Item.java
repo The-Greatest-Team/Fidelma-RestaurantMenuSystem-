@@ -10,10 +10,10 @@ public abstract class Item {
     private String name;
     private double price;
 
-    @Id
+
     private String id;
 
-    public Item(String name, double price) {
+    public Item(String name, double price, String id) {
         this.name = name;
         this.price = price;
     }

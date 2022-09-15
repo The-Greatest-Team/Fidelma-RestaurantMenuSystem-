@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Image")
 public class Image {
-    @Id
     private String id;
     private Binary image = null;
 
@@ -14,7 +13,8 @@ public class Image {
 
 
 
-    public Image() {
+    public Image(String id) {
+        this.id = id;
     }
 
     public String getId() {

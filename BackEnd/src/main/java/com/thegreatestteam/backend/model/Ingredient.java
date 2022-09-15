@@ -4,14 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("Ingredient")
-public class Ingredient extends Item{
+public class Ingredient {
     //Quantity in grams
     private Double quantity;
 //    private String type;
-
+    @Id
+    private String id;
+    private String name;
+    private Double price;
     public Ingredient(String name, double price, Double quantity ) {
-        super(name, price);
         this.quantity = quantity;
+        this.price = price;
+        this.name = name;
     }
 
 //    public String getType() {
