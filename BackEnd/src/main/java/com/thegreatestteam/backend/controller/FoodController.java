@@ -2,25 +2,33 @@ package com.thegreatestteam.backend.controller;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.thegreatestteam.backend.model.Food;
+import com.thegreatestteam.backend.model.Image;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
+import com.thegreatestteam.backend.service.ImageService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 @CrossOrigin("${frontend.host}")
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {
     private final FoodService foodService;
+    private final ImageService imageService;
 
     @Autowired
-    public FoodController(FoodService foodService){
+    public FoodController(FoodService foodService, ImageService imageService){
         this.foodService = foodService;
+        this.imageService = imageService;
     }
 
     //Get Menu
@@ -75,6 +83,23 @@ public class FoodController {
     @DeleteMapping("/newDish/{id}")
     public void deleteFood(@PathVariable String id){
         foodService.deleteFood(id);
+    }
+
+
+    // Image interaction
+
+    @PostMapping()
+    public void addImage(@RequestParam("title") String title, @RequestParam("image")MultipartFile image) throws IOException {
+        imageService.addImage(title,image);
+    }
+
+    @GetMapping()
+    public Image getImage(Model model, @PathVariable String id) throws Exception {
+        Image image = imageService.getImageById(id);
+
+        model.addAttribute("title", image.getTitle());
+        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
+        return image;
     }
 
 }
