@@ -1,7 +1,7 @@
 import React,{Component,useCallback} from "react";
 import NewDishService from "../services/NewDishService";
 import {useDropzone} from 'react-dropzone'
-
+import { v4 as uuid } from 'uuid';
 
 
 function MyDropzone({childToParent}) {
@@ -99,11 +99,12 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
+        const unique_id = uuid();
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id};
+        console.log(typeof(unique_id));
         console.log(typeof(dish));
         console.log("dish=> " +JSON.stringify(dish));
-        this.state.file.append("food",dish);
+        this.state.file.append("id",unique_id);
         for (var pair of this.state.file.entries()) {
             console.log(pair[0]+ ', ' + pair[1]);
         }
@@ -113,12 +114,10 @@ class NewDishComponent extends Component{
                 console.log("successful");
             }).catch(err => {
                 console.log(err.response.data);
-            }).then(res =>  {
-                this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
-                });
-        // NewDishService.createNewDIish(dish).then(res =>  {
-        // this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
-        // });
+            })
+        NewDishService.createNewDIish(dish).then(res =>  {
+        this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
+        });
         
     }
     
