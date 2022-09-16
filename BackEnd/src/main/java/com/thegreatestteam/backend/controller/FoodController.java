@@ -95,14 +95,14 @@ public class FoodController {
     }
 
     @GetMapping("/image/{id}")
-    public Binary getImage(Model model, @PathVariable String id) throws Exception {
+    public Image getImage(Model model, @PathVariable String id) throws Exception {
         Image image = imageService.getImageById(id);
         if (image == null){
             throw new Exception("Image not found");
         }
 
-        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
-        return image.getImage();
+//        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
+        return image;
     }
 
 }
