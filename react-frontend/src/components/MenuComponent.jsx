@@ -7,7 +7,7 @@ class MenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : []}
+        this.state = {foods : [],foodImage:''};
         this.deleteDish = this.deleteDish.bind(this);
     }
 
@@ -100,6 +100,12 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
+                                {
+                                    axios.get('http://localhost:8080/staff/menu/image/' + dish.id).then((respond) => {
+                                        this.setState({foodImage : (respond.data)});
+                                        console.log(this.state.foodImage);
+                                    })
+                                }
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 
                                 <div className="textBox">
