@@ -100,8 +100,7 @@ class NewDishComponent extends Component{
             }
         }
         const unique_id = uuid();
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,
-        };
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
         console.log(typeof(unique_id));
         console.log(typeof(dish));
         console.log("dish=> " +JSON.stringify(dish));

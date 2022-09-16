@@ -1,6 +1,7 @@
 import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
+import axios from "axios";
 
 class MenuComponent extends React.Component{
 
@@ -9,8 +10,17 @@ class MenuComponent extends React.Component{
 
         this.state = {foods : [],foodImage:''};
         this.deleteDish = this.deleteDish.bind(this);
+        this.requestImage = this.requestImage.bind(this);
     }
 
+    requestImage(id) {
+        console.log(id);
+        axios.get('http://localhost:8080/staff/menu/image/' + id).then((respond) => {
+            let image = respond.data;
+            console.log(image);
+        })
+        
+    }
 
     deleteDish(id) {
         NewDishService.deleteDish(id).then(
@@ -25,6 +35,7 @@ class MenuComponent extends React.Component{
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
+            console.log(this.state.foods[0].id);
         });
     }
 
@@ -100,12 +111,7 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                {
-                                    axios.get('http://localhost:8080/staff/menu/image/' + dish.id).then((respond) => {
-                                        this.setState({foodImage : (respond.data)});
-                                        console.log(this.state.foodImage);
-                                    })
-                                }
+                                {this.requestImage(dish.id)}
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 
                                 <div className="textBox">
