@@ -22,6 +22,7 @@ class MenuComponent extends React.Component{
                 for (var i = 0; i< this.state.foodImages.length;i++) {
                     this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
                 }
+                console.log(this.state.imageDic);
             }
         )
         NewDishService.deleteDish(id).then(
@@ -29,21 +30,26 @@ class MenuComponent extends React.Component{
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});
             }
         )
+
     }
 
     componentDidMount(){
         axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
+            console.log(respond.data);
             this.setState({foodImages:respond.data});
             for (var i = 0; i< this.state.foodImages.length;i++) {
                 this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
             }
-            console.log(this.state.foodImages);
+            console.log(this.state.imageDic);
         })
+        
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
         });
+
+        
     }
 
     accessEditingMode(){
@@ -85,7 +91,7 @@ class MenuComponent extends React.Component{
     };
 
     test(id) {
-        console.log(id);
+        console.log(this.state.imageDic);
         // console.log(this.state.foodImage);
     }
     render(){
@@ -122,7 +128,7 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-
+                                {this.test(dish.id)}
                                 <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
