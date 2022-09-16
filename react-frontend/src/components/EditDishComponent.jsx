@@ -1,6 +1,7 @@
 import React,{Component,useCallback} from "react";
 import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
+import axios from "axios";
 
 
 function MyDropzone({childToParent}) {
@@ -51,7 +52,8 @@ class EditDishComponent extends Component{
             ingredients:[],
             typedComponents:{},
             allIngredients:[],
-            file:{}
+            file:'',
+            currentimage:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -60,6 +62,7 @@ class EditDishComponent extends Component{
         this.chickenHandler = this.chickenHandler.bind(this);
         this.editDish = this.editDish.bind(this);
         this.back = this.back.bind(this);
+        this.childToParent = this.childToParent.bind(this);
     }  
     
     childToParent = (childData) => {
@@ -67,11 +70,12 @@ class EditDishComponent extends Component{
     }
 
     componentDidMount(){
+        axios.get('http://localhost:8080/staff/menu/editDish/image/' + this.state.id).then((respond) => {
+            this.setState({currentimage:respond.data.data});
+            
+            console.log(this.state.currentimage);
+        })
         EditDishService.getDishById(this.state.id).then((respond) => {
-            // let dish = respond.data;
-            // console.log(typeof(dish.components));
-            // console.log(dish.components);
-            // let objectArray = Object.entries(dish.components);
             this.setState({allIngredients : (respond.data)});
             console.log(this.props.location.state);
             let objectArr = Object.entries(this.props.location.state.components);
@@ -168,7 +172,12 @@ class EditDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
-            EditDishService.changeImage(this.state.file,this.props.location.state.id);
+            axios.put("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+                () => {
+                    console.log("successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
             EditDishService.editDish(dish,this.state.id).then( res=> {
                 this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
             });
@@ -223,7 +232,7 @@ back = (e) => {
                     </div>
                     <h2>updating</h2>
                     
-                    <MyDropzone /> 
+                    <MyDropzone childToParent={this.childToParent}/> 
 
                     <div id= "editPart">    
                         <form>            
