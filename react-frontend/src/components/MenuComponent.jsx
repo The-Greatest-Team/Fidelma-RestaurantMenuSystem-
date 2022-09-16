@@ -17,7 +17,9 @@ class MenuComponent extends React.Component{
         console.log(id);
         axios.get('http://localhost:8080/staff/menu/image/' + id).then((respond) => {
             let image = respond.data;
-            console.log(image);
+            console.log(image.data);
+            return <img src={`data:image/jpeg;base64,${image.data}`} />;
+
         })
         
     }
@@ -35,7 +37,6 @@ class MenuComponent extends React.Component{
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
-            console.log(this.state.foods[0].id);
         });
     }
 
