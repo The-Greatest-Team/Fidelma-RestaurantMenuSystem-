@@ -8,6 +8,7 @@ import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.ImageService;
+import org.bson.types.Binary;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -93,12 +94,15 @@ public class FoodController {
         imageService.addImage(file,id);
     }
 
-    @GetMapping()
-    public Image getImage(Model model, @PathVariable String id) throws Exception {
+    @GetMapping("/chicken/image/{id}")
+    public Binary getImage(Model model, @PathVariable String id) throws Exception {
         Image image = imageService.getImageById(id);
+        if (image == null){
+            throw new Exception("Image not found");
+        }
 
         model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
-        return image;
+        return image.getImage();
     }
 
 }
