@@ -8,21 +8,21 @@ class MenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [],foodImage:''};
+        this.state = {foods : [],foodImages:[]};
         this.deleteDish = this.deleteDish.bind(this);
         this.requestImage = this.requestImage.bind(this);
     }
 
-    requestImage(id) {
-        console.log(id);
-        axios.get('http://localhost:8080/staff/menu/image/' + id).then((respond) => {
-            let image = respond.data;
-            console.log(image.data);
-            return <img src={`data:image/jpeg;base64,${image.data}`} />;
-
-        })
+    // requestImage(id) {
+    //     console.log(id);
+    //     axios.get('http://localhost:8080/staff/menu/image/' + id).then((respond) => {
+    //         let image = respond.data;
+    //         console.log(image.data);
+    //         this.setState({foodImage:image.data}) ;
+    //         console.log(this.state.foodImage);
+    //     })
         
-    }
+    // }
 
     deleteDish(id) {
         NewDishService.deleteDish(id).then(
@@ -33,6 +33,10 @@ class MenuComponent extends React.Component{
     }
 
     componentDidMount(){
+        axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
+            this.setState({foodImages:respond.data});
+            console.log(this.state.foodImages);
+        })
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
@@ -78,6 +82,10 @@ class MenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    test(id) {
+        console.log(id);
+        // console.log(this.state.foodImage);
+    }
     render(){
         return(
             <>
@@ -112,8 +120,10 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                {this.requestImage(dish.id)}
-                                <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
+                                {/* {this.requestImage(dish.id)}
+                                {this.test(dish.id)} */}
+                                {/* <img src={`data:image/jpeg;base64,${this.state.foodImage}`} /> */}
+                                {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">
                                     <div className="burgerName">{dish.name}</div>
