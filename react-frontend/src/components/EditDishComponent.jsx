@@ -71,7 +71,7 @@ class EditDishComponent extends Component{
 
     componentDidMount(){
         axios.get('http://localhost:8080/staff/menu/editDish/image/' + this.state.id).then((respond) => {
-            this.setState({currentimage:respond.data.data});
+            this.setState({currentimage:respond.data.image.data});
             
             console.log(this.state.currentimage);
         })
@@ -172,7 +172,7 @@ class EditDishComponent extends Component{
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
-            axios.put("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+            axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
                 () => {
                     console.log("successful");
                 }).catch(err => {

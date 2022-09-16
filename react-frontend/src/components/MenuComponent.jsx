@@ -15,6 +15,15 @@ class MenuComponent extends React.Component{
 
 
     deleteDish(id) {
+        axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
+            res => {
+                this.setState({foodImages:this.state.foodImages.filter(image => image.id !== id)});
+                this.setState({imageDic:{}});
+                for (var i = 0; i< this.state.foodImages.length;i++) {
+                    this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
+                }
+            }
+        )
         NewDishService.deleteDish(id).then(
             res => {
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});

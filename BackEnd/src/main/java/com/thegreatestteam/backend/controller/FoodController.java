@@ -80,7 +80,7 @@ public class FoodController {
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
     }
-    @PutMapping("/dish/imageEdit/{id}")
+    @PostMapping("/dish/imageEdit/{id}")
     public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
         deleteImage(id);
         addImage(file, id);
