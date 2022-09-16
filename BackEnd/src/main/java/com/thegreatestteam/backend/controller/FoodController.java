@@ -80,10 +80,20 @@ public class FoodController {
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
     }
+    @PutMapping("/dish/imageEdit/{id}")
+    public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
+        deleteImage(id);
+        addImage(file, id);
+    }
 
     @DeleteMapping("/newDish/{id}")
     public void deleteFood(@PathVariable String id){
         foodService.deleteFood(id);
+    }
+
+    @GetMapping("/editDish/image/{id}")
+    public Image getOneImage(@PathVariable String id) throws Exception {
+        return imageService.getImageById(id);
     }
 
 
@@ -100,5 +110,11 @@ public class FoodController {
 //        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
         return images;
     }
+
+    public void deleteImage(String id){
+        imageService.deleteImage(id);
+    }
+
+
 
 }
