@@ -39,4 +39,8 @@ public class ImageService {
     public List<Image> getAllImage(){
         return imageRepository.findAll();
     }
+
+    public void deleteImage(String id ){
+        imageRepository.deleteById(id);
+    }
 }
