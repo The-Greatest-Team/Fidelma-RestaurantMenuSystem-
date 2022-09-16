@@ -14,8 +14,8 @@ class MenuComponent extends React.Component{
     }
 
 
-    deleteDish(id) {
-        axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
+    async deleteDish(id) {
+        await axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
             res => {
                 this.setState({foodImages:this.state.foodImages.filter(image => image.id !== id)});
                 this.setState({imageDic:{}});
@@ -79,8 +79,8 @@ class MenuComponent extends React.Component{
         }
     };
 
-    editDish(dish) {
-        this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
+    async editDish(dish) {
+        await this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
     }
 
     capitalizeFirst (str) {
