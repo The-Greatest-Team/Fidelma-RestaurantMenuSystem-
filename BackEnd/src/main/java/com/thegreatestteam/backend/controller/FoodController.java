@@ -94,7 +94,7 @@ public class FoodController {
         imageService.addImage(file,id);
     }
 
-    @GetMapping("/chicken/image/{id}")
+    @GetMapping("/image/{id}")
     public Binary getImage(Model model, @PathVariable String id) throws Exception {
         Image image = imageService.getImageById(id);
         if (image == null){
