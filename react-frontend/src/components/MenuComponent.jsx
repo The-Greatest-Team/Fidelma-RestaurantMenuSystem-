@@ -29,8 +29,9 @@ class MenuComponent extends React.Component{
             res => {
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});
             }
+            
         )
-
+        console.log(this.state.foods);
     }
 
     async componentDidMount() {
