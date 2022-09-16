@@ -33,23 +33,23 @@ class MenuComponent extends React.Component{
 
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
+    async componentDidMount() {
+        await axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
             console.log(respond.data);
-            this.setState({foodImages:respond.data});
-            for (var i = 0; i< this.state.foodImages.length;i++) {
+            this.setState({foodImages: respond.data});
+            for (var i = 0; i < this.state.foodImages.length; i++) {
                 this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
             }
             console.log(this.state.imageDic);
         })
-        
+
         MenuService.getUsers(this.props.location.state).then((respond) => {
-            this.setState({foods : (respond.data)});
-            console.log(typeof(this.state.foods));
+            this.setState({foods: (respond.data)});
+            console.log(typeof (this.state.foods));
             console.log((respond.data));
         });
 
-        
+
     }
 
     accessEditingMode(){
