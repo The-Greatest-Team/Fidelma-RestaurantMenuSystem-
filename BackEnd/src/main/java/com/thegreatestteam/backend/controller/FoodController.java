@@ -69,7 +69,10 @@ public class FoodController {
         return foodService.getAllIngredient();
     }
 
-
+    @DeleteMapping("/newDish/{id}")
+    public void deleteFood(@PathVariable String id){
+        foodService.deleteFood(id);
+    }
     @PutMapping("/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
@@ -86,10 +89,7 @@ public class FoodController {
         addImage(file, id);
     }
 
-    @DeleteMapping("/newDish/{id}")
-    public void deleteFood(@PathVariable String id){
-        foodService.deleteFood(id);
-    }
+
 
     @GetMapping("/editDish/image/{id}")
     public Image getOneImage(@PathVariable String id) throws Exception {
@@ -111,7 +111,8 @@ public class FoodController {
         return images;
     }
 
-    public void deleteImage(String id){
+    @DeleteMapping("/deleteImage/{id}")
+    public void deleteImage(@PathVariable String id){
         imageService.deleteImage(id);
     }
 
