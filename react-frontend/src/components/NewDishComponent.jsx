@@ -116,7 +116,9 @@ class NewDishComponent extends Component{
                 console.log(err.response.data);
             })
         NewDishService.createNewDIish(dish).then(async res => {
-            await this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+            setTimeout(()=> {
+                this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+            },2000)
         });
         
     }

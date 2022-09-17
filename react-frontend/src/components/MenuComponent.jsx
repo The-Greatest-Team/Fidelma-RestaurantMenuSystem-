@@ -2,6 +2,7 @@ import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
 import axios from "axios";
+import ReactDOM from 'react-dom';
 
 class MenuComponent extends React.Component{
 
@@ -14,42 +15,48 @@ class MenuComponent extends React.Component{
     }
 
 
-    async deleteDish(id) {
-        await axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
+    deleteDish(id) {
+        axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
             res => {
-                this.setState({foodImages:this.state.foodImages.filter(image => image.id !== id)});
-                this.setState({imageDic:{}});
-                for (var i = 0; i< this.state.foodImages.length;i++) {
-                    this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
+                let tempArr = [];
+                for (var i = 0; i < this.state.foodImages.length;i++) {
+                    if (this.state.foodImages[i].id != id) {
+                        tempArr.push(this.state.foodImages[i]);
+                    }
                 }
+                this.setState({foodImages:tempArr});
+                let tempJson = {};
+                for (var i = 0; i< tempArr.length;i++) {
+                    tempJson[tempArr[i].id] = tempArr[i].image.data;
+                }
+                this.setState({imageDic:tempJson});
+                console.log(this.state.foodImages);
                 console.log(this.state.imageDic);
             }
         )
+        
         NewDishService.deleteDish(id).then(
             res => {
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});
+                console.log(this.state.foods);
             }
             
         )
-        console.log(this.state.foods);
+        
+        
     }
 
-    async componentDidMount() {
-        await axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
-            console.log(respond.data);
+    componentDidMount() {
+        console.log("running?");
+        axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
             this.setState({foodImages: respond.data});
             for (var i = 0; i < this.state.foodImages.length; i++) {
                 this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
             }
-            console.log(this.state.imageDic);
         })
-
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods: (respond.data)});
-            console.log(typeof (this.state.foods));
-            console.log((respond.data));
         });
-
 
     }
 
@@ -93,13 +100,17 @@ class MenuComponent extends React.Component{
 
     test(id) {
         console.log(this.state.imageDic);
-        // console.log(this.state.foodImage);
     }
+
+    createDish(type) {
+        this.props.history.push("/staff/menu/newDish",type);
+        
+    }
+
     render(){
         return(
             <>
                 <div>
-                    {console.log(typeof(this.props.location.state))}
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
@@ -154,7 +165,7 @@ class MenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-                    <button id="addMoreButton" onClick={()=>this.props.history.push("/staff/menu/newDish",this.props.location.state)}>Add more dish</button>
+                    <button id="addMoreButton" onClick={()=>this.createDish(this.props.location.state)}>Add more dish</button>
                 </div>
             </>
         );
