@@ -1,31 +1,56 @@
 import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
+import axios from "axios";
 
 class MenuComponent extends React.Component{
 
     constructor(props){
         super(props)
 
-        this.state = {foods : []}
+        this.state = {foods : [],foodImages:[],imageDic:{}};
         this.deleteDish = this.deleteDish.bind(this);
+        // this.requestImage = this.requestImage.bind(this);
     }
 
 
-    deleteDish(id) {
+    async deleteDish(id) {
+        await axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
+            res => {
+                this.setState({foodImages:this.state.foodImages.filter(image => image.id !== id)});
+                this.setState({imageDic:{}});
+                for (var i = 0; i< this.state.foodImages.length;i++) {
+                    this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
+                }
+                console.log(this.state.imageDic);
+            }
+        )
         NewDishService.deleteDish(id).then(
             res => {
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});
             }
+            
         )
+        console.log(this.state.foods);
     }
 
-    componentDidMount(){
+    async componentDidMount() {
+        await axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
+            console.log(respond.data);
+            this.setState({foodImages: respond.data});
+            for (var i = 0; i < this.state.foodImages.length; i++) {
+                this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
+            }
+            console.log(this.state.imageDic);
+        })
+
         MenuService.getUsers(this.props.location.state).then((respond) => {
-            this.setState({foods : (respond.data)});
-            console.log(typeof(this.state.foods));
+            this.setState({foods: (respond.data)});
+            console.log(typeof (this.state.foods));
             console.log((respond.data));
         });
+
+
     }
 
     accessEditingMode(){
@@ -55,8 +80,8 @@ class MenuComponent extends React.Component{
         }
     };
 
-    editDish(dish) {
-        this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
+    async editDish(dish) {
+        await this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
     }
 
     capitalizeFirst (str) {
@@ -66,6 +91,10 @@ class MenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    test(id) {
+        console.log(this.state.imageDic);
+        // console.log(this.state.foodImage);
+    }
     render(){
         return(
             <>
@@ -100,7 +129,9 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
+                                {this.test(dish.id)}
+                                <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />
+                                {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">
                                     <div className="burgerName">{dish.name}</div>

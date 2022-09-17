@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class ImageService {
@@ -33,5 +34,13 @@ public class ImageService {
         }catch(Exception e){
             throw new Exception("Unsuccessful image retreive");
         }
+    }
+
+    public List<Image> getAllImage(){
+        return imageRepository.findAll();
+    }
+
+    public void deleteImage(String id ){
+        imageRepository.deleteById(id);
     }
 }

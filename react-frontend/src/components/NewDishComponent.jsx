@@ -100,7 +100,7 @@ class NewDishComponent extends Component{
             }
         }
         const unique_id = uuid();
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id};
+        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
         console.log(typeof(unique_id));
         console.log(typeof(dish));
         console.log("dish=> " +JSON.stringify(dish));
@@ -115,8 +115,8 @@ class NewDishComponent extends Component{
             }).catch(err => {
                 console.log(err.response.data);
             })
-        NewDishService.createNewDIish(dish).then(res =>  {
-        this.props.history.push('/staff/menu/' + this.props.location.state,this.props.location.state);
+        NewDishService.createNewDIish(dish).then(async res => {
+            await this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
         });
         
     }
@@ -158,9 +158,9 @@ class NewDishComponent extends Component{
         this.setState({kiloJoule:event.target.value});
     }
 
-    back = (e) => {
+    back = async (e) => {
         e.preventDefault();
-        this.props.history.push('/staff/menu/'+ this.props.location.state,this.props.location.state);
+        await this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
     }
 
     render(){

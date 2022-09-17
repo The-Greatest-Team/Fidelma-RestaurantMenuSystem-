@@ -8,6 +8,7 @@ import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.ImageService;
+import org.bson.types.Binary;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -68,7 +69,10 @@ public class FoodController {
         return foodService.getAllIngredient();
     }
 
-
+    @DeleteMapping("/newDish/{id}")
+    public void deleteFood(@PathVariable String id){
+        foodService.deleteFood(id);
+    }
     @PutMapping("/edit/{id}")
     public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
@@ -79,10 +83,17 @@ public class FoodController {
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
     }
+    @PostMapping("/dish/imageEdit/{id}")
+    public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
+        deleteImage(id);
+        addImage(file, id);
+    }
 
-    @DeleteMapping("/newDish/{id}")
-    public void deleteFood(@PathVariable String id){
-        foodService.deleteFood(id);
+
+
+    @GetMapping("/editDish/image/{id}")
+    public Image getOneImage(@PathVariable String id) throws Exception {
+        return imageService.getImageById(id);
     }
 
 
@@ -93,12 +104,18 @@ public class FoodController {
         imageService.addImage(file,id);
     }
 
-    @GetMapping()
-    public Image getImage(Model model, @PathVariable String id) throws Exception {
-        Image image = imageService.getImageById(id);
-
-        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
-        return image;
+    @GetMapping("/image")
+    public List<Image> getImage() throws Exception {
+        List<Image> images = imageService.getAllImage();
+//        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
+        return images;
     }
+
+    @DeleteMapping("/deleteImage/{id}")
+    public void deleteImage(@PathVariable String id){
+        imageService.deleteImage(id);
+    }
+
+
 
 }
