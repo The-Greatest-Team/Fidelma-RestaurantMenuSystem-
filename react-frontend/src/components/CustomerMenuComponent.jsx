@@ -64,6 +64,10 @@ class CustomerMenuComponent extends React.Component{
         this.props.history.push("/customer/mainMenu", [this.state.foodsInCart, this.state.foodsCountInCart])
     }
 
+    viewInDetails(dish){
+        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish])
+    }
+
     render(){
         return(
             <>
@@ -107,9 +111,8 @@ class CustomerMenuComponent extends React.Component{
                                 </div>
                                 {
                                     dish.soldOut === false &&
-                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" 
-                                    onClick={()=>this.props.history.push("dishDescription",this.props.location.state)}/>
-                                    //<input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" onClick={() => this.storeInCart(dish)}/>
+                                    <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
+                                    onClick={()=>this.viewInDetails(dish)}/>
                                 }
                                 {
                                     dish.soldOut === true &&

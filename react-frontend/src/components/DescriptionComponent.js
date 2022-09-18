@@ -33,6 +33,11 @@ class DescriptionComponent extends React.Component{
             quantity:this.state.quantity + 1
         });
     }
+
+    componentDidMount(){
+        console.log(this.props.location.state[2])
+    }
+
     render(){
         return(
             <>
