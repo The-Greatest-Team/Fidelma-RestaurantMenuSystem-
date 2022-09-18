@@ -36,7 +36,7 @@ function App() {
                           <Route path="/staff/dashboard" component={DashboardComponent}></Route>
                           <Route path="/staff/profile" component={ProfileComponent}></Route>
                           <Route path="/enterPage" component={EnterComponent}></Route>
-                          <Route path="/dishDescription" component={DescriptionComponent}></Route>
+                          <Route path="/customer/menu/dishDescription" component={DescriptionComponent}></Route>
                           <Route path="/confirmPage" component={ConfirmComponent}></Route>
                           <Route path="/submitPage" component={SubmitComponent}></Route>
                     </Switch>

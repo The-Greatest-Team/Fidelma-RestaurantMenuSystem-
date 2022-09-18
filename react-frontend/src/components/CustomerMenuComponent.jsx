@@ -107,7 +107,9 @@ class CustomerMenuComponent extends React.Component{
                                 </div>
                                 {
                                     dish.soldOut === false &&
-                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" onClick={() => this.storeInCart(dish)}/>
+                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" 
+                                    onClick={()=>this.props.history.push("dishDescription",this.props.location.state)}/>
+                                    //<input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon" onClick={() => this.storeInCart(dish)}/>
                                 }
                                 {
                                     dish.soldOut === true &&

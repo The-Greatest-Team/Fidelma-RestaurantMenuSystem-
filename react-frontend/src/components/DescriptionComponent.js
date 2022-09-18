@@ -8,6 +8,10 @@ class DescriptionComponent extends React.Component{
 
         this.state = {
             quantity: 1,
+            foods : [], 
+            foodsInCart : [], 
+            foodsCountInCart : [], 
+            cartOpen : false
         }
     }
 
@@ -34,6 +38,8 @@ class DescriptionComponent extends React.Component{
             <>
                 <div>
                     <div className = "dishHead">
+                        <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" 
+                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/>
                         <h4>Classic Beef Burger</h4>
                     </div>
                     <div className = "photoContainer">
@@ -60,7 +66,8 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "addToOrder">
                         <img src = "/res/images/shoppingCart.png"/>
-                        <button className = "addToOrderButton">Add to order</button>
+                        <button className = "addToOrderButton" 
+                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button>
                     </div>
                 </div>
             </>
