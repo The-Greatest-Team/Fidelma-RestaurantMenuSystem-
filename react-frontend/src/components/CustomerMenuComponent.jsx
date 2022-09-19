@@ -67,7 +67,7 @@ class CustomerMenuComponent extends React.Component{
 
     viewInDetails(dish){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish,type])
+        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish, type])
     }
 
     getLast(arr) {
