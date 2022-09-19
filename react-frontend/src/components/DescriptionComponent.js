@@ -37,6 +37,11 @@ class DescriptionComponent extends React.Component{
     componentDidMount(){
         console.log(this.props.location.state[2]);
         console.log(Object.keys(this.props.location.state[2].components));
+        if (typeof(this.props.location.state) != "undefined"){
+            this.state.foodsInCart = this.props.location.state[0]
+            this.state.foodsCountInCart = this.props.location.state[1]
+        }
+
     }
 
     showCart(){
@@ -65,13 +70,17 @@ class DescriptionComponent extends React.Component{
         }
     }
 
+    backToTypeMenu(){
+        this.props.history.push("/customer/menu/chicken",[this.state.foodsInCart, this.state.foodsCountInCart])
+    }
+
     render(){
         return(
             <>
                 <div>
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" 
-                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/>
+                        onClick={()=>this.backToTypeMenu()}/>
                         <h4>{this.props.location.state[2].name}</h4>
                     </div>
                     <div className = "photoContainer">
