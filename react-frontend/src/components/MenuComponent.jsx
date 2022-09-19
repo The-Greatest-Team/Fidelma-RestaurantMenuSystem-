@@ -53,6 +53,14 @@ class MenuComponent extends React.Component{
             this.setState({foods: (respond.data)});
         });
 
+        for (var i = 0 ; i < this.state.foodImages.length;i++) {
+            for (var j = 0; j < this.state.foods.length;j++) {
+                if (this.state.foodImages[i].id == this.state.foods[j].id) {
+                    this.state.foods[j].image = this.state.foodImages[i].image.data;
+                }
+            }
+        }
+
     }
 
     accessEditingMode(){
@@ -100,6 +108,7 @@ class MenuComponent extends React.Component{
 
     test2(id) {
         console.log(id);
+        console.log(this.state.imageDic[id]);
     }
 
     createDish(type) {
@@ -141,7 +150,8 @@ class MenuComponent extends React.Component{
                            <hr className="separateLine"/>
                             <div className="foodBox">
                                 {this.test2(dish.id)}
-                                <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />
+                                
+                                {this.state.imageDic[dish.id] !== undefined && <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">

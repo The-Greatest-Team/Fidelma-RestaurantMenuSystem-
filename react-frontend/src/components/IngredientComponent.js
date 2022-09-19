@@ -117,6 +117,7 @@ class IngredientComponent extends React.Component{
         });
         
     }
+
     
     render(){
         return(

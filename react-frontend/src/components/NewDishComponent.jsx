@@ -2,6 +2,8 @@ import React,{Component,useCallback} from "react";
 import NewDishService from "../services/NewDishService";
 import {useDropzone} from 'react-dropzone'
 import { v4 as uuid } from 'uuid';
+import NewDishPopupComponent from "./NewDishPopupComponent";
+import BackDrop from "./BackDrop";
 
 
 function MyDropzone({childToParent}) {
@@ -56,7 +58,8 @@ class NewDishComponent extends Component{
             typedComponents:{},
             checkCode:{},
             checkPrice:'',
-            file:''
+            file:'',
+            display:false
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -67,6 +70,14 @@ class NewDishComponent extends Component{
         this.back = this.back.bind(this);
         this.childToParent = this.childToParent.bind(this);
     }
+
+    openPopup = () => {
+        this.setState({display:true});
+    }
+
+    closePopup = () => {
+        this.setState({display:false});
+    }
       
     childToParent = (childData) => {
         this.setState({file:childData});
@@ -75,19 +86,35 @@ class NewDishComponent extends Component{
     componentDidMount(){
         NewDishService.getIngredients().then((respond) => {
             this.setState({ingredients : (respond.data)});
-            console.log(typeof(this.state.ingredients));
-            console.log((respond.data));
         });
     }
 
     saveDish = (e) =>{
         e.preventDefault();
+        var canSend = 1;
+        if (this.state.file === '') {
+            canSend = 0;
+        }
+
+        if (this.state.name === '') {
+            canSend = 0;
+        }
+
+        if (this.state.price === '') {
+            canSend = 0;
+        }
+
+        if (this.state.kiloJoule === '') {
+            canSend = 0;
+        }
+
+        if (this.state.description === '') {
+            canSend = 0;
+        }
+
         let components = this.state.typedComponents;
         var find = 0;
         let objectArr = Object.entries(components);
-        console.log(components);
-        console.log(objectArr);
-        console.log(this.state.ingredients);
         for (var i = 0 ; i < this.state.ingredients.length;i++) {
             find = 0;
             for (var j = 0; j < objectArr.length;j++) {
@@ -99,29 +126,51 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-        const unique_id = uuid();
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
-        console.log(typeof(unique_id));
-        console.log(typeof(dish));
-        console.log("dish=> " +JSON.stringify(dish));
-        this.state.file.append("id",unique_id);
-        for (var pair of this.state.file.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]);
+        for (var i = 0; i< this.state.ingredients.length;i++){
+            if (components[this.state.ingredients[i].name] === '') {
+                components[this.state.ingredients[i].name] = 0;
+            }
         }
 
-        NewDishService.sendImage(this.state.file).then(
-            () => {
-                console.log("successful");
-            }).catch(err => {
-                console.log(err.response.data);
-            })
-        NewDishService.createNewDIish(dish).then(async res => {
-            setTimeout(()=> {
-                this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
-            },2000)
-        });
+        var allzero = 1;
+        for (var i = 0; i< this.state.ingredients.length;i++){
+            if (components[this.state.ingredients[i].name] !== 0) {
+                allzero = 0;
+            }
+        }
+
+        if  (allzero == 1) {
+            canSend = 0;
+        }
         
+
+        if (canSend == 0) {
+            console.log("need a popup");
+            this.setState({display:true});
+        }else {
+            const unique_id = uuid();
+            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
+            console.log("dish=> " +JSON.stringify(dish));
+            
+            this.state.file.append("id",unique_id);
+            for (var pair of this.state.file.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]);
+            }
+
+            NewDishService.sendImage(this.state.file).then(
+                () => {
+                    console.log("successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
+            NewDishService.createNewDIish(dish).then(async res => {
+                setTimeout(()=> {
+                    this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                },2000)
+            });
+        }
     }
+
     
     nameHandler = (event) =>{
         this.setState({name:event.target.value});
@@ -162,11 +211,13 @@ class NewDishComponent extends Component{
 
     back = async (e) => {
         e.preventDefault();
-        await this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+        this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+        
     }
 
     render(){
         return(
+            
             <>
                 <div>
                     <div>
@@ -213,8 +264,10 @@ class NewDishComponent extends Component{
                         <div id = "saveButton"> <button className = "min"  onClick = {this.saveDish} id = "save" >Save</button></div>
                         </form> 
                         
-                    </div>   
+                    </div>  
+                    
                 </div>
+                {this.state.display && <NewDishPopupComponent closePopup = {this.closePopup}/>}
             </>
         );
     }

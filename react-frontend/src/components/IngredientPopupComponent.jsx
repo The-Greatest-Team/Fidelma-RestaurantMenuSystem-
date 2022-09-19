@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import IngredientPopupService from "../services/IngredientPopupService";
+import BackDrop from "./BackDrop";
 
 class IngredientPopupComponent extends Component {
     constructor(props){
@@ -41,6 +42,8 @@ class IngredientPopupComponent extends Component {
 
     render() {
         return (
+            <React.Fragment>
+            <BackDrop show={this.props.show} clicked={this.props.modalClosed} />
             <form>
                 <div className="addPopup">
                     <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick={this.props.closeAddPopup}>x</button></h2>
@@ -61,6 +64,7 @@ class IngredientPopupComponent extends Component {
                     <button className = "addPopupSubmitButton" onClick = {this.saveIngredient}>Submit</button>
                 </div>
             </form>
+            </React.Fragment>
         )
         
     }
