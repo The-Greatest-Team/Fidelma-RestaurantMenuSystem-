@@ -12,7 +12,8 @@ public class Ingredient {
     private String id;
     private String name;
     private Double price;
-    public Ingredient(String name, double price, Double quantity ) {
+    public Ingredient(String id,String name, double price, Double quantity ) {
+        this.id = id;
         this.quantity = quantity;
         this.price = price;
         this.name = name;
@@ -26,6 +27,16 @@ public class Ingredient {
 //        this.type = type;
 //    }
 //
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Double getQuantity() {
         return quantity;
     }
