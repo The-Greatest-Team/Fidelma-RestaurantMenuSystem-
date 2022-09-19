@@ -39,6 +39,15 @@ class DescriptionComponent extends React.Component{
         console.log(Object.keys(this.props.location.state[2].components));
     }
 
+    showCart(){
+        console.log(this.state.foodsInCart)
+        console.log(this.state.foodsCountInCart)
+        // let background = document.getElementById("normlaStateMenu")
+        // background.style.color = 707070
+        this.state.cartOpen = true
+
+    }
+
     render(){
         return(
             <>
@@ -71,7 +80,7 @@ class DescriptionComponent extends React.Component{
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                     <div className = "addToOrder">
-                        <img src = "/res/images/shoppingCart.png"/>
+                        <img src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
                         <button className = "addToOrderButton" 
                         onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button>
                     </div>
