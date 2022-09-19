@@ -89,7 +89,7 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        <p className = "allIngredient">{Object.keys(this.props.location.state[2].components)}</p>
+                        <div className = "allIngredient">{Object.keys(this.props.location.state[2].components).join(', ')}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
