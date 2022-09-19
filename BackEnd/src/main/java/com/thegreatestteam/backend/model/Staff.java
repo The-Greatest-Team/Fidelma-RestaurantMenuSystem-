@@ -11,7 +11,7 @@ public class Staff {
 
     @Id
     private Integer id;
-    private String Username;
+    private String userName;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,18 +20,18 @@ public class Staff {
 
     private String phoneNumber;
 
-    private String Address;
+    private String address;
 
-    public Staff(Integer id, String username, String firstName, String lastName,
+    public Staff(Integer id, String userName, String firstName, String lastName,
                  String email, LocalDate dob, String phoneNumber, String address) {
         this.id = id;
-        Username = username;
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
-        Address = address;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -55,7 +55,7 @@ public class Staff {
     }
 
     public String getUsername() {
-        return Username;
+        return userName;
     }
 
     public String getEmail() {
@@ -71,7 +71,7 @@ public class Staff {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
 
