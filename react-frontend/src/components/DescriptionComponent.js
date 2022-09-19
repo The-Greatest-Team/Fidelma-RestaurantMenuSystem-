@@ -48,6 +48,23 @@ class DescriptionComponent extends React.Component{
 
     }
 
+    storeInCart(dish){ 
+        let storeDish = {
+            id : dish.id,
+            name : dish.name,
+            price : dish.price
+        }
+        let cart = this.state.foodsInCart
+        let foodCounts = this.state.foodsCountInCart
+        let foodIndexInCart = cart.findIndex(x => x.id == dish.id) 
+        if (foodIndexInCart == -1){
+            cart.push(storeDish)
+            foodCounts.push(1)
+        } else {
+            foodCounts[foodIndexInCart] += this.state.quantity
+        }
+    }
+
     render(){
         return(
             <>
@@ -81,8 +98,12 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "addToOrder">
                         <img src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
+                        {/* <button className = "addToOrderButton" 
+                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button> */}
                         <button className = "addToOrderButton" 
-                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button>
+                        onClick={() => this.storeInCart(this.props.location.state[2])}>Add to order</button>
+
+
                     </div>
                 </div>
             </>
