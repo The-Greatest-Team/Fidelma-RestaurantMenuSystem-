@@ -18,18 +18,13 @@ class MenuComponent extends React.Component{
     deleteDish(id) {
         axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
             res => {
-                let tempArr = [];
+                console.log(id);
+                this.setState({foodImages:this.state.foodImages.filter(foodImage => foodImage.id !== id)});
+                var newOne = {};
                 for (var i = 0; i < this.state.foodImages.length;i++) {
-                    if (this.state.foodImages[i].id != id) {
-                        tempArr.push(this.state.foodImages[i]);
-                    }
+                    newOne[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
                 }
-                this.setState({foodImages:tempArr});
-                let tempJson = {};
-                for (var i = 0; i< tempArr.length;i++) {
-                    tempJson[tempArr[i].id] = tempArr[i].image.data;
-                }
-                this.setState({imageDic:tempJson});
+                this.setState({imageDic:newOne});
                 console.log(this.state.foodImages);
                 console.log(this.state.imageDic);
             }
@@ -98,8 +93,13 @@ class MenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    test(id) {
+    test() {
         console.log(this.state.imageDic);
+        console.log(this.state.foods);
+    }
+
+    test2(id) {
+        console.log(id);
     }
 
     createDish(type) {
@@ -134,13 +134,13 @@ class MenuComponent extends React.Component{
                     </div>
 
                     
-
+                    {this.test()}
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                {this.test(dish.id)}
+                                {this.test2(dish.id)}
                                 <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
