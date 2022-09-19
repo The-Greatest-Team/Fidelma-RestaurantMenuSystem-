@@ -35,7 +35,34 @@ class DescriptionComponent extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props.location.state[2])
+        console.log(this.props.location.state[2]);
+        console.log(Object.keys(this.props.location.state[2].components));
+    }
+
+    showCart(){
+        console.log(this.state.foodsInCart)
+        console.log(this.state.foodsCountInCart)
+        // let background = document.getElementById("normlaStateMenu")
+        // background.style.color = 707070
+        this.state.cartOpen = true
+
+    }
+
+    storeInCart(dish){ 
+        let storeDish = {
+            id : dish.id,
+            name : dish.name,
+            price : dish.price
+        }
+        let cart = this.state.foodsInCart
+        let foodCounts = this.state.foodsCountInCart
+        let foodIndexInCart = cart.findIndex(x => x.id == dish.id) 
+        if (foodIndexInCart == -1){
+            cart.push(storeDish)
+            foodCounts.push(1)
+        } else {
+            foodCounts[foodIndexInCart] += this.state.quantity
+        }
     }
 
     render(){
@@ -45,7 +72,7 @@ class DescriptionComponent extends React.Component{
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" 
                         onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/>
-                        <h4>Classic Beef Burger</h4>
+                        <h4>{this.props.location.state[2].name}</h4>
                     </div>
                     <div className = "photoContainer">
                         <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
@@ -53,16 +80,16 @@ class DescriptionComponent extends React.Component{
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
                         <div className = "descriptionTitle">
-                            <h4><strong>Classic Beef Burger</strong></h4>
-                            <h4 className = "dishPrice">$11.80</h4>
+                            <h4><strong>{this.props.location.state[2].name}</strong></h4>
+                            <h4 className = "dishPrice">${this.props.location.state[2].price}</h4>
                         </div> 
                         <div className = "descriptionContent">
-                            <p>Grain-fed beef patties with fresh tomatoes, onions and lettuce.</p>
+                            <p>{this.props.location.state[2].description}</p>
                         </div>
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        <p className = "allIngredient">Beef patties, Onions, Fresh tomato, Lettuce, Salts</p>
+                        <div className = "allIngredient">{Object.keys(this.props.location.state[2].components).join(', ')}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
@@ -70,9 +97,13 @@ class DescriptionComponent extends React.Component{
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                     <div className = "addToOrder">
-                        <img src = "/res/images/shoppingCart.png"/>
+                        <img src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
+                        {/* <button className = "addToOrderButton" 
+                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button> */}
                         <button className = "addToOrderButton" 
-                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button>
+                        onClick={() => this.storeInCart(this.props.location.state[2])}>Add to order</button>
+
+
                     </div>
                 </div>
             </>
