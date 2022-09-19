@@ -10,7 +10,7 @@ class CustomerMenuComponent extends React.Component{
 
 
     componentDidMount(){
-        MenuService.getUsers(this.props.location.state[2]).then((respond) => {
+        MenuService.getUsers(this.props.location.state[this.getLast(this.props.location.state)]).then((respond) => {
             this.setState({foods : (respond.data)});
             console.log(typeof(this.state.foods));
             console.log((respond.data));
@@ -61,11 +61,17 @@ class CustomerMenuComponent extends React.Component{
     }
 
     returnMainMenu(){
-        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart, this.state.foodsCountInCart])
+        let type = this.props.location.state[this.props.location.state.length-1]
+        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart, this.state.foodsCountInCart,type])
     }
 
     viewInDetails(dish){
-        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish])
+        let type = this.props.location.state[this.props.location.state.length-1]
+        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish,type])
+    }
+
+    getLast(arr) {
+        return arr.length-1;
     }
 
     render(){
@@ -87,8 +93,8 @@ class CustomerMenuComponent extends React.Component{
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
                             <h2 id = "menuTitleWord">{
-                            
-                                this.capitalizeFirst(this.props.location.state[2])
+                                
+                                this.capitalizeFirst(this.props.location.state[this.getLast(this.props.location.state)])
                             
                             }</h2>
                         </div>
