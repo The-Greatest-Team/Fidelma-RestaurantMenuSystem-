@@ -6,13 +6,12 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foodsInCart : [], foodsCountInCart : []}
+        this.state = {foodsInCart : []}
     }
 
     componentDidMount(){
         if (typeof(this.props.location.state) != "undefined"){
             this.state.foodsInCart = this.props.location.state[0]
-            this.state.foodsCountInCart = this.props.location.state[1]
         }
     }
 
@@ -23,11 +22,11 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToChicken(){
-        this.props.history.push("/customer/menu/" + "chicken", [this.state.foodsInCart, this.state.foodsCountInCart, "chicken"])
+        this.props.history.push("/customer/menu/" + "chicken", [this.state.foodsInCart, "chicken"])
     }
 
     goToBeef(){
-        this.props.history.push("/customer/menu/" + "beef" ,[this.state.foodsInCart, this.state.foodsCountInCart, "beef"])
+        this.props.history.push("/customer/menu/" + "beef" ,[this.state.foodsInCart, "beef"])
     }
 
     render(){

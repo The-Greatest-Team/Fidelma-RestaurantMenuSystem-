@@ -6,7 +6,7 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], foodsCountInCart : [], cartOpen : false}
+        this.state = {foods : [], foodsInCart : [], cartOpen : false}
     }
 
 
@@ -18,7 +18,6 @@ class CustomerMenuComponent extends React.Component{
         });
         if (typeof(this.props.location.state) != "undefined"){
             this.state.foodsInCart = this.props.location.state[0]
-            this.state.foodsCountInCart = this.props.location.state[1]
         }
     }
 
@@ -29,26 +28,8 @@ class CustomerMenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    storeInCart(dish){ 
-        let storeDish = {
-            id : dish.id,
-            name : dish.name,
-            price : dish.price
-        }
-        let cart = this.state.foodsInCart
-        let foodCounts = this.state.foodsCountInCart
-        let foodIndexInCart = cart.findIndex(x => x.id == dish.id) 
-        if (foodIndexInCart == -1){
-            cart.push(storeDish)
-            foodCounts.push(1)
-        } else {
-            foodCounts[foodIndexInCart] += 1
-        }
-    }
-
     showCart(){
         console.log(this.state.foodsInCart)
-        console.log(this.state.foodsCountInCart)
         // let background = document.getElementById("normlaStateMenu")
         // background.style.color = 707070
         this.setState({cartOpen : true})
@@ -61,12 +42,12 @@ class CustomerMenuComponent extends React.Component{
 
     returnMainMenu(){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart, this.state.foodsCountInCart,type])
+        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart ,type])
     }
 
     viewInDetails(dish){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("dishDescription",[this.state.foodsInCart, this.state.foodsCountInCart, dish, type])
+        this.props.history.push("dishDescription",[this.state.foodsInCart, dish, type])
     }
 
     getLast(arr) {
