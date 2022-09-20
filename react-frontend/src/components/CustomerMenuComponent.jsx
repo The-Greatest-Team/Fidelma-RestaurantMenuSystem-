@@ -1,5 +1,6 @@
 import React from "react";
 import MenuService from "../services/MenuService";
+import Slide from 'react-reveal'
 class CustomerMenuComponent extends React.Component{
 
     constructor(props){
@@ -45,19 +46,17 @@ class CustomerMenuComponent extends React.Component{
         }
     }
 
-    
     showCart(){
         console.log(this.state.foodsInCart)
         console.log(this.state.foodsCountInCart)
         // let background = document.getElementById("normlaStateMenu")
         // background.style.color = 707070
-        this.state.cartOpen = true
+        this.setState({cartOpen : true})
 
     }
 
-
     closeCart(){
-        console.log("close cart")
+        this.setState({cartOpen : false})
     }
 
     returnMainMenu(){
@@ -77,7 +76,7 @@ class CustomerMenuComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="normlaStateMenu" onClick={() => this.closeCart()}>
+                <div id="normlaStateMenu">
                     {console.log(typeof(this.props.location.state))}
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -130,8 +129,35 @@ class CustomerMenuComponent extends React.Component{
                     </div>
                     
                     <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
+                    
+
+                    <button onClick={()=>this.closeCart()}>Test Close</button>
 
                 </div>
+
+                <Slide bottom when={this.state.cartOpen}>
+                    <div className="cart">
+                        <span>Already Selected</span>
+                        <div className="foodBoxInCart">
+                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <div className="foodTextContentInCart">
+                                <div className="foodNameInCart"><strong>Burger</strong></div>
+                                <div className="foodPriceInCart">$14</div>
+                            </div>
+
+                            <div className="changeQuantityArea">
+                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart"/>
+                            <div className = "currentQuantity">1</div>
+                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/deleteButton.png" alt="delete Button icon in food cart"/>
+                            </div>
+                        </div>
+                        <div className="cartInfo">
+                            <span>Total: $42</span>
+                            <button>Order Now</button>
+                        </div>
+                    </div>
+
+                </Slide>
             </>
         );
     }

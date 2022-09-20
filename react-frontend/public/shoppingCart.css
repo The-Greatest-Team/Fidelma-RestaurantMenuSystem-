@@ -7,3 +7,75 @@
     width: 15vw;
     height: 15vw;
 }
+
+.cart .foodBoxInCart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart .foodBoxInCart img{
+    width: 17vw;
+    height: 17vw;
+    border-radius: 5vw;
+    margin-left: 3vw;
+}
+
+.cart .foodBoxInCart .foodTextContentInCart{
+    margin-left: -30vw;
+    margin-top: 2vw;
+}
+
+.cart .foodBoxInCart .foodTextContentInCart .foodPriceInCart{
+    margin-left: 3vw;
+    color: #F01E1E;
+}
+
+.cart .changeQuantityArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vw;
+    margin-right: 3vw;
+}
+
+.cart .changeQuantityArea .QuantityBtnIconInCart{
+    width: 7vw;
+    height: 7vw;
+}
+
+.cart .changeQuantityArea .currentQuantity{
+    margin-left: 3vw;
+    margin-right: 3vw;
+    background-color: #FFFFFF;
+    width: 7vw;
+    height: 7vw;
+    text-align: center;
+    border-radius: 6.66666666vw;
+    border-style: solid;
+    border-width: 0.5vw;
+}
+
+.cartInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cartInfo span{
+
+}
+
+.cartInfo button{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 6vw;
+    padding: 1vw 3vw 1vw 3vw;
+}
+
+.addToOrder{
+    display: flex;
+    justify-content: space-between;
+}
