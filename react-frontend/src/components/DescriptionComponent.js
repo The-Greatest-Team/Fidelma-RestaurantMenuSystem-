@@ -55,15 +55,16 @@ class DescriptionComponent extends React.Component{
 
     storeInCart(dish){ 
         let cart = this.state.foodsInCart
-        let foodIndexInCart = this.findFoodIndexInCart(dish.name, dish)
+        let foodIndexInCart = this.findFoodIndexInCart(dish.name, cart)
         if (foodIndexInCart == -1){
             cart.push({
+                id : dish.id,
                 name : dish.name, 
                 price: dish.price, 
                 quantity: this.state.quantity
             })
         } else {
-            cart[foodIndexInCart] += this.state.quantity
+            cart[foodIndexInCart].quantity += this.state.quantity
         }
     }
 

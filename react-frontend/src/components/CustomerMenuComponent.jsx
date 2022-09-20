@@ -119,25 +119,26 @@ class CustomerMenuComponent extends React.Component{
                 <Slide bottom when={this.state.cartOpen}>
                     <div className="cart">
                         <span>Already Selected</span>
-                        <div className="foodBoxInCart">
+                        {this.state.foodsInCart.map((dishInCart) => (
+                        <div className="foodBoxInCart" key={dishInCart.id}>
                             <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
                             <div className="foodTextContentInCart">
-                                <div className="foodNameInCart"><strong>Burger</strong></div>
-                                <div className="foodPriceInCart">$14</div>
+                                <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
+                                <div className="foodPriceInCart">${dishInCart.price}</div>
                             </div>
 
                             <div className="changeQuantityArea">
                             <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart"/>
-                            <div className = "currentQuantity">1</div>
+                            <div className = "currentQuantity">{dishInCart.quantity}</div>
                             <input className="QuantityBtnIconInCart" type="image" src="/res/images/deleteButton.png" alt="delete Button icon in food cart"/>
                             </div>
                         </div>
+                        ))}
                         <div className="cartInfo">
                             <span>Total: $42</span>
                             <button>Order Now</button>
                         </div>
                     </div>
-
                 </Slide>
             </>
         );
