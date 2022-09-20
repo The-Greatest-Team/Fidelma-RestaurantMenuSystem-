@@ -12,7 +12,7 @@ public class Order {
     @NonNull
     private Integer tableNumber;
     @NonNull
-    private String phoneNumer;
+    private String phoneNumber;
 
     private HashMap<String,Integer> cart;
 
@@ -20,7 +20,7 @@ public class Order {
     public Order(String id, @NonNull Integer tableNumber, @NonNull String phoneNumer, HashMap<String, Integer> cart) {
         this.id = id;
         this.tableNumber = tableNumber;
-        this.phoneNumer = phoneNumer;
+        this.phoneNumber= phoneNumer;
         this.cart = cart;
     }
 }
