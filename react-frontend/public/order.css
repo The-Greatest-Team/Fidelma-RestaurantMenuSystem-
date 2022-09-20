@@ -185,6 +185,7 @@
 .addToOrder{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .addToOrderButton{
@@ -194,7 +195,7 @@
     color:#FFFFFF;
     font-size: 6vw;
     padding: 1vw 3vw 1vw 3vw;
-    margin-top: 5%;
+    margin-top: 2.5%;
 }
 
 /* For confirm page */

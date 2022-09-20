@@ -113,9 +113,7 @@ class DescriptionComponent extends React.Component{
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                     <div className = "addToOrder">
-                        <img src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
-                        {/* <button className = "addToOrderButton" 
-                        onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}>Add to order</button> */}
+                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
                         <button className = "addToOrderButton" 
                         onClick={() => this.storeInCart(this.props.location.state[1])}>Add to order</button>
 
