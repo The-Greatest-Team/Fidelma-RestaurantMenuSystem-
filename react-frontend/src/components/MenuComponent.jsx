@@ -42,24 +42,24 @@ class MenuComponent extends React.Component{
     }
 
     componentDidMount() {
-        // console.log("running?");
-        // axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
-        //     this.setState({foodImages: respond.data});
-        //     for (var i = 0; i < this.state.foodImages.length; i++) {
-        //         this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
-        //     }
-        // })
+        console.log("running?");
+        axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
+            this.setState({foodImages: respond.data});
+            for (var i = 0; i < this.state.foodImages.length; i++) {
+                this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
+            }
+        })
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods: (respond.data)});
         });
 
-        // for (var i = 0 ; i < this.state.foodImages.length;i++) {
-        //     for (var j = 0; j < this.state.foods.length;j++) {
-        //         if (this.state.foodImages[i].id == this.state.foods[j].id) {
-        //             this.state.foods[j].image = this.state.foodImages[i].image.data;
-        //         }
-        //     }
-        // }
+        for (var i = 0 ; i < this.state.foodImages.length;i++) {
+            for (var j = 0; j < this.state.foods.length;j++) {
+                if (this.state.foodImages[i].id == this.state.foods[j].id) {
+                    this.state.foods[j].image = this.state.foodImages[i].image.data;
+                }
+            }
+        }
 
     }
 
@@ -151,7 +151,7 @@ class MenuComponent extends React.Component{
                             <div className="foodBox">
                                 {this.test2(dish.id)}
                                 
-                                {this.state.imageDic[dish.id] !== undefined && <img src={`http://localhost:8080/staff/menu/image/${dish.id}`} />}
+                                {this.state.imageDic[dish.id] !== undefined && <img src={`data:image/jpeg;base64,${this.state.imageDic[dish.id]}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">
