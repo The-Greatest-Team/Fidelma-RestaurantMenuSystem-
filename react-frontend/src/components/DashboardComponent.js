@@ -31,7 +31,7 @@ class DashboardComponent extends React.Component{
                             <h2>Total Income</h2>
                         </div>
                     </div>
-                    <div className = "dashboardBar">
+                    <div className = "dashboardBar" onClick={()=>window.location.href="/staff/orderHistory"}>
                         <div className = "dashboardContent">
                             <img className = "dashboardIcon" src = "/res/images/order.svg" alt = "order" />
                             <h2>Order Summary</h2>
