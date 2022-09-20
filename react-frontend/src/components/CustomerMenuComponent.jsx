@@ -76,6 +76,7 @@ class CustomerMenuComponent extends React.Component{
     addDishQuantity(cart, foodIndex){
         if (foodIndex != -1){
             cart[foodIndex].quantity += 1
+            this.setState({foodsInCart : cart})
         } else {
             console.log("Error, try to add quantity of dish that not exist in the food cart")
         }
@@ -87,6 +88,11 @@ class CustomerMenuComponent extends React.Component{
             if (cart[foodIndex].quantity == 0){
                 cart.splice(foodIndex, 1)
             }
+            // must use set state function 
+            // set state will tell react to rerender this page
+            // if change the value of state without set state
+            // it will just simply change the store in state
+            this.setState({foodsInCart : cart})
         } else {
             console.log("Error, try to delete quantity of dish that not exist in the food cart")
         }
@@ -179,9 +185,9 @@ class CustomerMenuComponent extends React.Component{
                             </div>
 
                             <div className="changeQuantityArea">
-                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'add')}/>
-                            <div className = "currentQuantity">{dishInCart.quantity}</div>
                             <input className="QuantityBtnIconInCart" type="image" src="/res/images/deleteButton.png" alt="delete Button icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'delete')}/>
+                            <div className = "currentQuantity">{dishInCart.quantity}</div>
+                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'add')}/>
                             </div>
                         </div>
                         ))}

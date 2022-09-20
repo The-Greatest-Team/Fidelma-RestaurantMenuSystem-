@@ -21,7 +21,7 @@ class DescriptionComponent extends React.Component{
     }
 
     removeDish(){
-        if(this.state.quantity > 0){
+        if(this.state.quantity > 1){
             this.setState({
                 quantity:this.state.quantity - 1
             });
