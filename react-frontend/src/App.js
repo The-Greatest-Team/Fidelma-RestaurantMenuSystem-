@@ -16,6 +16,7 @@ import CustomerMainMenuComponent from './components/CustomerMainMenuComponent';
 import CustomerMenuComponent from './components/CustomerMenuComponent';
 import SubmitComponent from './components/SubmitComponent';
 import CharacterComponent from './components/CharacterComponent';
+import OrderHistoryComponent from './components/OrderHistoryComponent';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                           <Route path="/customer/menu/dishDescription" component={DescriptionComponent}></Route>
                           <Route path="/confirmPage" component={ConfirmComponent}></Route>
                           <Route path="/submitPage" component={SubmitComponent}></Route>
+                          <Route path="/staff/orderHistory" component={OrderHistoryComponent}></Route>
                     </Switch>
                 </div>
         </Router>
