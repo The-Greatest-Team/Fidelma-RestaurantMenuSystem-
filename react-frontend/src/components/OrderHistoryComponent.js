@@ -36,7 +36,14 @@ class OrderHistoryComponent extends React.Component{
                                     <td>21:22 20th Sept</td>
                                     <td>16</td>
                                     <td>Jack</td>
-                                    <td>Preparing</td>
+                                    <td className = "preparing"><strong>Preparing</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>142563</td>
+                                    <td>16:30 18th Sept</td>
+                                    <td>14</td>
+                                    <td>Mike</td>
+                                    <td className = "shipped"><strong>Shipped</strong></td>
                                 </tr>
                             </tbody>
                         </table>

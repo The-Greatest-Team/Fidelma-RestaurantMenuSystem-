@@ -300,9 +300,10 @@ img{
 
 /* For order history */
 .historyBackIcon{
-    width: 8%;
-    height: 8%;
+    width: 6%;
+    height: 6%;
     margin-left: 3%;
+    margin-bottom: 2%;
 }
 
 .historyHead{
@@ -326,17 +327,48 @@ img{
 }
 
 .historyTableContainer{
-    background-color: #FFFFFF;
+    margin-top: 4%;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    border: 0.1vw solid #c9c9c9;
+    border-top:none;
+    border-bottom:none;
 }
 
 .historyTable{
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 88%;
-    margin-left: 1.3em;
-    height: 25em;
+    width: 100%;
+    
 }
 
 .historyTable th{
-    background-color:rgb(188, 185, 185);
+    background-color:rgb(226, 225, 225);
+}
+
+.historyTable td, th {
+    border: 0.1vw solid #c9c9c9;
+    border-left:none;
+    border-right:none;
+    text-align: left;
+    padding: 2.4vw;
+    text-align: center;
+
+}
+
+.historyTable th{
+    font-size: 3vw;
+}
+
+.historyTable td{
+    font-size: 2vw;
+
+}
+
+.preparing{
+    color:#F01E1E
+}
+
+.shipped{
+    color: #e09239;
 }
