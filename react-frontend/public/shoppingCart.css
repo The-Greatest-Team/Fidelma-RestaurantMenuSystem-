@@ -19,8 +19,9 @@
 }
 
 .cart .foodBoxInCart .foodTextContentInCart{
-    margin-left: -30vw;
+    margin-left: -10vw;
     margin-top: 2vw;
+    text-align: left;
 }
 
 .cart .foodBoxInCart .foodTextContentInCart .foodPriceInCart{
