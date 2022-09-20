@@ -19,6 +19,30 @@ class OrderHistoryComponent extends React.Component{
                         <h4>Order Summary</h4>
                         <hr className = "historySeparateLine"/>
                     </div>
+                    <div className="historyTableContainer">
+                        <table className = "historyTable">
+                            <thead>
+                                <tr>
+                                    <th>Order No.</th>
+                                    <th>Order Time</th>
+                                    <th>Table No.</th>
+                                    <th>Ordered By</th>
+                                    <th>Shipping Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>123123</td>
+                                    <td>21:22 20th Sept</td>
+                                    <td>16</td>
+                                    <td>Jack</td>
+                                    <td>Preparing</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+
 
                 </div>
             </>
