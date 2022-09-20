@@ -38,7 +38,7 @@ function App() {
                           <Route path="/staff/profile" component={ProfileComponent}></Route>
                           <Route path="/enterPage" component={EnterComponent}></Route>
                           <Route path="/customer/menu/dishDescription" component={DescriptionComponent}></Route>
-                          <Route path="/confirmPage" component={ConfirmComponent}></Route>
+                          <Route path="/customer/confirmPage" component={ConfirmComponent}></Route>
                           <Route path="/submitPage" component={SubmitComponent}></Route>
                           <Route path="/staff/orderHistory" component={OrderHistoryComponent}></Route>
                     </Switch>

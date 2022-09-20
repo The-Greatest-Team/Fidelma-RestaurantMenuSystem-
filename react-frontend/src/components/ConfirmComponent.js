@@ -11,6 +11,10 @@ class ConfirmComponent extends React.Component{
         ConfirmService.postUsers();
     }
 
+    componentDidMount(){
+        console.log(this.props.location.state)
+    }
+
     render(){
         return(
             <>

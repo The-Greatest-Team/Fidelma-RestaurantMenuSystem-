@@ -101,6 +101,11 @@ class CustomerMenuComponent extends React.Component{
         return -1
     }
 
+    goToConfirmOrder(){
+        let type = this.props.location.state[this.props.location.state.length-1]
+        this.props.history.push("/customer/confirmPage", [this.state.foodsInCart ,type])
+    }
+
     render(){
         return(
             <>
@@ -182,7 +187,7 @@ class CustomerMenuComponent extends React.Component{
                         ))}
                         <div className="cartInfo">
                             <span>Total: ${this.calculateTotalPrice()}</span>
-                            <button>Order Now</button>
+                            <button onClick={() => this.goToConfirmOrder()}>Order Now</button>
                         </div>
                     </div>
                 </Slide>
