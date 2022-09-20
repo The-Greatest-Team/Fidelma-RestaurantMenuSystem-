@@ -108,11 +108,11 @@ public class FoodController {
         imageService.addImage(file,id);
     }
 
-    @GetMapping("/image/{id}")
-    public Binary getImage(@PathVariable String id) throws Exception {
-        Image image = imageService.getImageById(id);
+    @GetMapping("/image")
+    public List<Image> getImage() throws Exception {
+        List<Image> images = imageService.getAllImage();
 //        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
-        return image.getImage();
+        return images;
     }
 
     @DeleteMapping("/deleteImage/{id}")
