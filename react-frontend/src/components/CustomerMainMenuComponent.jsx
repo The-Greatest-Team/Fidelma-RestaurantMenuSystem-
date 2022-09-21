@@ -6,13 +6,17 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foodsInCart : []}
+        this.state = {
+            foodsInCart : [],
+            tableNum:'',
+        }
     }
 
     componentDidMount(){
         if (typeof(this.props.location.state) != "undefined"){
             this.state.foodsInCart = this.props.location.state[0]
         }
+        // console.log(this.props.location.state.tableNum);
     }
 
     showCart(){
@@ -41,7 +45,7 @@ class CustomerMainMenuComponent extends React.Component{
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
-                        <span>Table No.</span>
+                        <span>Table No. {this.props.location.state.tableNum}</span>
                     </div>
 
                     <div>

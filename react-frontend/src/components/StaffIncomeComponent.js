@@ -26,7 +26,7 @@ class StaffIncomeComponent extends React.Component{
 
     incomeHandler(event) {
         this.setState({value: event.target.value});
-      }
+    }
     
     withdrawMooney(event) {
         if(this.state.value > this.state.income){

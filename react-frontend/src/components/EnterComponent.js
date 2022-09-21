@@ -9,11 +9,12 @@ class EnterComponent extends React.Component{
         super(props)
 
         this.state = {
-            tableNum:'1',
+            tableNum:'',
             phone:'',
         }
         this.tableNumHandler = this.tableNumHandler.bind(this);
         this.phoneHandler = this.phoneHandler.bind(this);
+        this.save = this.save.bind(this);
     }
     
     testPost(){
@@ -32,9 +33,30 @@ class EnterComponent extends React.Component{
         this.setState({phone:event.target.value});
     }
 
-    save(){
-        console.log(this.state.tableNum)
+    save(event){
+        console.log(this.state.tableNum);
+        console.log(this.state.phone);
+        if(this.state.tableNum != '' && this.state.phone != ''){
+            alert('Welcome to Fidelma!');
+            this.goToMainMenu();
+        }else{
+            alert('You need to enter all informations, please enter them again!');
+            this.reset();
+        }
+        event.preventDefault();
     }
+
+    reset(){
+        this.setState({
+            tableNum:'',
+            phone:'',
+        });
+    }
+
+    goToMainMenu(){
+        this.props.history.push("/customer/mainMenu",this.state);
+    }
+
     render(){
         return(
             <>
@@ -56,7 +78,7 @@ class EnterComponent extends React.Component{
                     </div>
                     <div className = "startOrder">
                         {/* <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button> */}
-                        <button className = "orderButton" onClick = {this.save()}>Start Order</button>
+                        <button className = "orderButton" onClick = {this.save}>Start Order</button>
                     </div>
                     </form>
                     
