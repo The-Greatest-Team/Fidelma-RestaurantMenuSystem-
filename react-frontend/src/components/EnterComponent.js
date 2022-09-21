@@ -50,6 +50,7 @@ class EnterComponent extends React.Component{
             this.reset();
         }else{
             alert('Welcome to Fidelma!');
+            this.goToMainMenu();
         }
         event.preventDefault();
     }
