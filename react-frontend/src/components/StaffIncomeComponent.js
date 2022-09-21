@@ -31,11 +31,13 @@ class StaffIncomeComponent extends React.Component{
     withdrawMooney(event) {
         if(this.state.value > this.state.income){
             alert('Withdrawn Unsuccessful: Insufficient Balance!')
-        }else{
-            alert('Successfully Withdrawn: ' + this.state.value + '!');
+        }else if(this.state.value != 0){
+            alert('Successfully Withdrawn: ' + ' $' + this.state.value + '!');
             this.setState({
                 income:this.state.income - this.state.value,
             });
+        }else{
+            alert('Withdrawn Unsuccessful: Need Type Amount You Want Withdraw!');
         }
         event.preventDefault();
     }
