@@ -172,7 +172,7 @@ class CustomerMenuComponent extends React.Component{
                     <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
                     
 
-                    <button onClick={()=>this.closeCart()}>Test Close</button>
+                    <button id="testBtn" onClick={()=>this.closeCart()}>Test Close</button>
 
                 </div>
 

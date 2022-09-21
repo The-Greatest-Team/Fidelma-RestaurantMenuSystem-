@@ -5,24 +5,38 @@
     height: 13vw;
 }
 
+#testBtn{
+    position:absolute;
+    top: 50%;
+}
+
 .cart{
     position: absolute;
     background-color: #FFFFFF;
-    width : 100vw;
+    border-style: solid;
+    border-color: #707070;
+    width : 100%;
     bottom: 0%;
+}
+
+.cart span{
+    margin-left: 3vw;
+    margin-bottom: 1vw;
+    font-size: larger;
 }
 
 .cart .foodBoxInCart{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 5vw;
 }
 
 .cart .foodBoxInCart img{
     width: 17vw;
     height: 17vw;
     border-radius: 5vw;
-    margin-left: 3vw;
+    margin-left: 6vw;
 }
 
 .cart .foodBoxInCart .foodTextContentInCart{
