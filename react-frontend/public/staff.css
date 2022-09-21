@@ -406,7 +406,7 @@ img{
 
 .withdrawContainer{
     text-align: center;
-    margin-top: 50%;
+    margin-top: 5%;
 }
 
 .withdrawButton{
@@ -417,3 +417,12 @@ img{
     border-radius: 4px;
     padding: 4px 12px;
 } 
+
+.withdrawInputContainer{
+    text-align: center;
+    margin-top: 50%;
+}
+
+.withdrawInput{
+    width: 57%;
+}

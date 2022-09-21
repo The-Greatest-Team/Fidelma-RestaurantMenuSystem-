@@ -7,14 +7,32 @@ class StaffIncomeComponent extends React.Component{
         super(props)
 
         this.state = {
-            income:'100,000',
+            income: '100000',
+            value: '',
         }
+
+        this.incomeHandler = this.incomeHandler.bind(this);
+        this.withdrawMooney = this.withdrawMooney.bind(this);
     }
 
     testPost(){
         StaffIncomeService.postUsers();
     }
 
+
+    incomeHandler(event) {
+        this.setState({value: event.target.value});
+      }
+    
+    withdrawMooney(event) {
+        alert('Successfully withdrawn: ' + this.state.value);
+
+        this.setState({
+            income:this.state.income - this.state.value,
+        });
+        event.preventDefault();
+    }
+      
     render(){
         return(
             <>
@@ -31,10 +49,14 @@ class StaffIncomeComponent extends React.Component{
                     <div className = "totalIncome">
                         <h4><strong>${this.state.income}</strong></h4>
                     </div>
+                    <form className = "withdrawInputContainer">
+                        <label>
+                            <input className = "withdrawInput" type="text" value={this.state.value} onChange={this.incomeHandler} />
+                        </label>
+                    </form>
                     <div className = "withdrawContainer">
-                        <button className = "withdrawButton">Withdraw</button>
+                        <button className = "withdrawButton" onClick = {this.withdrawMooney}>Withdraw</button>
                     </div>
-
                 </div>
             </>
         );
