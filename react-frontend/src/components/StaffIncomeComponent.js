@@ -7,7 +7,7 @@ class StaffIncomeComponent extends React.Component{
         super(props)
 
         this.state = {
-            income: '100000',
+            income: 100000,
             value: '',
         }
 
@@ -19,17 +19,24 @@ class StaffIncomeComponent extends React.Component{
         StaffIncomeService.postUsers();
     }
 
+    componentDidMount(){
+        console.log(this.state.value);
+        console.log(this.state.income);
+    }
 
     incomeHandler(event) {
         this.setState({value: event.target.value});
       }
     
     withdrawMooney(event) {
-        alert('Successfully withdrawn: ' + this.state.value);
-
-        this.setState({
-            income:this.state.income - this.state.value,
-        });
+        if(this.state.value > this.state.income){
+            alert('Withdrawn Unsuccessful: Insufficient Balance!')
+        }else{
+            alert('Successfully Withdrawn: ' + this.state.value + '!');
+            this.setState({
+                income:this.state.income - this.state.value,
+            });
+        }
         event.preventDefault();
     }
       
@@ -44,7 +51,7 @@ class StaffIncomeComponent extends React.Component{
                     </div>
                     <div className = "incomeIconContainer">
                         <img src="/res/images/income.png" />
-                        <h4>My Income:</h4>
+                        <h4>My Balance:</h4>
                     </div>
                     <div className = "totalIncome">
                         <h4><strong>${this.state.income}</strong></h4>
