@@ -372,3 +372,48 @@ img{
 .shipped{
     color: #e09239;
 }
+
+/* For total income */
+.incomeHead{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.incomeHead h4{
+    display: inline-block;
+    margin-left: 20%;
+    margin-top: 4%;
+}
+
+.incomeIconContainer{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.incomeIconContainer h4{
+    margin-top: 25%;
+    font-size: 5.5vw;
+}
+
+.totalIncome{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.totalIncome h4{
+    font-size: 12vw;
+}
+
+.withdrawContainer{
+    text-align: center;
+    margin-top: 50%;
+}
+
+.withdrawButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 1.2em;
+    border-radius: 4px;
+    padding: 4px 12px;
+} 
