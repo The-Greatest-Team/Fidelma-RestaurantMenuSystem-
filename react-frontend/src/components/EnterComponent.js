@@ -36,12 +36,20 @@ class EnterComponent extends React.Component{
     save(event){
         console.log(this.state.tableNum);
         console.log(this.state.phone);
-        if(this.state.tableNum != '' && this.state.phone != ''){
-            alert('Welcome to Fidelma!');
-            this.goToMainMenu();
-        }else{
+        var tableNumPattern = /[1-9]\d*/;
+        var phonePattern = /0?(4)[0-9]{8}/;
+
+        if(this.state.tableNum == '' || this.state.phone == ''){
             alert('You need to enter all informations, please enter them again!');
             this.reset();
+        }else if(tableNumPattern.test(this.state.tableNum) == false){
+            alert('Please enter valid table number!');
+            this.reset();
+        }else if(phonePattern.test(this.state.phone) == false){
+            alert('Please enter valid phone number!');
+            this.reset();
+        }else{
+            alert('Welcome to Fidelma!');
         }
         event.preventDefault();
     }
@@ -73,7 +81,7 @@ class EnterComponent extends React.Component{
                     </div>
                     <div className = "tableNum">
                         <h4>Phone Number</h4>
-                        <input className = "tableInput"onChange={this.phoneHandler} onChange={this.phoneHandler}/>
+                        <input className = "tableInput" value = {this.state.phone} onChange={this.phoneHandler}/>
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "startOrder">
