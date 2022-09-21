@@ -6,21 +6,19 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {
-            foodsInCart : [],
-            tableNum:'',
-        }
+        this.state = { foodsInCart : [], tableNum : ''}
     }
 
     componentDidMount(){
-        if (typeof(this.props.location.state) != "undefined"){
-            this.state.foodsInCart = this.props.location.state[0]
+        if (typeof(this.props.location.state.foodsInCart) != "undefined"){
+            this.state.foodsInCart = this.props.location.state.foodsInCart
         }
         // console.log(this.props.location.state.tableNum);
     }
 
     showCart(){
         console.log(this.props.location.state)
+        console.log(this.state)
         // let background = document.getElementById("normlaStateMenu")
         // background.style.color = 707070
     }

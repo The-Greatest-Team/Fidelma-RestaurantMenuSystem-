@@ -5,6 +5,13 @@
     height: 13vw;
 }
 
+.cart{
+    position: absolute;
+    background-color: #FFFFFF;
+    width : 100vw;
+    bottom: 0%;
+}
+
 .cart .foodBoxInCart{
     display: flex;
     flex-direction: row;

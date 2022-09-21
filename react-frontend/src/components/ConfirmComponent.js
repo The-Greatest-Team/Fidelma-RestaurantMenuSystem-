@@ -22,7 +22,6 @@ class ConfirmComponent extends React.Component{
     componentDidMount(){
         console.log(this.props.location.state);
         console.log(this.props.location.state[0]);
-        console.log(this.props.location.state[0][1].name);
         console.log(this.state.foodsInCart);
     }
 

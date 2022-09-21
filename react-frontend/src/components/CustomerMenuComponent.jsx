@@ -18,6 +18,9 @@ class CustomerMenuComponent extends React.Component{
         });
         if (typeof(this.props.location.state) != "undefined"){
             this.state.foodsInCart = this.props.location.state[0]
+            console.log(this.props.location.state)
+            console.log(typeof(this.state.foodsInCart))
+            console.log(this.state.foodsInCart)
         }
     }
 
@@ -174,6 +177,7 @@ class CustomerMenuComponent extends React.Component{
                 </div>
 
                 <Slide bottom when={this.state.cartOpen}>
+                    <div>
                     <div className="cart">
                         <span>Already Selected</span>
                         {this.state.foodsInCart.map((dishInCart) => (
@@ -195,6 +199,7 @@ class CustomerMenuComponent extends React.Component{
                             <span>Total: ${this.calculateTotalPrice()}</span>
                             <button onClick={() => this.goToConfirmOrder()}>Order Now</button>
                         </div>
+                    </div>
                     </div>
                 </Slide>
             </>
