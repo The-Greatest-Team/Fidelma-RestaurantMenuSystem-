@@ -182,7 +182,7 @@ class NewDishComponent extends Component{
                 }
             }
 
-            if (formNotSaved == false) {
+            if (formNotSaved == true) {
                 // need a popup here
                 console.log("form is not saved!");
             }else { // start to send image
@@ -194,7 +194,7 @@ class NewDishComponent extends Component{
                     }).catch(err => {
                         console.log(err.response.data);
                     }).then(async res => {
-                        while (imageNotSaved) {
+                        while (imageNotSaved == false) {
                             setTimeout(
                                 () => {
                                     axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
@@ -210,7 +210,7 @@ class NewDishComponent extends Component{
                             }
                         }
 
-                        if (!imageNotSaved) {
+                        if (imageNotSaved == false) {
                             this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                         } else {
                             console.log("image not saved!");
