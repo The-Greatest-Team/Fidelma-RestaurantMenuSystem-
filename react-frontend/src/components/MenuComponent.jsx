@@ -71,15 +71,6 @@ class MenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    test() {
-        console.log(this.state.imageDic);
-        console.log(this.state.foods);
-    }
-
-    test2(id) {
-        console.log(id);
-        console.log(this.state.imageDic[id]);
-    }
 
     createDish(type) {
         this.props.history.push("/staff/menu/newDish",type);
@@ -112,14 +103,11 @@ class MenuComponent extends React.Component{
                         <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
                     </div>
 
-                    
-                    {this.test()}
                     <div>
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                {this.test2(dish.id)}
                                 
                                 {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
