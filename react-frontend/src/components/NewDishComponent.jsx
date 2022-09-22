@@ -102,6 +102,7 @@ class NewDishComponent extends Component{
         e.preventDefault();
         if (this.state.file.size > 2097152) {
             console.log("file is too large");
+            console.log(this.state.file.size)
             return;
         }
         this.setState({imageNotSaved: true});
@@ -212,11 +213,11 @@ class NewDishComponent extends Component{
                                     return respond.data;
                                 });
                         let delay = 0;
-                        while (delay !== 1000000) {
-                            delay+=1;
+                        while (delay !== 100000000) {
+                            delay+=1;   
                         }
                         imageCount += 1;
-                        if (imageCount === 40 && this.state.imageNotSaved === true) {
+                        if (imageCount === 100 && this.state.imageNotSaved === true) {
 
                             break;
                         }
