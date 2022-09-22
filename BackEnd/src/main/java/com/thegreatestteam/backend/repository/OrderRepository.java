@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface OrderRepository extends MongoRepository<Order,Integer> {
     List<Order> findOrdersByTableNumber(Integer tablenumber);
-    List<Order> findOrdersByPhoneNumer(String phoneNumber);
+    List<Order> findOrdersByPhoneNumber(String phoneNumber);
 }

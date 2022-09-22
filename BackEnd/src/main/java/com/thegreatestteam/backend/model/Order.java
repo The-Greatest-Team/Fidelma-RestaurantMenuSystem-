@@ -14,13 +14,13 @@ public class Order {
     @NonNull
     private Integer tableNumber;
     @NonNull
-    private String phoneNumer;
+    private String phoneNumber;
 
     private Map<String,Integer> cart;
 
-    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumer, Map<String,Integer> cart) {
+    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,Integer> cart) {
         this.tableNumber = tableNumber;
-        this.phoneNumer = phoneNumer;
+        this.phoneNumber= phoneNumber;
         this.cart = cart;
 
     }
@@ -40,8 +40,8 @@ public class Order {
     }
 
     @NonNull
-    public String getPhoneNumer() {
-        return phoneNumer;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
 
