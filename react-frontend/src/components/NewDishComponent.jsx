@@ -214,7 +214,7 @@ class NewDishComponent extends Component{
                                 });
                         let delay = 0;
                         while (delay !== 100000000) {
-                            delay+=1;   
+                            delay+=1;
                         }
                         imageCount += 1;
                         if (imageCount === 100 && this.state.imageNotSaved === true) {
