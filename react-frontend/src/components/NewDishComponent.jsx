@@ -201,7 +201,7 @@ class NewDishComponent extends Component{
                         }
                     }
 
-                    if (this.state.imageNotSaved === true && imageCount === 7) {
+                    if (this.state.imageNotSaved === true) {
                         console.log("image is not saved!");
                     } else {
                         this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
