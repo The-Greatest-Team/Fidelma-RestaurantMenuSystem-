@@ -166,7 +166,7 @@ class NewDishComponent extends Component{
 
             let formNotSaved = true;
             let count = 0;
-            while (formNotSaved) {
+            while (formNotSaved == false) {
                 setTimeout(
                     () => {
                         axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
@@ -182,7 +182,7 @@ class NewDishComponent extends Component{
                 }
             }
 
-            if (formNotSaved) {
+            if (formNotSaved == false) {
                 // need a popup here
                 console.log("form is not saved!");
             }else { // start to send image

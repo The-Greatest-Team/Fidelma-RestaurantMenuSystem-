@@ -30,6 +30,7 @@ class MenuComponent extends React.Component{
     componentDidMount() {
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods: (respond.data)});
+            console.log(this.state.foods);
         });
     }
 
