@@ -109,7 +109,7 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-                                
+
                                 {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 

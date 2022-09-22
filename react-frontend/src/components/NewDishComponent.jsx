@@ -180,6 +180,13 @@ class NewDishComponent extends Component{
             for (var pair of this.state.file.entries()) {
                 console.log(pair[0] + ', ' + pair[1]);
             }
+            NewDishService.createNewDish(dish).then(
+                () => {
+                    console.log("form successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
+
 
             NewDishService.createNewDish(dish);
                 
@@ -196,7 +203,7 @@ class NewDishComponent extends Component{
                 while (delay !== 1000000) {
                     delay+=1;
                 }
-                if (count == 20 && this.state.formNotSaved == true) {
+                if (count == 50 && this.state.formNotSaved == true) {
                     break;
                 }
             }
@@ -229,7 +236,6 @@ class NewDishComponent extends Component{
                         this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                     }
             }
-
 
         }
     }

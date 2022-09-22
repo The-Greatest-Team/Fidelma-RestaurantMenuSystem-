@@ -7,10 +7,69 @@ class EnterComponent extends React.Component{
 
     constructor(props){
         super(props)
-    }
 
+        this.state = {
+            tableNum:'',
+            phone:'',
+        }
+        this.tableNumHandler = this.tableNumHandler.bind(this);
+        this.phoneHandler = this.phoneHandler.bind(this);
+        this.save = this.save.bind(this);
+    }
+    
     testPost(){
         EnterService.postUsers();
+    }
+
+    componentDidMount(){
+        console.log(this.state.tableNum)
+    }
+
+    tableNumHandler = (event) =>{
+        this.setState({tableNum:event.target.value});
+    }
+
+    phoneHandler = (event) =>{
+        this.setState({phone:event.target.value});
+    }
+
+    save(event){
+        console.log(this.state.tableNum);
+        console.log(this.state.phone);
+        var tableNumPattern = /[1-9]\d*/;
+        var phonePattern = /0?(4)[0-9]{8}/;
+
+        if(this.state.tableNum == '' || this.state.phone == ''){
+            alert('You need to enter all informations, please enter them again!');
+            this.reset();
+        }else if(tableNumPattern.test(this.state.tableNum) == false){
+            alert('Please enter valid table number!');
+            this.reset();
+        }else if(phonePattern.test(this.state.phone) == false){
+            alert('Please enter valid phone number!');
+            this.reset();
+        }else{
+            alert('Welcome to Fidelma!');
+            this.goToMainMenu();
+        }
+        event.preventDefault();
+    }
+
+    reset(){
+        this.setState({
+            tableNum:'',
+            phone:'',
+        });
+    }
+
+    // if you want to parse more data in here which will
+    // break the list of length 2, notify Yichen
+    // because it is a list, the menu component is using index
+    // to transfer data
+    // current status, index 0 is tableNum, index 1 is phone
+    // index 2 is food in cart, last index must be type
+    goToMainMenu(){
+        this.props.history.push("/customer/mainMenu",[this.state.tableNum, this.state.phone]);
     }
 
     render(){
@@ -21,19 +80,22 @@ class EnterComponent extends React.Component{
                     <div className="orderHead">
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                     </div>
+                    <form>
                     <div className = "tableNum">
                         <h4>Table No.</h4>
-                        <input className = "tableInput"/>
+                        <input className = "tableInput" value = {this.state.tableNum} onChange={this.tableNumHandler}/>
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "tableNum">
                         <h4>Phone Number</h4>
-                        <input className = "tableInput"/>
+                        <input className = "tableInput" value = {this.state.phone} onChange={this.phoneHandler}/>
                         <hr className = "orderSeparateLine"/>
                     </div>
                     <div className = "startOrder">
-                        <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button>
+                        {/* <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button> */}
+                        <button className = "orderButton" onClick = {this.save}>Start Order</button>
                     </div>
+                    </form>
                     
                 </div>
             </>

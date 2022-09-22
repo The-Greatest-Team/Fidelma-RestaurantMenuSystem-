@@ -102,8 +102,8 @@
 }
 
 .dishPhoto{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vw;
 }
 
 .photoContainer{
@@ -182,19 +182,17 @@
     border-width: 0.5vw;
 }
 
-.addToOrder{
-    display: flex;
-    justify-content: space-between;
-}
-
 .addToOrderButton{
+    position: fixed;
+    top: 89.5%;
+    right: 3vw;
     border-radius: 1.66666666vw;
     border-style: none;
     background-color: #F01E1E;
     color:#FFFFFF;
     font-size: 6vw;
     padding: 1vw 3vw 1vw 3vw;
-    margin-top: 5%;
+    margin-top: 2.5%;
 }
 
 /* For confirm page */
@@ -300,7 +298,7 @@
 
 .totalCost h4{
     display: inline-block;
-    padding: 5vw;
+    padding: 4vw;
 }
 
 .finishOrder div{
