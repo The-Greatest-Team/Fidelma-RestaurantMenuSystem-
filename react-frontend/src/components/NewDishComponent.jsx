@@ -4,7 +4,13 @@ import {useDropzone} from 'react-dropzone'
 import { v4 as uuid } from 'uuid';
 import NewDishPopupComponent from "./NewDishPopupComponent";
 import BackDrop from "./BackDrop";
+import axios from "axios";
 
+
+global.constants = {
+    imageNotSaved:true,
+    formNotSaved : true,
+};
 
 function MyDropzone({childToParent}) {
     const onDrop = useCallback(acceptedFiles => {
@@ -59,7 +65,10 @@ class NewDishComponent extends Component{
             checkCode:{},
             checkPrice:'',
             file:'',
-            display:false
+            display:false,
+            imageNotSaved:true,
+            formNotSaved : true
+            
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -89,8 +98,14 @@ class NewDishComponent extends Component{
         });
     }
 
-    saveDish = (e) =>{
+    saveDish = async (e) => {
         e.preventDefault();
+        if (this.state.file.size > 2097152) {
+            console.log("file is too large");
+            return;
+        }
+        this.setState({imageNotSaved: true});
+        this.setState({formNotSaved: true});
         var canSend = 1;
         if (this.state.file === '') {
             canSend = 0;
@@ -115,9 +130,9 @@ class NewDishComponent extends Component{
         let components = this.state.typedComponents;
         var find = 0;
         let objectArr = Object.entries(components);
-        for (var i = 0 ; i < this.state.ingredients.length;i++) {
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             find = 0;
-            for (var j = 0; j < objectArr.length;j++) {
+            for (var j = 0; j < objectArr.length; j++) {
                 if (objectArr[j][0] === this.state.ingredients[i].name) {
                     find = 1;
                 }
@@ -126,35 +141,43 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-        for (var i = 0; i< this.state.ingredients.length;i++){
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             if (components[this.state.ingredients[i].name] === '') {
                 components[this.state.ingredients[i].name] = 0;
             }
         }
 
         var allzero = 1;
-        for (var i = 0; i< this.state.ingredients.length;i++){
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             if (components[this.state.ingredients[i].name] !== 0) {
                 allzero = 0;
             }
         }
 
-        if  (allzero == 1) {
+        if (allzero == 1) {
             canSend = 0;
         }
-        
+
 
         if (canSend == 0) {
             console.log("need a popup");
-            this.setState({display:true});
-        }else {
+            this.setState({display: true});
+        } else {
             const unique_id = uuid();
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
-            console.log("dish=> " +JSON.stringify(dish));
-            
-            this.state.file.append("id",unique_id);
+            let dish = {
+                name: this.state.name,
+                price: this.state.price,
+                kiloJoule: this.state.kiloJoule,
+                description: this.state.description,
+                components,
+                type: this.props.location.state,
+                id: unique_id
+            };
+            console.log("dish=> " + JSON.stringify(dish));
+
+            this.state.file.append("id", unique_id);
             for (var pair of this.state.file.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]);
+                console.log(pair[0] + ', ' + pair[1]);
             }
             NewDishService.createNewDIish(dish).then(
                 () => {
@@ -163,16 +186,56 @@ class NewDishComponent extends Component{
                     console.log(err.response.data);
                 })
 
-            NewDishService.sendImage(this.state.file).then(
-                () => {
-                    console.log("successful");
-                }).catch(err => {
-                    console.log(err.response.data);
-                }).then(async res => {
-                setTimeout(()=> {
-                    this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
-                },2000)
-            });
+
+            NewDishService.createNewDish(dish);
+                
+            let count = 0;
+            while (this.state.formNotSaved == true) {
+                         this.state.formNotSaved = await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                            console.log(respond.data);
+                            return respond.data;
+                        });
+
+                count+=1;
+                console.log(this.state.formNotSaved);
+                let delay = 0;
+                while (delay !== 1000000) {
+                    delay+=1;
+                }
+                if (count == 20 && this.state.formNotSaved == true) {
+                    break;
+                }
+            }
+
+            if (this.state.formNotSaved == true) {
+                // need a popup here
+                console.log("form is not saved!");
+            } else { // start to send image
+                let imageCount = 0;
+                NewDishService.sendImage(this.state.file)
+                    while (this.state.imageNotSaved === true) {
+                        this.state.imageNotSaved = await axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
+                                    console.log(respond.data);
+                                    return respond.data;
+                                });
+                        let delay = 0;
+                        while (delay !== 1000000) {
+                            delay+=1;
+                        }
+                        imageCount += 1;
+                        if (imageCount === 40 && this.state.imageNotSaved === true) {
+
+                            break;
+                        }
+                    }
+
+                    if (this.state.imageNotSaved === true) {
+                        console.log("image is not saved!");
+                    } else {
+                        this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                    }
+            }
+
         }
     }
 
