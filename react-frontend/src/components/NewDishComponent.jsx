@@ -7,6 +7,11 @@ import BackDrop from "./BackDrop";
 import axios from "axios";
 
 
+global.constants = {
+    imageNotSaved:true,
+    formNotSaved : true,
+};
+
 function MyDropzone({childToParent}) {
     const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
@@ -61,8 +66,7 @@ class NewDishComponent extends Component{
             checkPrice:'',
             file:'',
             display:false,
-            imageNotSaved:true,
-            formNotSaved : true
+            
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -95,7 +99,7 @@ class NewDishComponent extends Component{
     saveDish = (e) =>{
         e.preventDefault();
         this.setState({imageNotSaved:true});
-        this.setState({formNotSaved:true});
+        global.constants.formNotSaved = true;
         var canSend = 1;
         if (this.state.file === '') {
             canSend = 0;
@@ -165,25 +169,28 @@ class NewDishComponent extends Component{
             NewDishService.createNewDIish(dish).then(
                 () => {
                     let count = 0;
-                    while (this.state.formNotSaved == true) {
-                                axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                    while (global.constants.formNotSaved == true) {
+                        setTimeout(
+                            () => {
+                                await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
                                     console.log(respond.data);
-                                    this.setState({formNotSaved:respond.data});
-                                    console.log(this.state.formNotSaved);
+                                    global.constants.formNotSaved = respond.data;
                                 });
 
+                            },50
+                        )
+
                         count+=1;
-                        console.log(this.state.formNotSaved);
-                        if (count == 7 && this.state.formNotSaved == true) {
+
+                        if (count == 7 && global.constants.formNotSaved == true) {
                             break;
                         }
                     }
 
-                    if (this.state.formNotSaved == true) {
+                    if (global.constants.formNotSaved == true) {
                         // need a popup here
                         console.log("form is not saved!");
                     }else { // start to send image
-                        let imageNotSaved = true;
                         let imageCount = 0;
                         NewDishService.sendImage(this.state.file).then(
                             () => {
@@ -191,23 +198,23 @@ class NewDishComponent extends Component{
                             }).catch(err => {
                                 console.log(err.response.data);
                             }).then(async res => {
-                                while (this.state.imageNotSaved === true) {
+                                while (global.constants.imageNotSaved === true) {
                                     setTimeout(
                                         () => {
                                             axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
                                                 console.log(respond.data);
-                                                this.setState({imageNotSaved:respond.data});
+                                                global.constants.imageNotSaved = respond.data;
                                             });
                                         },50
                                     )  
                                     imageCount += 1;
                                     
-                                    if (imageCount === 7 && this.state.imageNotSaved === true) {
+                                    if (imageCount === 7 && global.constants.imageNotSaved === true) {
                                         break;
                                     }
                                 }
 
-                                if (this.state.imageNotSaved === false) {
+                                if (global.constants.imageNotSaved === false) {
                                     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                                 } else {
                                     console.log("image not saved!");
