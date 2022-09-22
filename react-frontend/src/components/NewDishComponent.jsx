@@ -159,67 +159,67 @@ class NewDishComponent extends Component{
             }
             NewDishService.createNewDIish(dish).then(
                 () => {
-                    console.log("form successful");
+                    let formNotSaved = true;
+                    let count = 0;
+                    while (formNotSaved == false) {
+                        setTimeout(
+                            () => {
+                                axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                                    console.log(respond.data);
+                                    formNotSaved = respond.data;
+                                });
+
+                            },50
+                        )
+                        count+=1;
+                        if (count == 7 && formNotSaved == true) {
+                            break;
+                        }
+                    }
+
+                    if (formNotSaved == true) {
+                        // need a popup here
+                        console.log("form is not saved!");
+                    }else { // start to send image
+                        let imageNotSaved = true;
+                        let imageCount = 0;
+                        NewDishService.sendImage(this.state.file).then(
+                            () => {
+                                console.log("successful");
+                            }).catch(err => {
+                                console.log(err.response.data);
+                            }).then(async res => {
+                                while (imageNotSaved == false) {
+                                    setTimeout(
+                                        () => {
+                                            axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
+                                                console.log(respond.data);
+                                                imageNotSaved = respond.data;
+                                            });
+                                        },50
+                                    )  
+                                    imageCount += 1;
+                                    
+                                    if (imageCount == 7 && imageNotSaved) {
+                                        break;
+                                    }
+                                }
+
+                                if (imageNotSaved == false) {
+                                    this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                                } else {
+                                    console.log("image not saved!");
+                                }
+                            // setTimeout(()=> {
+                            //     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                            // },2000)
+                        });
+                    }
                 }).catch(err => {
                     console.log(err.response.data);
                 })
 
-            let formNotSaved = true;
-            let count = 0;
-            while (formNotSaved == false) {
-                setTimeout(
-                    () => {
-                        axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
-                            console.log(respond.data);
-                            formNotSaved = respond.data;
-                        });
-
-                    },50
-                )
-                count+=1;
-                if (count == 7 && formNotSaved) {
-                    break;
-                }
-            }
-
-            if (formNotSaved == true) {
-                // need a popup here
-                console.log("form is not saved!");
-            }else { // start to send image
-                let imageNotSaved = true;
-                let imageCount = 0;
-                NewDishService.sendImage(this.state.file).then(
-                    () => {
-                        console.log("successful");
-                    }).catch(err => {
-                        console.log(err.response.data);
-                    }).then(async res => {
-                        while (imageNotSaved == false) {
-                            setTimeout(
-                                () => {
-                                    axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
-                                        console.log(respond.data);
-                                        imageNotSaved = respond.data;
-                                    });
-                                },50
-                            )  
-                            imageCount += 1;
-                            
-                            if (imageCount == 7 && imageNotSaved) {
-                                break;
-                            }
-                        }
-
-                        if (imageNotSaved == false) {
-                            this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
-                        } else {
-                            console.log("image not saved!");
-                        }
-                    // setTimeout(()=> {
-                    //     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
-                    // },2000)
-                });
-            }
+            
         }
     }
 
