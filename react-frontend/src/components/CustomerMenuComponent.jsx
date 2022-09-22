@@ -182,10 +182,12 @@ class CustomerMenuComponent extends React.Component{
                         <span>Already Selected</span>
                         {this.state.foodsInCart.map((dishInCart) => (
                         <div className="foodBoxInCart" key={dishInCart.id}>
-                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
-                            <div className="foodTextContentInCart">
-                                <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
-                                <div className="foodPriceInCart">${dishInCart.price}</div>
+                            <div className="foodDescBoxInCart">
+                                <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                                <div className="foodTextContentInCart">
+                                    <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
+                                    <div className="foodPriceInCart">${dishInCart.price}</div>
+                                </div>
                             </div>
 
                             <div className="changeQuantityArea">

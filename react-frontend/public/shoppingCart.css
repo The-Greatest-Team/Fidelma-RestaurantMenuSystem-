@@ -39,8 +39,13 @@
     margin-left: 6vw;
 }
 
+.cart .foodBoxInCart .foodDescBoxInCart{
+    display: flex;
+    flex-direction: row;
+}
+
 .cart .foodBoxInCart .foodTextContentInCart{
-    margin-left: -10vw;
+    margin-left: 3vw;
     margin-top: 2vw;
     text-align: left;
 }
@@ -50,11 +55,12 @@
     color: #F01E1E;
 }
 
+
 .cart .changeQuantityArea{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 5vw;
+    margin-top: 6vw;
     margin-right: 3vw;
 }
 
