@@ -98,10 +98,10 @@ class NewDishComponent extends Component{
         });
     }
 
-    saveDish = (e) =>{
+    saveDish = async (e) => {
         e.preventDefault();
-        this.setState({imageNotSaved:true});
-        this.setState({formNotSaved:true});
+        this.setState({imageNotSaved: true});
+        this.setState({formNotSaved: true});
         var canSend = 1;
         if (this.state.file === '') {
             canSend = 0;
@@ -126,9 +126,9 @@ class NewDishComponent extends Component{
         let components = this.state.typedComponents;
         var find = 0;
         let objectArr = Object.entries(components);
-        for (var i = 0 ; i < this.state.ingredients.length;i++) {
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             find = 0;
-            for (var j = 0; j < objectArr.length;j++) {
+            for (var j = 0; j < objectArr.length; j++) {
                 if (objectArr[j][0] === this.state.ingredients[i].name) {
                     find = 1;
                 }
@@ -137,53 +137,64 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-        for (var i = 0; i< this.state.ingredients.length;i++){
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             if (components[this.state.ingredients[i].name] === '') {
                 components[this.state.ingredients[i].name] = 0;
             }
         }
 
         var allzero = 1;
-        for (var i = 0; i< this.state.ingredients.length;i++){
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             if (components[this.state.ingredients[i].name] !== 0) {
                 allzero = 0;
             }
         }
 
-        if  (allzero == 1) {
+        if (allzero == 1) {
             canSend = 0;
         }
-        
+
 
         if (canSend == 0) {
             console.log("need a popup");
-            this.setState({display:true});
-        }else {
+            this.setState({display: true});
+        } else {
             const unique_id = uuid();
-            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state,id:unique_id };
-            console.log("dish=> " +JSON.stringify(dish));
-            
-            this.state.file.append("id",unique_id);
+            let dish = {
+                name: this.state.name,
+                price: this.state.price,
+                kiloJoule: this.state.kiloJoule,
+                description: this.state.description,
+                components,
+                type: this.props.location.state,
+                id: unique_id
+            };
+            console.log("dish=> " + JSON.stringify(dish));
+
+            this.state.file.append("id", unique_id);
             for (var pair of this.state.file.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]);
+                console.log(pair[0] + ', ' + pair[1]);
             }
 
             NewDishService.createNewDIish(dish);
-                
+
             let count = 0;
             while (this.state.formNotSaved == true) {
+                this.state.formNotSaved = await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                    console.log(respond.data);
+                    this.state.formNotSaved = respond.data;
+                    console.log(this.state.formNotSaved);
+                    return respond.data;
+                });
+
+
                 setTimeout(
                     () => {
-                        await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
-                            console.log(respond.data);
-                            this.state.formNotSaved = respond.data;
-                            console.log(this.state.formNotSaved);
-                        });
-
-                    },50
+                        console.log("waiting")
+                    }, 50
                 )
 
-                count+=1;
+                count += 1;
                 console.log(this.state.formNotSaved);
                 if (count == 7 && this.state.formNotSaved == true) {
                     break;
@@ -193,7 +204,7 @@ class NewDishComponent extends Component{
             if (this.state.formNotSaved == true) {
                 // need a popup here
                 console.log("form is not saved!");
-            }else { // start to send image
+            } else { // start to send image
                 let imageCount = 0;
                 NewDishService.sendImage(this.state.file);
                 while (this.state.imageNotSaved === true) {
@@ -203,10 +214,10 @@ class NewDishComponent extends Component{
                                 console.log(respond.data);
                                 this.state.imageNotSaved = respond.data;
                                 console.log(this.state.imageNotSaved);
-                                
+
                             });
-                        },50
-                    )  
+                        }, 50
+                    )
                     imageCount += 1;
                     console.log(this.state.imageNotSaved);
                     if (imageCount === 7 && this.state.imageNotSaved === true) {
@@ -220,9 +231,8 @@ class NewDishComponent extends Component{
                     console.log("image not saved!");
                 }
             }
-                
 
-            
+
         }
     }
 
