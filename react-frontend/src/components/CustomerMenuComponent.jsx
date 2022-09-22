@@ -17,10 +17,12 @@ class CustomerMenuComponent extends React.Component{
             console.log((respond.data));
         });
         if (typeof(this.props.location.state[2]) != "undefined"){
-            this.state.foodsInCart = this.props.location.state[2]
+            this.setState({foodsInCart : this.props.location.state[2]})
         }
-        this.state.tableNum = this.props.location.state[0]
-        this.state.phone = this.props.location.state[1]
+        this.setState({
+            tableNum : this.props.location.state[0],
+            phone : this.props.location.state[1]
+        })
     }
 
     capitalizeFirst (str) {
@@ -30,12 +32,7 @@ class CustomerMenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    toggleWithCart(){
-        let cart = document.getElementById("cartArea")
-        cart.classList.toggle('active')
-        let closeCartArea = document.getElementById("closeCartArea")
-        closeCartArea.classList.toggle('active')
-    }
+    
 
     returnMainMenu(){
         let type = this.props.location.state[this.props.location.state.length-1]
@@ -51,13 +48,18 @@ class CustomerMenuComponent extends React.Component{
         return arr.length-1;
     }
 
+    // shopping cart functions
+    goToConfirmOrder(){
+        this.props.history.push("/customer/confirmPage", [this.state.tableNum, this.state.phone, this.state.foodsInCart])
+    }
+
     calculateTotalPrice(){
         let totalPrice = 0;
         for (let i = 0; i < this.state.foodsInCart.length; i++){
             let dishInCart = this.state.foodsInCart[i]
             totalPrice += dishInCart.price * dishInCart.quantity
         }
-        return totalPrice
+        return totalPrice.toFixed(1)
     }
 
     changeDishQuantity(dishInCart, action){
@@ -104,9 +106,11 @@ class CustomerMenuComponent extends React.Component{
         return -1
     }
 
-    goToConfirmOrder(){
-        let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("/customer/confirmPage", [this.state.foodsInCart ,type])
+    toggleWithCart(){
+        let cart = document.getElementById("cartArea")
+        cart.classList.toggle('active')
+        let closeCartArea = document.getElementById("closeCartArea")
+        closeCartArea.classList.toggle('active')
     }
 
     render(){
@@ -163,7 +167,7 @@ class CustomerMenuComponent extends React.Component{
                         </div>
                         ))}
                     </div>
-                    
+
                     <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.toggleWithCart()}/>
                     
                 </div>

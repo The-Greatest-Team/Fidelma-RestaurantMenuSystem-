@@ -7,7 +7,6 @@
 }
 
 #closeCartArea{
-    /* display: none; */
     position: fixed;
     width: 100%;
     z-index: -2;
@@ -16,7 +15,6 @@
 }
 
 #closeCartArea.active{
-    /* display: block; */
     background-color: #70707090;
     z-index: 2;
 }
@@ -121,4 +119,21 @@
 .addToOrder{
     display: flex;
     justify-content: space-between;
+}
+
+.movingDishPhoto{
+    position: absolute;
+    top:15%;
+    left: 5vw;
+    width: 90vw;
+    height: 90vw;
+    z-index: 2;
+    transition: .4s;
+}
+
+.movingDishPhoto.active{
+    top: 93%;
+    left: 15vw;
+    width: 0vw;
+    height: 0vw;
 }
