@@ -9,27 +9,13 @@ class MenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [],foodImages:[],imageDic:{}};
+        this.state = {foods : [],imageDic:{}};
         this.deleteDish = this.deleteDish.bind(this);
         // this.requestImage = this.requestImage.bind(this);
     }
 
 
     deleteDish(id) {
-        axios.delete("http://localhost:8080/staff/menu/deleteImage/" + id,id).then(
-            res => {
-                console.log(id);
-                this.setState({foodImages:this.state.foodImages.filter(foodImage => foodImage.id !== id)});
-                var newOne = {};
-                for (var i = 0; i < this.state.foodImages.length;i++) {
-                    newOne[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
-                }
-                this.setState({imageDic:newOne});
-                console.log(this.state.foodImages);
-                console.log(this.state.imageDic);
-            }
-        )
-        
         NewDishService.deleteDish(id).then(
             res => {
                 this.setState({foods:this.state.foods.filter(food => food.id !== id)});
@@ -42,25 +28,9 @@ class MenuComponent extends React.Component{
     }
 
     componentDidMount() {
-        // console.log("running?");
-        // axios.get('http://localhost:8080/staff/menu/image').then((respond) => {
-        //     this.setState({foodImages: respond.data});
-        //     for (var i = 0; i < this.state.foodImages.length; i++) {
-        //         this.state.imageDic[this.state.foodImages[i].id] = this.state.foodImages[i].image.data;
-        //     }
-        // })
         MenuService.getUsers(this.props.location.state).then((respond) => {
             this.setState({foods: (respond.data)});
         });
-
-        // for (var i = 0 ; i < this.state.foodImages.length;i++) {
-        //     for (var j = 0; j < this.state.foods.length;j++) {
-        //         if (this.state.foodImages[i].id == this.state.foods[j].id) {
-        //             this.state.foods[j].image = this.state.foodImages[i].image.data;
-        //         }
-        //     }
-        // }
-
     }
 
     accessEditingMode(){
@@ -151,7 +121,7 @@ class MenuComponent extends React.Component{
                             <div className="foodBox">
                                 {this.test2(dish.id)}
                                 
-                                {this.state.imageDic[dish.id] !== undefined && <img src={`http://localhost:8080/staff/menu/image/${dish.id}`} />}
+                                {this.state.imageDic[dish.id] !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">
