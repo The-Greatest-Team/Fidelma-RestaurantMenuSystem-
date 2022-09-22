@@ -156,14 +156,19 @@ class NewDishComponent extends Component{
             for (var pair of this.state.file.entries()) {
                 console.log(pair[0]+ ', ' + pair[1]);
             }
+            NewDishService.createNewDIish(dish).then(
+                () => {
+                    console.log("form successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
 
             NewDishService.sendImage(this.state.file).then(
                 () => {
                     console.log("successful");
                 }).catch(err => {
                     console.log(err.response.data);
-                })
-            NewDishService.createNewDIish(dish).then(async res => {
+                }).then(async res => {
                 setTimeout(()=> {
                     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                 },2000)
