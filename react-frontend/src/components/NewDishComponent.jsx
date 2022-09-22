@@ -179,7 +179,7 @@ class NewDishComponent extends Component{
 
                 count+=1;
                 console.log(this.state.formNotSaved);
-                if (count == 7 && this.state.formNotSaved == true) {
+                if (count == 15 && this.state.formNotSaved == true) {
                     break;
                 }
             }
@@ -195,8 +195,12 @@ class NewDishComponent extends Component{
                                     console.log(respond.data);
                                     return respond.data;
                                 });
+                        let delay = 0;
+                        while (deley !== 10000) {
+                            delay+=1;
+                        }
                         imageCount += 1;
-                        if (imageCount === 7 && this.state.imageNotSaved === true) {
+                        if (imageCount === 40 && this.state.imageNotSaved === true) {
                             break;
                         }
                     }
