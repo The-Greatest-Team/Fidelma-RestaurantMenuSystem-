@@ -196,29 +196,29 @@ class NewDishComponent extends Component{
             }else { // start to send image
                 let imageCount = 0;
                 NewDishService.sendImage(this.state.file);
-                    while (this.state.imageNotSaved === true) {
-                        setTimeout(
-                            () => {
-                                axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
-                                    console.log(respond.data);
-                                    this.state.imageNotSaved = respond.data;
-                                    console.log(this.state.imageNotSaved);
-                                    
-                                });
-                            },50
-                        )  
-                        imageCount += 1;
-                        console.log(this.state.imageNotSaved);
-                        if (imageCount === 7 && this.state.imageNotSaved === true) {
-                            break;
-                        }
+                while (this.state.imageNotSaved === true) {
+                    setTimeout(
+                        () => {
+                            axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
+                                console.log(respond.data);
+                                this.state.imageNotSaved = respond.data;
+                                console.log(this.state.imageNotSaved);
+                                
+                            });
+                        },50
+                    )  
+                    imageCount += 1;
+                    console.log(this.state.imageNotSaved);
+                    if (imageCount === 7 && this.state.imageNotSaved === true) {
+                        break;
                     }
+                }
 
-                    if (this.state.imageNotSaved === false) {
-                        this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
-                    } else {
-                        console.log("image not saved!");
-                    }
+                if (this.state.imageNotSaved === false) {
+                    this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                } else {
+                    console.log("image not saved!");
+                }
             }
                 
 
