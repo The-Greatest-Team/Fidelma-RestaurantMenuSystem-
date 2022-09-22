@@ -60,7 +60,9 @@ class NewDishComponent extends Component{
             checkCode:{},
             checkPrice:'',
             file:'',
-            display:false
+            display:false,
+            imageNotSaved:true,
+            formNotSaved : true
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -92,6 +94,8 @@ class NewDishComponent extends Component{
 
     saveDish = (e) =>{
         e.preventDefault();
+        this.setState({imageNotSaved:true});
+        this.setState({formNotSaved:true});
         var canSend = 1;
         if (this.state.file === '') {
             canSend = 0;
@@ -157,27 +161,27 @@ class NewDishComponent extends Component{
             for (var pair of this.state.file.entries()) {
                 console.log(pair[0]+ ', ' + pair[1]);
             }
+
             NewDishService.createNewDIish(dish).then(
                 () => {
-                    let formNotSaved = true;
                     let count = 0;
-                    while (formNotSaved == true) {
+                    while (this.state.formNotSaved == true) {
                         setTimeout(
                             () => {
                                 axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
                                     console.log(respond.data);
-                                    formNotSaved = respond.data;
+                                    this.setState({formNotSaved:respond.data});
                                 });
 
                             },50
                         )
                         count+=1;
-                        if (count == 7 && formNotSaved == true) {
+                        if (count == 7 && this.state.formNotSaved == true) {
                             break;
                         }
                     }
 
-                    if (formNotSaved == true) {
+                    if (this.state.formNotSaved == true) {
                         // need a popup here
                         console.log("form is not saved!");
                     }else { // start to send image
@@ -189,23 +193,23 @@ class NewDishComponent extends Component{
                             }).catch(err => {
                                 console.log(err.response.data);
                             }).then(async res => {
-                                while (imageNotSaved == true) {
+                                while (this.state.imageNotSaved == true) {
                                     setTimeout(
                                         () => {
                                             axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
                                                 console.log(respond.data);
-                                                imageNotSaved = respond.data;
+                                                this.setState({imageNotSaved:respond.data});
                                             });
                                         },50
                                     )  
                                     imageCount += 1;
                                     
-                                    if (imageCount == 7 && imageNotSaved == true) {
+                                    if (imageCount == 7 && this.state.imageNotSaved == true) {
                                         break;
                                     }
                                 }
 
-                                if (imageNotSaved == false) {
+                                if (this.state.imageNotSaved == false) {
                                     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                                 } else {
                                     console.log("image not saved!");
