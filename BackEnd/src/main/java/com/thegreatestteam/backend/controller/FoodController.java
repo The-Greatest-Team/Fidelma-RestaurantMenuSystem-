@@ -106,6 +106,7 @@ public class FoodController {
     @PostMapping("/newDishImage")
     public void addImage(@RequestParam("file") MultipartFile file,@RequestParam("id") String id) throws IOException {
         imageService.addImage(file,id);
+
     }
 
     @GetMapping("/image")

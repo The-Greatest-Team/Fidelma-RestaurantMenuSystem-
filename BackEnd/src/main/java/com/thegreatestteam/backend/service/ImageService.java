@@ -1,6 +1,8 @@
 package com.thegreatestteam.backend.service;
 
+import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Image;
+import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.repository.ImageRepository;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
@@ -16,12 +18,18 @@ public class ImageService {
 
     @Autowired
     private ImageRepository imageRepository;
+    @Autowired
+    private FoodRepository foodRepository;
 
     public void addImage(MultipartFile file, String id) throws IOException {
         try {
             Image image = new Image(id);
             image.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+            System.out.println(image.getImage().getData());
             imageRepository.save(image);
+            Food food = foodRepository.findFoodById(id);
+            food.setImage(image.getImage().getData());
+            foodRepository.save(food);
         } catch (IOException e) {
             throw new IOException("Image upload unsuccessful");
         }
