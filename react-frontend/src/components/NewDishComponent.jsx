@@ -100,6 +100,10 @@ class NewDishComponent extends Component{
 
     saveDish = async (e) => {
         e.preventDefault();
+        if (this.state.file.size > 2097152) {
+            console.log("file is too large");
+            return;
+        }
         this.setState({imageNotSaved: true});
         this.setState({formNotSaved: true});
         var canSend = 1;
