@@ -53,7 +53,7 @@ class ConfirmComponent extends React.Component{
         }
         let order = {
             tableNumber : this.state.tableNum,
-            phoneNumber : this.state.phoneNumber,
+            phoneNumber : this.state.phone,
             name : this.state.orderComment,
             cart
         }
