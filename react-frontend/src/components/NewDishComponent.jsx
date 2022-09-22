@@ -179,7 +179,7 @@ class NewDishComponent extends Component{
             for (var pair of this.state.file.entries()) {
                 console.log(pair[0] + ', ' + pair[1]);
             }
-            NewDishService.createNewDIish(dish).then(
+            NewDishService.createNewDish(dish).then(
                 () => {
                     console.log("form successful");
                 }).catch(err => {
@@ -202,7 +202,7 @@ class NewDishComponent extends Component{
                 while (delay !== 1000000) {
                     delay+=1;
                 }
-                if (count == 20 && this.state.formNotSaved == true) {
+                if (count == 50 && this.state.formNotSaved == true) {
                     break;
                 }
             }
@@ -219,11 +219,11 @@ class NewDishComponent extends Component{
                                     return respond.data;
                                 });
                         let delay = 0;
-                        while (delay !== 1000000) {
+                        while (delay !== 100000000) {
                             delay+=1;
                         }
                         imageCount += 1;
-                        if (imageCount === 40 && this.state.imageNotSaved === true) {
+                        if (imageCount === 100 && this.state.imageNotSaved === true) {
 
                             break;
                         }

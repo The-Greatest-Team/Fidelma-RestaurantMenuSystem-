@@ -1,17 +1,21 @@
+import Axios from "axios";
 import React from "react";
 import ConfirmService from "../services/ConfirmService";
+import axios from "axios";
 
 class ConfirmComponent extends React.Component{
 
     constructor(props){
         super(props)
 
-        this.state = {foodsInCart : [], tableNum : '', phone : ''}
+        this.state = {foodsInCart : [], tableNum : '', phone : '',orderComment:''}
+        this.nameHandler = this.nameHandler.bind(this);
+        this.saveOrder = this.saveOrder.bind(this);
 
     }
 
-    testPost(){
-        ConfirmService.postUsers();
+    nameHandler = (event) => {
+        this.setState({orderComment:event.target.value});
     }
 
     componentDidMount(){
@@ -21,7 +25,6 @@ class ConfirmComponent extends React.Component{
         }
         this.setState({tableNum :  this.props.location.state[0]})
         this.setState({phone : this.props.location.state[1]})
-        console.log(this.state)
     }
 
     backToMainMenu(){
@@ -35,6 +38,31 @@ class ConfirmComponent extends React.Component{
             totalPrice += dishInCart.price * dishInCart.quantity
         }
         return totalPrice.toFixed(1)
+    }
+
+    saveOrder = (e) => {
+        e.preventDefault();
+        // let order = {
+        //     tableNum
+        // }
+        // axios.post("http://localhost:8080/customer/orderConfirm",).then()
+        console.log(this.state.foodsInCart);
+        let cart = {};
+        for (var i = 0; i < this.state.foodsInCart.length; i++) {
+            cart[this.state.foodsInCart[i].id] = this.state.foodsInCart[i].quantity;
+        }
+        let order = {
+            tableNumber : this.state.tableNum,
+            phoneNumber : this.state.phoneNumber,
+            name : this.state.orderComment,
+            cart
+        }
+        console.log("order=> " + JSON.stringify(order));
+        axios.post("http://localhost:8080/customer/orderConfirm",).then( (res) => {
+            this.props.history.push("/submitPage",this.props.location.state);
+            }
+        )
+        
     }
 
     render(){
@@ -70,9 +98,12 @@ class ConfirmComponent extends React.Component{
                         ))}
                         <div className = "addComment">
                             <div className = "commentTitle">
-                                <h4>Put additional comment here:</h4>
+                                <h4>What is your name?</h4>
                             </div>   
-                            <input className = "orderComment" />
+                            <form>
+                                <input className = "orderComment" type = "text" name = "orderInput"
+                                value = {this.state.orderComment} onChange={this.nameHandler}/>
+                            </form>
                         </div>
                     </div>
                     <div className = "finishOrder">
@@ -80,7 +111,7 @@ class ConfirmComponent extends React.Component{
                             <h4><strong>Total:</strong></h4>
                             <h4><strong>${this.calculateTotalPrice()}</strong></h4>
                         </div> 
-                        <button className = "finishOrderButton" onClick={()=>this.props.history.push("/submitPage",this.props.location.state)}>Order Now</button>
+                        <button className = "finishOrderButton" onClick = {this.saveOrder} >Order Now</button>
                         
                     </div>
                 </div>
