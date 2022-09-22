@@ -166,16 +166,14 @@ class NewDishComponent extends Component{
                 () => {
                     let count = 0;
                     while (this.state.formNotSaved == true) {
-                        setTimeout(
-                            () => {
                                 axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
                                     console.log(respond.data);
                                     this.setState({formNotSaved:respond.data});
+                                    console.log(this.state.formNotSaved);
                                 });
 
-                            },50
-                        )
                         count+=1;
+                        console.log(this.state.formNotSaved);
                         if (count == 7 && this.state.formNotSaved == true) {
                             break;
                         }
@@ -193,7 +191,7 @@ class NewDishComponent extends Component{
                             }).catch(err => {
                                 console.log(err.response.data);
                             }).then(async res => {
-                                while (this.state.imageNotSaved == true) {
+                                while (this.state.imageNotSaved === true) {
                                     setTimeout(
                                         () => {
                                             axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
@@ -204,12 +202,12 @@ class NewDishComponent extends Component{
                                     )  
                                     imageCount += 1;
                                     
-                                    if (imageCount == 7 && this.state.imageNotSaved == true) {
+                                    if (imageCount === 7 && this.state.imageNotSaved === true) {
                                         break;
                                     }
                                 }
 
-                                if (this.state.imageNotSaved == false) {
+                                if (this.state.imageNotSaved === false) {
                                     this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
                                 } else {
                                     console.log("image not saved!");
