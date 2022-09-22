@@ -15,6 +15,7 @@ class CustomerMainMenuComponent extends React.Component{
         }
         this.state.tableNum = this.props.location.state[0]
         this.state.phone = this.props.location.state[1]
+        console.log(this.state.tableNum)
     }
 
     showCart(){
@@ -44,7 +45,7 @@ class CustomerMainMenuComponent extends React.Component{
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
-                        <span>Table No. {this.props.location.state.tableNum}</span>
+                        <span>Table No.{this.state.tableNum}</span>
                     </div>
 
                     <div>

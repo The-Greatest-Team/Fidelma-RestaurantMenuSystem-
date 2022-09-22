@@ -6,7 +6,7 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : []}
+        this.state = {foods : [], foodsInCart : [], tableNum : '', phone : ''}
     }
 
 
@@ -19,6 +19,8 @@ class CustomerMenuComponent extends React.Component{
         if (typeof(this.props.location.state[2]) != "undefined"){
             this.state.foodsInCart = this.props.location.state[2]
         }
+        this.state.tableNum = this.props.location.state[0]
+        this.state.phone = this.props.location.state[1]
     }
 
     capitalizeFirst (str) {
@@ -37,12 +39,12 @@ class CustomerMenuComponent extends React.Component{
 
     returnMainMenu(){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("/customer/mainMenu", [this.props.location.state[0], this.props.location.state[1],this.state.foodsInCart ,type])
+        this.props.history.push("/customer/mainMenu", [this.state.tableNum, this.state.phone ,this.state.foodsInCart ,type])
     }
 
     viewInDetails(dish){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("dishDescription",[this.props.location.state[0], this.props.location.state[1],this.state.foodsInCart, dish ,type])
+        this.props.history.push("dishDescription",[this.state.tableNum, this.state.phone,this.state.foodsInCart, dish ,type])
     }
 
     getLast(arr) {
@@ -121,7 +123,7 @@ class CustomerMenuComponent extends React.Component{
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={() => this.returnMainMenu()} src="/res/images/arrow.png" alt="return button icon" />
-                        <span>Table No.16</span>
+                        <span>Table No.{this.state.tableNum}</span>
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
