@@ -6,7 +6,7 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], cartOpen : false}
+        this.state = {foods : [], foodsInCart : []}
     }
 
 
@@ -31,17 +31,11 @@ class CustomerMenuComponent extends React.Component{
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
-    showCart(){
-        console.log(this.state.foodsInCart)
-        // let background = document.getElementById("normlaStateMenu")
-        // background.style.color = 707070
-        this.setState({cartOpen : true})
-        console.log(this.state)
-
-    }
-
-    closeCart(){
-        this.setState({cartOpen : false})
+    toggleWithCart(){
+        let cart = document.getElementById("cartArea")
+        cart.classList.toggle('active')
+        let closeCartArea = document.getElementById("closeCartArea")
+        closeCartArea.classList.toggle('active')
     }
 
     returnMainMenu(){
@@ -119,6 +113,7 @@ class CustomerMenuComponent extends React.Component{
     render(){
         return(
             <>
+                <div id="closeCartArea" onClick={()=>this.toggleWithCart()}></div>
                 <div id="normlaStateMenu">
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -170,16 +165,14 @@ class CustomerMenuComponent extends React.Component{
                         ))}
                     </div>
                     
-                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.toggleWithCart()}/>
                     
-
-                    <button id="testBtn" onClick={()=>this.closeCart()}>Test Close</button>
 
                 </div>
                 
-                <Slide bottom when={this.state.cartOpen}>
-                    <div>
-                    <div className="cart">
+                {/* <Slide bottom when={this.state.cartOpen}> */}
+                {/* <div className="cart"> */}
+                    <div className="cart" id="cartArea">
                         <span>Already Selected</span>
                         {this.state.foodsInCart.map((dishInCart) => (
                         <div className="foodBoxInCart" key={dishInCart.id}>
@@ -203,8 +196,8 @@ class CustomerMenuComponent extends React.Component{
                             <button onClick={() => this.goToConfirmOrder()}>Order Now</button>
                         </div>
                     </div>
-                    </div>
-                </Slide>
+                {/* </div> */}
+                {/* </Slide> */}
             </>
         );
     }
