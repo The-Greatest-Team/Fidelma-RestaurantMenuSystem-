@@ -161,7 +161,7 @@ class NewDishComponent extends Component{
                 () => {
                     let formNotSaved = true;
                     let count = 0;
-                    while (formNotSaved == false) {
+                    while (formNotSaved == true) {
                         setTimeout(
                             () => {
                                 axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
@@ -189,7 +189,7 @@ class NewDishComponent extends Component{
                             }).catch(err => {
                                 console.log(err.response.data);
                             }).then(async res => {
-                                while (imageNotSaved == false) {
+                                while (imageNotSaved == true) {
                                     setTimeout(
                                         () => {
                                             axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
@@ -200,7 +200,7 @@ class NewDishComponent extends Component{
                                     )  
                                     imageCount += 1;
                                     
-                                    if (imageCount == 7 && imageNotSaved) {
+                                    if (imageCount == 7 && imageNotSaved == true) {
                                         break;
                                     }
                                 }
