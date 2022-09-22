@@ -109,12 +109,21 @@ public class FoodController {
 
     }
 
-    @GetMapping("/image")
-    public List<Image> getImage() throws Exception {
-        List<Image> images = imageService.getAllImage();
-//        model.addAttribute("image", Base64.getEncoder().encodeToString(image.getImage().getData()));
-        return images;
+    @GetMapping("/checkForm/{id}")
+    public boolean checkFood(@PathVariable String id){
+        return !foodService.checkFood(id);
     }
+
+    @GetMapping("/checkImage/{id}")
+    public boolean checkImage(@PathVariable String id){
+        Food food = foodService.getFoodById(id);
+        if(food.getImage() == null){
+            return true;
+        }
+        return false;
+    }
+
+
 
     @DeleteMapping("/deleteImage/{id}")
     public void deleteImage(@PathVariable String id){
