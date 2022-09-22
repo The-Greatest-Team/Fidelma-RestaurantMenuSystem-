@@ -21,7 +21,7 @@ public class OrderService {
     }
 
     public List<Order> getOrderByPhoneNumber(String phoneNumber){
-        return orderRepository.findOrdersByPhoneNumer(phoneNumber);
+        return orderRepository.findOrdersByPhoneNumber(phoneNumber);
     }
 
     public void addOrder(Order order) {
