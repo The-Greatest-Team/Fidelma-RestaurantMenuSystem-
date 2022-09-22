@@ -121,7 +121,7 @@ class MenuComponent extends React.Component{
                             <div className="foodBox">
                                 {this.test2(dish.id)}
                                 
-                                {this.state.imageDic[dish.id] !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
+                                {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
                                 <div className="textBox">
