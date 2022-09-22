@@ -6,14 +6,15 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = { foodsInCart : [], tableNum : ''}
+        this.state = { foodsInCart : [], tableNum : '', phone : ''}
     }
 
     componentDidMount(){
-        if (typeof(this.props.location.state.foodsInCart) != "undefined"){
-            this.state.foodsInCart = this.props.location.state.foodsInCart
+        if (typeof(this.props.location.state[2]) != "undefined"){
+            this.state.foodsInCart = this.props.location.state[2]
         }
-        // console.log(this.props.location.state.tableNum);
+        this.state.tableNum = this.props.location.state[0]
+        this.state.phone = this.props.location.state[1]
     }
 
     showCart(){
@@ -24,11 +25,11 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToChicken(){
-        this.props.history.push("/customer/menu/" + "chicken", [this.state.foodsInCart, "chicken"])
+        this.props.history.push("/customer/menu/" + "chicken", [this.state.tableNum, this.state.phone,this.state.foodsInCart, "chicken"])
     }
 
     goToBeef(){
-        this.props.history.push("/customer/menu/" + "beef" ,[this.state.foodsInCart, "beef"])
+        this.props.history.push("/customer/menu/" + "beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
     }
 
     render(){

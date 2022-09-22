@@ -36,11 +36,9 @@ class DescriptionComponent extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props.location.state[1]);
-        console.log(Object.keys(this.props.location.state[1].components));
         if (typeof(this.props.location.state) != "undefined"){
-            this.state.foodsInCart = this.props.location.state[0]
-            this.state.type = this.props.location.state[2]
+            this.state.foodsInCart = this.props.location.state[2]
+            this.state.type = this.props.location.state[4]
         }
 
     }
@@ -78,7 +76,7 @@ class DescriptionComponent extends React.Component{
     }
 
     backToTypeMenu(){
-        this.props.history.push("/customer/menu/chicken",[this.state.foodsInCart, this.state.type])
+        this.props.history.push("/customer/menu/chicken",[this.props.location.state[0], this.props.location.state[1], this.state.foodsInCart, this.state.type])
     }
 
     render(){
@@ -88,7 +86,7 @@ class DescriptionComponent extends React.Component{
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" onClick={() => this.backToTypeMenu()} />
                         {/* // onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/> */}
-                        <h4>{this.props.location.state[1].name}</h4>
+                        <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
                         <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
@@ -96,16 +94,16 @@ class DescriptionComponent extends React.Component{
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
                         <div className = "descriptionTitle">
-                            <h4><strong>{this.props.location.state[1].name}</strong></h4>
-                            <h4 className = "dishPrice">${this.props.location.state[1].price}</h4>
+                            <h4><strong>{this.props.location.state[3].name}</strong></h4>
+                            <h4 className = "dishPrice">${this.props.location.state[3].price}</h4>
                         </div> 
                         <div className = "descriptionContent">
-                            <p>{this.props.location.state[1].description}</p>
+                            <p>{this.props.location.state[3].description}</p>
                         </div>
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        <div className = "allIngredient">{Object.keys(this.props.location.state[1].components).join(', ')}</div>
+                        <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
@@ -115,7 +113,7 @@ class DescriptionComponent extends React.Component{
                     <div className = "addToOrder">
                         <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={() => this.showCart()}/>
                         <button className = "addToOrderButton" 
-                        onClick={() => this.storeInCart(this.props.location.state[1])}>Add to order</button>
+                        onClick={() => this.storeInCart(this.props.location.state[3])}>Add to order</button>
                     </div>
                 </div>
             </>

@@ -62,8 +62,14 @@ class EnterComponent extends React.Component{
         });
     }
 
+    // if you want to parse more data in here which will
+    // break the list of length 2, notify Yichen
+    // because it is a list, the menu component is using index
+    // to transfer data
+    // current status, index 0 is tableNum, index 1 is phone
+    // index 2 is food in cart, last index must be type
     goToMainMenu(){
-        this.props.history.push("/customer/mainMenu",this.state);
+        this.props.history.push("/customer/mainMenu",[this.state.tableNum, this.state.phone]);
     }
 
     render(){

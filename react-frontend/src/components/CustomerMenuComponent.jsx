@@ -16,11 +16,8 @@ class CustomerMenuComponent extends React.Component{
             console.log(typeof(this.state.foods));
             console.log((respond.data));
         });
-        if (typeof(this.props.location.state) != "undefined"){
-            this.state.foodsInCart = this.props.location.state[0]
-            console.log(this.props.location.state)
-            console.log(typeof(this.state.foodsInCart))
-            console.log(this.state.foodsInCart)
+        if (typeof(this.props.location.state[2]) != "undefined"){
+            this.state.foodsInCart = this.props.location.state[2]
         }
     }
 
@@ -40,12 +37,12 @@ class CustomerMenuComponent extends React.Component{
 
     returnMainMenu(){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("/customer/mainMenu", [this.state.foodsInCart ,type])
+        this.props.history.push("/customer/mainMenu", [this.props.location.state[0], this.props.location.state[1],this.state.foodsInCart ,type])
     }
 
     viewInDetails(dish){
         let type = this.props.location.state[this.props.location.state.length-1]
-        this.props.history.push("dishDescription",[this.state.foodsInCart, dish, type])
+        this.props.history.push("dishDescription",[this.props.location.state[0], this.props.location.state[1],this.state.foodsInCart, dish ,type])
     }
 
     getLast(arr) {
@@ -167,37 +164,32 @@ class CustomerMenuComponent extends React.Component{
                     
                     <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.toggleWithCart()}/>
                     
-
                 </div>
                 
-                {/* <Slide bottom when={this.state.cartOpen}> */}
-                {/* <div className="cart"> */}
-                    <div className="cart" id="cartArea">
-                        <span>Already Selected</span>
-                        {this.state.foodsInCart.map((dishInCart) => (
-                        <div className="foodBoxInCart" key={dishInCart.id}>
-                            <div className="foodDescBoxInCart">
-                                <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
-                                <div className="foodTextContentInCart">
-                                    <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
-                                    <div className="foodPriceInCart">${dishInCart.price}</div>
-                                </div>
-                            </div>
-
-                            <div className="changeQuantityArea">
-                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/deleteButton.png" alt="delete Button icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'delete')}/>
-                            <div className = "currentQuantity">{dishInCart.quantity}</div>
-                            <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'add')}/>
+                <div className="cart" id="cartArea">
+                    <span>Already Selected</span>
+                    {this.state.foodsInCart.map((dishInCart) => (
+                    <div className="foodBoxInCart" key={dishInCart.id}>
+                        <div className="foodDescBoxInCart">
+                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <div className="foodTextContentInCart">
+                                <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
+                                <div className="foodPriceInCart">${dishInCart.price}</div>
                             </div>
                         </div>
-                        ))}
-                        <div className="cartInfo">
-                            <span>Total: ${this.calculateTotalPrice()}</span>
-                            <button onClick={() => this.goToConfirmOrder()}>Order Now</button>
+
+                        <div className="changeQuantityArea">
+                        <input className="QuantityBtnIconInCart" type="image" src="/res/images/deleteButton.png" alt="delete Button icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'delete')}/>
+                        <div className = "currentQuantity">{dishInCart.quantity}</div>
+                        <input className="QuantityBtnIconInCart" type="image" src="/res/images/addButton.png" alt="addButton icon in food cart" onClick={()=>this.changeDishQuantity(dishInCart, 'add')}/>
                         </div>
                     </div>
-                {/* </div> */}
-                {/* </Slide> */}
+                    ))}
+                    <div className="cartInfo">
+                        <span>Total: ${this.calculateTotalPrice()}</span>
+                        <button onClick={() => this.goToConfirmOrder()}>Order Now</button>
+                    </div>
+                </div>
             </>
         );
     }
