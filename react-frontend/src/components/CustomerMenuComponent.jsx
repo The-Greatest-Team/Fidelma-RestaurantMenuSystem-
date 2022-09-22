@@ -36,6 +36,7 @@ class CustomerMenuComponent extends React.Component{
         // let background = document.getElementById("normlaStateMenu")
         // background.style.color = 707070
         this.setState({cartOpen : true})
+        console.log(this.state)
 
     }
 
@@ -175,7 +176,7 @@ class CustomerMenuComponent extends React.Component{
                     <button id="testBtn" onClick={()=>this.closeCart()}>Test Close</button>
 
                 </div>
-
+                
                 <Slide bottom when={this.state.cartOpen}>
                     <div>
                     <div className="cart">
