@@ -15,7 +15,7 @@ import java.util.Map;
 public class Food extends Item {
     private Map<String, Double> components;
     private String type;
-    private Binary image;
+    private byte[] image;
 
     private String id;
 
@@ -24,13 +24,12 @@ public class Food extends Item {
     private String description;
     private int kiloJoule;
 
-    public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components,Binary image, String description){
+    public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components, String description){
         super(name, price);
         this.id = id;
         this.type = type;
         this.kiloJoule = kiloJoule;
         this.components = components;
-//        this.image = image;
         this.description = description;
         this.isSoldOut = false;
     }
@@ -51,11 +50,11 @@ public class Food extends Item {
         this.components = components;
     }
 
-    public Binary getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Binary image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

@@ -179,7 +179,9 @@ class EditDishComponent extends Component{
                     console.log(err.response.data);
                 })
             EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
+                setTimeout(()=> {
+                    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
+                },2000)
             });
     }
     

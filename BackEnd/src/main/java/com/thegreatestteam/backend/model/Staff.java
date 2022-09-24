@@ -1,5 +1,6 @@
 package com.thegreatestteam.backend.model;
 
+import com.mongodb.lang.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,8 +11,9 @@ import java.time.LocalDate;
 public class Staff {
 
     @Id
-    private Integer id;
-    private String userName;
+    private String id;
+    @NonNull
+    private String Username;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,18 +22,18 @@ public class Staff {
 
     private String phoneNumber;
 
-    private String address;
+    private String Address;
 
-    public Staff(Integer id, String userName, String firstName, String lastName,
+    public Staff(String id, String username, String firstName, String lastName,
                  String email, LocalDate dob, String phoneNumber, String address) {
         this.id = id;
-        this.userName = userName;
+        Username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        Address = address;
     }
 
     public String getFirstName() {
@@ -50,12 +52,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     public String getUsername() {
-        return userName;
+        return Username;
     }
 
     public String getEmail() {
@@ -71,7 +73,7 @@ public class Staff {
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
 

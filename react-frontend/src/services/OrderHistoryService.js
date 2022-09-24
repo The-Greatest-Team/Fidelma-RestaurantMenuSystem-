@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const USERS_REST_API_URL = 'http://localhost:8080/customer/menu/dishDescription';
+const USERS_REST_API_URL = 'http://localhost:8080/staff/orderHistory';
 
-class DescriptionService{
+class OrderHistoryService{
 
     getUsers(){
         return axios.get(USERS_REST_API_URL)
@@ -11,7 +11,6 @@ class DescriptionService{
     postUsers(){
         return axios.post(USERS_REST_API_URL, "test");
     }
-    
 }
 
-export default new DescriptionService()
+export default new OrderHistoryService()

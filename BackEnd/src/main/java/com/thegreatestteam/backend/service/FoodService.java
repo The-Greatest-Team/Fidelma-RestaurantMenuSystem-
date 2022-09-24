@@ -74,4 +74,8 @@ public class FoodService {
 //        foodRepository.save(food);
 //        System.out.println("Save Image");
 //    }
+
+    public boolean checkFood(String id){
+        return foodRepository.existsById(id);
+    }
 }

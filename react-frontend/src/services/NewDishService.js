@@ -8,7 +8,7 @@ class NewDIshService{
         return axios.get(DISH_REST_API_URL)
     }
 
-    createNewDIish(dish) {
+    createNewDish(dish) {
         return axios.post(DISH_REST_API_URL,dish)
     }
 
