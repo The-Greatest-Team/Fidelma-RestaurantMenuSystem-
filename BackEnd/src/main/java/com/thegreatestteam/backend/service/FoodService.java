@@ -28,10 +28,13 @@ public class FoodService {
         for(String ingredientName: food.getComponents().keySet()){
 
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
-            Integer currentQuantity = ingredient.getQuantity();
-            Integer requiredQuantity = food.getComponents().get(ingredientName);
+            if(ingredient == null){
+                return false;
+            }
+            Double currentQuantity = ingredient.getQuantity();
+            Double requiredQuantity = food.getComponents().get(ingredientName);
             if (requiredQuantity == null){
-                requiredQuantity = 0;
+                requiredQuantity = 0.0;
             }
             if(currentQuantity - requiredQuantity < 0 ){
                 return true;
@@ -71,4 +74,8 @@ public class FoodService {
 //        foodRepository.save(food);
 //        System.out.println("Save Image");
 //    }
+
+    public boolean checkFood(String id){
+        return foodRepository.existsById(id);
+    }
 }

@@ -19,4 +19,9 @@ public class StaffService {
     public Staff getAllStaffWithID(String Id){
         return staffRepository.findStaffById(Id);
     }
+
+    // Add Staff
+    public void addStaff(Staff staff){
+        staffRepository.save(staff);
+    }
 }

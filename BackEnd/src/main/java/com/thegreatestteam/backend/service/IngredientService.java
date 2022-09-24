@@ -23,10 +23,14 @@ public class IngredientService {
     }
 
     public void deleteIngredientById(String id){
-        ingredientRepository.deleteById(Integer.valueOf(id));
+        ingredientRepository.deleteById(id);
     }
 
     public Ingredient findIngredientByName(String name){
         return ingredientRepository.findByName(name);
+    }
+
+    public Ingredient findIngredientByID(String id){
+        return ingredientRepository.findIngredientById(id);
     }
 }

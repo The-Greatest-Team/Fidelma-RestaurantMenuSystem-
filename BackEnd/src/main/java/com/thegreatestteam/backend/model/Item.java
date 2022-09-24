@@ -10,8 +10,7 @@ public abstract class Item {
     private String name;
     private double price;
 
-    @Id
-    private String id;
+
 
     public Item(String name, double price) {
         this.name = name;
@@ -34,8 +33,5 @@ public abstract class Item {
         this.price = price;
     }
 
-    public String getId() {
-        return id;
-    }
 
 }

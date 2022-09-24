@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("${frontend.host}")
 @RestController
+@RequestMapping("/staff")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -20,27 +21,37 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/staff/ingredient")
+    @GetMapping("/ingredient")
     public List<Ingredient> getIngredient(){
         return ingredientService.getAllIngredient();
     }
 
+    @GetMapping("/ingredient/{ingredientID}")
+    public Ingredient getIngredientByID(@PathVariable String ingredientID){
+        return ingredientService.findIngredientByID(ingredientID);
+    }
+
     // Create ingredients
-    @PostMapping("/staff/ingredient")
-    public void addIngredients(@RequestBody Ingredient ingredient){
+    @PostMapping("/ingredient")
+    public void addIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
-    @DeleteMapping("/staff/ingredient")
-    public void deleteIngredients(@PathVariable String ingredientId){
+    @DeleteMapping("/ingredient/{ingredientId}")
+    public void deleteIngredient(@PathVariable String ingredientId){
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-    @GetMapping("/staff/menu/NewDish")
-    public List<Ingredient> addNewDish(){
-        return ingredientService.getAllIngredient();
+    @PutMapping("/ingredient/{ingredientID}")
+    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientID){
+        Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientID);
+        currentIngredient.setName(ingredient.getName());
+        currentIngredient.setQuantity(ingredient.getQuantity());
+        currentIngredient.setPrice(ingredient.getPrice());
+        ingredientService.addIngredient(currentIngredient);
     }
+
 
 
 }

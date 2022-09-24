@@ -1,5 +1,39 @@
-import React,{Component} from "react";
+import React,{Component,useCallback} from "react";
 import EditDishService from "../services/EditDishService";
+import {useDropzone} from 'react-dropzone'
+import axios from "axios";
+
+
+function MyDropzone({childToParent}) {
+    const onDrop = useCallback(acceptedFiles => {
+      const file = acceptedFiles[0];
+      console.log(file);
+      const formData = new FormData();
+      formData.append("file",file);
+      childToParent(formData);
+
+    }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  
+    return (
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {
+          isDragActive ?
+          <div id = "camera">
+            <div className = "content top">
+                <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+            </div>
+          </div> :
+            <div id = "camera">
+                <div className = "content top">
+                    <img className = "cameraImage" src="/res/images/camera.jpg"/>
+                </div>
+            </div>
+        }
+      </div>
+    )
+  }
 
 class EditDishComponent extends Component{
     constructor(props){
@@ -17,7 +51,9 @@ class EditDishComponent extends Component{
             type:'',
             ingredients:[],
             typedComponents:{},
-            allIngredients:[]
+            allIngredients:[],
+            file:'',
+            currentimage:''
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -26,14 +62,20 @@ class EditDishComponent extends Component{
         this.chickenHandler = this.chickenHandler.bind(this);
         this.editDish = this.editDish.bind(this);
         this.back = this.back.bind(this);
+        this.childToParent = this.childToParent.bind(this);
     }  
     
+    childToParent = (childData) => {
+        this.setState({file:childData});
+    }
+
     componentDidMount(){
+        axios.get('http://localhost:8080/staff/menu/editDish/image/' + this.state.id).then((respond) => {
+            this.setState({currentimage:respond.data.image.data});
+            
+            console.log(this.state.currentimage);
+        })
         EditDishService.getDishById(this.state.id).then((respond) => {
-            // let dish = respond.data;
-            // console.log(typeof(dish.components));
-            // console.log(dish.components);
-            // let objectArray = Object.entries(dish.components);
             this.setState({allIngredients : (respond.data)});
             console.log(this.props.location.state);
             let objectArr = Object.entries(this.props.location.state.components);
@@ -125,10 +167,21 @@ class EditDishComponent extends Component{
                 components[componentsArr[l][0]] = value;
             }
         }
+
+        
         let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
+            console.log(this.state.file);
+            axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+                () => {
+                    console.log("successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
             EditDishService.editDish(dish,this.state.id).then( res=> {
-                this.props.history.push('/staff/menu/' + this.props.location.state.type);
+                setTimeout(()=> {
+                    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
+                },2000)
             });
     }
     
@@ -168,7 +221,7 @@ kjHandler = (event) => {
 back = (e) => {
     e.preventDefault();
     console.log(this.props.location.state);
-    this.props.history.push('/staff/menu/' + this.props.location.state.type);
+    this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
 }
     render(){
         return(
@@ -181,11 +234,8 @@ back = (e) => {
                     </div>
                     <h2>updating</h2>
                     
-                    <div id = "camera">
-                        <div className = "content top">
-                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                        </div>
-                    </div> 
+                    <MyDropzone childToParent={this.childToParent}/> 
+
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">
@@ -193,10 +243,10 @@ back = (e) => {
                             <input className = "inputPart" type="text"  name = "name"
                             placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="text"  name = "price"
+                            <input className = "inputPart" type="number"  name = "price"
                             placeholder = {this.props.location.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="text"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule"
                             placeholder = {this.props.location.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
@@ -206,33 +256,13 @@ back = (e) => {
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                {/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                         onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                         onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                         onChange={this.chickenHandler}/>
-                                    </div> */}
                                 {
                                     this.state.ingredients.map(
                                          ingredient =>
                                         <div key = {ingredient[0]}>
                                             <span className = "name">{ingredient[0]}</span>
                                             <span className = "unit">g</span>
-                                            <input className = "quantity" type="text"  name = "onion"
+                                            <input className = "quantity" type="number"  name = "onion"
                                             placeholder = {ingredient[1]} onChange={e => this.onionHandler(e,ingredient)}/>
                                         </div>
                                     )

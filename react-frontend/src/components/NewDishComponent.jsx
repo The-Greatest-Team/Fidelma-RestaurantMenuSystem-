@@ -1,5 +1,50 @@
-import React,{Component} from "react";
+import React,{Component,useCallback} from "react";
 import NewDishService from "../services/NewDishService";
+import {useDropzone} from 'react-dropzone'
+import { v4 as uuid } from 'uuid';
+import NewDishPopupComponent from "./NewDishPopupComponent";
+import BackDrop from "./BackDrop";
+import axios from "axios";
+
+
+global.constants = {
+    imageNotSaved:true,
+    formNotSaved : true,
+};
+
+function MyDropzone({childToParent}) {
+    const onDrop = useCallback(acceptedFiles => {
+    const file = acceptedFiles[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append("file",file);
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+    
+    childToParent(formData);
+    }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  
+    return (
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {
+          isDragActive ?
+          <div id = "camera">
+            <div className = "content top">
+                <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+            </div>
+          </div> :
+            <div id = "camera">
+                <div className = "content top">
+                    <img className = "cameraImage" src="/res/images/camera.jpg"/>
+                </div>
+            </div>
+        }
+      </div>
+    )
+  }
 
 class NewDishComponent extends Component{
  
@@ -16,7 +61,14 @@ class NewDishComponent extends Component{
             chicken:'',
             type:'',
             ingredients:[],
-            typedComponents:{}
+            typedComponents:{},
+            checkCode:{},
+            checkPrice:'',
+            file:'',
+            display:false,
+            imageNotSaved:true,
+            formNotSaved : true
+            
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -25,27 +77,63 @@ class NewDishComponent extends Component{
         this.chickenHandler = this.chickenHandler.bind(this);
         this.saveDish = this.saveDish.bind(this);
         this.back = this.back.bind(this);
-    }  
+        this.childToParent = this.childToParent.bind(this);
+    }
+
+    openPopup = () => {
+        this.setState({display:true});
+    }
+
+    closePopup = () => {
+        this.setState({display:false});
+    }
+      
+    childToParent = (childData) => {
+        this.setState({file:childData});
+    }
     
     componentDidMount(){
         NewDishService.getIngredients().then((respond) => {
             this.setState({ingredients : (respond.data)});
-            console.log(typeof(this.state.ingredients));
-            console.log((respond.data));
         });
     }
 
-    saveDish = (e) =>{
+    saveDish = async (e) => {
         e.preventDefault();
+        if (this.state.file.size > 2097152) {
+            console.log("file is too large");
+            console.log(this.state.file.size)
+            return;
+        }
+        this.setState({imageNotSaved: true});
+        this.setState({formNotSaved: true});
+        var canSend = 1;
+        if (this.state.file === '') {
+            canSend = 0;
+        }
+
+        if (this.state.name === '') {
+            canSend = 0;
+        }
+
+        if (this.state.price === '') {
+            canSend = 0;
+        }
+
+        if (this.state.kiloJoule === '') {
+            canSend = 0;
+        }
+
+        if (this.state.description === '') {
+            canSend = 0;
+        }
+
         let components = this.state.typedComponents;
         var find = 0;
         let objectArr = Object.entries(components);
-        console.log(components);
-        console.log(objectArr);
-        console.log(this.state.ingredients);
-        for (var i = 0 ; i < this.state.ingredients.length;i++) {
+        for (var i = 0; i < this.state.ingredients.length; i++) {
             find = 0;
-            for (var j = 0; j < objectArr.length;j++) {
+            for (var j = 0; j < objectArr.length; j++) {
                 if (objectArr[j][0] === this.state.ingredients[i].name) {
                     find = 1;
                 }
@@ -54,69 +142,161 @@ class NewDishComponent extends Component{
                 components[this.state.ingredients[i].name] = 0;
             }
         }
+        for (var i = 0; i < this.state.ingredients.length; i++) {
+            if (components[this.state.ingredients[i].name] === '') {
+                components[this.state.ingredients[i].name] = 0;
+            }
+        }
 
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type:this.props.location.state};
-        console.log("dish=> " +JSON.stringify(dish));
-        NewDishService.createNewDIish(dish).then(res =>  {
-        this.props.history.push('/staff/menu/' + this.props.location.state);
-        });
+        var allzero = 1;
+        for (var i = 0; i < this.state.ingredients.length; i++) {
+            if (components[this.state.ingredients[i].name] !== 0) {
+                allzero = 0;
+            }
+        }
+
+        if (allzero == 1) {
+            canSend = 0;
+        }
+
+
+        if (canSend == 0) {
+            console.log("need a popup");
+            this.setState({display: true});
+        } else {
+            const unique_id = uuid();
+            let dish = {
+                name: this.state.name,
+                price: this.state.price,
+                kiloJoule: this.state.kiloJoule,
+                description: this.state.description,
+                components,
+                type: this.props.location.state,
+                id: unique_id
+            };
+            console.log("dish=> " + JSON.stringify(dish));
+
+            this.state.file.append("id", unique_id);
+            for (var pair of this.state.file.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }
+            NewDishService.createNewDish(dish).then(
+                () => {
+                    console.log("form successful");
+                }).catch(err => {
+                    console.log(err.response.data);
+                })
+
+
+            NewDishService.createNewDish(dish);
+                
+            let count = 0;
+            while (this.state.formNotSaved == true) {
+                         this.state.formNotSaved = await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                            console.log(respond.data);
+                            return respond.data;
+                        });
+
+                count+=1;
+                console.log(this.state.formNotSaved);
+                let delay = 0;
+                while (delay !== 1000000) {
+                    delay+=1;
+                }
+                if (count == 50 && this.state.formNotSaved == true) {
+                    break;
+                }
+            }
+
+            if (this.state.formNotSaved == true) {
+                // need a popup here
+                console.log("form is not saved!");
+            } else { // start to send image
+                let imageCount = 0;
+                NewDishService.sendImage(this.state.file)
+                    while (this.state.imageNotSaved === true) {
+                        this.state.imageNotSaved = await axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
+                                    console.log(respond.data);
+                                    return respond.data;
+                                });
+                        let delay = 0;
+                        while (delay !== 100000000) {
+                            delay+=1;
+                        }
+                        imageCount += 1;
+                        if (imageCount === 100 && this.state.imageNotSaved === true) {
+
+                            break;
+                        }
+                    }
+
+                    if (this.state.imageNotSaved === true) {
+                        console.log("image is not saved!");
+                    } else {
+                        this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
+                    }
+            }
+
+        }
+    }
+
+    
+    nameHandler = (event) =>{
+        this.setState({name:event.target.value});
+    }
+
+    priceHandler = (event) => {
+        // let value = event.target.value.replace('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$','')
+        // this.setState({ checkPrice: value })
+        this.setState({price:event.target.value});
+    }
+
+    descriptionHandler = (event) => {
+        this.setState({description:event.target.value});
+    }
+
+
+
+    onionHandler(event,ingredient) {
+        // let v = event.target.value.replace(/[^\d]/, '');
+        // this.state.checkCode[ingredient.name] = v;
+        var key = ingredient.name;
+        var value = event.target.value;
+        this.state.typedComponents[key] = value;
+    }
+
+    beefHandler = (event) => {
+        this.setState({beef:event.target.value});
+    }
+
+    chickenHandler = (event) => {
+        this.setState({chicken:event.target.value});
+    }
+
+
+    kjHandler = (event) => {
+        this.setState({kiloJoule:event.target.value});
+    }
+
+    back = async (e) => {
+        e.preventDefault();
+        this.props.history.push('/staff/menu/' + this.props.location.state, this.props.location.state);
         
     }
-    
-nameHandler = (event) =>{
-    this.setState({name:event.target.value});
-}
 
-priceHandler = (event) => {
-    this.setState({price:event.target.value});
-}
-
-descriptionHandler = (event) => {
-    this.setState({description:event.target.value});
-}
-
-
-
-onionHandler(event,ingredient) {
-    var key = ingredient.name;
-    var value = event.target.value;
-    this.state.typedComponents[key] = value;
-}
-
-beefHandler = (event) => {
-    this.setState({beef:event.target.value});
-}
-
-chickenHandler = (event) => {
-    this.setState({chicken:event.target.value});
-}
-
-
-kjHandler = (event) => {
-    this.setState({kiloJoule:event.target.value});
-}
-
-back = (e) => {
-    e.preventDefault();
-    if (this.props.location.state === 'chicken'){
-        this.props.history.push('/staff/menu/chicken');
-    }
-}
     render(){
         return(
+            
             <>
-                <div  >
+                <div>
                     <div>
                         <button onClick={this.back} className = "min" >
                         <img className = "backSign" src="/res/images/backSign.jpg"/>
                         </button>
                     </div>
                     
-                    <div id = "camera">
-                        <div className = "content top">
-                            <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                        </div>
-                    </div> 
+                    
+                    <MyDropzone childToParent={this.childToParent}/> 
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">
@@ -124,10 +304,10 @@ back = (e) => {
                             <input className = "inputPart" type="text"  name = "name" 
                             value = {this.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="text"  name = "price"
-                            value = {this.state.price} onChange={this.priceHandler}/>
+                            <input className = "inputPart" type="number"  name = "price"
+                            value={this.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="text"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule"
                             value = {this.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"
@@ -137,34 +317,14 @@ back = (e) => {
                                 <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
-                                {/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                         onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                         onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                         onChange={this.chickenHandler}/>
-                                    </div> */}
                                 {
                                     this.state.ingredients.map(
                                          ingredient =>
                                          <div key = {ingredient.name}>
                                             <span className = "name">{ingredient.name}</span>
                                             <span className = "unit">g</span>
-                                            <input className = "quantity" type="text"  name = "onion"
-                                             onChange={e => this.onionHandler(e,ingredient)}/>
+                                            <input className = "quantity" type="number" name = "onion"
+                                             onChange={e => this.onionHandler(e,ingredient)}  />
                                         </div>
                                     )
                                 }
@@ -173,8 +333,10 @@ back = (e) => {
                         <div id = "saveButton"> <button className = "min"  onClick = {this.saveDish} id = "save" >Save</button></div>
                         </form> 
                         
-                    </div>   
+                    </div>  
+                    
                 </div>
+                {this.state.display && <NewDishPopupComponent closePopup = {this.closePopup}/>}
             </>
         );
     }
@@ -182,24 +344,3 @@ back = (e) => {
 }
 
 export default NewDishComponent
-
-{/* <div>
-                                        <span className = "name">Onion</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "onion"
-                                        value = {this.state.onion} onChange={this.onionHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Beef</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "beef"
-                                        value = {this.state.beef} onChange={this.beefHandler}/>
-                                        
-                                    </div>
-                                    <div>
-                                        <span className = "name">Chicken</span>
-                                        <span className = "unit">g</span>
-                                        <input className = "quantity" type="text"  name = "chicken"
-                                        value = {this.state.chicken} onChange={this.chickenHandler}/>
-                                    </div> */}
