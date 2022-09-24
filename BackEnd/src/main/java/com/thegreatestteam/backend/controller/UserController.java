@@ -33,6 +33,7 @@ public class UserController {
     // front end api listed here
     @PostMapping("/orderConfirm")
     public void addOrder(@RequestBody Order order){
+        System.out.println(order.toString());
         orderService.addOrder(order);
     }
 
