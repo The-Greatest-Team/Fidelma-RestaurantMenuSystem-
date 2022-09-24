@@ -1,23 +1,16 @@
 package com.thegreatestteam.backend.controller;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Image;
 import com.thegreatestteam.backend.model.Ingredient;
-import com.thegreatestteam.backend.repository.FoodRepository;
-import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.ImageService;
-import org.bson.types.Binary;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 @CrossOrigin("${frontend.host}")
 @RestController
@@ -59,6 +52,7 @@ public class FoodController {
     }
 
     @PostMapping("/newDish")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addNewFood(@RequestBody Food food){
         foodService.addFood(food);
     }
