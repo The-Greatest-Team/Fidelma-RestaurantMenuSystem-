@@ -301,16 +301,16 @@ class NewDishComponent extends Component{
                         <form>            
                         <div className = "content edit">
                             <h2>Name</h2>
-                            <input className = "inputPart" type="text"  name = "name" 
+                            <input className = "inputPart" type="text"  name = "name" data-testid = "name"
                             value = {this.state.name} onChange={this.nameHandler}/>
                             <h2>Price</h2>
-                            <input className = "inputPart" type="number"  name = "price"
+                            <input className = "inputPart" type="number"  name = "price" data-testid = "price"
                             value={this.state.price} onChange={this.priceHandler}/>
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="number"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule" data-testid = "kiloJoule"
                             value = {this.state.kiloJoule} onChange={this.kjHandler}/>
                             <h2>Description</h2>
-                            <textarea className = "inputPartSpecial"  name = "description"
+                            <textarea className = "inputPartSpecial"  name = "description"  data-testid = "description"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">

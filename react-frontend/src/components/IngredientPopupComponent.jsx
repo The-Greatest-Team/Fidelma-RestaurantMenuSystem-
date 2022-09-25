@@ -14,7 +14,7 @@ class IngredientPopupComponent extends Component {
         this.nameHandler = this.nameHandler.bind(this);
         this.quantityHandler = this.quantityHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
-        this.saveIngredient = this.saveIngredient.bind(this);
+        
     }
     
     nameHandler = (event) =>{
@@ -29,41 +29,42 @@ class IngredientPopupComponent extends Component {
         this.setState({price:event.target.value});
     }
 
-    saveIngredient = (event) => {
-        event.preventDefault();
-        let ingredient = {name:this.state.name,quantity:this.state.quantity,price:this.state.price}
-        console.log("ingredient=> " +JSON.stringify(ingredient));
-        IngredientPopupService.postIngredients(ingredient).then(res => {
-            this.props.closeAddPopup();
-            window.location.reload()
-        });
-
-    }
+    
 
     render() {
         return (
             <React.Fragment>
-            <BackDrop show={this.props.show} clicked={this.props.modalClosed} />
-            <form>
+            <BackDrop show={this.props.show}  />
+            
                 <div className="addPopup">
                     <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick={this.props.closeAddPopup}>x</button></h2>
-                    
-
-                    <h3 className="addPopupSubTtile">name</h3>
-                    <input className="addPopupInput" type="text"
+                    <form data-testid = 'form' >
+                    <div>
+                    <h3 className="addPopupSubTtile">Name</h3>
+                    <input className="addPopupInput" type="text" data-testid = "name" aria-label= "name" maxLength = "15"
                     value = {this.state.name} onChange={this.nameHandler} />
 
+                    
+                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                    </div>
+
+                    <div>
                     <h3 className="addPopupSubTtile">Quantity</h3>
-                    <input className="addPopupInput" type="number"
+                    <input className="addPopupInput" type="number" data-testid = "quantity" aria-label= "quantity" min = "1" max = "99999999"
                     value = {this.state.quantity} onChange={this.quantityHandler} />
 
-                    <h3 className="addPopupSubTtile">Price</h3>
-                    <input className="addPopupInput" type="number"
-                    value = {this.state.price} onChange={this.priceHandler} />
+                    {this.state.quantity && <span className="error" data-testid="error-msg">Please enter a valid quantity.</span>} 
+                    </div>
 
-                    <button className = "addPopupSubmitButton" onClick = {this.saveIngredient}>Submit</button>
+                    <div>
+                    <h3 className="addPopupSubTtile">Price</h3> 
+                    <input className="addPopupInput" type="number" data-testid = "price" aria-label= "price" min = "0" max = "99999"
+                    value = {this.state.price} onChange={this.priceHandler} />
+                    {this.state.price && <span className="error" data-testid="error-msg">Please enter a valid price.</span>} 
+                    </div>
+                    </form>
+                    <button className = "addPopupSubmitButton" onClick = {e => this.props.saveIngredient(e,this.state.name,this.state.quantity,this.state.price)} data-testid = "submit">Submit</button>
                 </div>
-            </form>
             </React.Fragment>
         )
         

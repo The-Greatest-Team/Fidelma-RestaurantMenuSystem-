@@ -23,12 +23,12 @@ class CharacterComponent extends React.Component{
                         <h4>Which character do you want to test?</h4>
                     </div>
                     <div className = "characterContainer">
-                        <button className = "characterButton"
+                        <button className = "characterButton" data-testid = 'customer'
                         onClick={()=>this.props.history.push("/enterPage",this.props.location.state)}
                         >I'm a customer</button>
                     </div>
                     <div className = "characterContainer">
-                        <button className = "characterButton"
+                        <button className = "characterButton" data-testid = 'staff'
                         onClick={()=>this.props.history.push("/staff/dashboard",this.props.location.state)}
                         >I'm a staff</button>
                     </div>

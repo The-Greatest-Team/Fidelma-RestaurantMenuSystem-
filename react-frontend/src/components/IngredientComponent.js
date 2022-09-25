@@ -2,6 +2,7 @@ import React from "react";
 import IngredientService from "../services/IngredientService";
 import IngredientPopupComponent from "./IngredientPopupComponent";
 import EditIngredientComponent from "./EditIngredientComponent";
+import IngredientPopupService from "../services/IngredientPopupService";
 
 const meats = [
     createData('Pork', 150, 10.00),
@@ -72,6 +73,7 @@ class IngredientComponent extends React.Component{
         };
 
         this.deleteIngredient = this.deleteIngredient.bind(this);
+        this.saveIngredient = this.saveIngredient.bind(this);
     }
 
     deleteIngredient (id) {
@@ -96,6 +98,7 @@ class IngredientComponent extends React.Component{
         IngredientService.getIngredients().then((respond) => {
             this.setState({allIngredients : (respond.data)});
             console.log(this.state.allIngredients);
+            console.log(typeof(this.state.allIngredients[0].name));
         });
     }
 
@@ -118,12 +121,46 @@ class IngredientComponent extends React.Component{
         
     }
 
-    
+    saveIngredient = (event,name,quantity,price) => {
+        console.log(name);
+        console.log(quantity);
+        console.log(price);
+        let canSend = 1;
+        if (!(/^[a-zA-Z]*$/).test(name)) {
+            canSend = 0;
+        }else if (quantity < 1 || quantity > 99999999) {
+            canSend = 0;
+        } else if (price < 0 || price > 99999) {
+            canSend = 0;
+        }
+
+        if (name === '') {
+            canSend = 0;
+        }else if (quantity === '') {
+            canSend = 0;
+        }else if (price === '') {
+            canSend = 0;
+        }
+
+        if (canSend === 1) {
+            let ingredient = {name:name,quantity:quantity,price:price}
+            console.log("ingredient=> " +JSON.stringify(ingredient));
+            IngredientPopupService.postIngredients(ingredient).then(res => {
+                this.closeAddPopup();
+                window.location.reload()
+            });
+        }
+            
+        
+        
+
+    }
+
     render(){
         return(
             <>
                 <div className = "main">
-                    <div className="ingredientHeader">
+                    <div className="ingredientHeader" data-testid= 'gg'>
                         <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
                     </div>
                     <div className = "titleContainer" onClick={this.close}>
@@ -146,7 +183,7 @@ class IngredientComponent extends React.Component{
                                 <tbody>
                                     {this.state.allIngredients.map((row) =>(
                                         <tr
-                                            key = {row.id}
+                                            key = {row.id} data-testid = {row.name}
                                         >
                                             <td>{row.name}</td>
                                             <td>{row.quantity}</td>
@@ -159,7 +196,7 @@ class IngredientComponent extends React.Component{
                                 </tbody>
                             </table>
                             <button className="addIngredient" onClick={this.openAddPopup}>add</button>
-                            {this.state.displayAddPopup && <IngredientPopupComponent closeAddPopup = {this.closeAddPopup} />}
+                            {this.state.displayAddPopup && <IngredientPopupComponent saveIngredient = {this.saveIngredient} closeAddPopup = {this.closeAddPopup}/>}
                             
                         </div>
                     </div>
