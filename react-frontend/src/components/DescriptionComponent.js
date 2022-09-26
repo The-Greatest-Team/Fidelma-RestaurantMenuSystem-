@@ -11,7 +11,8 @@ class DescriptionComponent extends React.Component{
             foodsInCart : [], 
             type : null,
             tableNum: '',
-            phone : ''
+            phone : '',
+            cartOpen : false
         }
     }
 

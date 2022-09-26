@@ -6,7 +6,7 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], tableNum : '', phone : ''}
+        this.state = {foods : [], foodsInCart : [], tableNum : '', phone : '', cartOpen : false}
     }
 
 
