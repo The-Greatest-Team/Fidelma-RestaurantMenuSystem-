@@ -38,7 +38,7 @@ class IngredientControllerTest {
     }
 
     @Test
-    void getIngredientByID() throws Exception {
+    void getIngredientById() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/ingredient/IngredientTest").
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
