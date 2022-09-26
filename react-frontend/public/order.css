@@ -10,15 +10,16 @@
 
 /* For enter page */
 .orderMain{
-    /* background-image: url("res/images/orderBackground.jpg"); */
+    background-image: url("res/images/orderBackground.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: "Worksans";
-    position: absolute;
+    position: relative;
+    /* position: absolute;
     height: 100vh;
     width: 100%;
-    top:0;
+    top:0; */
     
 }
 

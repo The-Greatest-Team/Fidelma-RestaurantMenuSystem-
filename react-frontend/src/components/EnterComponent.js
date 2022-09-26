@@ -75,7 +75,7 @@ class EnterComponent extends React.Component{
     render(){
         return(
             <>
-                <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/>
+                {/* <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/> */}
                 <div className = "orderMain">
                     <div className="orderHead">
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
