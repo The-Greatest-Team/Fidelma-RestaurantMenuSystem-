@@ -106,6 +106,18 @@ class CustomerMenuComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
@@ -116,7 +128,7 @@ class CustomerMenuComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div id="normlaStateMenu">
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -168,7 +180,7 @@ class CustomerMenuComponent extends React.Component{
                         ))}
                     </div>
 
-                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.toggleWithCart()}/>
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.showCart()}/>
                     
                 </div>
                 

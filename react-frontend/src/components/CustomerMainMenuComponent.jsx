@@ -6,7 +6,7 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = { foodsInCart : [], tableNum : '', phone : ''}
+        this.state = { foodsInCart : [], tableNum : '', phone : '', cartOpen : false}
     }
 
     componentDidMount(){
@@ -78,11 +78,24 @@ class CustomerMainMenuComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
         let closeCartArea = document.getElementById("closeCartArea")
         closeCartArea.classList.toggle('active')
+        
     }
 
     goToConfirmOrder(){
@@ -92,7 +105,7 @@ class CustomerMainMenuComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -122,7 +135,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
                     </div>
 
-                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.toggleWithCart()}/>
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
 
                 </div>
 
