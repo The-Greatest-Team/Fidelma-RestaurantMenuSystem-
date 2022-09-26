@@ -3,19 +3,25 @@ import React from 'react';
 import user from '@testing-library/user-event';
 import NewDishComponent from '../components/NewDishComponent';
 
-
 test('will give an error message when the name is not alphabet',() => {
     render(<NewDishComponent />);
-    user.type(getName(),'-1abc');
+    user.type(getName(),'abc@!)))');
     expect(screen.getByTestId("error-msg-name")).toBeInTheDocument();
     expect(screen.getByTestId("error-msg-name").textContent).toEqual("Please enter a valid name.");
 })
 
-test('will give an error message when the name is not alphabet',() => {
+test('will give an error message when the price if too small',() => {
     render(<NewDishComponent />);
-    user.type(getName(),'7777');
-    expect(screen.getByTestId("error-msg-name")).toBeInTheDocument();
-    expect(screen.getByTestId("error-msg-name").textContent).toEqual("Please enter a valid name.");
+    user.type(getPrice(),'-1');
+    expect(screen.getByTestId("error-msg-price")).toBeInTheDocument();
+    expect(screen.getByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
+})
+
+test('will give an error message when the price if too large',() => {
+    render(<NewDishComponent />);
+    user.type(getPrice(),'999999999999');
+    expect(screen.getByTestId("error-msg-price")).toBeInTheDocument();
+    expect(screen.getByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
 })
 
     

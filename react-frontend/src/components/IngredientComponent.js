@@ -128,7 +128,7 @@ class IngredientComponent extends React.Component{
         let canSend = 1;
         if (!(/^[a-zA-Z]*$/).test(name)) {
             canSend = 0;
-        }else if (quantity < 1 || quantity > 99999999) {
+        }else if (quantity < 0 || quantity > 99999999) {
             canSend = 0;
         } else if (price < 0 || price > 99999) {
             canSend = 0;

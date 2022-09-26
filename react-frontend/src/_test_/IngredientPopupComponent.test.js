@@ -44,6 +44,36 @@ describe('Add new ingredient form',() => {
             expect(screen.queryByTestId("error-msg-name").textContent).toEqual("Please enter a valid name.");
         })
     })
+
+    describe('Quantity field', () => {
+        it('will give an error message when the quantity if too small',() => {
+            user.type(getQuantity(),'-1');
+            expect(screen.queryByTestId("error-msg-quantity")).toBeInTheDocument();
+            expect(screen.queryByTestId("error-msg-quantity").textContent).toEqual("Please enter a valid quantity.");
+        })
+
+        it('will give an error message when the quantity if too large',() => {
+            user.type(getQuantity(),'999999999999');
+            expect(screen.queryByTestId("error-msg-quantity")).toBeInTheDocument();
+            expect(screen.queryByTestId("error-msg-quantity").textContent).toEqual("Please enter a valid quantity.");
+        })
+    })
+
+    describe('Price field', () => {
+        it('will give an error message when the price if too small',() => {
+            user.type(getPrice(),'-1');
+            expect(screen.queryByTestId("error-msg-price")).toBeInTheDocument();
+            expect(screen.queryByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
+        })
+
+        it('will give an error message when the price if too large',() => {
+            user.type(getPrice(),'999999999999');
+            expect(screen.queryByTestId("error-msg-price")).toBeInTheDocument();
+            expect(screen.queryByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
+        })
+    })
+
+    
 })
 
 
