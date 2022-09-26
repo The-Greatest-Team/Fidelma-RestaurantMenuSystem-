@@ -53,8 +53,9 @@ public class FoodController {
 
     @PostMapping("/newDish")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addNewFood(@RequestBody Food food){
+    public Food addNewFood(@RequestBody Food food){
         foodService.addFood(food);
+        return food;
     }
 
 
@@ -68,7 +69,8 @@ public class FoodController {
         foodService.deleteFood(id);
     }
     @PutMapping("/edit/{id}")
-    public void updateDish(@RequestBody Food newFood, @PathVariable String id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Food updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
         food.setName(newFood.getName());
         food.setPrice(newFood.getPrice());
@@ -76,11 +78,13 @@ public class FoodController {
         food.setDescription(newFood.getDescription());
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
+        return foodService.getFoodById(id);
     }
 
 
-    // for editting the dish
+    // for editing the dish
     @PostMapping("/dish/imageEdit/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
         deleteImage(id);
         addImage(file, id);
@@ -96,7 +100,6 @@ public class FoodController {
 
 
     // Image interaction
-
     @PostMapping("/newDishImage")
     public void addImage(@RequestParam("file") MultipartFile file,@RequestParam("id") String id) throws IOException {
         imageService.addImage(file,id);
@@ -117,13 +120,8 @@ public class FoodController {
         return false;
     }
 
-
-
     @DeleteMapping("/deleteImage/{id}")
     public void deleteImage(@PathVariable String id){
         imageService.deleteImage(id);
     }
-
-
-
 }
