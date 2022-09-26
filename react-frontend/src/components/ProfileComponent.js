@@ -23,14 +23,14 @@ class ProfileComponent extends React.Component{
                         <hr className = "titleSeparateLine"/>
                     </div>
                     <div>
-                        <img className = "profileImg" src = "/res/images/staff.svg" alt = "staff" />
+                        <img className = "profileImg" src = "/res/images/TGLogo.png" alt = "staff" />
                     </div>
                     <div className = "profileContent">
                         <div className = "left">
                             <h4><strong>Name</strong></h4>
                         </div>
                         <div className = "right">
-                            <h4>Wendi YING</h4>
+                            <h4>The Greatest Team</h4>
                         </div>
                     </div>    
                     <hr className = "profileSeparateLine"/>
@@ -57,7 +57,7 @@ class ProfileComponent extends React.Component{
                             <h4><strong>Date of Birth</strong></h4>
                         </div>
                         <div className = "right">
-                            <h4>11/03/2002</h4>
+                            <h4>01/01/2002</h4>
                         </div>
                     </div>  
                     <hr className = "profileSeparateLine"/>
