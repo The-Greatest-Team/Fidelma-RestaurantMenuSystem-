@@ -1,6 +1,7 @@
 import axios from "axios";
+import {API_URL} from "../constant";
 
-const USERS_REST_API_URL = 'http://localhost:8080/confirmPage';
+const USERS_REST_API_URL = API_URL + '/confirmPage';
 
 class ConfirmService{
 
