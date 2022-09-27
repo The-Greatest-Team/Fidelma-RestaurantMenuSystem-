@@ -36,7 +36,7 @@ class EnterComponent extends React.Component{
     save(event){
         console.log(this.state.tableNum);
         console.log(this.state.phone);
-        var tableNumPattern = /[1-9]\d*/;
+        var tableNumPattern = /^-?[1-9]\d*$/;
         var phonePattern = /0?(4)[0-9]{8}/;
 
         if(this.state.tableNum == '' || this.state.phone == ''){
@@ -75,7 +75,7 @@ class EnterComponent extends React.Component{
     render(){
         return(
             <>
-                <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/>
+                {/* <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/> */}
                 <div className = "orderMain">
                     <div className="orderHead">
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
@@ -83,13 +83,17 @@ class EnterComponent extends React.Component{
                     <form>
                     <div className = "tableNum">
                         <h4>Table No.</h4>
-                        <input className = "tableInput" value = {this.state.tableNum} onChange={this.tableNumHandler}/>
+                        <input className = "tableInput" value = {this.state.tableNum} type = 'number' onChange={this.tableNumHandler} data-testId = "tableNum" min = '0' max = '100'/>
                         <hr className = "orderSeparateLine"/>
+                        {this.state.tableNum && ((this.state.tableNum < 0 || this.state.tableNum > 100) || (/^-?[1-9]\d*$/).test(this.state.tableNum) == false) && <span className="error" data-testid="error-msg-tableNum">Please enter a valid table number.</span>} 
+
                     </div>
                     <div className = "tableNum">
                         <h4>Phone Number</h4>
-                        <input className = "tableInput" value = {this.state.phone} onChange={this.phoneHandler}/>
+                        <input className = "tableInput" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum"/>
                         <hr className = "orderSeparateLine"/>
+                        {this.state.phone && !(/0?(4)[0-9]{8}/).test(this.state.phone) && <span className="error" data-testid="error-msg-phoneNum">Please enter a valid phone number.</span>} 
+
                     </div>
                     <div className = "startOrder">
                         {/* <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button> */}

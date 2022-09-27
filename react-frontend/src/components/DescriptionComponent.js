@@ -11,7 +11,8 @@ class DescriptionComponent extends React.Component{
             foodsInCart : [], 
             type : null,
             tableNum: '',
-            phone : ''
+            phone : '',
+            cartOpen : false
         }
     }
 
@@ -133,6 +134,18 @@ class DescriptionComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
@@ -148,7 +161,7 @@ class DescriptionComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.  toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" onClick={() => this.backToTypeMenu()} />
@@ -178,7 +191,7 @@ class DescriptionComponent extends React.Component{
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                     <div className = "addToOrder">
-                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.toggleWithCart()}/>
+                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.showCart()}/>
                         <button className = "addToOrderButton" 
                         onClick={() => this.storeInCart(this.props.location.state[3])}>Add to order</button>
                     </div>

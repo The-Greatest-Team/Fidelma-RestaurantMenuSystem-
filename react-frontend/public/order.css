@@ -10,15 +10,16 @@
 
 /* For enter page */
 .orderMain{
-    /* background-image: url("res/images/orderBackground.jpg"); */
+    background-image: url("res/images/orderBackground.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: "Worksans";
-    position: absolute;
+    position: relative;
+    /* position: absolute;
     height: 100vh;
     width: 100%;
-    top:0;
+    top:0; */
     
 }
 
@@ -360,14 +361,33 @@
 }
 
 /* For character selection page */
+.selectionMain{
+    background-image: url("res/images/orderBackground.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .introTitle{
     text-align: center;
-    margin-top: 10%;
+    padding-top: 10%;
+}
+
+.introTitle h3{
+    color: #FFFFFF;
+}
+
+.introTitle p{
+    color: #FFFFFF;
 }
 
 .characterTitle{
     text-align: center;
     margin-top: 15%;
+}
+
+.characterTitle h4{
+    color: #FFFFFF;
 }
 
 .characterContainer{
@@ -386,4 +406,14 @@
     font-size: 6vw;
     padding: 1vw 3vw 1vw 3vw;
     margin-top: 5%;
+}
+
+.copyRightTitle{
+    text-align: center;
+    margin-top: 58%;
+    padding-bottom: 17.8%;
+}
+
+.copyRightTitle p{
+    color: #FFFFFF;
 }
