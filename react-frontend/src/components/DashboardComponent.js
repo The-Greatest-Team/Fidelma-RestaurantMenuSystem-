@@ -12,7 +12,7 @@ class DashboardComponent extends React.Component{
     }
     componentDidMount() {
         axios.get(API_HEROKU + '/staff/menu/chicken').then((response)=>{
-            console.log(repsonse.data);
+            console.log(response.data);
         })
     }
 
