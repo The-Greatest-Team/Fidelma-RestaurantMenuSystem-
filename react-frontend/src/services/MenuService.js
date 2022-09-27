@@ -6,7 +6,7 @@ const USERS_REST_API_URL = API_HEROKU + '/staff/menu/';
 class UserService{
 
     getUsers(type){
-        console.log(USERS_REST_API_URL)
+        console.log(USERS_REST_API_URL + type)
         return axios.get(USERS_REST_API_URL + type)
     }
 

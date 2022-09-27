@@ -1,5 +1,7 @@
 import React from "react";
 import UserService from "../services/DashboardService";
+import {API_HEROKU} from "../constant";
+import axios from "axios";
 
 class DashboardComponent extends React.Component{
 
@@ -7,6 +9,11 @@ class DashboardComponent extends React.Component{
         super(props)
 
         this.state = {foods : []}
+    }
+    componentDidMount() {
+        axios.get(API_HEROKU + '/staff/menu/chicken').then((response)=>{
+            console.log(repsonse.data);
+        })
     }
 
     testPost(){
