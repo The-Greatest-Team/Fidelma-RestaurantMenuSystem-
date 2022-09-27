@@ -12,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-@CrossOrigin("${frontend.host}")
+//@CrossOrigin("${frontend.host}")
+//@CrossOrigin("${frontend.host.heroku}")
+
+@CrossOrigin(origins = {"http://localhost:3000", "http://fidelma-reactjs.herokuapp.com"})
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {
