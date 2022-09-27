@@ -1,7 +1,7 @@
 import axios from "axios";
-import {API_URL} from "../constant";
+import {API_HEROKU, API_URL} from "../constant";
 
-const DISH_REST_API_URL = API_URL + '/staff/menu/newDish';
+const DISH_REST_API_URL = API_HEROKU+ '/staff/menu/newDish';
 
 class NewDIshService{
 
@@ -19,7 +19,7 @@ class NewDIshService{
 
     //{headers:{"Content-Type":"multipart/form-data"}}
     sendImage(image) {
-        return axios.post(API_URL + '/staff/menu/newDishImage',image);
+        return axios.post(API_HEROKU+ '/staff/menu/newDishImage',image);
     }
     
 }

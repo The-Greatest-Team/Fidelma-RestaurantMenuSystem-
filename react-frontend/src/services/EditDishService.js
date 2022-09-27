@@ -1,7 +1,7 @@
 import axios from "axios";
-import {API_URL} from "../constant";
+import {API_HEROKU, API_URL} from "../constant";
 
-const EDIT_REST_API_URL = API_URL + '/staff/menu/edit';
+const EDIT_REST_API_URL = API_HEROKU+ '/staff/menu/edit';
 
 class EditDIshService{
 
@@ -14,7 +14,7 @@ class EditDIshService{
     }
 
     changeImage(image,id) {
-        return axios.put(API_URL + '/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
+        return axios.put(API_HEROKU + '/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
     }
 }
 

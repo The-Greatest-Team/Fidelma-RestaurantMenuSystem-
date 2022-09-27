@@ -1,7 +1,7 @@
 import axios from "axios";
-import {API_URL} from "../constant";
+import {API_HEROKU, API_URL} from "../constant";
 
-const USERS_REST_API_URL =  API_URL + '/staff/dashboard';
+const USERS_REST_API_URL =  API_HEROKU+ '/staff/dashboard';
 
 class DashboardService{
 
