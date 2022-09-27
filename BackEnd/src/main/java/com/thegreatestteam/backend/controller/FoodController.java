@@ -15,7 +15,7 @@ import java.util.List;
 //@CrossOrigin("${frontend.host}")
 //@CrossOrigin("${frontend.host.heroku}")
 
-@CrossOrigin(origins = {"http://fidelma-reactjs.herokuapp.com"})
+@CrossOrigin("${frontend.host.heroku}")
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {

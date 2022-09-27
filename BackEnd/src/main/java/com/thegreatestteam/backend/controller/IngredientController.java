@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("${frontend.host}")
+@CrossOrigin("${frontend.host.heroku}")
 @RestController
 @RequestMapping("/staff")
 public class IngredientController {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("${frontend.host}")
+@CrossOrigin("${frontend.host.heroku}")
 @RequestMapping("/customer")
 public class UserController {
     @Autowired

@@ -3,7 +3,7 @@ package com.thegreatestteam.backend.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin("${frontend.host}")
+@CrossOrigin("${frontend.host.heroku}")
 public class HelloController {
 
     @GetMapping("/")
