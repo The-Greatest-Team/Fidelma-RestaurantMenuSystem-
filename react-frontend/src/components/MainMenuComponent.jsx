@@ -29,7 +29,7 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
                         <div className = "mainMenuDescription">Description.</div>
-                        <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/" + "chicken","chicken")}>View more</button>
+                        <button className = "mainMenuEnterButton" data-testid = "chickenButton" onClick={()=>this.props.history.push("/staff/menu/" + "chicken","chicken")}>View more</button>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
                     </div>
                     <div>
@@ -37,7 +37,7 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
                         <div className = "mainMenuDescription">Description.</div>
-                        <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/" + "beef","beef")}>View more</button>
+                        <button className = "mainMenuEnterButton" data-testid = "beefButton" onClick={()=>this.props.history.push("/staff/menu/" + "beef","beef")}>View more</button>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
                     </div>
                 </div>
