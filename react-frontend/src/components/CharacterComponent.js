@@ -1,10 +1,12 @@
 import React from "react";
 import CharacterService from "../services/CharacterService";
+import {API_HEROKU} from "../constant";
 
 class CharacterComponent extends React.Component{
 
     constructor(props){
         super(props)
+        console.log(API_HEROKU);
     }
 
     testPost(){

@@ -15,7 +15,7 @@ import java.util.List;
 //@CrossOrigin("${frontend.host}")
 //@CrossOrigin("${frontend.host.heroku}")
 
-@CrossOrigin("${frontend.host.heroku}")
+@CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}"})
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {
