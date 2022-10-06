@@ -441,3 +441,45 @@ img{
 .withdrawInput{
     width: 57%;
 }
+
+/* For staff menu */
+.staffMenuPic {grid-area: image; }
+.staffMenuName{grid-area: name;}
+.staffMenuDes{grid-area: description; }
+.staffMenuCalorie{grid-area: calorie; }
+.staffMenuprice{grid-area: price;}
+.staffMenuOperation{grid-area: operation;}
+
+
+.staffMenuGridContainer {
+    display: grid;
+    grid-template-areas:
+    "image image name name operation"
+    "image image description description operation"
+    "image image description description operation"
+    "image image calorie price operation"
+    ;
+    grid-gap: 0.1vw;
+    padding: 3vw;
+}
+
+.staffMenuDeleteButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 3vw;
+    border-radius: 4px;
+    padding: 4px 12px;
+    display: none;
+}
+
+.staffMenuUpdateButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 3vw;
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin-top: 40%;
+    display: none;
+}
