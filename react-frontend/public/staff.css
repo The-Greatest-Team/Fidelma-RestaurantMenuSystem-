@@ -110,8 +110,8 @@ img{
 
 .tableContainer{
     background-color: #FEFCF7; 
-    margin-left: 3%; 
-    margin-right: 3%; 
+    /* margin-left: 3%; 
+    margin-right: 3%;  */
     padding-top: 2em;
     padding-bottom: 2em;
 }
@@ -123,9 +123,11 @@ img{
 .ingredientTable {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 88%;
-    margin-left: 1.3em;
-    height: 25em;
+    /* width: 90%;
+    margin-left: 0.6em;
+    margin-right: 0.6em; */
+    width: 92vw;
+    margin-left: 2vw;
 }
 
 .ingredientTable td, th {
@@ -138,15 +140,14 @@ img{
 
 .ingredientTable th{
     font-size: 0.8em;
+    background-color:rgb(226, 225, 225);
+    text-align: center;
 }
 
 .ingredientTable td{
     font-size: 0.6em;
-
-}
-
-.ingredientTable tr {
     background-color: #FFFFFF;
+
 }
 
 .add{
@@ -216,6 +217,20 @@ img{
     font-size: 1.2em;
     border-radius: 4px;
     padding: 4px 12px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+} 
+
+.deleteButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 1.2em;
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 1vw;
 } 
 
 .addForm{
