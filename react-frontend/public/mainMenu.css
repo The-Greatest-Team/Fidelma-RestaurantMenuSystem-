@@ -40,3 +40,17 @@
     font-size: 3.2vw;
 }
 
+.menuPic {grid-area: image; }
+.menuDes{grid-area: description; }
+.menuView {grid-area: view; }
+
+
+.menuGridContainer {
+    display: grid;
+    grid-template-areas:
+    "image description description view"
+    "image description description view"
+    ;
+    grid-gap: 2vw;
+    padding: 3vw;
+}
