@@ -417,3 +417,24 @@
 .copyRightTitle p{
     color: #FFFFFF;
 }
+
+/* For customer menu */
+.customerMenuPic {grid-area: image; }
+.customerMenuName{grid-area: name;}
+.customerMenuDes{grid-area: description; }
+.customerMenuCalorie{grid-area: calorie; }
+.customerMenuprice{grid-area: price;}
+.customerMenuOperation{grid-area: operation;}
+
+
+.customerMenuGridContainer {
+    display: grid;
+    grid-template-areas:
+    "image image name name operation"
+    "image image description description operation"
+    "image image description description operation"
+    "image image calorie price operation"
+    ;
+    grid-gap: 0.1vw;
+    padding: 3vw;
+}
