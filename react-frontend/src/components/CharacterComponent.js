@@ -29,7 +29,7 @@ class CharacterComponent extends React.Component{
                     </div>
                     <div className = "characterContainer">
                         <button className = "characterButton" data-testid = 'staff'
-                        onClick={()=>this.props.history.push("/staff/dashboard",this.props.location.state)}
+                        onClick={()=>this.props.history.push("/staff/login",this.props.location.state)}
                         >I'm a staff</button>
                     </div>
                     <div className = "copyRightTitle">

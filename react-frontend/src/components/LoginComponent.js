@@ -23,6 +23,11 @@ class LoginComponent extends React.Component{
         this.setState({password:event.target.value});
     }
 
+    save(event){
+
+    }
+
+
     render(){
         return(
             <>
@@ -43,12 +48,13 @@ class LoginComponent extends React.Component{
                     <div className = "staffLogin">
                         <h4><strong>Password</strong></h4>
                         <div className = "loginInputContainer">
-                            <input className = "loginInput" value = {this.state.password} onChange={this.passwordHandler}/>
+                            <input className = "loginInput" type="password" value = {this.state.password} onChange={this.passwordHandler}/>
                         </div>
                         {/* <hr className = "orderSeparateLine"/> */}
                     </div>
                     <div className = "loginContainer">
-                        <button className = "loginButton">Log in</button>
+                        {/* <button className = "loginButton" onClick = {this.save}>Log in</button> */}
+                        <button className = "loginButton" onClick = {()=>window.location.href="/staff/dashboard"}>Log in</button>
                     </div>
                 </div>
             </>
