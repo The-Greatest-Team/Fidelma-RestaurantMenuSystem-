@@ -18,6 +18,7 @@ import SubmitComponent from './components/SubmitComponent';
 import CharacterComponent from './components/CharacterComponent';
 import OrderHistoryComponent from './components/OrderHistoryComponent';
 import StaffIncomeComponent from './components/StaffIncomeComponent';
+import LoginComponent from './components/LoginComponent';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                           <Route path="/submitPage" component={SubmitComponent}></Route>
                           <Route path="/staff/orderHistory" component={OrderHistoryComponent}></Route>
                           <Route path="/staff/income" component={StaffIncomeComponent}></Route>
+                          <Route path="/staff/login" component={LoginComponent}></Route>
                     </Switch>
                 </div>
         </Router>
