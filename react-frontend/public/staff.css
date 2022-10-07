@@ -483,3 +483,59 @@ img{
     margin-top: 40%;
     display: none;
 }
+
+/* For staff login */
+.staffLogin{
+    text-align: left;
+    margin-top: 10vw;
+}
+
+.storeName{
+    margin-top: 5vw;
+    text-align: center;
+    top:200px;
+    
+}
+
+.staffLogin h4{
+    margin-left: 15vw;
+    font-size: 5vw;
+}
+
+.loginInputContainer{
+    text-align: center;
+}
+
+.loginInput{
+    width: 70%;
+}
+
+#loginStoreName{
+    font-family: 'Sakura';
+    font-size: 22vw;
+}
+
+.loginContainer{
+    text-align: center;
+    margin-top: 10vw;
+}
+
+.loginButton{
+    border-radius: 1.66666666vw;
+    border-style: none;
+    background-color: #F01E1E;
+    color:#FFFFFF;
+    font-size: 5vw;
+    padding: 1vw 28vw 1vw 28vw;
+    margin-top: 2.5%;
+}
+
+/* .loginMain{
+    background-image: url("res/images/orderBackground.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Worksans";
+    position: relative;
+    
+} */
