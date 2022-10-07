@@ -169,7 +169,7 @@ class DescriptionComponent extends React.Component{
                         <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
-                        <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
+                        <img className = "dishPhoto" src={`data:image/jpeg;base64,${this.props.location.state[3].image}`}/>
                     </div>
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
