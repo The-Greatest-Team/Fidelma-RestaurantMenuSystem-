@@ -12,7 +12,7 @@ class DescriptionComponent extends React.Component{
             type : null,
             tableNum: '',
             phone : '',
-            cartOpen : false
+            cartOpen : false,
         }
     }
 
@@ -42,6 +42,19 @@ class DescriptionComponent extends React.Component{
         this.setState({tableNum : this.props.location.state[0], phone : this.props.location.state[1]})
     }
 
+    getIngredient(){
+        let ingredients = this.props.location.state[3].components;
+        const Ingredients = Object.keys(ingredients)
+        .filter((key) => ingredients[key] != 0)
+        .reduce((obj, key) => {
+            return Object.assign(obj, {
+              [key]: ingredients[key]
+            });
+        }, {});
+
+        return Object.keys(Ingredients).join(', ');
+    }
+    
 
     backToTypeMenu(){
         this.props.history.push("/customer/menu/chicken",[this.props.location.state[0], this.props.location.state[1], this.state.foodsInCart, this.state.type])
@@ -183,7 +196,8 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div>
+                        {/* <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div> */}
+                        <div className = "allIngredient">{this.getIngredient()}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
