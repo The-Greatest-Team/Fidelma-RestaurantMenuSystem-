@@ -114,7 +114,7 @@ class CustomerMainMenuComponent extends React.Component{
                     </div>
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
-                    <div className="nav">
+                    <div className="mainMenuTableNum">
                         <span>Table No.{this.props.location.state[0]}</span>
                     </div>
 
