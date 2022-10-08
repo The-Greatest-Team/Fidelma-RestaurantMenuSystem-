@@ -82,8 +82,28 @@
 }
 
 .tableInput{
-    width: 30%;
+    width: 40%;
+    BACKGROUND-COLOR: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom:0.1vw solid #FFFFFF;
+    color:#FFFFFF;
+    text-align: center;
 }
+
+.errorMsg1{
+    position:absolute;
+    margin-left:20vw;
+    color:#FFFFFF;
+}
+
+.errorMsg2{
+    position:absolute;
+    margin-left:20vw;
+    color:#FFFFFF;
+}
+
 /* For dish description */
 .dishHead {
     flex-direction: row;

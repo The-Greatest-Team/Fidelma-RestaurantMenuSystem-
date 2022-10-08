@@ -84,16 +84,14 @@ class EnterComponent extends React.Component{
                     <div className = "tableNum">
                         <h4>Table No.</h4>
                         <input className = "tableInput" value = {this.state.tableNum} type = 'number' onChange={this.tableNumHandler} data-testId = "tableNum" min = '0' max = '100'/>
-                        <hr className = "orderSeparateLine"/>
-                        {this.state.tableNum && ((this.state.tableNum < 0 || this.state.tableNum > 100) || (/^-?[1-9]\d*$/).test(this.state.tableNum) == false) && <span className="error" data-testid="error-msg-tableNum">Please enter a valid table number.</span>} 
-
+                        <div className = "errorMsg1">{this.state.tableNum && ((this.state.tableNum < 0 || this.state.tableNum > 100) || (/^-?[1-9]\d*$/).test(this.state.tableNum) == false) && <span className="error" data-testid="error-msg-tableNum">Please enter a valid table number.</span>} 
+                        </div>
                     </div>
                     <div className = "tableNum">
                         <h4>Phone Number</h4>
                         <input className = "tableInput" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum"/>
-                        <hr className = "orderSeparateLine"/>
-                        {this.state.phone && !(/0?(4)[0-9]{8}/).test(this.state.phone) && <span className="error" data-testid="error-msg-phoneNum">Please enter a valid phone number.</span>} 
-
+                        <div className = "errorMsg2">{this.state.phone && !(/0?(4)[0-9]{8}/).test(this.state.phone) && <span className="error" data-testid="error-msg-phoneNum">Please enter a valid phone number.</span>} 
+                        </div>
                     </div>
                     <div className = "startOrder">
                         {/* <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button> */}
