@@ -44,6 +44,7 @@ src: url('/res/font/WorkSans-Regular.ttf');
     height:6.93333333333333333vw;
     margin-top:3vw;
     margin-bottom: 3vw;
+    border-radius: 2vw;
 }
 .inputPartSpecial {
     border-style:solid;
@@ -91,8 +92,8 @@ src: url('/res/font/WorkSans-Regular.ttf');
 
 
 .quantity {
-    width:4.58666666666666vw;
-    height:4.58666666666666vw;
+    width:7.58666666666666vw;
+    height:5.58666666666666vw;
     border-style:dashed;
     border-width:0.266666666666666vw;
     border-color:#707070;
@@ -100,6 +101,8 @@ src: url('/res/font/WorkSans-Regular.ttf');
     display: block;
     float:right;
     margin-right:2.13333333333333vw;
+    border-radius: 1vw;
+    margin-top: 1vw;
 }
 
 
@@ -148,7 +151,7 @@ src: url('/res/font/WorkSans-Regular.ttf');
 }
 
 #saveButton {
-    position:absolute;
+    /* position:absolute; */
     z-index: 1;
     margin-top:-35vw;
     width:25.66666666666vw;
