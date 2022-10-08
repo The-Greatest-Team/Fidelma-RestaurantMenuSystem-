@@ -30,6 +30,7 @@ public class UserController {
     @PostMapping("/orderConfirm")
     public void addOrder(@RequestBody Order order){
         System.out.println(order.toString());
+        orderService.UpdateQuantityForIngredient(order);
         orderService.addOrder(order);
     }
 
