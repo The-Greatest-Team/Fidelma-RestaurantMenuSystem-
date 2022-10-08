@@ -49,25 +49,39 @@ public class OrderService {
     }
 
     public Integer checkQuantity(Order order){
-        double overallQuantity = 0;
         for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 return 0;
             }
-            for(int i = 0; i< dish.getValue();i++){
-                for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
-                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
-                        return 0;
-                    }
-                    double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
-                    overallQuantity += pair.getValue();
-                    if(stock - overallQuantity < 0){
-                        return 1;
-                    }
+            System.out.println("sdf");
+
+            int foodQuantity = dish.getValue();
+
+
+            for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
+                if(pair.getValue() == 0){
+                    continue;
                 }
-                overallQuantity = 0;
+
+                if(ingredientService.findIngredientByName(pair.getKey()) == null &&
+                    pair.getValue() != 0){
+                    System.out.println("here");
+                    return 0;
+                }
+
+//                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
+//                        return 0;
+//                    }
+                double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
+
+                double overallQuantity = pair.getValue() cc* foodQuantity;
+                if(stock - overallQuantity < 0){
+                    return 1;
+                }
             }
+
+
         }
         return 2;
     }
