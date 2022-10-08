@@ -176,8 +176,8 @@ class IngredientComponent extends React.Component{
                                         <th>Name</th>
                                         <th>Quantity(g)</th>
                                         <th>Price</th>
-                                        <th>Operation</th>
-                                        {/* <th>Delete</th> */}
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -185,7 +185,7 @@ class IngredientComponent extends React.Component{
                                         <tr
                                             key = {row.id} data-testid = {row.name}
                                         >
-                                            <td className = "ingredientName">{row.name}</td>
+                                            <td>{row.name}</td>
                                             <td>{row.quantity}</td>
                                             <td>{row.price}</td>
                                             <td>
@@ -193,6 +193,7 @@ class IngredientComponent extends React.Component{
                                                 {this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}
                                                 <button className="deleteIngredientButton" onClick = {() => this.deleteIngredient(row.id)}>Delete</button>
                                             </td>
+
                                         </tr>
                                     ))}
                                 </tbody>

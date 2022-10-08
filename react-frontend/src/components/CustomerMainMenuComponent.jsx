@@ -114,42 +114,24 @@ class CustomerMainMenuComponent extends React.Component{
                     </div>
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
-                    <div className="mainMenuTableNum">
+                    <div className="nav">
                         <span>Table No.{this.props.location.state[0]}</span>
                     </div>
 
                     <div>
-                        <h2 id = "mainMenuChickenHead"> Beef </h2>  {/* waiting for backend for finish functions*/}
-                        <hr className="separateLine"/>
-                        <div className = "menuGridContainer">
-                            <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
-                            </div>
-                            <div className = "menuDes">
-                                <div className = "mainMenuDescription">100% Australian grain-fed beef, paired with selected fresh vegetables and delicious sauces,
-                                can bring you the ultimate dining experience.</div>
-                            </div>
-                            <div className = "menuView">
-                                <button className = "mainMenuEnterButton" onClick={()=>this.goToBeef()}>View more</button>
-                            </div>
-                        </div>
-                        <hr id = "mainMenuBooomLine" className="separateLine"/>
-                    </div>
-                    
-                    <div>
                         <h2 id = "mainMenuChickenHead"> Chicken </h2>  {/* waiting for backend for finish functions*/}
                         <hr className="separateLine"/>
-                        <div className = "menuGridContainer">
-                            <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
-                            </div>
-                            <div className = "menuDes">
-                                <div className = "mainMenuDescription">High-quality chicken is chosen from family farms. 100% natual and hormone free.</div>
-                            </div>
-                            <div className = "menuView">
-                                <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
-                            </div>
-                        </div>
+                        <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                        <div className = "mainMenuDescription">Description.</div>
+                        <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Beef </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                        <div className = "mainMenuDescription">Description.</div>
+                        <button className = "mainMenuEnterButton" onClick={()=>this.goToBeef()}>View more</button>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
                     </div>
 

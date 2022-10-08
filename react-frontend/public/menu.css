@@ -107,14 +107,14 @@ body{
     font-size: 4vw;
     width: 18vw;
     height: 8vw;
-    border: none;
+    border: #707070 solid;
     vertical-align: middle;
     text-align: center;
     margin-right:7.2vw;
-    border-radius: 1.66666666vw;
+    border-radius: 6.66666666vw;
     margin-top:10vw;
-    background-color: #F01E1E;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+
 }
 
 .menuTitle{
@@ -198,10 +198,9 @@ body{
     align-items: center;
     font-size: large;
     padding: 1.5%;
-    border-radius: 1.66666666vw;
-    border:none;
-    background-color: #F01E1E;
-    color: #FFFFFF;
+    border-radius: 6.66666666vw;
+    border:#707070 solid;
+    background-color: #FFFFFF;
 }
 
 .soldOutDiv{
