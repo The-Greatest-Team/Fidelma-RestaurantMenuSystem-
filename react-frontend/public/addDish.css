@@ -177,3 +177,13 @@ src: url('/res/font/WorkSans-Regular.ttf');
     color: #FEFCF7;
 }
 
+.errorAddNewDish{
+    position:absolute;
+    margin-left:0vw;
+    margin-top:-3vw;
+}
+
+.addSubTitle{
+    margin-top:4vw;
+}
+

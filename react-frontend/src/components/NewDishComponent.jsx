@@ -301,22 +301,22 @@ class NewDishComponent extends Component{
                     <div id= "editPart">    
                         <form>            
                         <div className = "content edit">
-                            <h2>Name</h2>
+                            <h2 className="addSubTitle">Name</h2>
                             <input className = "inputPart" type="text"  name = "name" data-testid = "nameNewDish" maxLength = "15"
                             value = {this.state.name} onChange={this.nameHandler}/>
-                            {this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
-
-                            <h2>Price</h2>
+                            <div>{this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="errorAddNewDish" data-testid="error-msg-name">Please enter a valid name.</span>}
+                            </div>
+                            <h2 className="addSubTitle">Price</h2>
                             <input className = "inputPart" type="number"  name = "price" data-testid = "priceNewDish" min = "0" max = "99999"
                             value={this.state.price} onChange={this.priceHandler}/>
-                            {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="error" data-testid="error-msg-price">Please enter a valid price.</span>} 
-                            
-                            <h2>kiloJoule</h2>
+                            <div>{this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="errorAddNewDish" data-testid="error-msg-price">Please enter a valid price.</span>} 
+                            </div>
+                            <h2 className="addSubTitle">kiloJoule</h2>
                             <input className = "inputPart" type="number"  name = "kilojoule" data-testid = "kiloJouleNewDish" min = "0" max = "99999"
                             value = {this.state.kiloJoule} onChange={this.kjHandler}/>
-                            {this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="error" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
-
-                            <h2>Description</h2>
+                            <div>{this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="errorAddNewDish" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
+                            </div>
+                            <h2 className="addSubTitle">Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"  data-testid = "description" maxLength = "200"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
