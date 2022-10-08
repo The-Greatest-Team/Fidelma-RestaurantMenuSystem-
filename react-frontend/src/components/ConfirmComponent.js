@@ -60,7 +60,12 @@ class ConfirmComponent extends React.Component{
         }
         console.log("order=> " + JSON.stringify(order));
         axios.post(API_HEROKU + "/customer/orderConfirm",order).then( (res) => {
-            this.props.history.push("/submitPage",this.props.location.state);
+            if (res.data == False){
+                console.log("False")
+            } else {
+                this.props.history.push("/submitPage",this.props.location.state);
+            }
+
             }
         )
         
