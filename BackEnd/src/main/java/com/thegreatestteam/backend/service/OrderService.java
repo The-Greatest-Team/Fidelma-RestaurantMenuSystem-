@@ -25,7 +25,6 @@ public class OrderService {
     private IngredientService ingredientService;
 
 
-
     public List<Order> getOrderByPhoneNumber(String phoneNumber){
         return orderRepository.findOrdersByPhoneNumber(phoneNumber);
     }
@@ -47,6 +46,30 @@ public class OrderService {
                 }
             }
         }
+    }
+
+    public Integer checkQuantity(Order order){
+        double overallQuantity = 0;
+        for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey());
+            if(food == null){
+                return 0;
+            }
+            for(int i = 0; i< dish.getValue();i++){
+                for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
+                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
+                        return 0;
+                    }
+                    double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
+                    overallQuantity += pair.getValue();
+                    if(stock - overallQuantity < 0){
+                        return 1;
+                    }
+                }
+                overallQuantity = 0;
+            }
+        }
+        return 2;
     }
 
     public void addOrder(Order order) {
