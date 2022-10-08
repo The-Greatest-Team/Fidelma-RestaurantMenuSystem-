@@ -43,6 +43,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/foodDes/{id}")
+    public Integer computeFoodQuan(@PathVariable String id){
+        return 6;
+    }
+
 
 
 }

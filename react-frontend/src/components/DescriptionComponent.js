@@ -44,8 +44,8 @@ class DescriptionComponent extends React.Component{
         this.setState({tableNum : this.props.location.state[0], phone : this.props.location.state[1]})
         DescriptionService.getUsers(this.props.location.state[3].id).then((respond) => {
             this.setState({maxNum : (respond.data)});
+            console.log(this.state.maxNum)
         });
-        console.log(this.state.maxNum)
     }
 
     getIngredient(){

@@ -3,13 +3,11 @@ package com.thegreatestteam.backend.service;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.FoodRepository;
-import com.thegreatestteam.backend.repository.IngredientRepository;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FoodService {
@@ -78,4 +76,13 @@ public class FoodService {
     public boolean checkFood(String id){
         return foodRepository.existsById(id);
     }
+
+//    public Integer computeFoodQuantity(Food food, IngredientService ingredientService){
+//        Integer min = Integer.MAX_VALUE;
+//        for(Map.Entry<String, Double> pair : food.getComponents().entrySet()){
+//            Double currentQuan = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
+//
+//        }
+//
+//    }
 }
