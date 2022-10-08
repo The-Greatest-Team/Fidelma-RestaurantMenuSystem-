@@ -30,8 +30,6 @@ class DashboardComponent extends React.Component{
                             <h3>The Greatest Team</h3>
                             <button className = "editButton" onClick={()=>window.location.href="/staff/profile"}>
                                 Edit Profile</button>
-                            <button className = "editButton" onClick={()=>window.location.href="/"}>
-                                Sign out</button>
                         </div>
                     </div>
                     <div className = "dashboardBar" onClick={()=>window.location.href="/staff/income"}>

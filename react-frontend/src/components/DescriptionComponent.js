@@ -12,7 +12,7 @@ class DescriptionComponent extends React.Component{
             type : null,
             tableNum: '',
             phone : '',
-            cartOpen : false,
+            cartOpen : false
         }
     }
 
@@ -42,19 +42,6 @@ class DescriptionComponent extends React.Component{
         this.setState({tableNum : this.props.location.state[0], phone : this.props.location.state[1]})
     }
 
-    getIngredient(){
-        let ingredients = this.props.location.state[3].components;
-        const Ingredients = Object.keys(ingredients)
-        .filter((key) => ingredients[key] != 0)
-        .reduce((obj, key) => {
-            return Object.assign(obj, {
-              [key]: ingredients[key]
-            });
-        }, {});
-
-        return Object.keys(Ingredients).join(', ');
-    }
-    
 
     backToTypeMenu(){
         this.props.history.push("/customer/menu/chicken",[this.props.location.state[0], this.props.location.state[1], this.state.foodsInCart, this.state.type])
@@ -182,7 +169,7 @@ class DescriptionComponent extends React.Component{
                         <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
-                        <img className = "dishPhoto" src={`data:image/jpeg;base64,${this.props.location.state[3].image}`}/>
+                        <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
                     </div>
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
@@ -196,8 +183,7 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        {/* <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div> */}
-                        <div className = "allIngredient">{this.getIngredient()}</div>
+                        <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>

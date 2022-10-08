@@ -110,8 +110,8 @@ img{
 
 .tableContainer{
     background-color: #FEFCF7; 
-    /* margin-left: 3%; 
-    margin-right: 3%;  */
+    margin-left: 3%; 
+    margin-right: 3%; 
     padding-top: 2em;
     padding-bottom: 2em;
 }
@@ -123,11 +123,9 @@ img{
 .ingredientTable {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    /* width: 90%;
-    margin-left: 0.6em;
-    margin-right: 0.6em; */
-    width: 92vw;
-    margin-left: 2vw;
+    width: 88%;
+    margin-left: 1.3em;
+    height: 25em;
 }
 
 .ingredientTable td, th {
@@ -140,14 +138,15 @@ img{
 
 .ingredientTable th{
     font-size: 0.8em;
-    background-color:rgb(226, 225, 225);
-    text-align: center;
 }
 
 .ingredientTable td{
     font-size: 0.6em;
-    background-color: #FFFFFF;
 
+}
+
+.ingredientTable tr {
+    background-color: #FFFFFF;
 }
 
 .add{
@@ -217,20 +216,6 @@ img{
     font-size: 1.2em;
     border-radius: 4px;
     padding: 4px 12px;
-    margin-left: 1vw;
-    margin-right: 1vw;
-} 
-
-.deleteButton{
-    background-color: #F01E1E;
-    color: #FFFFFF;
-    border-style: none;
-    font-size: 1.2em;
-    border-radius: 4px;
-    padding: 4px 12px;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    margin-top: 1vw;
 } 
 
 .addForm{
@@ -441,101 +426,3 @@ img{
 .withdrawInput{
     width: 57%;
 }
-
-/* For staff menu */
-.staffMenuPic {grid-area: image; }
-.staffMenuName{grid-area: name;}
-.staffMenuDes{grid-area: description; }
-.staffMenuCalorie{grid-area: calorie; }
-.staffMenuprice{grid-area: price;}
-.staffMenuOperation{grid-area: operation;}
-
-
-.staffMenuGridContainer {
-    display: grid;
-    grid-template-areas:
-    "image image name name operation"
-    "image image description description operation"
-    "image image description description operation"
-    "image image calorie price operation"
-    ;
-    grid-gap: 0.1vw;
-    padding: 3vw;
-}
-
-.staffMenuDeleteButton{
-    background-color: #F01E1E;
-    color: #FFFFFF;
-    border-style: none;
-    font-size: 3vw;
-    border-radius: 4px;
-    padding: 4px 12px;
-    display: none;
-}
-
-.staffMenuUpdateButton{
-    background-color: #F01E1E;
-    color: #FFFFFF;
-    border-style: none;
-    font-size: 3vw;
-    border-radius: 4px;
-    padding: 4px 12px;
-    margin-top: 40%;
-    display: none;
-}
-
-/* For staff login */
-.staffLogin{
-    text-align: left;
-    margin-top: 10vw;
-}
-
-.storeName{
-    margin-top: 5vw;
-    text-align: center;
-    top:200px;
-    
-}
-
-.staffLogin h4{
-    margin-left: 15vw;
-    font-size: 5vw;
-}
-
-.loginInputContainer{
-    text-align: center;
-}
-
-.loginInput{
-    width: 70%;
-}
-
-#loginStoreName{
-    font-family: 'Sakura';
-    font-size: 22vw;
-}
-
-.loginContainer{
-    text-align: center;
-    margin-top: 10vw;
-}
-
-.loginButton{
-    border-radius: 1.66666666vw;
-    border-style: none;
-    background-color: #F01E1E;
-    color:#FFFFFF;
-    font-size: 5vw;
-    padding: 1vw 28vw 1vw 28vw;
-    margin-top: 2.5%;
-}
-
-/* .loginMain{
-    background-image: url("res/images/orderBackground.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    font-family: "Worksans";
-    position: relative;
-    
-} */
