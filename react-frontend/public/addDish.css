@@ -151,7 +151,7 @@ src: url('/res/font/WorkSans-Regular.ttf');
 }
 
 #saveButton {
-    /* position:absolute; */
+    /* position:absolute;
     z-index: 1;
     margin-top:-35vw;
     width:25.66666666666vw;
@@ -159,7 +159,15 @@ src: url('/res/font/WorkSans-Regular.ttf');
     margin-left: 35vw;
     background-color:#F01E1E;
     padding-left: 7vw;
+    padding-top: 1vw; */
+    margin-top: 28%;
+    width:25.66666666666vw;
+    height:9.6vw;
+    margin-left: 35vw;
+    background-color:#F01E1E;
+    padding-left: 7vw;
     padding-top: 1vw;
+    position: relative;
 
 }
 
