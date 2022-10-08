@@ -67,22 +67,27 @@ public class FoodService {
         foodRepository.deleteFoodById(id);
     }
 
-//    public void addImage(Food food, MultipartFile file) throws IOException {
-//        food.setImage( new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-//        foodRepository.save(food);
-//        System.out.println("Save Image");
-//    }
 
     public boolean checkFood(String id){
         return foodRepository.existsById(id);
     }
 
-//    public Integer computeFoodQuantity(Food food, IngredientService ingredientService){
-//        Integer min = Integer.MAX_VALUE;
-//        for(Map.Entry<String, Double> pair : food.getComponents().entrySet()){
-//            Double currentQuan = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
-//
-//        }
-//
-//    }
+    public Integer computeFoodQuantity(Food food){
+        Integer min = Integer.MAX_VALUE;
+        for(Map.Entry<String, Double> pair : food.getComponents().entrySet()){
+            if(ingredientService.findIngredientByName(pair.getKey()) == null){
+                continue;
+            }
+            Double stock= ingredientService.findIngredientByName(pair.getKey()).getQuantity();
+            Double required = pair.getValue();
+            Double number = stock/required;
+            Integer quan =  (int) Math.floor(number);
+            if (quan < min){
+                min = quan;
+            }
+
+        }
+        return min;
+
+    }
 }

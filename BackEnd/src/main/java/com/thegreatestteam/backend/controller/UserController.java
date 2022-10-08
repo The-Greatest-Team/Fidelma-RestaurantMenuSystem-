@@ -6,6 +6,7 @@ import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.FoodRepository;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.repository.OrderRepository;
+import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +19,11 @@ import java.util.List;
 public class UserController {
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private IngredientRepository ingredientRepository;
+    private FoodService foodService;
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    public UserController(FoodRepository foodRepository, IngredientRepository ingredientRepository, OrderService orderService) {
+    public UserController(OrderService orderService, FoodService foodService) {
         this.orderService = orderService;
-        this.ingredientRepository = ingredientRepository;
-        this.orderRepository = orderRepository;
+        this.foodService = foodService;
     }
 
     // front end api listed here
@@ -45,7 +41,8 @@ public class UserController {
 
     @GetMapping("/foodDes/{id}")
     public Integer computeFoodQuan(@PathVariable String id){
-        return 6;
+        Food food = foodService.getFoodById(id);
+        return foodService.computeFoodQuantity(food);
     }
 
 
