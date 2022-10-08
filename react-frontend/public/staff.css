@@ -509,6 +509,11 @@ img{
 
 .loginInput{
     width: 70%;
+    BACKGROUND-COLOR: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom:0.4vw solid #B9B3B3;
 }
 
 #loginStoreName{
