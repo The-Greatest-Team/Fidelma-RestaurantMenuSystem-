@@ -75,7 +75,7 @@ public class OrderService {
 //                    }
                 double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
 
-                double overallQuantity = pair.getValue() cc* foodQuantity;
+                double overallQuantity = pair.getValue() * foodQuantity;
                 if(stock - overallQuantity < 0){
                     return 1;
                 }
