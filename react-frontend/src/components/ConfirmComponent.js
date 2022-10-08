@@ -62,7 +62,7 @@ class ConfirmComponent extends React.Component{
         console.log("order=> " + JSON.stringify(order));
         axios.post(API_HEROKU + "/customer/orderConfirm",order).then( (res) => {
             if (res.data == 0){
-                Modal.alert("Not enough Ingredient", "Please seek assitance from Staff", 
+                Modal.alert("Not enough Ingredient", "Please seek assistance from Staff",
                 [
                     {
                     text: 'OK',
