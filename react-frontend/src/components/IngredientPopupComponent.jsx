@@ -44,23 +44,28 @@ class IngredientPopupComponent extends Component {
                     <input className="addPopupInput" type="text" data-testid = "name" aria-label= "name" maxLength = "15"
                     value = {this.state.name} onChange={this.nameHandler} />
 
-                    
-                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                    <div>
+                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="errorAddPopup" data-testid="error-msg-name">Please enter a valid name.</span>}
+                    </div>
                     </div>
 
                     <div>
                     <h3 className="addPopupSubTtile">Quantity</h3>
                     <input className="addPopupInput" type="number" data-testid = "quantity" aria-label= "quantity" min = "0" max = "99999999"
                     value = {this.state.quantity} onChange={this.quantityHandler} />
-
-                    {this.state.quantity && (this.state.quantity < 0 || this.state.quantity > 99999999) &&<span className="error" data-testid="error-msg-quantity">Please enter a valid quantity.</span>} 
+                    
+                    <div>
+                    {this.state.quantity && (this.state.quantity < 0 || this.state.quantity > 99999999) &&<span className="errorAddPopup" data-testid="error-msg-quantity">Please enter a valid quantity.</span>} 
+                    </div>
                     </div>
 
                     <div>
                     <h3 className="addPopupSubTtile">Price</h3> 
                     <input className="addPopupInput" type="number" data-testid = "price" aria-label= "price" min = "0" max = "99999"
                     value = {this.state.price} onChange={this.priceHandler} />
-                    {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="error" data-testid="error-msg-price">Please enter a valid price.</span>} 
+                    <div>
+                    {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="errorAddPopup" data-testid="error-msg-price">Please enter a valid price.</span>} 
+                    </div>
                     </div>
                     </form>
                     <button className = "addPopupSubmitButton" onClick = {e => this.props.saveIngredient(e,this.state.name,this.state.quantity,this.state.price)} data-testid = "submit">Submit</button>

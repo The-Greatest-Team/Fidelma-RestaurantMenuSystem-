@@ -21,7 +21,7 @@
     border-style:solid;
     border-color: #B9B3B3 ;
     width:80vw;
-    height:100vw;
+    height:110vw;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -41,7 +41,7 @@
 .addPopupSubTtile {
     font-size: 5vw;
     margin-left: 3vw;
-    margin-top:2vw;
+    margin-top:6vw;
 }
 
 .addPopupInput {
@@ -61,8 +61,14 @@
     background-color: #F01E1E;
     border-style: none;
     /* margin-left:24vw; */
-    margin-top:5vw;
+    margin-top:8vw;
     text-align: center;
+    margin-left: 25vw;
+}
+
+.errorAddPopup{
+    position:absolute;
+    margin-left:2vw;
 }
 
 .closeAddPopup{
