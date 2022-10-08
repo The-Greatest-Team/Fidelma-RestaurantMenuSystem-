@@ -64,16 +64,19 @@ class EditIngredientComponent extends Component {
                     
 
                     <h3 className="addPopupSubTtile">name</h3>
-                    <input className="addPopupInput" type="text"
+                    <input className="addPopupInput" type="text" maxLength = "15"
                     value = {this.state.name} onChange={this.nameHandler} />
-
+                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                    
                     <h3 className="addPopupSubTtile">Quantity</h3>
-                    <input className="addPopupInput" type="number"
+                    <input className="addPopupInput" type="number" min = "0" max = "99999999"
                     value = {this.state.quantity} onChange={this.quantityHandler} />
+                    {this.state.quantity && (this.state.quantity < 0 || this.state.quantity > 99999999) &&<span className="error" data-testid="error-msg-quantity">Please enter a valid quantity.</span>} 
 
                     <h3 className="addPopupSubTtile">Price</h3>
-                    <input className="addPopupInput" type="number"
+                    <input className="addPopupInput" type="number" min = "0" max = "99999"
                     value = {this.state.price} onChange={this.priceHandler} />
+                    {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="error" data-testid="error-msg-price">Please enter a valid price.</span>} 
 
                     <button className = "addPopupSubmitButton" onClick = {this.saveIngredient}>Submit</button>
                 </div>

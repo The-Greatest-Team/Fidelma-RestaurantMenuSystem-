@@ -6,7 +6,7 @@ class CustomerMainMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = { foodsInCart : [], tableNum : '', phone : ''}
+        this.state = { foodsInCart : [], tableNum : '', phone : '', cartOpen : false}
     }
 
     componentDidMount(){
@@ -78,11 +78,24 @@ class CustomerMainMenuComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
         let closeCartArea = document.getElementById("closeCartArea")
         closeCartArea.classList.toggle('active')
+        
     }
 
     goToConfirmOrder(){
@@ -92,7 +105,7 @@ class CustomerMainMenuComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -101,28 +114,46 @@ class CustomerMainMenuComponent extends React.Component{
                     </div>
 
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
-                    <div className="nav">
+                    <div className="mainMenuTableNum">
                         <span>Table No.{this.props.location.state[0]}</span>
                     </div>
 
                     <div>
-                        <h2 id = "mainMenuChickenHead"> Chicken </h2>  {/* waiting for backend for finish functions*/}
-                        <hr className="separateLine"/>
-                        <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
-                        <div className = "mainMenuDescription">Description.</div>
-                        <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
-                        <hr id = "mainMenuBooomLine" className="separateLine"/>
-                    </div>
-                    <div>
                         <h2 id = "mainMenuChickenHead"> Beef </h2>  {/* waiting for backend for finish functions*/}
                         <hr className="separateLine"/>
-                        <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
-                        <div className = "mainMenuDescription">Description.</div>
-                        <button className = "mainMenuEnterButton" onClick={()=>this.goToBeef()}>View more</button>
+                        <div className = "menuGridContainer">
+                            <div className = "menuPic">
+                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                            </div>
+                            <div className = "menuDes">
+                                <div className = "mainMenuDescription">100% Australian grain-fed beef, paired with selected fresh vegetables and delicious sauces,
+                                can bring you the ultimate dining experience.</div>
+                            </div>
+                            <div className = "menuView">
+                                <button className = "mainMenuEnterButton" onClick={()=>this.goToBeef()}>View more</button>
+                            </div>
+                        </div>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+                    
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Chicken </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <div className = "menuGridContainer">
+                            <div className = "menuPic">
+                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                            </div>
+                            <div className = "menuDes">
+                                <div className = "mainMenuDescription">High-quality chicken is chosen from family farms. 100% natual and hormone free.</div>
+                            </div>
+                            <div className = "menuView">
+                                <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
+                            </div>
+                        </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
                     </div>
 
-                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.toggleWithCart()}/>
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={() => this.showCart()}/>
 
                 </div>
 
@@ -131,7 +162,7 @@ class CustomerMainMenuComponent extends React.Component{
                     {this.state.foodsInCart.map((dishInCart) => (
                     <div className="foodBoxInCart" key={dishInCart.id}>
                         <div className="foodDescBoxInCart">
-                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <img src={`data:image/jpeg;base64,${dishInCart.image}`} alt="food pic"/>
                             <div className="foodTextContentInCart">
                                 <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
                                 <div className="foodPriceInCart">${dishInCart.price}</div>

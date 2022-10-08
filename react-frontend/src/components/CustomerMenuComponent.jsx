@@ -6,7 +6,7 @@ class CustomerMenuComponent extends React.Component{
     constructor(props){
         super(props)
 
-        this.state = {foods : [], foodsInCart : [], tableNum : '', phone : ''}
+        this.state = {foods : [], foodsInCart : [], tableNum : '', phone : '', cartOpen : false}
     }
 
 
@@ -106,6 +106,18 @@ class CustomerMenuComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
@@ -116,7 +128,7 @@ class CustomerMenuComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div id="normlaStateMenu">
                     <div className="menuHead">
                         <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
@@ -143,7 +155,7 @@ class CustomerMenuComponent extends React.Component{
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
-                            <div className="foodBox">
+                            {/* <div className="foodBox">
                                 <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
                                 
                                 <div className="textBox">
@@ -163,12 +175,23 @@ class CustomerMenuComponent extends React.Component{
                                     dish.soldOut === true &&
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
-                         </div>
+                            </div> */}
+                            <div className = "customerMenuGridContainer">
+                                <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "customerMenuName"><strong>{dish.name}</strong></div>
+                                <div className = "customerMenuDes">{dish.description}</div>
+                                <div className = "customerMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>
+                                <div className = "customerMenuPrice"><strong>${dish.price}</strong></div>
+                                <div className = "customerMenuOperation">
+                                <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
+                                    onClick={()=>this.viewInDetails(dish)}/>
+                                </div>
+                            </div>
                         </div>
                         ))}
                     </div>
 
-                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.toggleWithCart()}/>
+                    <input id="shoppingCart" name="shoppingCartBtn" type="image" src="/res/images/shoppingCart.png" alt="shopping cart icon" onClick={()=>this.showCart()}/>
                     
                 </div>
                 
@@ -177,7 +200,7 @@ class CustomerMenuComponent extends React.Component{
                     {this.state.foodsInCart.map((dishInCart) => (
                     <div className="foodBoxInCart" key={dishInCart.id}>
                         <div className="foodDescBoxInCart">
-                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <img src={`data:image/jpeg;base64,${dishInCart.image}`} alt="food pic"/>
                             <div className="foodTextContentInCart">
                                 <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
                                 <div className="foodPriceInCart">${dishInCart.price}</div>

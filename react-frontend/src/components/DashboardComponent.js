@@ -1,5 +1,7 @@
 import React from "react";
 import UserService from "../services/DashboardService";
+import {API_HEROKU} from "../constant";
+import axios from "axios";
 
 class DashboardComponent extends React.Component{
 
@@ -7,6 +9,11 @@ class DashboardComponent extends React.Component{
         super(props)
 
         this.state = {foods : []}
+    }
+    componentDidMount() {
+        axios.get(API_HEROKU + '/staff/menu/chicken').then((response)=>{
+            console.log(response.data);
+        })
     }
 
     testPost(){
@@ -18,11 +25,13 @@ class DashboardComponent extends React.Component{
             <>
                 <div>
                     <div className="dashboardHeader">
-                        <img className = "dashboardImg" src = "/res/images/staff.svg" alt = "staff" />
+                        <img className = "dashboardImg" src = "/res/images/TGLogo.png" alt = "staff" />
                         <div className = "staffName">
-                            <h1>Wendi YING</h1>
+                            <h3>The Greatest Team</h3>
                             <button className = "editButton" onClick={()=>window.location.href="/staff/profile"}>
                                 Edit Profile</button>
+                            <button className = "editButton" onClick={()=>window.location.href="/"}>
+                                Sign out</button>
                         </div>
                     </div>
                     <div className = "dashboardBar" onClick={()=>window.location.href="/staff/income"}>

@@ -12,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-@CrossOrigin("${frontend.host}")
+//@CrossOrigin("${frontend.host}")
+//@CrossOrigin("${frontend.host.heroku}")
+
+@CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}", "${frontend.host.heroku2}"})
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {
@@ -57,6 +60,8 @@ public class FoodController {
         foodService.addFood(food);
         return food;
     }
+
+
 
 
     @GetMapping("/edit/{id}")

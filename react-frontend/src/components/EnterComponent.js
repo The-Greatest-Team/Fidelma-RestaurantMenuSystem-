@@ -36,7 +36,7 @@ class EnterComponent extends React.Component{
     save(event){
         console.log(this.state.tableNum);
         console.log(this.state.phone);
-        var tableNumPattern = /[1-9]\d*/;
+        var tableNumPattern = /^-?[1-9]\d*$/;
         var phonePattern = /0?(4)[0-9]{8}/;
 
         if(this.state.tableNum == '' || this.state.phone == ''){
@@ -75,7 +75,7 @@ class EnterComponent extends React.Component{
     render(){
         return(
             <>
-                <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/>
+                {/* <video className = "backgroundVideo" src = {enterPageVideo} autoPlay loop muted/> */}
                 <div className = "orderMain">
                     <div className="orderHead">
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />

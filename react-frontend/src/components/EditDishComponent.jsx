@@ -168,8 +168,32 @@ class EditDishComponent extends Component{
             }
         }
 
-        
-        let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
+        var canSend = 1;
+
+        if (this.state.file === '') {
+            canSend = 0;
+        }
+
+        if (!(/^[a-zA-Z]*$/).test(this.state.name)) {
+            canSend = 0;
+        }
+
+        if (this.state.price < 0 || this.state.price > 99999) {
+            canSend = 0;
+        }
+
+        if (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) {
+            canSend = 0;
+        }
+
+        if (this.state.description === '') {
+            canSend = 0;
+        }
+
+        if (canSend === 0) {
+
+        }else {
+            let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
             axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
@@ -183,6 +207,9 @@ class EditDishComponent extends Component{
                     this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
                 },2000)
             });
+        }
+        
+        
     }
     
 nameHandler = (event) =>{
@@ -240,16 +267,22 @@ back = (e) => {
                         <form>            
                         <div className = "content edit">
                             <h2>Name</h2>
-                            <input className = "inputPart" type="text"  name = "name"
+                            <input className = "inputPart" type="text"  name = "name" maxLength = "15"
                             placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
+                            {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+
                             <h2>Price</h2>
-                            <input className = "inputPart" type="number"  name = "price"
+                            <input className = "inputPart" type="number"  name = "price" min = "0" max = "99999"
                             placeholder = {this.props.location.state.price} onChange={this.priceHandler}/>
+                            {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="error" data-testid="error-msg-price">Please enter a valid price.</span>}
+
                             <h2>kiloJoule</h2>
-                            <input className = "inputPart" type="number"  name = "kilojoule"
+                            <input className = "inputPart" type="number"  name = "kilojoule" min = "0" max = "99999"
                             placeholder = {this.props.location.state.kiloJoule} onChange={this.kjHandler}/>
+                            {this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="error" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
+
                             <h2>Description</h2>
-                            <textarea className = "inputPartSpecial"  name = "description"
+                            <textarea className = "inputPartSpecial"  name = "description" maxLength = "200"
                             placeholder = {this.props.location.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">

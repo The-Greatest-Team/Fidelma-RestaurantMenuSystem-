@@ -1,6 +1,7 @@
 import React from "react";
 import DescriptionService from "../services/DescriptionService";
 
+
 class DescriptionComponent extends React.Component{
 
     constructor(props){
@@ -11,7 +12,9 @@ class DescriptionComponent extends React.Component{
             foodsInCart : [], 
             type : null,
             tableNum: '',
-            phone : ''
+            phone : '',
+            cartOpen : false,
+            maxNum : 0
         }
     }
 
@@ -39,8 +42,25 @@ class DescriptionComponent extends React.Component{
             this.setState({foodsInCart : this.props.location.state[2], type : this.props.location.state[4]})
         }
         this.setState({tableNum : this.props.location.state[0], phone : this.props.location.state[1]})
+        DescriptionService.getUsers(this.props.location.state[3].id).then((respond) => {
+            this.setState({maxNum : (respond.data)});
+            console.log(this.state.maxNum)
+        });
     }
 
+    getIngredient(){
+        let ingredients = this.props.location.state[3].components;
+        const Ingredients = Object.keys(ingredients)
+        .filter((key) => ingredients[key] != 0)
+        .reduce((obj, key) => {
+            return Object.assign(obj, {
+              [key]: ingredients[key]
+            });
+        }, {});
+
+        return Object.keys(Ingredients).join(', ');
+    }
+    
 
     backToTypeMenu(){
         this.props.history.push("/customer/menu/chicken",[this.props.location.state[0], this.props.location.state[1], this.state.foodsInCart, this.state.type])
@@ -56,7 +76,8 @@ class DescriptionComponent extends React.Component{
                 id : dish.id,
                 name : dish.name, 
                 price: dish.price, 
-                quantity: this.state.quantity
+                quantity: this.state.quantity,
+                image : this.props.location.state[3].image
             })
         } else {
             cart[foodIndexInCart].quantity += this.state.quantity
@@ -133,6 +154,18 @@ class DescriptionComponent extends React.Component{
         return -1
     }
 
+    showCart(){
+        this.toggleWithCart()
+        this.state.cartOpen = true
+    }
+
+    closeCart(){
+        if (this.state.cartOpen == true){
+            this.state.cartOpen = false
+            this.toggleWithCart()
+        }
+    }
+
     toggleWithCart(){
         let cart = document.getElementById("cartArea")
         cart.classList.toggle('active')
@@ -148,7 +181,7 @@ class DescriptionComponent extends React.Component{
     render(){
         return(
             <>
-                <div id="closeCartArea" onClick={()=>this.  toggleWithCart()}></div>
+                <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" onClick={() => this.backToTypeMenu()} />
@@ -156,7 +189,7 @@ class DescriptionComponent extends React.Component{
                         <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
-                        <img className = "dishPhoto" src="/res/images/beef3.jpg"/>
+                        <img className = "dishPhoto" src={`data:image/jpeg;base64,${this.props.location.state[3].image}`}/>
                     </div>
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
@@ -170,7 +203,8 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div>
+                        {/* <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div> */}
+                        <div className = "allIngredient">{this.getIngredient()}</div>
                     </div>
                     <div className = "dishQuantity">
                         <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
@@ -178,7 +212,7 @@ class DescriptionComponent extends React.Component{
                         <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
                     </div>
                     <div className = "addToOrder">
-                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.toggleWithCart()}/>
+                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.showCart()}/>
                         <button className = "addToOrderButton" 
                         onClick={() => this.storeInCart(this.props.location.state[3])}>Add to order</button>
                     </div>
@@ -189,7 +223,7 @@ class DescriptionComponent extends React.Component{
                     {this.state.foodsInCart.map((dishInCart) => (
                     <div className="foodBoxInCart" key={dishInCart.id}>
                         <div className="foodDescBoxInCart">
-                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <img src={`data:image/jpeg;base64,${dishInCart.image}`} alt="food pic"/>
                             <div className="foodTextContentInCart">
                                 <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
                                 <div className="foodPriceInCart">${dishInCart.price}</div>

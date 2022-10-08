@@ -10,15 +10,16 @@
 
 /* For enter page */
 .orderMain{
-    /* background-image: url("res/images/orderBackground.jpg"); */
+    background-image: url("res/images/orderBackground.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: "Worksans";
-    position: absolute;
+    position: relative;
+    /* position: absolute;
     height: 100vh;
     width: 100%;
-    top:0;
+    top:0; */
     
 }
 
@@ -103,7 +104,7 @@
 
 .dishPhoto{
     width: 100vw;
-    height: 100vw;
+    height: 90vw;
 }
 
 .photoContainer{
@@ -170,7 +171,7 @@
 .dishQuantity{
     display: flex;
     justify-content: space-between;
-    margin-top: 10%;
+    margin-top: 4%;
 }
 
 .currQuantity{
@@ -360,14 +361,33 @@
 }
 
 /* For character selection page */
+.selectionMain{
+    background-image: url("res/images/orderBackground.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .introTitle{
     text-align: center;
-    margin-top: 10%;
+    padding-top: 10%;
+}
+
+.introTitle h3{
+    color: #FFFFFF;
+}
+
+.introTitle p{
+    color: #FFFFFF;
 }
 
 .characterTitle{
     text-align: center;
     margin-top: 15%;
+}
+
+.characterTitle h4{
+    color: #FFFFFF;
 }
 
 .characterContainer{
@@ -386,4 +406,35 @@
     font-size: 6vw;
     padding: 1vw 3vw 1vw 3vw;
     margin-top: 5%;
+}
+
+.copyRightTitle{
+    text-align: center;
+    margin-top: 58%;
+    padding-bottom: 17.8%;
+}
+
+.copyRightTitle p{
+    color: #FFFFFF;
+}
+
+/* For customer menu */
+.customerMenuPic {grid-area: image;}
+.customerMenuName{grid-area: name;}
+.customerMenuDes{grid-area: description; }
+.customerMenuCalorie{grid-area: calorie; }
+.customerMenuprice{grid-area: price;}
+.customerMenuOperation{grid-area: operation;}
+
+
+.customerMenuGridContainer {
+    display: grid;
+    grid-template-areas:
+    "image image name name operation"
+    "image image description description operation"
+    "image image description description operation"
+    "image image calorie price operation"
+    ;
+    grid-gap: 0.1vw;
+    padding: 3vw;
 }

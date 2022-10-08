@@ -37,8 +37,9 @@ class MenuComponent extends React.Component{
     accessEditingMode(){
         let editBtn =  document.getElementById("editBtn");
         let addBtnAreas = document.getElementsByClassName("addDishArea");
-        let delBtns = document.getElementsByClassName("delDishBtn");
-        let updateButton = document.getElementsByClassName("updateButton");
+        let delBtns = document.getElementsByClassName("staffMenuDeleteButton");
+        let updateButton = document.getElementsByClassName("staffMenuUpdateButton");
+
         if (editBtn.innerHTML === "Edit"){
             editBtn.innerHTML = "Editing";
             document.getElementById("addMoreButton").style.display = "flex";
@@ -60,6 +61,29 @@ class MenuComponent extends React.Component{
             }
         }
     };
+
+    editMode(){
+        let editBtn =  document.getElementById("editBtn");
+        let delBtns = document.getElementsByClassName("staffMenuDeleteButton");
+        let updateButton = document.getElementsByClassName("staffMenuUpdateButton");
+
+        if (editBtn.innerHTML === "Edit"){
+            editBtn.innerHTML = "Editing";
+            document.getElementById("addMoreButton").style.display = "flex";
+
+            for(let i = 0; i < delBtns.length; i++){
+                delBtns[i].style.display = "block";
+                updateButton[i].style.display = "block";
+            }
+        } else {
+            editBtn.innerHTML = "Edit";
+
+            for(let i = 0; i < delBtns.length; i++){
+                delBtns[i].style.display = "none"
+                updateButton[i].style.display = "none"
+            }
+        }
+    }
 
     async editDish(dish) {
         await this.props.history.push(`/staff/menu/edit/${dish.id}`,dish);
@@ -91,7 +115,7 @@ class MenuComponent extends React.Component{
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
-                        <span>Table No.16</span>
+                        {/* <span>Table No.16</span> */}
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
@@ -101,7 +125,7 @@ class MenuComponent extends React.Component{
                             
                             }</h2>
                         </div>
-                        <button id="editBtn" type="button" onClick={this.accessEditingMode}>Edit</button>
+                        <button id="editBtn" type="button" onClick={this.editMode}>Edit</button>
                     </div>
 
                     <div>
@@ -110,10 +134,10 @@ class MenuComponent extends React.Component{
                            <hr className="separateLine"/>
                             <div className="foodBox">
 
-                                {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />}
+                                {/* {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />} */}
                                 {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
                                 
-                                <div className="textBox">
+                                {/* <div className="textBox">
                                     <div className="burgerName">{dish.name}</div>
                                     <div className="burgerDesc">{dish.description}</div>
                                     <div className="burgerOthers">
@@ -130,7 +154,19 @@ class MenuComponent extends React.Component{
                                     <div className="soldOutDiv addDishArea">Sold Out</div>
                                 }
                                 <button onClick = {() => this.deleteDish(dish.id)}><input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" /></button>
-                                <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>                            </div>
+                                <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>          */}
+                            </div>
+                            <div className = "staffMenuGridContainer">
+                                <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "staffMenuName"><strong>{dish.name}</strong></div>
+                                <div className = "staffMenuDes">{dish.description}</div>
+                                <div className = "staffMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>
+                                <div className = "staffMenuPrice"><strong>${dish.price}</strong></div>
+                                <div className = "staffMenuOperation">
+                                    <button className = "staffMenuDeleteButton addDishArea" id = "staffMenuDeleteButton" onClick = {() => this.deleteDish(dish.id)}>delete</button>
+                                    <button className = "staffMenuUpdateButton addDishArea" id = "staffMenuUpdateButton" onClick = {()=> this.editDish(dish)}> Update</button>
+                                </div>
+                            </div>
                         </div>
                         ))}
                     </div>
