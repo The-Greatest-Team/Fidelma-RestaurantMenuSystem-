@@ -28,10 +28,14 @@ public class UserController {
 
     // front end api listed here
     @PostMapping("/orderConfirm")
-    public void addOrder(@RequestBody Order order){
+    public Integer addOrder(@RequestBody Order order){
         System.out.println(order.toString());
+        if (orderService.checkQuantity(order) == 0 || orderService.checkQuantity(order) == 1) {
+            return orderService.checkQuantity(order);
+        }
         orderService.UpdateQuantityForIngredient(order);
         orderService.addOrder(order);
+        return orderService.checkQuantity(order);
     }
 
     @GetMapping("/mainMenu")
