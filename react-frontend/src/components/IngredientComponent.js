@@ -190,10 +190,13 @@ class IngredientComponent extends React.Component{
                                             <td>{row.price}</td>
                                             <td>
                                                 <button className="editIngredientButton" onClick={e => this.handleClick(row.id,e)}>Edit</button>
-                                                {this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}
                                                 <button className="deleteIngredientButton" onClick = {() => this.deleteIngredient(row.id)}>Delete</button>
                                             </td>
+                                            <div>{this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}</div>
                                         </tr>
+                                        
+
+
                                     ))}
                                 </tbody>
                             </table>

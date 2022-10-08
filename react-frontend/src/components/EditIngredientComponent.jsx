@@ -53,32 +53,38 @@ class EditIngredientComponent extends Component {
         });
 
     }
+    
+    test = () => {
+        console.log(this.state.name);
+        console.log(!(/^[a-zA-Z]*$/).test(this.state.name));
+    }
 
     render() {
         return (
             <React.Fragment>
             <BackDrop show={this.props.show} clicked={this.props.modalClosed} />
             <form>
-                <div className="addPopup">
-                    <h2 className="addPopupTitle" >Adding new ingredient  <button className="closeAddPopup" onClick = {this.props.close}>x</button></h2>
+                <div className="editPopup">
+                    <h2 className="editPopupTitle" >Editing ingredient  <button className="closeAddPopup" onClick = {this.props.close}>x</button></h2>
                     
 
-                    <h3 className="addPopupSubTtile">name</h3>
-                    <input className="addPopupInput" type="text" maxLength = "15"
+                    <h3 className="editPopupSubTtile1">Name</h3>
+                    <input className="editPopupInput1" type="text" maxLength = "15"
                     value = {this.state.name} onChange={this.nameHandler} />
-                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                    {this.test()}
+                    {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="errorEdit" data-testid="error-msg-name">Please enter a valid name.</span>}
                     
-                    <h3 className="addPopupSubTtile">Quantity</h3>
-                    <input className="addPopupInput" type="number" min = "0" max = "99999999"
+                    <h3 className="editPopupSubTtile2">Quantity</h3>
+                    <input className="editPopupInput2" type="number" min = "0" max = "99999999"
                     value = {this.state.quantity} onChange={this.quantityHandler} />
-                    {this.state.quantity && (this.state.quantity < 0 || this.state.quantity > 99999999) &&<span className="error" data-testid="error-msg-quantity">Please enter a valid quantity.</span>} 
+                    {this.state.quantity && (this.state.quantity < 0 || this.state.quantity > 99999999) &&<span className="errorEdit" data-testid="error-msg-quantity">Please enter a valid quantity.</span>} 
 
-                    <h3 className="addPopupSubTtile">Price</h3>
-                    <input className="addPopupInput" type="number" min = "0" max = "99999"
+                    <h3 className="editPopupSubTtile3">Price</h3>
+                    <input className="editPopupInput3" type="number" min = "0" max = "99999"
                     value = {this.state.price} onChange={this.priceHandler} />
-                    {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="error" data-testid="error-msg-price">Please enter a valid price.</span>} 
+                    {this.state.price && (this.state.price < 0 || this.state.price > 99999) && <span className="errorEdit" data-testid="error-msg-price">Please enter a valid price.</span>} 
 
-                    <button className = "addPopupSubmitButton" onClick = {this.saveIngredient}>Submit</button>
+                    <button className = "editPopupSubmitButton" onClick = {this.saveIngredient}>Submit</button>
                 </div>
             </form>
             </React.Fragment>
