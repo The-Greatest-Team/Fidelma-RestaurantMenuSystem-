@@ -1,7 +1,6 @@
 import axios from "axios";
-import {API_HEROKU, API_URL} from "../constant";
 
-const USERS_REST_API_URL = API_HEROKU+ '/confirmPage';
+const USERS_REST_API_URL = 'http://localhost:8080/confirmPage';
 
 class ConfirmService{
 

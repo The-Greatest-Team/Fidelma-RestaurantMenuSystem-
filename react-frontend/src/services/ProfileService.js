@@ -1,7 +1,6 @@
 import axios from "axios";
-import {API_HEROKU} from "../constant";
 
-const USERS_REST_API_URL = API_HEROKU + '/staff/profile';
+const USERS_REST_API_URL = 'http://localhost:8080/staff/profile';
 
 class ProfileService{
 

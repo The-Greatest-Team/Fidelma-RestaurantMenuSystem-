@@ -17,6 +17,13 @@ test('will give an error message when the price if too small',() => {
     expect(screen.getByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
 })
 
+test('will give an error message when the price if too large',() => {
+    render(<NewDishComponent />);
+    user.type(getPrice(),'999999999999');
+    expect(screen.getByTestId("error-msg-price")).toBeInTheDocument();
+    expect(screen.getByTestId("error-msg-price").textContent).toEqual("Please enter a valid price.");
+})
+
     
 
 function getName () {

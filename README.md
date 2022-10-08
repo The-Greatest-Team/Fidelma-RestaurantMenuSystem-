@@ -20,7 +20,7 @@ Team member:
 - React - Font-end
 - Spring Boot - Back-end
 - GitHub - Version Control
-- Testing - JUnit/ Spring Framework Testing  
+- Testing - 
 - Heroku - Deployment
 
 ## How to start the app?
@@ -38,7 +38,7 @@ password: VzI1YYho9OUMlj6R
 
 
 ## Userful Tips:
-1. Kill port (bash terminal), replace [portNumber] with the portnumber you want to kill:
+1. Kill port (bash terminal):
 ```
-kill $(lsof -t -i:[portNumber])
+kill $(lsof -t -i:8080)
 ```

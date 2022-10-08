@@ -1,21 +1,25 @@
 package com.thegreatestteam.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Image;
 import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.repository.FoodRepository;
+import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.ImageService;
+import org.bson.types.Binary;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-//@CrossOrigin("${frontend.host}")
-//@CrossOrigin("${frontend.host.heroku}")
-
-@CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}", "${frontend.host.heroku2}"})
+@CrossOrigin("${frontend.host}")
 @RestController
 @RequestMapping("/staff/menu")
 public class FoodController {
@@ -55,10 +59,8 @@ public class FoodController {
     }
 
     @PostMapping("/newDish")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Food addNewFood(@RequestBody Food food){
+    public void addNewFood(@RequestBody Food food){
         foodService.addFood(food);
-        return food;
     }
 
 
@@ -72,8 +74,7 @@ public class FoodController {
         foodService.deleteFood(id);
     }
     @PutMapping("/edit/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Food updateDish(@RequestBody Food newFood, @PathVariable String id){
+    public void updateDish(@RequestBody Food newFood, @PathVariable String id){
         Food food = foodService.getFoodById(id);
         food.setName(newFood.getName());
         food.setPrice(newFood.getPrice());
@@ -81,13 +82,11 @@ public class FoodController {
         food.setDescription(newFood.getDescription());
         food.setComponents(newFood.getComponents());
         foodService.addFood(food);
-        return foodService.getFoodById(id);
     }
 
 
-    // for editing the dish
+    // for editting the dish
     @PostMapping("/dish/imageEdit/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
         deleteImage(id);
         addImage(file, id);
@@ -103,6 +102,7 @@ public class FoodController {
 
 
     // Image interaction
+
     @PostMapping("/newDishImage")
     public void addImage(@RequestParam("file") MultipartFile file,@RequestParam("id") String id) throws IOException {
         imageService.addImage(file,id);
@@ -123,8 +123,13 @@ public class FoodController {
         return false;
     }
 
+
+
     @DeleteMapping("/deleteImage/{id}")
     public void deleteImage(@PathVariable String id){
         imageService.deleteImage(id);
     }
+
+
+
 }

@@ -1,12 +1,10 @@
 import React from "react";
 import CharacterService from "../services/CharacterService";
-import {API_HEROKU} from "../constant";
 
 class CharacterComponent extends React.Component{
 
     constructor(props){
         super(props)
-        console.log(API_HEROKU);
     }
 
     testPost(){
@@ -31,7 +29,7 @@ class CharacterComponent extends React.Component{
                     </div>
                     <div className = "characterContainer">
                         <button className = "characterButton" data-testid = 'staff'
-                        onClick={()=>this.props.history.push("/staff/dashboard",this.props.location.state)}
+                        onClick={()=>this.props.history.push("/staff/login",this.props.location.state)}
                         >I'm a staff</button>
                     </div>
                     <div className = "copyRightTitle">

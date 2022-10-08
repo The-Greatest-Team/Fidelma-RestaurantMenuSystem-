@@ -1,14 +1,15 @@
 package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.repository.IngredientRepository;
+import com.thegreatestteam.backend.repository.StaffRepository;
 import com.thegreatestteam.backend.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}", "${frontend.host.heroku2}"})
+@CrossOrigin("${frontend.host}")
 @RestController
 @RequestMapping("/staff")
 public class IngredientController {
@@ -26,16 +27,14 @@ public class IngredientController {
     }
 
     @GetMapping("/ingredient/{ingredientID}")
-    public Ingredient getIngredientById(@PathVariable String ingredientID){
+    public Ingredient getIngredientByID(@PathVariable String ingredientID){
         return ingredientService.findIngredientByID(ingredientID);
     }
 
     // Create ingredients
     @PostMapping("/ingredient")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient addIngredient(@RequestBody Ingredient ingredient){
+    public void addIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
-        return ingredient;
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
@@ -44,15 +43,13 @@ public class IngredientController {
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-    @PutMapping("/ingredient/{ingredientId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Ingredient UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientId){
-        Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientId);
+    @PutMapping("/ingredient/{ingredientID}")
+    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientID){
+        Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientID);
         currentIngredient.setName(ingredient.getName());
         currentIngredient.setQuantity(ingredient.getQuantity());
         currentIngredient.setPrice(ingredient.getPrice());
         ingredientService.addIngredient(currentIngredient);
-        return ingredientService.findIngredientByID(ingredientId);
     }
 
 

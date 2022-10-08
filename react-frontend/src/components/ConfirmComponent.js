@@ -2,7 +2,6 @@ import Axios from "axios";
 import React from "react";
 import ConfirmService from "../services/ConfirmService";
 import axios from "axios";
-import {API_HEROKU} from "../constant";
 
 class ConfirmComponent extends React.Component{
 
@@ -59,7 +58,7 @@ class ConfirmComponent extends React.Component{
             cart
         }
         console.log("order=> " + JSON.stringify(order));
-        axios.post(API_HEROKU + "/customer/orderConfirm",order).then( (res) => {
+        axios.post("http://localhost:8080/customer/orderConfirm",order).then( (res) => {
             this.props.history.push("/submitPage",this.props.location.state);
             }
         )

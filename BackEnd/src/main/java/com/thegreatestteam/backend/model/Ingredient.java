@@ -12,7 +12,7 @@ public class Ingredient {
     private String id;
     private String name;
     private Double price;
-    public Ingredient(String id,String name, double price, double quantity ) {
+    public Ingredient(String id,String name, double price, Double quantity ) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
