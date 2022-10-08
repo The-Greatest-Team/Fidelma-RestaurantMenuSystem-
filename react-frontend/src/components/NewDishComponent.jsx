@@ -113,7 +113,7 @@ class NewDishComponent extends Component{
         }
 
 
-        if (this.state.name === '' || !(/^[a-zA-Z]*$/).test(this.state.name)) {
+        if (this.state.name === '' || !(/^[a-zA-Z ]*$/).test(this.state.name)) {
             canSend = 0;
         }
 
@@ -304,7 +304,7 @@ class NewDishComponent extends Component{
                             <h2>Name</h2>
                             <input className = "inputPart" type="text"  name = "name" data-testid = "nameNewDish" maxLength = "15"
                             value = {this.state.name} onChange={this.nameHandler}/>
-                            {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                            {this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
 
                             <h2>Price</h2>
                             <input className = "inputPart" type="number"  name = "price" data-testid = "priceNewDish" min = "0" max = "99999"

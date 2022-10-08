@@ -174,7 +174,7 @@ class EditDishComponent extends Component{
             canSend = 0;
         }
 
-        if (!(/^[a-zA-Z]*$/).test(this.state.name)) {
+        if (!(/^[a-zA-Z ]*$/).test(this.state.name)) {
             canSend = 0;
         }
 
@@ -269,7 +269,7 @@ back = (e) => {
                             <h2>Name</h2>
                             <input className = "inputPart" type="text"  name = "name" maxLength = "15"
                             placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
-                            {this.state.name && !(/^[a-zA-Z]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
+                            {this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="error" data-testid="error-msg-name">Please enter a valid name.</span>}
 
                             <h2>Price</h2>
                             <input className = "inputPart" type="number"  name = "price" min = "0" max = "99999"
