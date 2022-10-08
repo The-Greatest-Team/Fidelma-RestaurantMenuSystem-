@@ -200,7 +200,7 @@ class CustomerMenuComponent extends React.Component{
                     {this.state.foodsInCart.map((dishInCart) => (
                     <div className="foodBoxInCart" key={dishInCart.id}>
                         <div className="foodDescBoxInCart">
-                            <img src="/res/images/bigMacChickenBurger.png" alt="food pic"/>
+                            <img src={`data:image/jpeg;base64,${dishInCart.image}`} alt="food pic"/>
                             <div className="foodTextContentInCart">
                                 <div className="foodNameInCart"><strong>{dishInCart.name}</strong></div>
                                 <div className="foodPriceInCart">${dishInCart.price}</div>
