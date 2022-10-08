@@ -1,8 +1,9 @@
-import Axios from "axios";
 import React from "react";
-import ConfirmService from "../services/ConfirmService";
 import axios from "axios";
+import {Modal} from 'antd-mobile'
 import {API_HEROKU} from "../constant";
+
+const alert = Modal.alert
 
 class ConfirmComponent extends React.Component{
 
@@ -61,7 +62,16 @@ class ConfirmComponent extends React.Component{
         console.log("order=> " + JSON.stringify(order));
         axios.post(API_HEROKU + "/customer/orderConfirm",order).then( (res) => {
             if (res.data == False){
-                console.log("False")
+                Modal.alert("Not enough Ingredient", "Please seek assitance from Staff", 
+                [
+                    {
+                    text: 'OK',
+                    onPress : () => new Promise((resolve) => {
+                        this.props.history.push("/customer/mainMenu",this.props.location.state);
+                        setTimeout(resolve, 100);
+                    })
+                    }
+                ])
             } else {
                 this.props.history.push("/submitPage",this.props.location.state);
             }
