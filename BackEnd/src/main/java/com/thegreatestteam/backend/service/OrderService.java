@@ -31,18 +31,20 @@ public class OrderService {
     }
 
     public void UpdateQuantityForIngredient(Order order){
-        for(String foodId: order.getCart().keySet()){
-            Food food = foodService.getFoodById(foodId);
+        for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 break;
             }
-            for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
-                if(ingredientService.findIngredientByName(pair.getKey()) == null){
-                    continue;
+            for(int i = 0; i< dish.getValue();i++){
+                for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
+                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
+                        continue;
+                    }
+                    double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
+                    stock = stock - pair.getValue();
+                    ingredientService.findIngredientByName(pair.getKey()).setQuantity(stock);
                 }
-                double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
-                stock = stock - pair.getValue();
-                ingredientService.findIngredientByName(pair.getKey()).setQuantity(stock);
             }
         }
     }
