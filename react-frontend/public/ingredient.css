@@ -60,8 +60,9 @@
     color: #FFFFFF;
     background-color: #F01E1E;
     border-style: none;
-    margin-left:24vw;
+    /* margin-left:24vw; */
     margin-top:5vw;
+    text-align: center;
 }
 
 .closeAddPopup{

@@ -210,18 +210,18 @@ img{
     float:right;
 } 
 
-.editButton{
+.editIngredientButton{
     background-color: #F01E1E;
     color: #FFFFFF;
     border-style: none;
     font-size: 1.2em;
     border-radius: 4px;
-    padding: 4px 12px;
+    padding: 4px 20px;
     margin-left: 1vw;
     margin-right: 1vw;
 } 
 
-.deleteButton{
+.deleteIngredientButton{
     background-color: #F01E1E;
     color: #FFFFFF;
     border-style: none;
