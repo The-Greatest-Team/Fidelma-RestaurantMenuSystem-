@@ -419,7 +419,7 @@
 }
 
 /* For customer menu */
-.customerMenuPic {grid-area: image; }
+.customerMenuPic {grid-area: image;}
 .customerMenuName{grid-area: name;}
 .customerMenuDes{grid-area: description; }
 .customerMenuCalorie{grid-area: calorie; }

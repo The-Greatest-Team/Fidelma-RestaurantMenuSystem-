@@ -1,16 +1,12 @@
 import axios from "axios";
 import {API_HEROKU, API_URL} from "../constant";
 
-const USERS_REST_API_URL = API_HEROKU+ '/customer/menu/dishDescription';
+const USERS_REST_API_URL = API_HEROKU+ '/customer/foodDes';
 
 class DescriptionService{
 
-    getUsers(){
-        return axios.get(USERS_REST_API_URL)
-    }
-
-    postUsers(){
-        return axios.post(USERS_REST_API_URL, "test");
+    getUsers(id){
+        return axios.get(USERS_REST_API_URL+'/'+id)
     }
     
 }

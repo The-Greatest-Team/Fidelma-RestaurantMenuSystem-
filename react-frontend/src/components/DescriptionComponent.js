@@ -1,6 +1,7 @@
 import React from "react";
 import DescriptionService from "../services/DescriptionService";
 
+
 class DescriptionComponent extends React.Component{
 
     constructor(props){
@@ -13,6 +14,7 @@ class DescriptionComponent extends React.Component{
             tableNum: '',
             phone : '',
             cartOpen : false,
+            maxNum : 0
         }
     }
 
@@ -40,6 +42,10 @@ class DescriptionComponent extends React.Component{
             this.setState({foodsInCart : this.props.location.state[2], type : this.props.location.state[4]})
         }
         this.setState({tableNum : this.props.location.state[0], phone : this.props.location.state[1]})
+        DescriptionService.getUsers(this.props.location.state[3].id).then((respond) => {
+            this.setState({maxNum : (respond.data)});
+        });
+        console.log(this.state.maxNum)
     }
 
     getIngredient(){
