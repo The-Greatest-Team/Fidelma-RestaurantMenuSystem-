@@ -119,7 +119,7 @@ class ConfirmComponent extends React.Component{
                         {this.state.foodsInCart.map((dish) =>(
                             <div className = "grid-container" key = {dish.id}>
                                 <div className = "item1">
-                                    <img className = "gridPic" src="/res/images/beef3.jpg"/>
+                                    <img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />
                                 </div>
                                 <div className = "item2"><strong>{dish.name}</strong></div>
                                 <div className = "item3">add-on details: xxxx</div>
