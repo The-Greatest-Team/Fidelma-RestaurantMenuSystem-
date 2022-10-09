@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {Modal} from 'antd-mobile'
 import {API_HEROKU} from "../constant";
-
-const alert = Modal.alert
 
 class ConfirmComponent extends React.Component{
 
