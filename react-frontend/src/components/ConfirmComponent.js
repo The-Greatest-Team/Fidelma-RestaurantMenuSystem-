@@ -64,25 +64,36 @@ class ConfirmComponent extends React.Component{
             console.log(res.data)
 
             if (res.data == 1){
-                Modal.alert("Not enough Ingredient", "Please seek assistance from Staff",
-                [
-                    {
-                    text: 'OK',
-                    onPress : () => new Promise((resolve) => {
-                        this.props.history.push("/customer/mainMenu",this.props.location.state);
-                        setTimeout(resolve, 100);
-                    })
-                    }
-                ])
+                this.openPopUpWindow("ingredientWarning")
             } else if (res.data == 2){
                 this.props.history.push("/submitPage",this.props.location.state);
             } else {
-                console.log('Exception!!!')
+                this.openPopUpWindow("systemErrorWarning")
             }
-
-            }
-        )
+        })
         
+    }
+
+    openPopUpWindow(id){
+        let window = document.getElementById(id)
+        window.style.display = "flex"
+    }
+
+    closeIngredientPopWindow(){
+        let window = document.getElementById("ingredientWarning")
+        window.style.display = "none"
+    }
+
+    closeSystemErrorPopWindow(){
+        let window = document.getElementById("systemErrorWarning")
+        window.style.display = "none"
+    }
+
+    closePopWindow(id){
+        console.log(id)
+        let window = document.getElementById(id)
+        console.log(window)
+        window.classList.toggle('active')
     }
 
     render(){
@@ -135,6 +146,20 @@ class ConfirmComponent extends React.Component{
                         
                     </div>
                 </div>
+
+
+                <div className="popUpWarning" id="ingredientWarning">
+                    <div className="popUpTitle popUpItem"><strong>Not enough Ingredient</strong></div>
+                    <div className="popUpContent popUpItem">Order is not submit successfully, please seek assistance from Staff members</div>
+                    <button className="popUpBtn popUpItem" onClick={()=>this.closeIngredientPopWindow()}>OK</button>
+                </div>
+
+                <div className="popUpWarning" id="systemErrorWarning">
+                    <div className="popUpTitle popUpItem"><strong>System Error!</strong></div>
+                    <div className="popUpContent popUpItem">Order is not submit successfully, please seek assistance from Staff members</div>
+                    <button className="popUpBtn popUpItem" onClick={()=>this.closeSystemErrorPopWindow()}>OK</button>
+                </div>
+
             </>
         );
     }
