@@ -4,6 +4,7 @@ import com.mongodb.lang.NonNull;
 import org.springframework.data.annotation.Id;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Order {
@@ -16,11 +17,11 @@ public class Order {
     @NonNull
     private String phoneNumber;
 
-    private Map<String,Integer> cart;
+    private Map<String, List<Integer>> cart;
 
     private OrderStatus orderStatus;
 
-    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,Integer> cart, String id) {
+    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,List<Integer>> cart, String id) {
         this.id = id;
         this.tableNumber = tableNumber;
         this.phoneNumber= phoneNumber;
@@ -48,11 +49,11 @@ public class Order {
     }
 
 
-    public Map<String, Integer> getCart() {
+    public Map<String, List<Integer>> getCart() {
         return cart;
     }
 
-    public void setCart(Map<String, Integer> cart) {
+    public void setCart(Map<String, List<Integer>> cart) {
         this.cart = cart;
     }
 

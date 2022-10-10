@@ -31,12 +31,12 @@ public class OrderService {
     }
 
     public void UpdateQuantityForIngredient(Order order){
-        for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
+        for(Map.Entry<String,List<Integer>> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 break;
             }
-            for(int i = 0; i< dish.getValue();i++){
+            for(int i = 0; i< dish.getValue().get(0);i++){
                 for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
                     if(ingredientService.findIngredientByName(pair.getKey()) == null){
                         continue;
@@ -50,14 +50,14 @@ public class OrderService {
     }
 
     public Integer checkQuantity(Order order){
-        for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
+        for(Map.Entry<String,List<Integer>> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 return 0;
             }
             System.out.println("sdf");
 
-            int foodQuantity = dish.getValue();
+            int foodQuantity = dish.getValue().get(0);
 
 
             for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
@@ -110,15 +110,19 @@ public class OrderService {
         //
         for (Order order: clone){
             // change the name of the cart
-            Map<String, Integer> origin = order.getCart();
+            Map<String, List<Integer>> origin = order.getCart();
             if(origin == null){
                 continue;
             }
             Map<String, Integer> newCopy = new HashMap<>();
-            for(Map.Entry<String, Integer> entry : origin.entrySet()){
+            for(Map.Entry<String, List<Integer>> entry : origin.entrySet()){
                 Food food = foodService.getFoodById(entry.getKey());
+                if(food == null){
+                    System.out.println(entry.getKey());
+                    continue;
+                }
                 String name = food.getName();
-                newCopy.put(name, entry.getValue());
+                newCopy.put(name, entry.getValue().get(0));
             }
         }
         return clone;
