@@ -48,8 +48,9 @@ class ConfirmComponent extends React.Component{
         console.log(this.state.foodsInCart);
         let cart = {};
         for (var i = 0; i < this.state.foodsInCart.length; i++) {
-            cart[this.state.foodsInCart[i].id] = this.state.foodsInCart[i].quantity;
+            cart[this.state.foodsInCart[i].id] = [this.state.foodsInCart[i].quantity,this.state.foodsInCart[i].price];
         }
+
         const unique_id = uuid();
         let order = {
             id:unique_id,
