@@ -1,36 +1,43 @@
-import React,{Component,useCallback} from "react";
+import React,{Component,useCallback,useState} from "react";
 import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
 import axios from "axios";
 
 
 function MyDropzone({childToParent}) {
+    const [url, setUrl] = useState('/res/images/camera.png');
     const onDrop = useCallback(acceptedFiles => {
-      const file = acceptedFiles[0];
-      console.log(file);
-      const formData = new FormData();
-      formData.append("file",file);
-      childToParent(formData);
+    const file = acceptedFiles[0];
 
+    console.log(file);
+
+    const formData = new FormData();
+    formData.append("file",file);
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+
+    setUrl(URL.createObjectURL(file));
+    console.log(url);
+    childToParent(formData);
     }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+
+    const test = console.log(url);
+
   
     return (
       <div {...getRootProps()}>
         <input {...getInputProps()} />
-        {
-          isDragActive ?
+
+
           <div id = "camera">
             <div className = "content top">
-                <img className = "cameraImage" src="/res/images/cameraAlpha.png"/>
+                {test}
+                <img className = "cameraImage" src={url}/>
             </div>
-          </div> :
-            <div id = "camera">
-                <div className = "content top">
-                    <img className = "cameraImage" src="/res/images/camera.jpg"/>
-                </div>
-            </div>
-        }
+          </div> 
+
       </div>
     )
   }

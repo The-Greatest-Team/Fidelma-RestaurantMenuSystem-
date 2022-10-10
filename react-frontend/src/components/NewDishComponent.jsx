@@ -13,7 +13,7 @@ global.constants = {
 };
 
 function MyDropzone({childToParent}) {
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('/res/images/camera.png');
     const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
 
