@@ -38,6 +38,10 @@ class OrderHistoryComponent extends React.Component{
         
     }
 
+    orderCompleted() {
+        
+    }
+
     render(){
         return(
             <>
@@ -63,7 +67,7 @@ class OrderHistoryComponent extends React.Component{
                                     <tr>
                                         <td>{order.tableNumber}</td>
                                         <td>{order.phoneNumber}</td>
-                                        <td className = "preparing"><strong>Preparing</strong> <button>Complete</button></td>
+                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted()}>Complete</button></td>
                                         <td><button onClick={e => this.handleClick(order.cart,order.id,e)}> Check Details</button></td>
                                         <td><button> Delete </button></td>
                                         {this.state.show && <OrderDetailComponent close = {this.close} id = {this.state.ingredientId} detail = {this.state.detail}/>}

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { v4 as uuid } from 'uuid';
 
 class ConfirmComponent extends React.Component{
 
@@ -49,7 +50,9 @@ class ConfirmComponent extends React.Component{
         for (var i = 0; i < this.state.foodsInCart.length; i++) {
             cart[this.state.foodsInCart[i].id] = this.state.foodsInCart[i].quantity;
         }
+        const unique_id = uuid();
         let order = {
+            id:unique_id,
             tableNumber : this.state.tableNum,
             phoneNumber : this.state.phone,
             name : this.state.orderComment,
