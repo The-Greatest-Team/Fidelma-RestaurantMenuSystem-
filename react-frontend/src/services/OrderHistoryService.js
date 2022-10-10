@@ -11,6 +11,10 @@ class OrderHistoryService{
     deleteOrder(orderId) {
         return axios.delete('http://localhost:8080/staff/deleteOrder'+'/' + orderId);
     }
+
+    postComplete(orderId) {
+        return axios.post('http://localhost:8080/staff/completeOrder'+'/' + orderId);
+    }
 }
 
 export default new OrderHistoryService()

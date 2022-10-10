@@ -38,7 +38,10 @@ class OrderHistoryComponent extends React.Component{
         
     }
 
-    orderCompleted() {
+    orderCompleted(id) {
+        OrderHistoryService.postComplete(id).then(res => {
+            window.location.reload();
+        })
 
     }
 
@@ -75,7 +78,7 @@ class OrderHistoryComponent extends React.Component{
                                     <tr>
                                         <td>{order.tableNumber}</td>
                                         <td>{order.phoneNumber}</td>
-                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted()}>Complete</button></td>
+                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
                                         <td><button onClick={e => this.handleClick(order.cart,order.id,e)}> Check Details</button></td>
                                         <td><button onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
                                         {this.state.show && <OrderDetailComponent close = {this.close} detail = {this.state.detail}/>}
