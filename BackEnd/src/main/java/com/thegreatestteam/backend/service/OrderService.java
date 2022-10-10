@@ -99,6 +99,10 @@ public class OrderService {
         return orderRepository.getOrderById(id);
     }
 
+    public void deleteById(String id){
+        orderRepository.deleteOrderById(id);
+    }
+
 //    public List<Order> displayALlOrdersWithDishes(){
 //        List<Order> orders = this.getAllOrder();
 //        // need to return order id
