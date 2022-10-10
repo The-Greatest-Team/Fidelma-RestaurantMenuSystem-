@@ -7,6 +7,7 @@ import com.thegreatestteam.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,5 +93,31 @@ public class OrderService {
 
     public List<Order> getAllOrder(){
         return orderRepository.findAll();
+    }
+
+    public Order getOrderById(String id){
+        return orderRepository.getOrderById(id);
+    }
+
+    public List<Order> displayALlOrdersWithDishes(){
+        List<Order> orders = this.getAllOrder();
+        // need to return order id
+        // clone the orders
+        List<Order> clone = new ArrayList<>();
+        for(Order order: orders){
+            clone.add(order);
+        }
+        //
+        for (Order order: clone){
+            // change the name of the cart
+            Map<String, Integer> origin = order.getCart();
+            Map<String, Integer> newCopy = new HashMap<>();
+            for(Map.Entry<String, Integer> entry : origin.entrySet()){
+                Food food = foodService.getFoodById(entry.getKey());
+                String name = food.getName();
+                newCopy.put(name, entry.getValue());
+            }
+        }
+        return clone;
     }
 }
