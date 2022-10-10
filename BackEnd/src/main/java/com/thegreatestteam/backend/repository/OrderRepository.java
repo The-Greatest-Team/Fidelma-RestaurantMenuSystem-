@@ -11,4 +11,6 @@ public interface OrderRepository extends MongoRepository<Order,Integer> {
 
 
     Order getOrderById(String id);
+
+    void deleteOrderById(String id);
 }

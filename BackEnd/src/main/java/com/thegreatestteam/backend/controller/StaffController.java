@@ -81,6 +81,11 @@ public class StaffController {
         order.setOrderStatus(OrderStatus.COMPLETED);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteOrder(@PathVariable String id){
+        orderService.deleteById(id);
+    }
+
 
     // edit menu
 
