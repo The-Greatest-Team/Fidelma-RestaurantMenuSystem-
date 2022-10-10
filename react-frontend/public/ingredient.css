@@ -202,3 +202,13 @@
     background-color:#FEFCF7 ;
     z-index: 500;
 }
+
+.BackDropForOrder{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:100;
+    left:0;
+    top:0;
+    background-color: rgba(49, 47, 47, 0.092);
+}

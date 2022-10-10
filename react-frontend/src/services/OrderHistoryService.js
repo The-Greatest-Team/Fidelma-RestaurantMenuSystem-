@@ -1,15 +1,11 @@
 import axios from "axios";
 
-const USERS_REST_API_URL = 'http://localhost:8080/staff/orderHistory';
+const ORDERS_REST_API_URL = 'http://localhost:8080/staff/allOrders';
 
 class OrderHistoryService{
 
-    getUsers(){
-        return axios.get(USERS_REST_API_URL)
-    }
-
-    postUsers(){
-        return axios.post(USERS_REST_API_URL, "test");
+    getOrders(){
+        return axios.get(ORDERS_REST_API_URL);
     }
 }
 
