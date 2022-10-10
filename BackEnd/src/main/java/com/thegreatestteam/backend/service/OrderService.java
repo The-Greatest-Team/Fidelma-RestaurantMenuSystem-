@@ -31,8 +31,8 @@ public class OrderService {
     }
 
     public void UpdateQuantityForIngredient(Order order){
-        for(Map.Entry<String,List<Integer>> dish: order.getCart().entrySet()){
-            Food food = foodService.getFoodById(dish.getKey());
+        for(Map.Entry<List<String>,List<Integer>> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey().get(0));
             if(food == null){
                 break;
             }
@@ -50,8 +50,8 @@ public class OrderService {
     }
 
     public Integer checkQuantity(Order order){
-        for(Map.Entry<String,List<Integer>> dish: order.getCart().entrySet()){
-            Food food = foodService.getFoodById(dish.getKey());
+        for(Map.Entry<List<String>,List<Integer>> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey().get(0));
             if(food == null){
                 return 0;
             }
@@ -99,32 +99,32 @@ public class OrderService {
         return orderRepository.getOrderById(id);
     }
 
-    public List<Order> displayALlOrdersWithDishes(){
-        List<Order> orders = this.getAllOrder();
-        // need to return order id
-        // clone the orders
-        List<Order> clone = new ArrayList<>();
-        for(Order order: orders){
-            clone.add(order);
-        }
-        //
-        for (Order order: clone){
-            // change the name of the cart
-            Map<String, List<Integer>> origin = order.getCart();
-            if(origin == null){
-                continue;
-            }
-            Map<String, Integer> newCopy = new HashMap<>();
-            for(Map.Entry<String, List<Integer>> entry : origin.entrySet()){
-                Food food = foodService.getFoodById(entry.getKey());
-                if(food == null){
-                    System.out.println(entry.getKey());
-                    continue;
-                }
-                String name = food.getName();
-                newCopy.put(name, entry.getValue().get(0));
-            }
-        }
-        return clone;
-    }
+//    public List<Order> displayALlOrdersWithDishes(){
+//        List<Order> orders = this.getAllOrder();
+//        // need to return order id
+//        // clone the orders
+//        List<Order> clone = new ArrayList<>();
+//        for(Order order: orders){
+//            clone.add(order);
+//        }
+//        //
+//        for (Order order: clone){
+//            // change the name of the cart
+//            Map<List<String>, List<Integer>> origin = order.getCart();
+//            if(origin == null){
+//                continue;
+//            }
+//            Map<String, Integer> newCopy = new HashMap<>();
+//            for(Map.Entry<String, List<Integer>> entry : origin.entrySet()){
+//                Food food = foodService.getFoodById(entry.getKey());
+//                if(food == null){
+//                    System.out.println(entry.getKey());
+//                    continue;
+//                }
+//                String name = food.getName();
+//                newCopy.put(name, entry.getValue().get(0));
+//            }
+//        }
+//        return clone;
+//    }
 }

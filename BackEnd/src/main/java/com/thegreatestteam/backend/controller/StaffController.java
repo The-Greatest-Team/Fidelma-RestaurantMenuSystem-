@@ -71,7 +71,7 @@ public class StaffController {
     // Order summary
     @GetMapping("/allOrders")
     public List<Order> displayAllOrder(){
-        return orderService.displayALlOrdersWithDishes();
+        return orderService.getAllOrder();
     }
 
 

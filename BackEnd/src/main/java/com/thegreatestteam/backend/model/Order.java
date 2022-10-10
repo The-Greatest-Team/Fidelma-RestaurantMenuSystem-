@@ -17,11 +17,11 @@ public class Order {
     @NonNull
     private String phoneNumber;
 
-    private Map<String, List<Integer>> cart;
+    private Map<List<String>, List<Integer>> cart;
 
     private OrderStatus orderStatus;
 
-    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,List<Integer>> cart, String id) {
+    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<List<String>,List<Integer>> cart, String id) {
         this.id = id;
         this.tableNumber = tableNumber;
         this.phoneNumber= phoneNumber;
@@ -49,11 +49,11 @@ public class Order {
     }
 
 
-    public Map<String, List<Integer>> getCart() {
+    public Map<List<String>, List<Integer>> getCart() {
         return cart;
     }
 
-    public void setCart(Map<String, List<Integer>> cart) {
+    public void setCart(Map<List<String>, List<Integer>> cart) {
         this.cart = cart;
     }
 
