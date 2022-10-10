@@ -28,7 +28,7 @@ class OrderDetailComponent extends Component {
                     <h2 className="editPopupTitle" >Order Details<button className="closeAddPopup" onClick = {this.props.close}>x</button></h2>
                     {   
                         this.state.details.map((detail) => (
-                            <div><span>{detail[0]}</span> <span>{detail[1]}</span> </div>
+                            <div><span>{detail[0][1]}</span> <span>{detail[1][0]}</span> <span>{detail[1][1]}</span></div>
                         ))
                         
                         }
