@@ -18,11 +18,13 @@ public class Order {
 
     private Map<String,Integer> cart;
 
+    private OrderStatus orderStatus;
+
     public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,Integer> cart) {
         this.tableNumber = tableNumber;
         this.phoneNumber= phoneNumber;
         this.cart = cart;
-
+        this.orderStatus = OrderStatus.PREPARING;
     }
 
 
@@ -51,5 +53,17 @@ public class Order {
 
     public void setCart(Map<String, Integer> cart) {
         this.cart = cart;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getId() {
+        return id;
     }
 }
