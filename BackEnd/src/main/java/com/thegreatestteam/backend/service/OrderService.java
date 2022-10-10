@@ -31,12 +31,12 @@ public class OrderService {
     }
 
     public void UpdateQuantityForIngredient(Order order){
-        for(Map.Entry<List<String>,List<Integer>> dish: order.getCart().entrySet()){
-            Food food = foodService.getFoodById(dish.getKey().get(0));
+        for(Map.Entry<String,List<Object>> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 break;
             }
-            for(int i = 0; i< dish.getValue().get(0);i++){
+            for(int i = 0; i< (Integer) dish.getValue().get(0);i++){
                 for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
                     if(ingredientService.findIngredientByName(pair.getKey()) == null){
                         continue;
@@ -50,14 +50,14 @@ public class OrderService {
     }
 
     public Integer checkQuantity(Order order){
-        for(Map.Entry<List<String>,List<Integer>> dish: order.getCart().entrySet()){
-            Food food = foodService.getFoodById(dish.getKey().get(0));
+        for(Map.Entry<String,List<Object>> dish: order.getCart().entrySet()){
+            Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 return 0;
             }
             System.out.println("sdf");
 
-            int foodQuantity = dish.getValue().get(0);
+            int foodQuantity = (Integer) dish.getValue().get(0);
 
 
             for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){

@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Order {
 
@@ -17,11 +18,11 @@ public class Order {
     @NonNull
     private String phoneNumber;
 
-    private Map<List<String>, List<Integer>> cart;
+    private Map<String, List<Object>> cart;
 
     private OrderStatus orderStatus;
 
-    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<List<String>,List<Integer>> cart, String id) {
+    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String, List<Object>> cart, String id) {
         this.id = id;
         this.tableNumber = tableNumber;
         this.phoneNumber= phoneNumber;
@@ -49,11 +50,11 @@ public class Order {
     }
 
 
-    public Map<List<String>, List<Integer>> getCart() {
+    public Map<String, List<Object>> getCart() {
         return cart;
     }
 
-    public void setCart(Map<List<String>, List<Integer>> cart) {
+    public void setCart(Map<String, List<Object>> cart) {
         this.cart = cart;
     }
 
