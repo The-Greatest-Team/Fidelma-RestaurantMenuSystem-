@@ -1,6 +1,4 @@
-import Axios from "axios";
 import React from "react";
-import ConfirmService from "../services/ConfirmService";
 import axios from "axios";
 
 class ConfirmComponent extends React.Component{
@@ -58,11 +56,40 @@ class ConfirmComponent extends React.Component{
             cart
         }
         console.log("order=> " + JSON.stringify(order));
-        axios.post("http://localhost:8080/customer/orderConfirm",order).then( (res) => {
-            this.props.history.push("/submitPage",this.props.location.state);
+        axios.post(API_HEROKU + "/customer/orderConfirm",order).then( (res) => {
+            console.log(res.data)
+
+            if (res.data == 1){
+                this.openPopUpWindow("ingredientWarning")
+            } else if (res.data == 2){
+                this.props.history.push("/submitPage",this.props.location.state);
+            } else {
+                this.openPopUpWindow("systemErrorWarning")
             }
-        )
+        })
         
+    }
+
+    openPopUpWindow(id){
+        let window = document.getElementById(id)
+        window.style.display = "flex"
+    }
+
+    closeIngredientPopWindow(){
+        let window = document.getElementById("ingredientWarning")
+        window.style.display = "none"
+    }
+
+    closeSystemErrorPopWindow(){
+        let window = document.getElementById("systemErrorWarning")
+        window.style.display = "none"
+    }
+
+    closePopWindow(id){
+        console.log(id)
+        let window = document.getElementById(id)
+        console.log(window)
+        window.classList.toggle('active')
     }
 
     render(){
@@ -88,7 +115,7 @@ class ConfirmComponent extends React.Component{
                         {this.state.foodsInCart.map((dish) =>(
                             <div className = "grid-container" key = {dish.id}>
                                 <div className = "item1">
-                                    <img className = "gridPic" src="/res/images/beef3.jpg"/>
+                                    <img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />
                                 </div>
                                 <div className = "item2"><strong>{dish.name}</strong></div>
                                 <div className = "item3">add-on details: xxxx</div>
@@ -115,6 +142,20 @@ class ConfirmComponent extends React.Component{
                         
                     </div>
                 </div>
+
+
+                <div className="popUpWarning" id="ingredientWarning">
+                    <div className="popUpTitle popUpItem"><strong>Not enough Ingredient</strong></div>
+                    <div className="popUpContent popUpItem">Order is not submit successfully, please seek assistance from Staff members</div>
+                    <button className="popUpBtn popUpItem" onClick={()=>this.closeIngredientPopWindow()}>OK</button>
+                </div>
+
+                <div className="popUpWarning" id="systemErrorWarning">
+                    <div className="popUpTitle popUpItem"><strong>System Error!</strong></div>
+                    <div className="popUpContent popUpItem">Order is not submit successfully, please seek assistance from Staff members</div>
+                    <button className="popUpBtn popUpItem" onClick={()=>this.closeSystemErrorPopWindow()}>OK</button>
+                </div>
+
             </>
         );
     }

@@ -8,6 +8,7 @@ import com.thegreatestteam.backend.model.Staff;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import com.thegreatestteam.backend.repository.StaffRepository;
 import com.thegreatestteam.backend.service.IngredientService;
+import com.thegreatestteam.backend.service.OrderService;
 import com.thegreatestteam.backend.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +23,13 @@ public class StaffController {
     private final StaffService staffService;
 
     private final IngredientService ingredientService;
+    private final OrderService orderService;
 
     @Autowired
-    public StaffController(StaffService staffService, IngredientService ingredientService){
+    public StaffController(StaffService staffService, IngredientService ingredientService, OrderService orderService){
         this.staffService = staffService;
         this.ingredientService = ingredientService;
+        this.orderService = orderService;
     }
 
     // Staff dashboard
@@ -63,6 +66,10 @@ public class StaffController {
 
 
     // Order summary
+    @GetMapping("/allOrders")
+    public List<Order> displayAllOrder(){
+        return orderService.getAllOrder();
+    }
 
 
     // edit menu
