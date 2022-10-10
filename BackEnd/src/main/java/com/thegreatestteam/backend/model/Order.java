@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
-    @Id
+
     private String id;
 
     private String name;
@@ -20,7 +20,8 @@ public class Order {
 
     private OrderStatus orderStatus;
 
-    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,Integer> cart) {
+    public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String,Integer> cart, String id) {
+        this.id = id;
         this.tableNumber = tableNumber;
         this.phoneNumber= phoneNumber;
         this.cart = cart;
@@ -66,4 +67,5 @@ public class Order {
     public String getId() {
         return id;
     }
+
 }

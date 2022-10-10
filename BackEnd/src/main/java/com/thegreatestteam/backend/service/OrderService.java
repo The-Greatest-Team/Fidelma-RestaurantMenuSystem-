@@ -111,6 +111,9 @@ public class OrderService {
         for (Order order: clone){
             // change the name of the cart
             Map<String, Integer> origin = order.getCart();
+            if(origin == null){
+                continue;
+            }
             Map<String, Integer> newCopy = new HashMap<>();
             for(Map.Entry<String, Integer> entry : origin.entrySet()){
                 Food food = foodService.getFoodById(entry.getKey());
