@@ -59,7 +59,7 @@ class ConfirmComponent extends React.Component{
             cart
         }
         console.log("order=> " + JSON.stringify(order));
-        axios.post( "http://localhost:3000/customer/orderConfirm",order).then( (res) => {
+        axios.post( "http://localhost:8080/customer/orderConfirm",order).then( (res) => {
             console.log(res.data)
 
             if (res.data == 1){
