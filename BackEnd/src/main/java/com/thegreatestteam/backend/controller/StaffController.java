@@ -79,6 +79,7 @@ public class StaffController {
     public void completeOrder(@PathVariable String id){
         Order order = orderService.getOrderById(id);
         order.setOrderStatus(OrderStatus.COMPLETED);
+        orderService.saveOrder(order);
     }
 
     @DeleteMapping("/deleteOrder/{id}")

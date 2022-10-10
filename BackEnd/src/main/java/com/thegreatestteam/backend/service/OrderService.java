@@ -103,6 +103,10 @@ public class OrderService {
         orderRepository.deleteOrderById(id);
     }
 
+    public void saveOrder(Order order){
+        orderRepository.save(order);
+    }
+
 //    public List<Order> displayALlOrdersWithDishes(){
 //        List<Order> orders = this.getAllOrder();
 //        // need to return order id
