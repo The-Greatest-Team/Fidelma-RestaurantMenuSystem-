@@ -40,6 +40,7 @@ class OrderHistoryComponent extends React.Component{
 
     orderCompleted(id) {
         OrderHistoryService.postComplete(id).then(res => {
+            console.log("successful");
             window.location.reload();
         })
 
