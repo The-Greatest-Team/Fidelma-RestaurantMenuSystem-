@@ -75,13 +75,13 @@ public class StaffController {
     }
 
 
-    @PostMapping("/complete/{id}")
+    @PostMapping("/completeOrder/{id}")
     public void completeOrder(@PathVariable String id){
         Order order = orderService.getOrderById(id);
         order.setOrderStatus(OrderStatus.COMPLETED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteOrder/{id}")
     public void deleteOrder(@PathVariable String id){
         orderService.deleteById(id);
     }
