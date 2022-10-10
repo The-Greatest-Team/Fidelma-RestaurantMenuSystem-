@@ -27,7 +27,7 @@ class OrderHistoryComponent extends React.Component{
         this.setState({
             show:true,
         });
-        this.setState({ingredientId:id});
+        this.setState({orderId:id});
         this.setState({detail:orderDetail});
     }
 
@@ -39,7 +39,15 @@ class OrderHistoryComponent extends React.Component{
     }
 
     orderCompleted() {
-        
+
+    }
+
+    deleteOrder(id) {
+        OrderHistoryService.deleteOrder(id).then(
+            res => {
+                this.setState({orders:this.state.orders.filter(order => order.id !== id)})
+            }
+        )
     }
 
     render(){
@@ -69,8 +77,8 @@ class OrderHistoryComponent extends React.Component{
                                         <td>{order.phoneNumber}</td>
                                         <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted()}>Complete</button></td>
                                         <td><button onClick={e => this.handleClick(order.cart,order.id,e)}> Check Details</button></td>
-                                        <td><button> Delete </button></td>
-                                        {this.state.show && <OrderDetailComponent close = {this.close} id = {this.state.ingredientId} detail = {this.state.detail}/>}
+                                        <td><button onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
+                                        {this.state.show && <OrderDetailComponent close = {this.close} detail = {this.state.detail}/>}
                                     </tr>
                                 ))
                                 }
