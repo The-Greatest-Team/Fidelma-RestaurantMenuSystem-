@@ -13,7 +13,6 @@ class LoginComponent extends React.Component{
         }
         this.usernameHandler = this.usernameHandler.bind(this);
         this.passwordHandler = this.passwordHandler.bind(this);
-        this.save = this.save.bind(this);
     }  
 
     usernameHandler = (event) =>{
@@ -25,30 +24,9 @@ class LoginComponent extends React.Component{
     }
 
     save(event){
-        var teamUsername = "comp30022";
-        var teamPassword = "tg123123";
-        if(this.state.username != teamUsername){
-            alert('Unregistered User! Please Login again!');
-            this.reset();
-        } else if(this.state.password != teamPassword){
-            alert('Wrong Password! Please Login again!');
-            this.reset();
-        } else{
-            alert('Login Successfully! Welcome Back!')
-            this.goToDashboard();
-        }
+
     }
 
-    reset(){
-        this.setState({
-            username:'',
-            password:'',
-        });
-    }
-
-    goToDashboard(){
-        window.location.href="/staff/dashboard";
-    }
 
     render(){
         return(
@@ -76,7 +54,7 @@ class LoginComponent extends React.Component{
                     </div>
                     <div className = "loginContainer">
                         {/* <button className = "loginButton" onClick = {this.save}>Log in</button> */}
-                        <button className = "loginButton" onClick = {this.save}>Log in</button>
+                        <button className = "loginButton" onClick = {()=>window.location.href="/staff/dashboard"}>Log in</button>
                     </div>
                 </div>
             </>
