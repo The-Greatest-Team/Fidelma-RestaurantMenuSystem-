@@ -188,10 +188,6 @@ class EditDishComponent extends Component{
 
         var canSend = 0;
 
-        if (this.state.file !== '') {
-            canSend = 1;
-        }
-
         if (!(/^[a-zA-Z ]*$/).test(this.state.name)) {
             canSend = 0;
         }
@@ -224,18 +220,35 @@ class EditDishComponent extends Component{
             canSend = 1;
         }
 
+        for (var i = 0 ; i < componentsArr.length; i++) {
+            console.log(typeof(componentsArr[i][1]));
+            console.log(typeof(this.state.ingredients[i][1]));
+            if (componentsArr[i][1] !== this.state.ingredients[i][1]) {
+                canSend = 1;
+                break;
+            }
+        }
 
         let fileSizeValid = 0;
-        for (var pair of this.state.file.entries()) {
-            if ( 0 < pair[1].size && pair[1].size< 2097152){
-                fileSizeValid = 1;
+        if (this.state.file !=='') {
+            for (var pair of this.state.file.entries()) {
+                console.log(fileSizeValid);
+                console.log(typeof(pair[1].size));
+                if ( 0 < pair[1].size  && pair[1].size < 2097152){
+                    fileSizeValid = 1;
+                }
             }
         }
 
         if (fileSizeValid === 0) {
             canSend = 0;
+        }else {
+            canSend = 1;
         }
 
+        if (this.state.file === '') {
+            canSend = 1;
+        }
 
         if (canSend === 0) {
             this.setState({display: true});
@@ -243,13 +256,7 @@ class EditDishComponent extends Component{
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
-            let fileSizeValid = 0;
-            for (var pair of this.state.file.entries()) {
-                if ( 0 < pair[1].size && pair[1].size< 2097152){
-                    fileSizeValid = 1;
-                }
-            }
-            if(this.state.file !== '' && fileSizeValid === 1) {
+            if(this.state.file !== '') {
                 axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
                 () => {
                     console.log("successful");
