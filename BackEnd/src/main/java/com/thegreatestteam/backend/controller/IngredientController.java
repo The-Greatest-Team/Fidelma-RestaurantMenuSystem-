@@ -25,9 +25,9 @@ public class IngredientController {
         return ingredientService.getAllIngredient();
     }
 
-    @GetMapping("/ingredient/{ingredientID}")
-    public Ingredient getIngredientById(@PathVariable String ingredientID){
-        return ingredientService.findIngredientByID(ingredientID);
+    @GetMapping("/ingredient/{ingredientId}")
+    public Ingredient getIngredientById(@PathVariable String ingredientId){
+        return ingredientService.findIngredientById(ingredientId);
     }
 
     // Create ingredients
@@ -47,12 +47,12 @@ public class IngredientController {
     @PutMapping("/ingredient/{ingredientId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Ingredient UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientId){
-        Ingredient currentIngredient = ingredientService.findIngredientByID(ingredientId);
+        Ingredient currentIngredient = ingredientService.findIngredientById(ingredientId);
         currentIngredient.setName(ingredient.getName());
         currentIngredient.setQuantity(ingredient.getQuantity());
         currentIngredient.setPrice(ingredient.getPrice());
         ingredientService.addIngredient(currentIngredient);
-        return ingredientService.findIngredientByID(ingredientId);
+        return ingredientService.findIngredientById(ingredientId);
     }
 
 
