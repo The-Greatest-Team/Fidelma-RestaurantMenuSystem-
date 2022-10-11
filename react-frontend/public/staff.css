@@ -382,6 +382,17 @@ img{
     margin-top: 4%;
 }
 
+.detailHead{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailHead h4{
+    display: inline-block;
+    margin-left: 22%;
+    margin-top: 4%;
+}
+
 .historySeparateLine{
     margin:auto;
     width:100%;
@@ -423,7 +434,7 @@ img{
 }
 
 .historyTable th{
-    font-size: 3vw;
+    font-size: 3.4vw;
 }
 
 .historyTable td{
@@ -461,8 +472,29 @@ img{
     font-size: 1.2vw;
     border-radius: 4px;
     padding: 2px 2px;
+    width: 14vw;
 }
 
+.foodDetails{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.orderDetails h5{
+    text-align: center;
+    font-size: 7vw;
+    margin-top: 10vw;
+}
+
+.orderComment{
+    text-align: center;
+}
+
+.orderPrice{
+    color:#F01E1E;
+    margin-left: 4%;
+}
 /* For total income */
 .incomeHead{
     align-items: center;
@@ -534,7 +566,7 @@ img{
     "image image description description operation"
     "image image calorie price operation"
     ;
-    grid-gap: 0.1vw;
+    grid-gap: 3vw;
     padding: 3vw;
 }
 
