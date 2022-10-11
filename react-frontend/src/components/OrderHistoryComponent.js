@@ -9,26 +9,22 @@ class OrderHistoryComponent extends React.Component{
 
         this.state = {
             orders: [],
-            orderId:'',
             show:false,
-            detail:{}
+            phone:''
         }
     }
 
     componentDidMount() {
         OrderHistoryService.getOrders().then((res) => {
             this.setState({orders:(res.data)});
-            console.log(this.state.orders);
+            console.log(typeof(this.state.orders[0].phoneNumber));
+            
         })
     }
 
-    handleClick (orderDetail,id,e){
+    handleClick (order,id,e){
         e.stopPropagation();
-        this.setState({
-            show:true,
-        });
-        this.setState({orderId:id});
-        this.setState({detail:orderDetail});
+        this.props.history.push(`/staff/orderDetails/${id}`,order);
     }
 
     close = () =>{
@@ -54,6 +50,10 @@ class OrderHistoryComponent extends React.Component{
         )
     }
 
+    phoneHandler = (event) =>{
+        this.setState({phone:event.target.value});
+    }
+
     render(){
         return(
             <>
@@ -64,6 +64,7 @@ class OrderHistoryComponent extends React.Component{
                         <hr className = "historySeparateLine"/>
                     </div>
                     <div className="historyTableContainer">
+                    <input type = "number" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum" placeholder="search by phone number..."/>
                         <table className = "historyTable">
                             <thead>
                                 <tr>
@@ -75,12 +76,18 @@ class OrderHistoryComponent extends React.Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.orders.map((order) => (
-                                    <tr>
+                                {this.state.orders.filter((order => {
+                                    if (this.state.phone === '') {
+                                        return order;
+                                    } else if (order.phoneNumber.includes(this.state.phone)){
+                                        return order;
+                                    }
+                                })).map((order) => (
+                                    <tr key = {order.id}>
                                         <td>{order.tableNumber}</td>
                                         <td>{order.phoneNumber}</td>
                                         <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
-                                        <td><button onClick={e => this.handleClick(order.cart,order.id,e)}> Check Details</button></td>
+                                        <td><button onClick={e => this.handleClick(order,order.id,e)}> Check Details</button></td>
                                         <td><button onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
                                         {this.state.show && <OrderDetailComponent close = {this.close} detail = {this.state.detail}/>}
                                     </tr>

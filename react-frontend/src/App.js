@@ -19,6 +19,7 @@ import CharacterComponent from './components/CharacterComponent';
 import OrderHistoryComponent from './components/OrderHistoryComponent';
 import StaffIncomeComponent from './components/StaffIncomeComponent';
 import LoginComponent from './components/LoginComponent';
+import OrderDetailComponent from "./components/OrderDetailComponent";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                           <Route path="/staff/orderHistory" component={OrderHistoryComponent}></Route>
                           <Route path="/staff/income" component={StaffIncomeComponent}></Route>
                           <Route path="/staff/login" component={LoginComponent}></Route>
+                          <Route path="/staff/orderDetails/:id" component={OrderDetailComponent}></Route>
                     </Switch>
                 </div>
         </Router>
