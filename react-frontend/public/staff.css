@@ -35,6 +35,55 @@ body{
     width:20vw;
 }
 
+.container {
+    top:50%;
+    left:50%;
+    margin-left: -65px;
+    margin-top: -20px;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+  }
+  .button {
+    display: inline-block;
+    background-color: #7b38d8;
+    border-radius: 20px;
+    border:none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
 .dashboardIcon{
     height: 20%;
     width: 12%;
@@ -344,11 +393,12 @@ img{
 
 .historyTableContainer{
     margin-top: 4%;
-    margin-left: 6vw;
-    margin-right: 6vw;
+
+
     border: 0.1vw solid #c9c9c9;
     border-top:none;
     border-bottom:none;
+    width: 100%;
 }
 
 .historyTable{
@@ -387,6 +437,30 @@ img{
 
 .shipped{
     color: #e09239;
+}
+
+.orderSearch{
+    width: 60vw;
+    margin-left: 20vw;
+    margin-bottom: 5vw;
+}
+
+.completeButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 1.2vw;
+    border-radius: 4px;
+    padding: 2px 2px;
+}
+
+.checkDetailButton{
+    background-color: #F01E1E;
+    color: #FFFFFF;
+    border-style: none;
+    font-size: 1.2vw;
+    border-radius: 4px;
+    padding: 2px 2px;
 }
 
 /* For total income */

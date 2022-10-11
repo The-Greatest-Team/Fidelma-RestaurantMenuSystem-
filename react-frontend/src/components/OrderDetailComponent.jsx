@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import IngredientPopupService from "../services/IngredientPopupService";
 import IngredientService from "../services/IngredientService";
-import BackDropForOrder from "./BackDropForOrder";
 
 class OrderDetailComponent extends Component {
     constructor(props){
