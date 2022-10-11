@@ -31,7 +31,7 @@ class OrderDetailComponent extends Component {
                    
                     {   
                         this.state.details.map((detail) => (
-                            <div className="foodDetails"><span>{detail[1][2]}</span> <span>{detail[1][0]}</span> <span className = "orderPrice">${detail[1][1]*detail[1][0]}</span></div>
+                            <div className="foodDetails"><span>{detail[1][2]}</span> <span>{detail[1][0]}</span> <span className = "orderPrice">${(detail[1][1]*detail[1][0]).toFixed(1)}</span></div>
                         ))
                         
                         }
