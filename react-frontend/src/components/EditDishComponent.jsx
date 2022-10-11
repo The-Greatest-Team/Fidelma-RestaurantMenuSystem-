@@ -2,6 +2,7 @@ import React,{Component,useCallback,useState} from "react";
 import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
 import axios from "axios";
+import EditDishPopupComponent from "./EditDishPopupComponent";
 
 
 function MyDropzone({childToParent}) {
@@ -60,7 +61,9 @@ class EditDishComponent extends Component{
             typedComponents:{},
             allIngredients:[],
             file:'',
-            currentimage:''
+            currentimage:'',
+            display:false
+            
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -105,6 +108,14 @@ class EditDishComponent extends Component{
             this.setState({ingredients:objectArr});
             console.log(this.state.ingredients);
         });
+    }
+
+    openPopup = () => {
+        this.setState({display:true});
+    }
+
+    closePopup = () => {
+        this.setState({display:false});
     }
 
     editDish = (e) =>{
@@ -175,10 +186,10 @@ class EditDishComponent extends Component{
             }
         }
 
-        var canSend = 1;
+        var canSend = 0;
 
-        if (this.state.file === '') {
-            canSend = 0;
+        if (this.state.file !== '') {
+            canSend = 1;
         }
 
         if (!(/^[a-zA-Z ]*$/).test(this.state.name)) {
@@ -197,8 +208,24 @@ class EditDishComponent extends Component{
             canSend = 0;
         }
 
-        if (canSend === 0) {
+        if (this.state.name !== this.props.location.state.name) {
+            canSend = 1;
+        }
 
+        if (this.state.price !== this.props.location.state.price) {
+            canSend = 1;
+        }
+
+        if (this.state.description !== this.props.location.state.description) {
+            canSend = 1;
+        }
+
+        if (this.state.kiloJoule !== this.props.location.state.kiloJoule) {
+            canSend = 1;
+        }
+
+        if (canSend === 0) {
+            this.setState({display: true});
         }else {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
@@ -313,6 +340,7 @@ back = (e) => {
                         
                     </div>   
                 </div>
+                {this.state.display && <EditDishPopupComponent closePopup = {this.closePopup}/>}
             </>
         );
     }
