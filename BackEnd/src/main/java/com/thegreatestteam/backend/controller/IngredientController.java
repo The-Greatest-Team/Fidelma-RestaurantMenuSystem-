@@ -1,12 +1,15 @@
 package com.thegreatestteam.backend.controller;
 
+import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}", "${frontend.host.heroku2}"})
 @RestController
@@ -21,8 +24,12 @@ public class IngredientController {
     }
 
     @GetMapping("/ingredient")
-    public List<Ingredient> getIngredient(){
-        return ingredientService.getAllIngredient();
+    public HashMap<List<Ingredient>,List<Food>> getIngredient(){
+        HashMap<List<Ingredient>,List<Food>> allFoodAndIngredient = new HashMap<List<Ingredient>,List<Food>>();
+        List<Food> allFood = ingredientService.getAllFood();
+        List<Ingredient> allIngredient = ingredientService.getAllIngredient();
+        allFoodAndIngredient.put(allIngredient, allFood);
+        return allFoodAndIngredient;
     }
 
     @GetMapping("/ingredient/{ingredientId}")
