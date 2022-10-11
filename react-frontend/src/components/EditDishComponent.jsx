@@ -224,38 +224,18 @@ class EditDishComponent extends Component{
             canSend = 1;
         }
 
-        let fileSizeValid = 0;
-        for (var pair of this.state.file.entries()) {
-            if ( 0 < pair[1].size && pair[1].size< 2097152){
-                fileSizeValid = 1;
-            }
-        }
-
-        if (fileSizeValid === 0) {
-            canSend = 0;
-        }
-
         if (canSend === 0) {
             this.setState({display: true});
         }else {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
-            let fileSizeValid = 0;
-            for (var pair of this.state.file.entries()) {
-                if ( 0 < pair[1].size && pair[1].size< 2097152){
-                    fileSizeValid = 1;
-                }
-            }
-            if(this.state.file !== '' && fileSizeValid === 1) {
-                axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+            axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
                 () => {
                     console.log("successful");
                 }).catch(err => {
                     console.log(err.response.data);
                 })
-            }
-            
             EditDishService.editDish(dish,this.state.id).then( res=> {
                 setTimeout(()=> {
                     this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
@@ -335,7 +315,7 @@ back = (e) => {
                             <div>{this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="errorAddNewDish" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
                             </div>
                             <h2 className="addSubTitle">Description</h2>
-                            <textarea className = "inputPartSpecial"  name = "description" maxLength = "80"
+                            <textarea className = "inputPartSpecial"  name = "description" maxLength = "200"
                             placeholder = {this.props.location.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">
