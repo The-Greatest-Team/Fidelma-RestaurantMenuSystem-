@@ -434,7 +434,7 @@ img{
 }
 
 .historyTable th{
-    font-size: 3vw;
+    font-size: 3.4vw;
 }
 
 .historyTable td{
@@ -472,6 +472,7 @@ img{
     font-size: 1.2vw;
     border-radius: 4px;
     padding: 2px 2px;
+    width: 14vw;
 }
 
 .foodDetails{
