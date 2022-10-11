@@ -491,7 +491,10 @@ img{
     text-align: center;
 }
 
-
+.orderPrice{
+    color:#F01E1E;
+    margin-left: 4%;
+}
 /* For total income */
 .incomeHead{
     align-items: center;
