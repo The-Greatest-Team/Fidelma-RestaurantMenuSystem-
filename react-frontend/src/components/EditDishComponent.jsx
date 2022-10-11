@@ -224,6 +224,7 @@ class EditDishComponent extends Component{
             canSend = 1;
         }
 
+
         let fileSizeValid = 0;
         for (var pair of this.state.file.entries()) {
             if ( 0 < pair[1].size && pair[1].size< 2097152){
@@ -234,6 +235,7 @@ class EditDishComponent extends Component{
         if (fileSizeValid === 0) {
             canSend = 0;
         }
+
 
         if (canSend === 0) {
             this.setState({display: true});
