@@ -64,7 +64,7 @@ class OrderHistoryComponent extends React.Component{
                         <hr className = "historySeparateLine"/>
                     </div>
                     <div className="historyTableContainer">
-                    <input type = "number" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum" placeholder="search by phone number..."/>
+                    <input className = "orderSearch" type = "number" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum" placeholder="search by phone number..."/>
                         <table className = "historyTable">
                             <thead>
                                 <tr>
@@ -86,9 +86,9 @@ class OrderHistoryComponent extends React.Component{
                                     <tr key = {order.id}>
                                         <td>{order.tableNumber}</td>
                                         <td>{order.phoneNumber}</td>
-                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
-                                        <td><button onClick={e => this.handleClick(order,order.id,e)}> Check Details</button></td>
-                                        <td><button onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
+                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button className="completeButton" onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
+                                        <td><button className = "checkDetailButton" onClick={e => this.handleClick(order,order.id,e)}> Details</button></td>
+                                        <td><button className = "checkDetailButton" onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
                                         {this.state.show && <OrderDetailComponent close = {this.close} detail = {this.state.detail}/>}
                                     </tr>
                                 ))
