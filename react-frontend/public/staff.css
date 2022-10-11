@@ -382,6 +382,17 @@ img{
     margin-top: 4%;
 }
 
+.detailHead{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailHead h4{
+    display: inline-block;
+    margin-left: 22%;
+    margin-top: 4%;
+}
+
 .historySeparateLine{
     margin:auto;
     width:100%;
@@ -462,6 +473,23 @@ img{
     border-radius: 4px;
     padding: 2px 2px;
 }
+
+.foodDetails{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.orderDetails h5{
+    text-align: center;
+    font-size: 7vw;
+    margin-top: 10vw;
+}
+
+.orderComment{
+    text-align: center;
+}
+
 
 /* For total income */
 .incomeHead{

@@ -86,7 +86,7 @@ class OrderHistoryComponent extends React.Component{
                                     <tr key = {order.id}>
                                         <td>{order.tableNumber}</td>
                                         <td>{order.phoneNumber}</td>
-                                        <td className = "preparing"><strong>{order.orderStatus}</strong> <button className="completeButton" onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
+                                        <td><strong>{order.orderStatus}</strong> <button className="completeButton" onClick={()=>this.orderCompleted(order.id)}>Complete</button></td>
                                         <td><button className = "checkDetailButton" onClick={e => this.handleClick(order,order.id,e)}> Details</button></td>
                                         <td><button className = "checkDetailButton" onClick = {() => this.deleteOrder(order.id)}> Delete </button></td>
                                         {this.state.show && <OrderDetailComponent close = {this.close} detail = {this.state.detail}/>}
