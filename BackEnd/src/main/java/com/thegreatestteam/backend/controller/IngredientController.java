@@ -47,7 +47,13 @@ public class IngredientController {
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
     @DeleteMapping("/ingredient/{ingredientId}")
-    public void deleteIngredient(@PathVariable String ingredientId){
+    public void deleteIngredient(@PathVariable String ingredientId,@RequestBody List<Food> food){
+        Ingredient currentIngredient = ingredientService.findIngredientById(ingredientId);
+        for(Food currentFood: food){
+            if(currentFood.getComponents().keySet().equals(currentIngredient.getName())&& currentFood.isCrush() == false){
+                currentFood.setCrush(true);
+            }
+        }
         ingredientService.deleteIngredientById(ingredientId);
     }
 
