@@ -115,7 +115,16 @@ class NewDishComponent extends Component{
         this.setState({imageNotSaved: true});
         this.setState({formNotSaved: true});
         var canSend = 1;
-        if (this.state.file === '') {
+        let fileSizeValid = 0;
+        for (var pair of this.state.file.entries()) {
+            console.log(fileSizeValid);
+            console.log(typeof(pair[1].size));
+            if ( 0 < pair[1].size  && pair[1].size < 2097152){
+                fileSizeValid = 1;
+            }
+        }
+        console.log(fileSizeValid);
+        if (this.state.file === '' || fileSizeValid === 0) {
             canSend = 0;
         }
 
@@ -324,7 +333,7 @@ class NewDishComponent extends Component{
                             <div>{this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="errorAddNewDish" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
                             </div>
                             <h2 className="addSubTitle">Description</h2>
-                            <textarea className = "inputPartSpecial"  name = "description"  data-testid = "description" maxLength = "200"
+                            <textarea className = "inputPartSpecial"  name = "description"  data-testid = "description" maxLength = "80"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">

@@ -129,7 +129,7 @@ class ConfirmComponent extends React.Component{
                         ))}
                         <div className = "addComment">
                             <div className = "commentTitle">
-                                <h4>What is your name?</h4>
+                                <h4>Please leave comment here</h4>
                             </div>   
                             <form>
                                 <input className = "orderComment" type = "text" name = "orderInput"

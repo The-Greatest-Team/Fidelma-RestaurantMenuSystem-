@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import IngredientPopupService from "../services/IngredientPopupService";
 import IngredientService from "../services/IngredientService";
-import BackDropForOrder from "./BackDropForOrder";
 
 class OrderDetailComponent extends Component {
     constructor(props){
@@ -23,19 +22,22 @@ class OrderDetailComponent extends Component {
 
     render() {
         return (
-            <div>
-                   <img className = "historyBackIcon" src="/res/images/back.svg" onClick={()=>window.location.href="/staff/orderHistory"}/>
-                   <h4>Order Summary</h4>
+            <div className="orderDetails">
+                <div className="detailHead">
+                    <img className = "historyBackIcon" src="/res/images/back.svg" onClick={()=>window.location.href="/staff/orderHistory"}/>
+                   <h4>Order Details</h4>
                     <hr className = "historySeparateLine"/>
+                </div>
+                   
                     {   
                         this.state.details.map((detail) => (
-                            <div><span>{detail[1][2]}</span> <span>{detail[1][0]}</span> <span>${detail[1][1]*detail[1][0]}</span></div>
+                            <div className="foodDetails"><span>{detail[1][2]}</span> <span>{detail[1][0]}</span> <span className = "orderPrice">${(detail[1][1]*detail[1][0]).toFixed(1)}</span></div>
                         ))
                         
                         }
 
                     <h5>Comment</h5>
-                    <div>{this.props.location.state.name}</div>
+                    <div className="orderComment">{this.props.location.state.name}</div>
             </div>
           
         )

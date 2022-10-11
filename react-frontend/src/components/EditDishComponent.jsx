@@ -2,6 +2,7 @@ import React,{Component,useCallback,useState} from "react";
 import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
 import axios from "axios";
+import EditDishPopupComponent from "./EditDishPopupComponent";
 
 
 function MyDropzone({childToParent}) {
@@ -60,7 +61,9 @@ class EditDishComponent extends Component{
             typedComponents:{},
             allIngredients:[],
             file:'',
-            currentimage:''
+            currentimage:'',
+            display:false
+            
         }
         this.nameHandler = this.nameHandler.bind(this);
         this.priceHandler = this.priceHandler.bind(this);
@@ -105,6 +108,14 @@ class EditDishComponent extends Component{
             this.setState({ingredients:objectArr});
             console.log(this.state.ingredients);
         });
+    }
+
+    openPopup = () => {
+        this.setState({display:true});
+    }
+
+    closePopup = () => {
+        this.setState({display:false});
     }
 
     editDish = (e) =>{
@@ -175,10 +186,10 @@ class EditDishComponent extends Component{
             }
         }
 
-        var canSend = 1;
+        var canSend = 0;
 
-        if (this.state.file === '') {
-            canSend = 0;
+        if (this.state.file !== '') {
+            canSend = 1;
         }
 
         if (!(/^[a-zA-Z ]*$/).test(this.state.name)) {
@@ -197,18 +208,54 @@ class EditDishComponent extends Component{
             canSend = 0;
         }
 
-        if (canSend === 0) {
+        if (this.state.name !== this.props.location.state.name) {
+            canSend = 1;
+        }
 
+        if (this.state.price !== this.props.location.state.price) {
+            canSend = 1;
+        }
+
+        if (this.state.description !== this.props.location.state.description) {
+            canSend = 1;
+        }
+
+        if (this.state.kiloJoule !== this.props.location.state.kiloJoule) {
+            canSend = 1;
+        }
+
+        let fileSizeValid = 0;
+        for (var pair of this.state.file.entries()) {
+            if ( 0 < pair[1].size && pair[1].size< 2097152){
+                fileSizeValid = 1;
+            }
+        }
+
+        if (fileSizeValid === 0) {
+            canSend = 0;
+        }
+
+        if (canSend === 0) {
+            this.setState({display: true});
         }else {
             let dish = {name:this.state.name,price:this.state.price,kiloJoule:this.state.kiloJoule,description:this.state.description,components,type: this.props.location.state.type};
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
-            axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+            let fileSizeValid = 0;
+            for (var pair of this.state.file.entries()) {
+                if ( 0 < pair[1].size && pair[1].size< 2097152){
+                    fileSizeValid = 1;
+                }
+            }
+            if(this.state.file !== '' && fileSizeValid === 1) {
+                axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
                 () => {
                     console.log("successful");
                 }).catch(err => {
                     console.log(err.response.data);
                 })
+            }
+            
             EditDishService.editDish(dish,this.state.id).then( res=> {
                 setTimeout(()=> {
                     this.props.history.push('/staff/menu/' + this.props.location.state.type,this.props.location.state.type);
@@ -288,7 +335,7 @@ back = (e) => {
                             <div>{this.state.kiloJoule && (this.state.kiloJoule < 0 || this.state.kiloJoule > 99999) && <span className="errorAddNewDish" data-testid="error-msg-kiloJoule">Please enter a valid kiloJoule.</span>} 
                             </div>
                             <h2 className="addSubTitle">Description</h2>
-                            <textarea className = "inputPartSpecial"  name = "description" maxLength = "200"
+                            <textarea className = "inputPartSpecial"  name = "description" maxLength = "80"
                             placeholder = {this.props.location.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">
@@ -313,6 +360,7 @@ back = (e) => {
                         
                     </div>   
                 </div>
+                {this.state.display && <EditDishPopupComponent closePopup = {this.closePopup}/>}
             </>
         );
     }
