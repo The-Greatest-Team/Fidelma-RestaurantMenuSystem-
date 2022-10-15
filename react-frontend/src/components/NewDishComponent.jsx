@@ -116,13 +116,16 @@ class NewDishComponent extends Component{
         this.setState({formNotSaved: true});
         var canSend = 1;
         let fileSizeValid = 0;
-        for (var pair of this.state.file.entries()) {
-            console.log(fileSizeValid);
-            console.log(typeof(pair[1].size));
-            if ( 0 < pair[1].size  && pair[1].size < 2097152){
-                fileSizeValid = 1;
+        if (this.state.file !=='') {
+            for (var pair of this.state.file.entries()) {
+                console.log(fileSizeValid);
+                console.log(typeof(pair[1].size));
+                if ( 0 < pair[1].size  && pair[1].size < 2097152){
+                    fileSizeValid = 1;
+                }
             }
         }
+        
         console.log(fileSizeValid);
         if (this.state.file === '' || fileSizeValid === 0) {
             canSend = 0;
