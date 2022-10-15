@@ -1,5 +1,6 @@
 package com.thegreatestteam.backend.service;
 
+import com.thegreatestteam.backend.model.Food;
 import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.repository.IngredientRepository;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,17 @@ import java.util.List;
 
 @Service
 public class IngredientService {
-    private final IngredientRepository ingredientRepository;
-
-    public IngredientService(IngredientRepository ingredientRepository) {
+    public IngredientService(IngredientRepository ingredientRepository, FoodService foodService) {
         this.ingredientRepository = ingredientRepository;
+        this.foodService = foodService;
+    }
+
+    private final IngredientRepository ingredientRepository;
+    private final FoodService foodService;
+
+
+    public List<Food> getAllFood(){
+        return foodService.getAllFood();
     }
 
     public List<Ingredient> getAllIngredient(){
@@ -30,7 +38,7 @@ public class IngredientService {
         return ingredientRepository.findByName(name);
     }
 
-    public Ingredient findIngredientByID(String id){
+    public Ingredient findIngredientById(String id){
         return ingredientRepository.findIngredientById(id);
     }
 }
