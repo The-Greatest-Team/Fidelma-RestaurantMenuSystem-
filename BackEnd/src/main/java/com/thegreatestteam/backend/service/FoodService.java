@@ -50,10 +50,6 @@ public class FoodService {
         return foods;
     }
 
-    public List<Food> getAllFood(){
-        return foodRepository.findAll();
-    }
-
     public void addFood(Food food){
         foodRepository.save(food);
     }
