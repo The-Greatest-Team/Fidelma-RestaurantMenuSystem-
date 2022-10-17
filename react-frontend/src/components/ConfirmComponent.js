@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { v4 as uuid } from 'uuid';
+import {REST_API} from "../constant";
 
 class ConfirmComponent extends React.Component{
 
@@ -60,7 +61,7 @@ class ConfirmComponent extends React.Component{
             cart
         }
         console.log("order=> " + JSON.stringify(order));
-        axios.post( "http://localhost:8080/customer/orderConfirm",order).then( (res) => {
+        axios.post( REST_API + "/customer/orderConfirm",order).then( (res) => {
             console.log(res.data)
 
             if (res.data == 1){

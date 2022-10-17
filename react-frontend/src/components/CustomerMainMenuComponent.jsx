@@ -21,6 +21,7 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToBeef(){
+        console.log(process.env.REST_API)
         this.props.history.push("/customer/menu/" + "beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
     }
 

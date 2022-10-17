@@ -1,3 +1,2 @@
-
-export const API_HEROKU = process.env.REACT_APP_API_URL
-//"https://fidelma-springboot.herokuapp.com"
+export const REST_API = "https://fidelma-springboot.herokuapp.com"
+//    process.env.REACT_APP_API_URL

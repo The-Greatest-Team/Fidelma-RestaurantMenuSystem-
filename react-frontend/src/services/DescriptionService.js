@@ -1,7 +1,7 @@
 import axios from "axios";
-import {API_HEROKU} from "../constant";
+import {REST_API} from "../constant";
 
-const USERS_REST_API_URL = API_HEROKU + '/customer/menu/dishDescription';
+const USERS_REST_API_URL = REST_API + '/customer/menu/dishDescription';
 
 class DescriptionService{
 

@@ -5,6 +5,9 @@ import { v4 as uuid } from 'uuid';
 import NewDishPopupComponent from "./NewDishPopupComponent";
 import BackDrop from "./BackDrop";
 import axios from "axios";
+import {REST_API} from "../constant";
+
+
 
 
 global.constants = {
@@ -235,7 +238,7 @@ class NewDishComponent extends Component{
                 let imageCount = 0;
                 NewDishService.sendImage(this.state.file)
                     while (this.state.imageNotSaved === true) {
-                        this.state.imageNotSaved = await axios.get("http://localhost:8080/staff/menu/checkImage/" + unique_id).then((respond) => {
+                        this.state.imageNotSaved = await axios.get(REST_API + "/staff/menu/checkImage/" + unique_id).then((respond) => {
                                     console.log(respond.data);
                                     return respond.data;
                                 });

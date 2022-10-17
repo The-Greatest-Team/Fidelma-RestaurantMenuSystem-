@@ -1,16 +1,16 @@
 import axios from "axios";
-import {API_HEROKU} from "../constant";
+import {REST_API} from "../constant";
 
-const USERS_REST_API_URL = API_HEROKU + '/staff/menu/';
+const USERS_REST_API_URL = REST_API + '/staff/menu/';
 
 class UserService{
 
     getUsers(type){
-        return axios.get(USERS_REST_API_URL  + type)
+        return axios.get(USERS_REST_API_URL + type)
     }
 
     postUsers(type){
-        return axios.post(USERS_REST_API_URL+  + type, "test");
+        return axios.post(USERS_REST_API_URL+type, "test");
     }
     
 }
