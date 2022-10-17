@@ -1,7 +1,7 @@
 import axios from "axios";
 import {API_HEROKU} from "../constant";
 
-const ORDERS_REST_API_URL = API_HEROKU;
+const ORDERS_REST_API_URL = API_HEROKU + '/staff/orderHistory';
 
 class OrderHistoryService{
 
@@ -10,11 +10,11 @@ class OrderHistoryService{
     }
 
     deleteOrder(orderId) {
-        return axios.delete(ORDERS_REST_API_URL + '/staff/deleteOrder'+'/' + orderId);
+        return axios.delete(API_HEROKU + '/staff/deleteOrder'+'/' + orderId);
     }
 
     postComplete(orderId) {
-        return axios.post(ORDERS_REST_API_URL + '/staff/completeOrder'+'/' + orderId);
+        return axios.post(API_HEROKU + '/staff/completeOrder'+'/' + orderId);
     }
 }
 
