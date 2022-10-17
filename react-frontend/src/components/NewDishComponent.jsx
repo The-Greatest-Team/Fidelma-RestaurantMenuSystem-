@@ -215,7 +215,7 @@ class NewDishComponent extends Component{
                 
             let count = 0;
             while (this.state.formNotSaved == true) {
-                         this.state.formNotSaved = await axios.get("http://localhost:8080/staff/menu/checkForm/" + unique_id).then((respond) => {
+                         this.state.formNotSaved = await axios.get(REST_API + "/staff/menu/checkForm/" + unique_id).then((respond) => {
                             console.log(respond.data);
                             return respond.data;
                         });
