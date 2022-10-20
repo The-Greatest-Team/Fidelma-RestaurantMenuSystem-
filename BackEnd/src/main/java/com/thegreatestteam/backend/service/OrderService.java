@@ -1,13 +1,11 @@
 package com.thegreatestteam.backend.service;
 
 import com.thegreatestteam.backend.model.Food;
-import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +45,9 @@ public class OrderService {
             }
         }
     }
-
+    //0:
+    //1:
+    //2:
     public Integer checkQuantity(Order order){
         for(Map.Entry<String,Integer> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
@@ -55,33 +55,26 @@ public class OrderService {
                 return 0;
             }
             System.out.println("sdf");
-
             int foodQuantity = dish.getValue();
-
-
             for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
                 if(pair.getValue() == 0){
                     continue;
                 }
-
                 if(ingredientService.findIngredientByName(pair.getKey()) == null &&
                     pair.getValue() != 0){
                     System.out.println("here");
                     return 0;
                 }
-
 //                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
 //                        return 0;
 //                    }
                 double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
-
                 double overallQuantity = pair.getValue() * foodQuantity;
+
                 if(stock - overallQuantity < 0){
                     return 1;
                 }
             }
-
-
         }
         return 2;
     }

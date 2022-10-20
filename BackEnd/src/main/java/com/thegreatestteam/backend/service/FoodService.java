@@ -24,7 +24,6 @@ public class FoodService {
     //Check current dish availability
     public boolean checkAvailability(Food food){
         for(String ingredientName: food.getComponents().keySet()){
-
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
             if(ingredient == null){
                 return false;
@@ -40,12 +39,22 @@ public class FoodService {
         }
         return false;
     }
+    //Check Crush (if there's no ingredient for this dish inside the database, return true)
+    public boolean checkCrush(Food food){
+        for(String ingredientName: food.getComponents().keySet()){
+            if(ingredientService.findIngredientByName(ingredientName) == null){
+                return true;
+            }
+        }
+        return false;
+    }
 
     //Get food
     public List<Food> getFood(String type){
         List<Food> foods = foodRepository.findByType(type);
         for (Food food : foods){
             food.setSoldOut(checkAvailability(food));
+            food.setCrush(checkCrush(food));
         }
         return foods;
     }
@@ -89,9 +98,7 @@ public class FoodService {
             if (quan < min){
                 min = quan;
             }
-
         }
         return min;
-
     }
 }
