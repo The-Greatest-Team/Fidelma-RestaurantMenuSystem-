@@ -155,7 +155,17 @@ class MenuComponent extends React.Component{
                             </div>
                             <div className = "staffMenuGridContainer">
                                 <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
-                                <div className = "staffMenuName"><strong>{dish.name}</strong></div>
+                                {
+                                    dish.crash === false && <div className = "staffMenuName"><strong>{dish.name}</strong></div>
+                                }
+                                {
+                                    dish.crash === true && 
+                                    <div className = "staffMenuName crashDish">
+                                        <div><strong>{dish.name}</strong></div>
+                                        <div><strong>Ingredient Error!</strong></div>
+                                    </div>
+                                    
+                                }
                                 <div className = "staffMenuDes">{dish.description}</div>
                                 <div className = "staffMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>
                                 <div className = "staffMenuPrice"><strong>${dish.price}</strong></div>

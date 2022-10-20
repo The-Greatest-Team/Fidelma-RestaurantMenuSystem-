@@ -205,5 +205,13 @@ body{
 }
 
 .soldOutDiv{
-    font-size: 1.3em;
+    margin-top: 5vh;
+    text-align: center;
+    font-size: 4vw;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.crashDish{
+    color: #F01E1E;
 }
