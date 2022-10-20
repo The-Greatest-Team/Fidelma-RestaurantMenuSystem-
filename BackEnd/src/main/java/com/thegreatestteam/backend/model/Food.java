@@ -1,14 +1,7 @@
 package com.thegreatestteam.backend.model;
 
-import org.bson.types.Binary;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.annotation.Generated;
-import java.awt.*;
-import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
 @Document("Food")
@@ -24,6 +17,9 @@ public class Food extends Item {
     private String description;
     private int kiloJoule;
 
+
+    private boolean isCrush;
+
     public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components, String description){
         super(name, price);
         this.id = id;
@@ -32,6 +28,15 @@ public class Food extends Item {
         this.components = components;
         this.description = description;
         this.isSoldOut = false;
+        this.isCrush = false;
+    }
+
+    public boolean isCrush() {
+        return isCrush;
+    }
+
+    public void setCrush(boolean crush) {
+        isCrush = crush;
     }
 
     public int getKiloJoule() {
