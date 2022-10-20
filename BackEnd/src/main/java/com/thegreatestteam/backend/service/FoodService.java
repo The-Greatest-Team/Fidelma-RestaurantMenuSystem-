@@ -39,8 +39,9 @@ public class FoodService {
         }
         return false;
     }
+
     //Check Crush (if there's no ingredient for this dish inside the database, return true)
-    public boolean checkCrush(Food food){
+    public boolean checkCrash(Food food){
         for(String ingredientName: food.getComponents().keySet()){
             if(ingredientService.findIngredientByName(ingredientName) == null){
                 return true;
@@ -54,7 +55,7 @@ public class FoodService {
         List<Food> foods = foodRepository.findByType(type);
         for (Food food : foods){
             food.setSoldOut(checkAvailability(food));
-            food.setCrush(checkCrush(food));
+            food.setCrash(checkCrash(food));
         }
         return foods;
     }

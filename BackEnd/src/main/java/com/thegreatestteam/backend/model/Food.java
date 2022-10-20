@@ -18,7 +18,7 @@ public class Food extends Item {
     private int kiloJoule;
 
 
-    private boolean isCrush;
+    private boolean isCrash;
 
     public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components, String description){
         super(name, price);
@@ -28,15 +28,15 @@ public class Food extends Item {
         this.components = components;
         this.description = description;
         this.isSoldOut = false;
-        this.isCrush = false;
+        this.isCrash = false;
     }
 
-    public boolean isCrush() {
-        return isCrush;
+    public boolean isCrash() {
+        return isCrash;
     }
 
-    public void setCrush(boolean crush) {
-        isCrush = crush;
+    public void setCrash(boolean crash) {
+        isCrash = crash;
     }
 
     public int getKiloJoule() {
