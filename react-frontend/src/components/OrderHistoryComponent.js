@@ -64,7 +64,9 @@ class OrderHistoryComponent extends React.Component{
                         <hr className = "historySeparateLine"/>
                     </div>
                     <div className="historyTableContainer">
-                    <input className = "orderSearch" type = "number" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNum" placeholder="search by phone number..."/>
+                    <input className = "orderSearch" type = "number" value = {this.state.phone} onChange={this.phoneHandler} data-testid = "phoneNumOrder" placeholder="search by phone number..."/>
+                    <div className = "errorMsgOrder">{this.state.phone && !(/0?(4)[0-9]{8}/).test(this.state.phone) && <span className="errorOrder" data-testid="error-msg-OrderPhoneNum">Please enter a valid phone number.</span>} 
+                        </div>
                         <table className = "historyTable">
                             <thead>
                                 <tr>
