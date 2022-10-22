@@ -9,6 +9,7 @@ import com.thegreatestteam.backend.repository.OrderRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class UserController {
 
     // front end api listed here
     @PostMapping("/orderConfirm")
+    @ResponseStatus(HttpStatus.CREATED)
     public Integer addOrder(@RequestBody Order order){
         System.out.println(order.toString());
         if (orderService.checkQuantity(order) == 0 || orderService.checkQuantity(order) == 1) {
@@ -39,12 +41,14 @@ public class UserController {
     }
 
     @GetMapping("/mainMenu")
+    @ResponseStatus(HttpStatus.OK)
     public List<Order> getAllOrders(){
         return orderService.getAllOrder();
     }
 
 
     @GetMapping("/foodDes/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Integer computeFoodQuan(@PathVariable String id){
         Food food = foodService.getFoodById(id);
         return foodService.computeFoodQuantity(food);
