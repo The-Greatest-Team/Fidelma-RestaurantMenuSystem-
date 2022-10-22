@@ -38,8 +38,9 @@ public class IngredientController {
     // Create ingredients
     @PostMapping("/ingredient")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addIngredient(@RequestBody Ingredient ingredient){
+    public Ingredient addIngredient(@RequestBody Ingredient ingredient){
         ingredientService.addIngredient(ingredient);
+        return ingredient;
     }
 
     //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
@@ -52,12 +53,13 @@ public class IngredientController {
 
     @PutMapping("/ingredient/{ingredientId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientId){
+    public Ingredient UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientId){
         Ingredient currentIngredient = ingredientService.findIngredientById(ingredientId);
         currentIngredient.setName(ingredient.getName());
         currentIngredient.setQuantity(ingredient.getQuantity());
         currentIngredient.setPrice(ingredient.getPrice());
         ingredientService.addIngredient(currentIngredient);
+        return currentIngredient;
     }
 
 
