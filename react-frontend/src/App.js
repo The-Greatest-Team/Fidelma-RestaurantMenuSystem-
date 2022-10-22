@@ -33,6 +33,8 @@ function App() {
                           <Route path="/customer/mainMenu" component={CustomerMainMenuComponent}></Route>
                           <Route path="/customer/menu/beef" component={CustomerMenuComponent}></Route>
                           <Route path="/customer/menu/chicken" component={CustomerMenuComponent}></Route>
+                          <Route path="/customer/menu/chip" component={CustomerMenuComponent}></Route>
+                          <Route path="/customer/menu/side" component={CustomerMenuComponent}></Route>
                           <Route path="/staff/menu/beef" component={MenuComponent}></Route>
                           <Route path="/staff/menu/newDish" component={NewDishComponent}></Route>
                           <Route path="/staff/menu/edit/:id" component={EditDishComponent}></Route>

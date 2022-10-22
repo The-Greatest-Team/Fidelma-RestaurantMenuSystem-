@@ -25,11 +25,11 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToChips(){
-        this.props.history.push("/customer/menu/" + "chips" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chips"])
+        this.props.history.push("/customer/menu/" + "chip" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chip"])
     }
 
     goToSides(){
-        this.props.history.push("/customer/menu/" + "sides" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "sides"])
+        this.props.history.push("/customer/menu/" + "side" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "side"])
     }
 
      // shopping cart functions
