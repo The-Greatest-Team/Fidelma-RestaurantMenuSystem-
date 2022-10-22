@@ -1,6 +1,7 @@
 import axios from "axios";
+import {REST_API} from "../constant";
 
-const DISH_REST_API_URL = 'http://localhost:8080/staff/menu/newDish';
+const DISH_REST_API_URL = REST_API + '/staff/menu/newDish';
 
 class NewDIshService{
 
@@ -18,7 +19,7 @@ class NewDIshService{
 
     //{headers:{"Content-Type":"multipart/form-data"}}
     sendImage(image) {
-        return axios.post('http://localhost:8080/staff/menu/newDishImage',image);
+        return axios.post(REST_API + '/staff/menu/newDishImage',image);
     }
     
 }

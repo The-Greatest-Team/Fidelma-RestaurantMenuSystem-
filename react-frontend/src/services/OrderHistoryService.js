@@ -1,6 +1,7 @@
 import axios from "axios";
+import {REST_API} from "../constant";
 
-const ORDERS_REST_API_URL = 'http://localhost:8080/staff/allOrders';
+const ORDERS_REST_API_URL = REST_API + '/staff/allOrders';
 
 class OrderHistoryService{
 
@@ -9,11 +10,11 @@ class OrderHistoryService{
     }
 
     deleteOrder(orderId) {
-        return axios.delete('http://localhost:8080/staff/deleteOrder'+'/' + orderId);
+        return axios.delete(REST_API + '/staff/deleteOrder'+'/' + orderId);
     }
 
     postComplete(orderId) {
-        return axios.post('http://localhost:8080/staff/completeOrder'+'/' + orderId);
+        return axios.post(REST_API + '/staff/completeOrder'+'/' + orderId);
     }
 }
 

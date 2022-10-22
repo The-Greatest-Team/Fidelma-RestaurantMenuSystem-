@@ -1,6 +1,7 @@
 import axios from "axios";
+import {REST_API} from "../constant";
 
-const USERS_REST_API_URL = 'http://localhost:8080/staff/login';
+const USERS_REST_API_URL = REST_API + '/staff/login';
 
 class LoginService{
 

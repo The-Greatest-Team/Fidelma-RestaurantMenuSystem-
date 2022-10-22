@@ -3,6 +3,7 @@ import EditDishService from "../services/EditDishService";
 import {useDropzone} from 'react-dropzone'
 import axios from "axios";
 import EditDishPopupComponent from "./EditDishPopupComponent";
+import {REST_API} from "../constant";
 
 
 function MyDropzone({childToParent}) {
@@ -80,7 +81,7 @@ class EditDishComponent extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/staff/menu/editDish/image/' + this.state.id).then((respond) => {
+        axios.get(REST_API + '/staff/menu/editDish/image/' + this.state.id).then((respond) => {
             this.setState({currentimage:respond.data.image.data});
             
             console.log(this.state.currentimage);
@@ -257,7 +258,7 @@ class EditDishComponent extends Component{
             console.log("dish=> " +JSON.stringify(dish));
             console.log(this.state.file);
             if(this.state.file !== '') {
-                axios.post("http://localhost:8080/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
+                axios.post(REST_API + "/staff/menu/dish/imageEdit/" + this.state.id,this.state.file).then(
                 () => {
                     console.log("successful");
                 }).catch(err => {

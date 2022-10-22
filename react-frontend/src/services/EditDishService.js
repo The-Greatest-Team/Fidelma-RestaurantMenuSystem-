@@ -1,6 +1,7 @@
 import axios from "axios";
+import {REST_API} from "../constant";
 
-const EDIT_REST_API_URL = 'http://localhost:8080/staff/menu/edit';
+const EDIT_REST_API_URL = REST_API + '/staff/menu/edit';
 
 class EditDIshService{
 
@@ -13,7 +14,7 @@ class EditDIshService{
     }
 
     changeImage(image,id) {
-        return axios.put('http://localhost:8080/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
+        return axios.put(REST_API + '/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
     }
 }
 
