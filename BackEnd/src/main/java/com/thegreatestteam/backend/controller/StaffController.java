@@ -9,6 +9,7 @@ import com.thegreatestteam.backend.service.IngredientService;
 import com.thegreatestteam.backend.service.OrderService;
 import com.thegreatestteam.backend.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -37,17 +38,20 @@ public class StaffController {
 
     // Staff dashboard
     @GetMapping("/dashboard")
+    @ResponseStatus(HttpStatus.OK)
     public String getDashboard(){
         return "Getting Dashboard page";
     }
 
     // Staff Profile
     @GetMapping("/{staffId}/profile")
+    @ResponseStatus(HttpStatus.OK)
     public String getProfile(@PathVariable String staffId){
         return "getting profile page";
     }
     // Add staff (one time operation)
     @PostMapping("/addStaff")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addStaff(@RequestBody Staff staff){
         staffService.addStaff(staff);
     }
@@ -61,6 +65,7 @@ public class StaffController {
     // get raw material
 
     @GetMapping("/dashboard/ingredients")
+    @ResponseStatus(HttpStatus.OK)
     public List<Ingredient> displayAllIngredients(){
         return ingredientService.getAllIngredient();
     }
@@ -70,12 +75,14 @@ public class StaffController {
 
     // Order summary
     @GetMapping("/allOrders")
+    @ResponseStatus(HttpStatus.OK)
     public List<Order> displayAllOrder(){
         return orderService.getAllOrder();
     }
 
 
     @PostMapping("/completeOrder/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void completeOrder(@PathVariable String id){
         Order order = orderService.getOrderById(id);
         order.setOrderStatus(OrderStatus.COMPLETED);
@@ -83,6 +90,7 @@ public class StaffController {
     }
 
     @DeleteMapping("/deleteOrder/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrder(@PathVariable String id){
         orderService.deleteById(id);
     }

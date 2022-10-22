@@ -30,7 +30,7 @@ public class IngredientService {
         return ingredientRepository.findByName(name);
     }
 
-    public Ingredient findIngredientByID(String id){
+    public Ingredient findIngredientById(String id){
         return ingredientRepository.findIngredientById(id);
     }
 }

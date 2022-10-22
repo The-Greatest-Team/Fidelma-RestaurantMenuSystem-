@@ -1,7 +1,6 @@
 import axios from "axios";
 import {REST_API} from "../constant";
 
-
 const EDIT_REST_API_URL = REST_API + '/staff/menu/edit';
 
 class EditDIshService{

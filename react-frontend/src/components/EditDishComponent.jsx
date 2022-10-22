@@ -6,7 +6,6 @@ import EditDishPopupComponent from "./EditDishPopupComponent";
 import {REST_API} from "../constant";
 
 
-
 function MyDropzone({childToParent}) {
     const [url, setUrl] = useState('/res/images/camera.png');
     const onDrop = useCallback(acceptedFiles => {
@@ -331,7 +330,7 @@ back = (e) => {
                         <form>            
                         <div className = "content edit">
                             <h2 className="addSubTitle">Name</h2>
-                            <input className = "inputPart" type="text"  name = "name" maxLength = "15"
+                            <input className = "inputPart" type="text"  name = "name" maxLength = "30"
                             placeholder = {this.props.location.state.name} onChange={this.nameHandler}/>
                             <div>{this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="errorAddNewDish" data-testid="error-msg-name">Please enter a valid name.</span>}
                             </div>

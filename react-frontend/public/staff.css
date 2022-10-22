@@ -416,6 +416,7 @@ img{
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 4vw;
     
 }
 
@@ -651,3 +652,9 @@ img{
     position: relative;
     
 } */
+
+.errorOrder{
+    position:absolute;
+    margin-top:-4vw;
+    margin-left:14vw;
+}

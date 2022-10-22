@@ -183,8 +183,16 @@ class CustomerMenuComponent extends React.Component{
                                 <div className = "customerMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>
                                 <div className = "customerMenuPrice"><strong>${dish.price}</strong></div>
                                 <div className = "customerMenuOperation">
-                                <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
+                                {
+                                    dish.crash === true && <div className="soldOutDiv addDishArea">Not Available</div>
+                                }
+                                {
+                                    dish.crash === false && dish.soldOut === true && <div className="soldOutDiv addDishArea">Sold Out</div>
+                                }
+                                {
+                                    dish.soldOut === false && dish.crash === false && <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
                                     onClick={()=>this.viewInDetails(dish)}/>
+                                }
                                 </div>
                             </div>
                         </div>
