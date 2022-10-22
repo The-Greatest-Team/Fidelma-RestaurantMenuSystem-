@@ -24,6 +24,14 @@ class CustomerMainMenuComponent extends React.Component{
         this.props.history.push("/customer/menu/" + "beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
     }
 
+    goToChips(){
+        this.props.history.push("/customer/menu/" + "chips" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chips"])
+    }
+
+    goToSides(){
+        this.props.history.push("/customer/menu/" + "sides" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "sides"])
+    }
+
      // shopping cart functions
      calculateTotalPrice(){
         let totalPrice = 0;
@@ -148,6 +156,40 @@ class CustomerMainMenuComponent extends React.Component{
                             </div>
                             <div className = "menuView">
                                 <button className = "mainMenuEnterButton" onClick={()=>this.goToChicken()}>View more</button>
+                            </div>
+                        </div>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Chips </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <div className = "menuGridContainer">
+                            <div className = "menuPic">
+                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu picture"/>
+                            </div>
+                            <div className = "menuDes">
+                                <div className = "mainMenuDescription">Choose fresh potatoes from premium Australian farms</div>
+                            </div>
+                            <div className = "menuView">
+                                <button className = "mainMenuEnterButton" onClick={()=>this.goToChips()}>View more</button>
+                            </div>
+                        </div>
+                        <hr id = "mainMenuBooomLine" className="separateLine"/>
+                    </div>
+
+                    <div>
+                        <h2 id = "mainMenuChickenHead"> Sides </h2>  {/* waiting for backend for finish functions*/}
+                        <hr className="separateLine"/>
+                        <div className = "menuGridContainer">
+                            <div className = "menuPic">
+                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu picture"/>
+                            </div>
+                            <div className = "menuDes">
+                                <div className = "mainMenuDescription">100% Australian fresh high quality onions for deep frying and deep frying in high quality corn oil.</div>
+                            </div>
+                            <div className = "menuView">
+                                <button className = "mainMenuEnterButton" onClick={()=>this.goToSides()}>View more</button>
                             </div>
                         </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
