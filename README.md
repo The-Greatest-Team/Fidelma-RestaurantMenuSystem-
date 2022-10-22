@@ -42,3 +42,6 @@ password: VzI1YYho9OUMlj6R
 ```
 kill $(lsof -t -i:8080)
 ```
+
+## Deployment Guide: 
+[Deployment_Guide.md](docs/Deployment_Guide.md)
