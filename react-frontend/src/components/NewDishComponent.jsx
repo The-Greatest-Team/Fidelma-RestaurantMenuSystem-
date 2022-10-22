@@ -321,7 +321,7 @@ class NewDishComponent extends Component{
                         <form>            
                         <div className = "content edit">
                             <h2 className="addSubTitle">Name</h2>
-                            <input className = "inputPart" type="text"  name = "name" data-testid = "nameNewDish" maxLength = "15"
+                            <input className = "inputPart" type="text"  name = "name" data-testid = "nameNewDish" maxLength = "30"
                             value = {this.state.name} onChange={this.nameHandler}/>
                             <div>{this.state.name && !(/^[a-zA-Z ]*$/).test(this.state.name) && <span className="errorAddNewDish" data-testid="error-msg-name">Please enter a valid name.</span>}
                             </div>
