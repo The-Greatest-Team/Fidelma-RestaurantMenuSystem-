@@ -162,7 +162,7 @@ class CustomerMainMenuComponent extends React.Component{
                     </div>
 
                     <div>
-                        <h2 id = "mainMenuChickenHead"> Chips </h2>  {/* waiting for backend for finish functions*/}
+                        <h2 id = "mainMenuChickenHead"> Chip </h2>  {/* waiting for backend for finish functions*/}
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
@@ -179,7 +179,7 @@ class CustomerMainMenuComponent extends React.Component{
                     </div>
 
                     <div>
-                        <h2 id = "mainMenuChickenHead"> Sides </h2>  {/* waiting for backend for finish functions*/}
+                        <h2 id = "mainMenuChickenHead"> Side </h2>  {/* waiting for backend for finish functions*/}
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">

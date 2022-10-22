@@ -30,6 +30,8 @@ function App() {
                           <Route path="/" exact component ={CharacterComponent}></Route>
                           <Route path="/staff/mainMenu" component={MainMenuComponent}></Route>
                           <Route path="/staff/menu/chicken" component={MenuComponent}></Route>
+                          <Route path="/staff/menu/chip" component={MenuComponent}></Route>
+                          <Route path="/staff/menu/side" component={MenuComponent}></Route>
                           <Route path="/customer/mainMenu" component={CustomerMainMenuComponent}></Route>
                           <Route path="/customer/menu/beef" component={CustomerMenuComponent}></Route>
                           <Route path="/customer/menu/chicken" component={CustomerMenuComponent}></Route>
