@@ -1,8 +1,6 @@
 package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Ingredient;
-import com.thegreatestteam.backend.repository.IngredientRepository;
-import com.thegreatestteam.backend.repository.StaffRepository;
 import com.thegreatestteam.backend.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,20 +20,37 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
+    /**
+     * get all ingredients
+     * @return all ingredient
+     * @since 1.0
+     * @throws NullPointerException if ingredientService.getAllIngredient() return null
+     */
     @GetMapping("/ingredient")
     @ResponseStatus(HttpStatus.OK)
     public List<Ingredient> getIngredient(){
         return ingredientService.getAllIngredient();
     }
 
-
+    /**
+     * get ingredients by it's id
+     * @param ingredientId
+     * @return ingredient with the same id
+     * @since 1.0
+     * @throws NullPointerException if ingredientService.findIngredientById(ingredientId) return null
+     */
     @GetMapping("/ingredient/{ingredientId}")
     @ResponseStatus(HttpStatus.OK)
     public Ingredient getIngredientById(@PathVariable String ingredientId){
         return ingredientService.findIngredientById(ingredientId);
     }
 
-    // Create ingredients
+    /**
+     * POST method to add new ingredient
+     * @param ingredient
+     * @return ingredient just added
+     * @since 1.0
+     */
     @PostMapping("/ingredient")
     @ResponseStatus(HttpStatus.CREATED)
     public Ingredient addIngredient(@RequestBody Ingredient ingredient){
@@ -43,14 +58,24 @@ public class IngredientController {
         return ingredient;
     }
 
-    //Delete Ingredient: (Need to be tested: previous ingredient doesn't contain id)
+    /**
+     * Delete method to delete the selected ingredient
+     * @param ingredientId
+     * @since 1.0
+     */
     @DeleteMapping("/ingredient/{ingredientId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteIngredient(@PathVariable String ingredientId){
         ingredientService.deleteIngredientById(ingredientId);
     }
 
-
+    /**
+     * PUT method to update the selected ingredient
+     * @param ingredient
+     * @param ingredientId
+     * @return the updated ingredient
+     * @since 1.0
+     */
     @PutMapping("/ingredient/{ingredientId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Ingredient UpdateIngredient(@RequestBody Ingredient ingredient, @PathVariable String ingredientId){

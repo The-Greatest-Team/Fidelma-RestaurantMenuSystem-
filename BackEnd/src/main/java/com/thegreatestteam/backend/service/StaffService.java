@@ -15,12 +15,15 @@ public class StaffService {
         this.staffRepository = staffRepository;
     }
 
-    //Get Staff with Id
-    public Staff getAllStaffWithID(String Id){
+    public Staff getAllStaffWithId(String Id){
         return staffRepository.findStaffById(Id);
     }
 
-    // Add Staff
+    /**
+     * Add staff member to the databse
+     * @param staff
+     * @since 1.0
+     */
     public void addStaff(Staff staff){
         staffRepository.save(staff);
     }

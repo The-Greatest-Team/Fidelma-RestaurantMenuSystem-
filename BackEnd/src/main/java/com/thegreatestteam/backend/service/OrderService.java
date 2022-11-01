@@ -1,14 +1,11 @@
 package com.thegreatestteam.backend.service;
 
 import com.thegreatestteam.backend.model.Food;
-import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.model.Order;
 import com.thegreatestteam.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +27,11 @@ public class OrderService {
         return orderRepository.findOrdersByPhoneNumber(phoneNumber);
     }
 
+    /**
+     * Update the quantity for the ingredient after the order is placed
+     * @param order
+     * @since 1.0
+     */
     public void UpdateQuantityForIngredient(Order order){
         for(Map.Entry<String,List<Object>> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
@@ -49,16 +51,22 @@ public class OrderService {
         }
     }
 
+    /**
+     * Update the quantity for the ingredient after the order is placed
+     * @param order
+     * @return 0 if the ingredient is crushed
+     *         1 if the stock isn't enough
+     *         2 if the order can be place
+     * @since 1.0
+     */
     public Integer checkQuantity(Order order){
         for(Map.Entry<String,List<Object>> dish: order.getCart().entrySet()){
             Food food = foodService.getFoodById(dish.getKey());
             if(food == null){
                 return 0;
             }
-            System.out.println("sdf");
 
             int foodQuantity = (Integer) dish.getValue().get(0);
-
 
             for(Map.Entry<String,Double> pair: food.getComponents().entrySet()){
                 if(pair.getValue() == 0){
@@ -67,13 +75,9 @@ public class OrderService {
 
                 if(ingredientService.findIngredientByName(pair.getKey()) == null &&
                     pair.getValue() != 0){
-                    System.out.println("here");
                     return 0;
                 }
 
-//                    if(ingredientService.findIngredientByName(pair.getKey()) == null){
-//                        return 0;
-//                    }
                 double stock = ingredientService.findIngredientByName(pair.getKey()).getQuantity();
 
                 double overallQuantity = pair.getValue() * foodQuantity;
@@ -81,58 +85,45 @@ public class OrderService {
                     return 1;
                 }
             }
-
-
         }
         return 2;
     }
 
+    /**
+     * Add order detail to the database
+     * @param order
+     * @since 1.0
+     */
     public void addOrder(Order order) {
         orderRepository.save(order);
     }
 
+    /**
+     * Get all orders
+     * @return all orders in a list
+     * @since 1.0
+     */
     public List<Order> getAllOrder(){
         return orderRepository.findAll();
     }
 
+    /**
+     * Get order by its id
+     * @param id
+     * @return the selected order with the same id
+     * @since 1.0
+     */
     public Order getOrderById(String id){
         return orderRepository.getOrderById(id);
     }
 
+    /**
+     * delete order by its id
+     * @param id
+     * @since 1.0
+     */
     public void deleteById(String id){
         orderRepository.deleteOrderById(id);
     }
 
-    public void saveOrder(Order order){
-        orderRepository.save(order);
-    }
-
-//    public List<Order> displayALlOrdersWithDishes(){
-//        List<Order> orders = this.getAllOrder();
-//        // need to return order id
-//        // clone the orders
-//        List<Order> clone = new ArrayList<>();
-//        for(Order order: orders){
-//            clone.add(order);
-//        }
-//        //
-//        for (Order order: clone){
-//            // change the name of the cart
-//            Map<List<String>, List<Integer>> origin = order.getCart();
-//            if(origin == null){
-//                continue;
-//            }
-//            Map<String, Integer> newCopy = new HashMap<>();
-//            for(Map.Entry<String, List<Integer>> entry : origin.entrySet()){
-//                Food food = foodService.getFoodById(entry.getKey());
-//                if(food == null){
-//                    System.out.println(entry.getKey());
-//                    continue;
-//                }
-//                String name = food.getName();
-//                newCopy.put(name, entry.getValue().get(0));
-//            }
-//        }
-//        return clone;
-//    }
 }

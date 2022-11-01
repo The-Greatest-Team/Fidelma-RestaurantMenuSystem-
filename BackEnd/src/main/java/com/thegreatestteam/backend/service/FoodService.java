@@ -21,7 +21,13 @@ public class FoodService {
         this.ingredientService = ingredientService;
     }
 
-    //Check current dish availability
+    /**
+     * Checks the availability of the dish
+     * @param food
+     * @return true if the ingredients run out
+     *         false if the dish have enough ingredient
+     * @since 1.0
+     */
     public boolean checkAvailability(Food food){
         for(String ingredientName: food.getComponents().keySet()){
             Ingredient ingredient = ingredientService.findIngredientByName(ingredientName);
@@ -40,7 +46,13 @@ public class FoodService {
         return false;
     }
 
-    //Check Crush (if there's no ingredient for this dish inside the database, return true)
+    /**
+     * Checks if the dishes contain an ingredient that is not in the database
+     * @param food
+     * @return true if one of the ingredient doesn't exist in the database
+     *         false if all ingredients exist in the database
+     * @since 1.0
+     */
     public boolean checkCrash(Food food){
         for(String ingredientName: food.getComponents().keySet()){
             if(ingredientService.findIngredientByName(ingredientName) == null){
@@ -50,7 +62,14 @@ public class FoodService {
         return false;
     }
 
-    //Get food
+    /**
+     * Get all the food with the same type
+     * if any food doesn't have enough ingredients set it state to sold out
+     * if any food contains ingredients that are not in the database set it state to crash
+     * @param type
+     * @return all foods with the same type
+     * @since 1.0
+     */
     public List<Food> getFood(String type){
         List<Food> foods = foodRepository.findByType(type);
         for (Food food : foods){
@@ -60,28 +79,59 @@ public class FoodService {
         return foods;
     }
 
+    /**
+     * Add food to the database
+     * @param food
+     * @since 1.0
+     */
     public void addFood(Food food){
         foodRepository.save(food);
     }
 
+    /**
+     * get food by its id
+     * @param id
+     * @return the selected food
+     * @since 1.0
+     */
     public Food getFoodById(String id){
         return foodRepository.findFoodById(id);
     }
 
-
+    /**
+     * get all ingredient
+     * @return List of all ingredient
+     * @since 1.0
+     */
     public List<Ingredient> getAllIngredient(){
         return ingredientService.getAllIngredient();
     }
 
+    /**
+     * Delete the selected food
+     * @param id
+     * @since 1.0
+     */
     public void deleteFood(String id){
         foodRepository.deleteFoodById(id);
     }
 
-
+    /**
+     * Check if the selected food exist
+     * @param id
+     * @return true if it exists, false if it doesn't exist
+     * @since 1.0
+     */
     public boolean checkFood(String id){
         return foodRepository.existsById(id);
     }
 
+    /**
+     *
+     * @param food
+     * @return
+     * @since 1.0
+     */
     public Integer computeFoodQuantity(Food food){
         Integer min = Integer.MAX_VALUE;
         for(Map.Entry<String, Double> pair : food.getComponents().entrySet()){

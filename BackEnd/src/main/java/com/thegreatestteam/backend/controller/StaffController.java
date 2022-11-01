@@ -1,9 +1,10 @@
 package com.thegreatestteam.backend.controller;
 
 
-import com.thegreatestteam.backend.model.*;
-import com.thegreatestteam.backend.repository.IngredientRepository;
-import com.thegreatestteam.backend.repository.StaffRepository;
+import com.thegreatestteam.backend.model.Ingredient;
+import com.thegreatestteam.backend.model.Order;
+import com.thegreatestteam.backend.model.OrderStatus;
+import com.thegreatestteam.backend.model.Staff;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.IngredientService;
 import com.thegreatestteam.backend.service.OrderService;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = {"${frontend.host.heroku}", "${frontend.host.local}", "${frontend.host.heroku2}"})
@@ -86,7 +84,7 @@ public class StaffController {
     public void completeOrder(@PathVariable String id){
         Order order = orderService.getOrderById(id);
         order.setOrderStatus(OrderStatus.COMPLETED);
-        orderService.saveOrder(order);
+        orderService.addOrder(order);
     }
 
     @DeleteMapping("/deleteOrder/{id}")
