@@ -1,10 +1,20 @@
 # [Fidelma](https://github.com/The-Greatest-Team/comp30022)
-This is the repo for comp30022 IT Project, Team 029 -- The Greatest Team
+
+Link: 
+
+### Introduction
+
+This application is a restaurant management system built for the restaurant Fidela. It includes a variety of functionalities for both customers and staff end. 
+For example, customers can place orders. Staff can manage dishes and ingredients.
+For more, visit (https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/2785472/Requirements) for all user stories.
+
+The backend server uses Spring Boot framework and provides restful API service that the React frontend uses. The database used is MongoDB. The project is deployed to two Heroku apps
+
 
 ## Check List
 - [ ] Requirement
 - [ ] How to start the app
-- [ ] Environment Variables
+- [x] Environment Variables
 - [ ] Documentation
 - [ ] Future Improvement
 
@@ -29,14 +39,17 @@ select "add as Maven Project". Then right click again the pom.xml and select Mav
 ## Environment Variables:
 - Frontend:
   ```
-  REACT_APP_API_URL=http://localhost:8080
+  frontend.host.local=http://localhost:3000
+  frontend.host.heroku=https://fidelma-reactjs.herokuapp.com
+  frontend.host.heroku2=http://fidelma-reactjs.herokuapp.com
   ```
 - Backend:
   ```
-  MONGO_USERNAME=<mongo-usrname>
-  MONGO_PASSWORD=<mongo-pwd>
-  APP_URL=http://localhost:3000
-  JWT_SECRET=crm
+  spring.data.mongodb.uri=mongodb+srv://app:<password>@cluster0.9kzpmzz.mongodb.net/<<Database name>>?retryWrites=true&w=majority
+  spring.servlet.multipart.max-file-size=2MB
+  spring.servlet.multipart.max-request-size=2MB
+  spring.servlet.multipart.enabled=true
+  
   ```
 
 - Mongo DB Account
@@ -50,6 +63,21 @@ select "add as Maven Project". Then right click again the pom.xml and select Mav
 - Confluence: https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/65538/This+is+the+Confluence+space+for+Team029+----+THE+GREATEST+TEAM
 
 ## Future Improvement:
+- staff side can modify the profile
+
+- responsive design, make sure the website works well on mobile, desktop and tablet
+
+- add more animations make the loading smoother
+
+- add register function for staff to create account
+
+- add functionality that staff can make few dish into discount mode
+
+- improve home page
+
+- make the main menu is dynamic on the type
+
+- Add alert system(maybe with voice) on the staff side when new order been send to staff side
 
 
 

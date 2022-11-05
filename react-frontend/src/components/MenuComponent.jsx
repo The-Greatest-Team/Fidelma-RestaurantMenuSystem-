@@ -101,7 +101,7 @@ class MenuComponent extends React.Component{
             <>
                 <div>
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu head background" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -128,7 +128,7 @@ class MenuComponent extends React.Component{
                             <div className="foodBox">
                             </div>
                             <div className = "staffMenuGridContainer">
-                                <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} alt="dish pic"/>}</div>
                                 {
                                     dish.crash === false && <div className = "staffMenuName"><strong>{dish.name}</strong></div>
                                 }

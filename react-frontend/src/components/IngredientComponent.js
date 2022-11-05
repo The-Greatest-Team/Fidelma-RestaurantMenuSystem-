@@ -4,49 +4,6 @@ import IngredientPopupComponent from "./IngredientPopupComponent";
 import EditIngredientComponent from "./EditIngredientComponent";
 import IngredientPopupService from "../services/IngredientPopupService";
 
-const meats = [
-    createData('Pork', 150, 10.00),
-    createData('Beef', 100, 10.00),
-    createData('Chicken', 200, 10.00),
-    createData('Lamb', 150, 10.00),
-    createData('Fish', 100, 10.00),
-];
-
-const vegetables = [
-    createData('Tomato', 150, 10.00),
-    createData('Onion', 100, 10.00),
-    createData('Lettuce', 200, 10.00),
-    createData('Garlic', 150, 10.00),
-    createData('Mushroom', 100, 10.00),
-];
-
-function createData(name, quantity, price, type) {
-    return { name, quantity, price, type};
-}
-
-const Portal = () =>{
-    const wrap = (ev) => {
-        ev.stopPropagation();
-    };
-    return (
-        <div id = "editForm" className = "editForm">
-            <form>
-                <div className = "formTitle">
-                    <h1>Update Quantity</h1>
-                </div>
-                <div className = "formTitle">
-                    <h4>Enter the new quantity:</h4>
-                    <input className = "update" />
-                </div>
-                <div className = "formContent">
-                    <button className = "submitButton">Submit</button>
-                </div>
-            </form>
-        </div>
-    );
-};
-
-
 class IngredientComponent extends React.Component{
     constructor(props){
         super(props)
@@ -147,10 +104,10 @@ class IngredientComponent extends React.Component{
             <>
                 <div className = "main">
                     <div className="ingredientHeader" data-testid= 'gg'>
-                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
+                        <img className = "backButton" src = "/res/images/back.svg" alt="back to previous page" onClick={()=>window.location.href="/staff/dashboard"}/>
                     </div>
                     <div className = "titleContainer" onClick={this.close}>
-                        <img className = "rawMaterialIcon" src = "/res/images/material.svg" />
+                        <img className = "rawMaterialIcon" src = "/res/images/material.svg" alt="raw material icon"/>
                         <h1 className = "title">Raw Materials</h1>
                     </div>
 
