@@ -1,5 +1,4 @@
 import React,{Component} from "react";
-import IngredientPopupService from "../services/IngredientPopupService";
 import IngredientService from "../services/IngredientService";
 import BackDrop from "./BackDrop";
 
