@@ -155,7 +155,8 @@ public class FoodController {
     }
 
     /**
-     *
+     * Post method for updating the image file into the repository
+     * Firstly delete
      * @param
      * @since 1.0
      */
