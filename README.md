@@ -1,5 +1,15 @@
 # [Fidelma](https://github.com/The-Greatest-Team/comp30022)
-This is the repo for comp30022 IT Project, Team 029 -- The Greatest Team
+
+Link: 
+
+### Introduction
+
+This application is a restaurant management system built for the restaurant Fidela. It includes a variety of functionalities for both customers and staff end. 
+For example, customers can place orders. Staff can manage dishes and ingredients.
+For more, visit (https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/2785472/Requirements) for all user stories.
+
+The backend server uses Spring Boot framework and provides restful API service that the React frontend uses. The database used is MongoDB. The project is deployed to two Heroku apps
+
 
 ## Check List
 - [ ] Requirement
