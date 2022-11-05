@@ -21,6 +21,14 @@ public class ImageService {
     @Autowired
     private FoodRepository foodRepository;
 
+    /**
+     * Critical adding image function, decoding and
+     * storing image into the database
+     * @param file actual image file,
+     * @param id image id that is generated from the frontend
+     * @throws IOException
+     */
+
     public void addImage(MultipartFile file, String id) throws IOException {
         try {
             Image image = new Image(id);
@@ -35,6 +43,12 @@ public class ImageService {
         }
     }
 
+    /**
+     *
+     * @param id image id
+     * @return image
+     * @throws Exception if the image retrival is unsuccessful
+     */
     public Image getImageById(String id) throws Exception{
         try {
             Image image = imageRepository.getImageById(id);

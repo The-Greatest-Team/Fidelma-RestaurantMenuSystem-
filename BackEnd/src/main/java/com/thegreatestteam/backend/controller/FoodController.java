@@ -156,8 +156,10 @@ public class FoodController {
 
     /**
      * Post method for updating the image file into the repository
-     * Firstly delete
-     * @param
+     * Firstly delete the image if it is presented and add the image
+     * @param id pathvariable is generated and provided by the frontend mechanism
+     * @param file is the MultipartFile object that is parsed by the frontend,
+     *             after receiving this will be decoded and parsed for store-able object format
      * @since 1.0
      */
     // for editing the dish
@@ -169,8 +171,8 @@ public class FoodController {
     }
 
     /**
-     *
-     * @param
+     * Get request, retrieve image from the databse and pass it to frontend
+     * @param id : image id that needed for the retrival
      * @since 1.0
      */
     @GetMapping("/editDish/image/{id}")
@@ -181,8 +183,9 @@ public class FoodController {
 
 
     /**
-     *
-     * @param
+     * Add the new DishImage to the database
+     * @param id: Id for the image, provided by front end
+     * @param file: for filing new image
      * @since 1.0
      */
     @PostMapping("/newDishImage")
@@ -193,8 +196,8 @@ public class FoodController {
     }
 
     /**
-     *
-     * @param
+     * check existance for certain image/foodform for repsonse
+     * @param id check the food form to see if valid
      * @since 1.0
      */
     @GetMapping("/checkForm/{id}")
@@ -204,8 +207,8 @@ public class FoodController {
     }
 
     /**
-     *
-     * @param
+     * Image check existance
+     * @param id image id from the frontend
      * @since 1.0
      */
     @GetMapping("/checkImage/{id}")
@@ -219,7 +222,10 @@ public class FoodController {
     }
 
 
-
+    /**
+     * API delete image within the database
+     * @param id image id from the frontend
+     */
     @DeleteMapping("/deleteImage/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteImage(@PathVariable String id){

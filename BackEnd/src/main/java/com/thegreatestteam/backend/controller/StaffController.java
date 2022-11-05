@@ -35,6 +35,11 @@ public class StaffController {
     }
 
     // Staff dashboard
+
+    /**
+     * Empty testing instance to conduct information transformation
+     * @return
+     */
     @GetMapping("/dashboard")
     @ResponseStatus(HttpStatus.OK)
     public String getDashboard(){
@@ -42,12 +47,19 @@ public class StaffController {
     }
 
     // Staff Profile
+
+    /**
+     * profile page for the staff dashboard
+     * @param staffId staff id generated and provided by the frontend
+     * @return the success message
+     */
     @GetMapping("/{staffId}/profile")
     @ResponseStatus(HttpStatus.OK)
     public String getProfile(@PathVariable String staffId){
         return "getting profile page";
     }
     // Add staff (one time operation)
+
     @PostMapping("/addStaff")
     @ResponseStatus(HttpStatus.CREATED)
     public void addStaff(@RequestBody Staff staff){
@@ -55,30 +67,36 @@ public class StaffController {
     }
 
 
-    // Staff login page
-
-
-
-
     // get raw material
 
+    /**
+     * dashboard ingredients pages
+     * @return list of all ingredients in the database
+     */
     @GetMapping("/dashboard/ingredients")
     @ResponseStatus(HttpStatus.OK)
     public List<Ingredient> displayAllIngredients(){
         return ingredientService.getAllIngredient();
     }
-    // Edit profile
 
 
 
     // Order summary
+
+    /**
+     * get the page of all orders information
+     * @return list of all orders
+     */
     @GetMapping("/allOrders")
     @ResponseStatus(HttpStatus.OK)
     public List<Order> displayAllOrder(){
         return orderService.getAllOrder();
     }
 
-
+    /**
+     * complete icon for changing the order status to complete
+     * @param id order id for match up
+     */
     @PostMapping("/completeOrder/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void completeOrder(@PathVariable String id){
@@ -87,14 +105,15 @@ public class StaffController {
         orderService.addOrder(order);
     }
 
+    /**
+     * delete order by the provided id
+     * @param id order id provided by the frontend
+     */
     @DeleteMapping("/deleteOrder/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrder(@PathVariable String id){
         orderService.deleteById(id);
     }
-
-
-    // edit menu
 
 
 }

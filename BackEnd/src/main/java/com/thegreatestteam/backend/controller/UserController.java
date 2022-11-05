@@ -1,11 +1,7 @@
 package com.thegreatestteam.backend.controller;
 
 import com.thegreatestteam.backend.model.Food;
-import com.thegreatestteam.backend.model.Ingredient;
 import com.thegreatestteam.backend.model.Order;
-import com.thegreatestteam.backend.repository.FoodRepository;
-import com.thegreatestteam.backend.repository.IngredientRepository;
-import com.thegreatestteam.backend.repository.OrderRepository;
 import com.thegreatestteam.backend.service.FoodService;
 import com.thegreatestteam.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +36,22 @@ public class UserController {
         return orderService.checkQuantity(order);
     }
 
+    /**
+     * Get request for the main page
+     * @return a list of all orders
+     */
     @GetMapping("/mainMenu")
     @ResponseStatus(HttpStatus.OK)
     public List<Order> getAllOrders(){
         return orderService.getAllOrder();
     }
 
-
+    /**
+     * Backend calculation for food dish quantity based on the available ingredients
+     * A very hevay calculation for the backend, can be improved in the future
+     * @param id food id to compute quantity
+     * @return
+     */
     @GetMapping("/foodDes/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Integer computeFoodQuan(@PathVariable String id){
