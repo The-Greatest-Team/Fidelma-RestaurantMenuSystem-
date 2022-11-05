@@ -81,9 +81,9 @@ class CustomerMenuComponent extends React.Component{
     }
 
     deleteDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
-            if (cart[foodIndex].quantity == 0){
+            if (cart[foodIndex].quantity === 0){
                 cart.splice(foodIndex, 1)
             }
             // must use set state function 
@@ -98,7 +98,7 @@ class CustomerMenuComponent extends React.Component{
 
     findFoodIndexInCart(id, cart){
         for (let i = 0; i < cart.length; i++){
-            if (id == cart[i].id){
+            if (id === cart[i].id){
                 return i
             }
         }
@@ -107,12 +107,12 @@ class CustomerMenuComponent extends React.Component{
 
     showCart(){
         this.toggleWithCart()
-        this.state.cartOpen = true
+        this.setState({cartOpen : true})
     }
 
     closeCart(){
-        if (this.state.cartOpen == true){
-            this.state.cartOpen = false
+        if (this.state.cartOpen === true){
+            this.setState({cartOpen : false})
             this.toggleWithCart()
         }
     }
@@ -130,7 +130,7 @@ class CustomerMenuComponent extends React.Component{
                 <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div id="normlaStateMenu">
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu head background pic" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -155,7 +155,7 @@ class CustomerMenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className = "customerMenuGridContainer">
-                                <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} alt="dish pic"/>}</div>
                                 <div className = "customerMenuName"><strong>{dish.name}</strong></div>
                                 <div className = "customerMenuDes">{dish.description}</div>
                                 <div className = "customerMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>

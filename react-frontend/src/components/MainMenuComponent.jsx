@@ -64,7 +64,7 @@ class MainMenuComponent extends React.Component{
                                 <div className = "mainMenuDescription">Choose fresh potatoes from premium Australian farms</div>
                             </div>
                             <div className = "menuView">
-                                <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/" + "chip","chip")}>View more</button>
+                                <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/chip","chip")}>View more</button>
                             </div>
                         </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
@@ -75,13 +75,13 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="sides type example pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian fresh high quality onions for deep frying and deep frying in high quality corn oil.</div>
                             </div>
                             <div className = "menuView">
-                                <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/" + "side","side")}>View more</button>
+                                <button className = "mainMenuEnterButton" onClick={()=>this.props.history.push("/staff/menu/side","side")}>View more</button>
                             </div>
                         </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>

@@ -32,7 +32,7 @@ class StaffIncomeComponent extends React.Component{
         if(this.state.value > this.state.income){
             alert('Withdrawn Unsuccessful: Insufficient Balance!')
         }else if(this.state.value !== 0){
-            let alertW = 'Successfully Withdrawn: ' + ' $' + this.state.value + '!'
+            let alertW = `Successfully Withdrawn: $${this.state.value}!`
             alert(alertW);
             this.setState({
                 income:this.state.income - this.state.value,
