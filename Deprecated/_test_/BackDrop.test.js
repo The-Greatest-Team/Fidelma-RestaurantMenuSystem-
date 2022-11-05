@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BackDrop from '../components/BackDrop'
+import BackDrop from '../../react-frontend/src/components/BackDrop'
 import {isTSAnyKeyword} from '@babel/types';
 import {render,cleanup} from '@testing-library/jest-dom/extend-expect'
 

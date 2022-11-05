@@ -1,7 +1,7 @@
 import { render, screen} from '@testing-library/react';
 import React from 'react';
 import user from '@testing-library/user-event';
-import NewDishComponent from '../components/NewDishComponent';
+import NewDishComponent from '../../react-frontend/src/components/NewDishComponent';
 
 
 test('will give an error message when the price if too large',() => {
