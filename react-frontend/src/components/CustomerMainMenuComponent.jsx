@@ -45,15 +45,15 @@ class CustomerMainMenuComponent extends React.Component{
     changeDishQuantity(dishInCart, action){
         let cart = this.state.foodsInCart
         let foodIndex = this.findFoodIndexInCart(dishInCart.id, cart)
-        if (action == 'add'){
+        if (action === 'add'){
             this.addDishQuantity(cart, foodIndex)
-        } else if (action == 'delete') {
+        } else if (action === 'delete') {
             this.deleteDishQuantity(cart, foodIndex)
         }
     }
 
     addDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity += 1
             this.setState({foodsInCart : cart})
         } else {
@@ -62,7 +62,7 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     deleteDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
             if (cart[foodIndex].quantity == 0){
                 cart.splice(foodIndex, 1)
