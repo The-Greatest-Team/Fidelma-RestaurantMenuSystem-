@@ -3,17 +3,12 @@ import React from "react";
 
 class MainMenuComponent extends React.Component{
 
-    constructor(props){
-        super(props)
-
-    }
-
     render(){
         return(
             <>
                 <div>
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu head pic" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -29,14 +24,14 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="beef type example pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian grain-fed beef, paired with selected fresh vegetables and delicious sauces,
                                 can bring you the ultimate dining experience.</div>
                             </div>
                             <div className = "menuView">
-                                <button className = "mainMenuEnterButton" data-testid = "beefButton" onClick={()=>this.props.history.push("/staff/menu/" + "beef","beef")}>View more</button>
+                                <button className = "mainMenuEnterButton" data-testid = "beefButton" onClick={()=>this.props.history.push("/staff/menu/beef","beef")}>View more</button>
                             </div>
                         </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
@@ -47,13 +42,13 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="chicken type example pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">High-quality chicken is chosen from family farms. 100% natual and hormone free.</div>
                             </div>
                             <div className = "menuView">
-                            <button className = "mainMenuEnterButton" data-testid = "chickenButton" onClick={()=>this.props.history.push("/staff/menu/" + "chicken","chicken")}>View more</button>
+                            <button className = "mainMenuEnterButton" data-testid = "chickenButton" onClick={()=>this.props.history.push("/staff/menu/chicken","chicken")}>View more</button>
                             </div>
                         </div>
                         <hr id = "mainMenuBooomLine" className="separateLine"/>
@@ -64,7 +59,7 @@ class MainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="chips type example pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">Choose fresh potatoes from premium Australian farms</div>

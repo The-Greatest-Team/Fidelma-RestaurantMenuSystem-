@@ -64,7 +64,7 @@ class CustomerMainMenuComponent extends React.Component{
     deleteDishQuantity(cart, foodIndex){
         if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
-            if (cart[foodIndex].quantity == 0){
+            if (cart[foodIndex].quantity === 0){
                 cart.splice(foodIndex, 1)
             }
             // must use set state function 
@@ -79,7 +79,7 @@ class CustomerMainMenuComponent extends React.Component{
 
     findFoodIndexInCart(id, cart){
         for (let i = 0; i < cart.length; i++){
-            if (id == cart[i].id){
+            if (id === cart[i].id){
                 return i
             }
         }
@@ -88,7 +88,7 @@ class CustomerMainMenuComponent extends React.Component{
 
     showCart(){
         this.toggleWithCart()
-        this.state.cartOpen = true
+        this.setState({cartOpen : true})
     }
 
     closeCart(){
