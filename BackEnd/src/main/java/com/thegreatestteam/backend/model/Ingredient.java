@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ingredient {
     //Quantity in grams
     private Double quantity;
-//    private String type;
     @Id
     private String id;
     private String name;
