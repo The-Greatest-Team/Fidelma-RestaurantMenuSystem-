@@ -9,10 +9,6 @@ public class Image {
     private String id;
     private Binary image = null;
 
-
-
-
-
     public Image(String id) {
         this.id = id;
     }
@@ -20,7 +16,6 @@ public class Image {
     public String getId() {
         return id;
     }
-
 
     public Binary getImage() {
         return image;

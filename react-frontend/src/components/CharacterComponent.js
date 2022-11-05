@@ -3,10 +3,6 @@ import CharacterService from "../services/CharacterService";
 
 class CharacterComponent extends React.Component{
 
-    constructor(props){
-        super(props)
-    }
-
     testPost(){
         CharacterService.postUsers();
     }

@@ -27,6 +27,13 @@ class IngredientControllerTest {
     private RequestBuilder request;
     private Gson gson;
 
+
+    /**
+     *  getIngredient Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns ingredients back (not NULL)
+     */
     @Test
     void getIngredient() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/ingredient").
@@ -37,6 +44,12 @@ class IngredientControllerTest {
                 andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
     }
 
+    /**
+     *  getIngredientById Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns ingredients back with name "IngredientTest"
+     */
     @Test
     void getIngredientById() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/ingredient/IngredientTest").
@@ -48,6 +61,12 @@ class IngredientControllerTest {
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
     }
 
+    /**
+     *  addIngredient Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP POST request
+     *  This test should return an HTTP response of 201
+     *  Check if it returns ingredients is added to the database
+     */
     @Test
     void addIngredient() throws Exception {
         gson = new Gson();
@@ -63,6 +82,12 @@ class IngredientControllerTest {
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
     }
 
+    /**
+     *  updateIngredient Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP PUT request
+     *  This test should return an HTTP response of 204
+     *  Update the testing ingredient and check if it contents the right information
+     */
     @Test
     void updateIngredient() throws Exception {
         gson = new Gson();

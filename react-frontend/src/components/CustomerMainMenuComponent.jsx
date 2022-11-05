@@ -17,20 +17,19 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToChicken(){
-        this.props.history.push("/customer/menu/" + "chicken", [this.state.tableNum, this.state.phone,this.state.foodsInCart, "chicken"])
+        this.props.history.push("/customer/menu/chicken", [this.state.tableNum, this.state.phone,this.state.foodsInCart, "chicken"])
     }
 
     goToBeef(){
-        console.log(process.env.REST_API)
-        this.props.history.push("/customer/menu/" + "beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
+        this.props.history.push("/customer/menu/beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
     }
 
     goToChips(){
-        this.props.history.push("/customer/menu/" + "chip" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chip"])
+        this.props.history.push("/customer/menu/chip" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chip"])
     }
 
     goToSides(){
-        this.props.history.push("/customer/menu/" + "side" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "side"])
+        this.props.history.push("/customer/menu/side" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "side"])
     }
 
      // shopping cart functions
@@ -46,15 +45,15 @@ class CustomerMainMenuComponent extends React.Component{
     changeDishQuantity(dishInCart, action){
         let cart = this.state.foodsInCart
         let foodIndex = this.findFoodIndexInCart(dishInCart.id, cart)
-        if (action == 'add'){
+        if (action === 'add'){
             this.addDishQuantity(cart, foodIndex)
-        } else if (action == 'delete') {
+        } else if (action === 'delete') {
             this.deleteDishQuantity(cart, foodIndex)
         }
     }
 
     addDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity += 1
             this.setState({foodsInCart : cart})
         } else {
@@ -63,9 +62,9 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     deleteDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
-            if (cart[foodIndex].quantity == 0){
+            if (cart[foodIndex].quantity === 0){
                 cart.splice(foodIndex, 1)
             }
             // must use set state function 
@@ -80,7 +79,7 @@ class CustomerMainMenuComponent extends React.Component{
 
     findFoodIndexInCart(id, cart){
         for (let i = 0; i < cart.length; i++){
-            if (id == cart[i].id){
+            if (id === cart[i].id){
                 return i
             }
         }
@@ -89,12 +88,12 @@ class CustomerMainMenuComponent extends React.Component{
 
     showCart(){
         this.toggleWithCart()
-        this.state.cartOpen = true
+        this.setState({cartOpen : true})
     }
 
     closeCart(){
-        if (this.state.cartOpen == true){
-            this.state.cartOpen = false
+        if (this.state.cartOpen === true){
+            this.setState({cartOpen:false})
             this.toggleWithCart()
         }
     }
@@ -117,7 +116,7 @@ class CustomerMainMenuComponent extends React.Component{
                 <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu pic" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -132,7 +131,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian grain-fed beef, paired with selected fresh vegetables and delicious sauces,
@@ -150,7 +149,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">High-quality chicken is chosen from family farms. 100% natual and hormone free.</div>
@@ -167,7 +166,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">Choose fresh potatoes from premium Australian farms</div>
@@ -184,7 +183,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian fresh high quality onions for deep frying and deep frying in high quality corn oil.</div>

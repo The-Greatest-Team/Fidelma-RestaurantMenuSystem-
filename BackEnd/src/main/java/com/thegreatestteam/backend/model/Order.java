@@ -9,17 +9,13 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Order {
-
     private String id;
-
     private String name;
     @NonNull
     private Integer tableNumber;
     @NonNull
     private String phoneNumber;
-
     private Map<String, List<Object>> cart;
-
     private OrderStatus orderStatus;
 
     public Order(@NonNull Integer tableNumber, @NonNull String phoneNumber, Map<String, List<Object>> cart, String id) {

@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,12 +24,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class FoodControllerTest {
-
     @Autowired
     private MockMvc mcv;
     private RequestBuilder request;
     private Gson gson;
 
+    /**
+     *  getChickenFood Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back has test chicken
+    */
     @Test
     void getChickenFood() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/chicken").
@@ -38,36 +42,60 @@ class FoodControllerTest {
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
+                andExpect(MockMvcResultMatchers.jsonPath("$[0].type").value("chicken"));
     }
 
+    /**
+     *  getBeefFood Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back has type beef
+     */
     @Test
     void getBeefFood() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/beef").accept(MediaType.APPLICATION_JSON);;
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
+                andExpect(MockMvcResultMatchers.jsonPath("$[0].type").value("beef"));
     }
 
+    /**
+     *  getSideFood Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back has type side
+     */
     @Test
     void getSideFood() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/side").accept(MediaType.APPLICATION_JSON);;
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
+                andExpect(MockMvcResultMatchers.jsonPath("$[0].type").value("side"));
     }
 
+    /**
+     *  getChipFood Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back has type chip
+     */
     @Test
     void getChipFood() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/chip").accept(MediaType.APPLICATION_JSON);;
         mcv.perform(request).
                 andDo(print()).
-                andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
+                andExpect(status().isOk()).
+                andExpect(MockMvcResultMatchers.jsonPath("$[0].type").value("chip"));
     }
 
+    /**
+     *  getNewDishIngredient Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back exist
+     */
     @Test
     void getNewDishIngredient() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/newDish").accept(MediaType.APPLICATION_JSON);;
@@ -77,6 +105,12 @@ class FoodControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
     }
 
+    /**
+     *  getEditDish Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP GET request
+     *  This test should return an HTTP response of 200
+     *  Check if it returns data back exist
+     */
     @Test
     void getEditDish() throws Exception {
         request = MockMvcRequestBuilders.get("/staff/menu/edit/63184a91169a5c4d695cae61").
@@ -86,7 +120,12 @@ class FoodControllerTest {
                 andExpect(status().isOk()).
                 andExpect(MockMvcResultMatchers.jsonPath("$[0].name").exists());
     }
-
+    /**
+     *  addNewFood Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP POST request
+     *  This test should return an HTTP response of 201
+     *  Check if the data exist in the database by Sending a GET request and check if the data exist
+     */
     @Test
     void addNewFood() throws Exception {
         Map<String, Double> components = new HashMap<>();
@@ -104,7 +143,13 @@ class FoodControllerTest {
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD"));;
     }
 
-
+    /**
+     *  updateDish Test class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP PUT request
+     *  This test should return an HTTP response of 204 (No Content)
+     *  Updating the Food data from the addNewFood Test
+     *  Check if the data exist in the database by Sending a GET request and check if the data exist
+     */
     @Test
     void updateDish() throws Exception {
         gson = new Gson();
@@ -122,8 +167,15 @@ class FoodControllerTest {
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD-2"));
     }
 
+    /**
+     *  CheckSoldOut Test class
+     *  Using the combination of JUnit 5 with MockMVC to test if the server can set food state to soldout
+     *  If the ingredient is not enough
+     *  This test should return an HTTP response of 200 (isOK)
+     *  check if the soldout state for the testing food is true
+     */
     @Test
-    void CheckSoldOut() throws Exception{
+    void checkSoldOut() throws Exception{
         request = MockMvcRequestBuilders.get("/staff/menu/testing").
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
@@ -131,9 +183,15 @@ class FoodControllerTest {
                 andExpect(status().isOk()).
                 andExpect(MockMvcResultMatchers.jsonPath("$[0].soldOut").value(true));
     }
-
+    /**
+     *  checkCrash Test class
+     *  Using the combination of JUnit 5 with MockMVC to test if the server can set food state to crash
+     *  If the ingredient is doesn't exist
+     *  This test should return an HTTP response of 200 (isOK)
+     *  check if the crash state for the testing food is true
+     */
     @Test
-    void CheckCrash() throws Exception{
+    void checkCrash() throws Exception{
         Map<String, Double> components = new HashMap<>();
         components.put("testing",1.0);
         gson = new Gson();

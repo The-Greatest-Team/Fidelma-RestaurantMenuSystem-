@@ -45,7 +45,7 @@ class DescriptionComponent extends React.Component{
     getIngredient(){
         let ingredients = this.props.location.state[3].components;
         const Ingredients = Object.keys(ingredients)
-        .filter((key) => ingredients[key] != 0)
+        .filter((key) => ingredients[key] !== 0)
         .reduce((obj, key) => {
             return Object.assign(obj, {
               [key]: ingredients[key]
@@ -65,7 +65,7 @@ class DescriptionComponent extends React.Component{
         this.addToCartAnimation()
         let cart = this.state.foodsInCart
         let foodIndexInCart = this.findFoodIndexInCart(dish.id, cart)
-        if (foodIndexInCart == -1){
+        if (foodIndexInCart === -1){
             cart.push({
                 id : dish.id,
                 name : dish.name, 
@@ -107,15 +107,15 @@ class DescriptionComponent extends React.Component{
     changeDishQuantity(dishInCart, action){
         let cart = this.state.foodsInCart
         let foodIndex = this.findFoodIndexInCart(dishInCart.id, cart)
-        if (action == 'add'){
+        if (action === 'add'){
             this.addDishQuantity(cart, foodIndex)
-        } else if (action == 'delete') {
+        } else if (action === 'delete') {
             this.deleteDishQuantity(cart, foodIndex)
         }
     }
 
     addDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity += 1
             this.setState({foodsInCart : cart})
         } else {
@@ -124,9 +124,9 @@ class DescriptionComponent extends React.Component{
     }
 
     deleteDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
-            if (cart[foodIndex].quantity == 0){
+            if (cart[foodIndex].quantity === 0){
                 cart.splice(foodIndex, 1)
             }
             // must use set state function 
@@ -141,7 +141,7 @@ class DescriptionComponent extends React.Component{
 
     findFoodIndexInCart(id, cart){
         for (let i = 0; i < cart.length; i++){
-            if (id == cart[i].id){
+            if (id === cart[i].id){
                 return i
             }
         }
@@ -150,12 +150,12 @@ class DescriptionComponent extends React.Component{
 
     showCart(){
         this.toggleWithCart()
-        this.state.cartOpen = true
+        this.setState({cartOpen: true})
     }
 
     closeCart(){
-        if (this.state.cartOpen == true){
-            this.state.cartOpen = false
+        if (this.state.cartOpen === true){
+            this.setState({cartOpen: false})
             this.toggleWithCart()
         }
     }
@@ -179,11 +179,10 @@ class DescriptionComponent extends React.Component{
                 <div>
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" onClick={() => this.backToTypeMenu()} />
-                        {/* // onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/> */}
                         <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
-                        <img className = "dishPhoto" src={`data:image/jpeg;base64,${this.props.location.state[3].image}`}/>
+                        <img className = "dishPhoto" src={`data:image/jpeg;base64,${this.props.location.state[3].image}`} alt="dishPhoto"/>
                     </div>
                     <hr className = "dishSeparateLine"/>
                     <div className = "descriptionContainer">
@@ -197,16 +196,15 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        {/* <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div> */}
                         <div className = "allIngredient">{this.getIngredient()}</div>
                     </div>
                     <div className = "dishQuantity">
-                        <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)}/>
+                        <img className = "removeDish" src = "/res/images/back.svg" onClick = {this.removeDish.bind(this)} alt = "removeDish"/>
                         <div className = "currQuantity">{this.state.quantity}</div>
-                        <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)}/>
+                        <img className = "addDish" src = "/res/images/back.svg" onClick = {this.addDish.bind(this)} alt = "addDish"/>
                     </div>
                     <div className = "addToOrder">
-                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.showCart()}/>
+                        <img id="shoppingCart" src = "/res/images/shoppingCart.png" onClick={()=>this.showCart()} alt = "shoppingCart"/>
                         <button className = "addToOrderButton" 
                         onClick={() => this.storeInCart(this.props.location.state[3])}>Add to order</button>
                     </div>

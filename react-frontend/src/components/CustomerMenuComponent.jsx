@@ -1,6 +1,5 @@
 import React from "react";
 import MenuService from "../services/MenuService";
-import Slide from 'react-reveal'
 class CustomerMenuComponent extends React.Component{
 
     constructor(props){
@@ -65,15 +64,15 @@ class CustomerMenuComponent extends React.Component{
     changeDishQuantity(dishInCart, action){
         let cart = this.state.foodsInCart
         let foodIndex = this.findFoodIndexInCart(dishInCart.id, cart)
-        if (action == 'add'){
+        if (action === 'add'){
             this.addDishQuantity(cart, foodIndex)
-        } else if (action == 'delete') {
+        } else if (action === 'delete') {
             this.deleteDishQuantity(cart, foodIndex)
         }
     }
 
     addDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity += 1
             this.setState({foodsInCart : cart})
         } else {
@@ -82,9 +81,9 @@ class CustomerMenuComponent extends React.Component{
     }
 
     deleteDishQuantity(cart, foodIndex){
-        if (foodIndex != -1){
+        if (foodIndex !== -1){
             cart[foodIndex].quantity -= 1
-            if (cart[foodIndex].quantity == 0){
+            if (cart[foodIndex].quantity === 0){
                 cart.splice(foodIndex, 1)
             }
             // must use set state function 
@@ -99,7 +98,7 @@ class CustomerMenuComponent extends React.Component{
 
     findFoodIndexInCart(id, cart){
         for (let i = 0; i < cart.length; i++){
-            if (id == cart[i].id){
+            if (id === cart[i].id){
                 return i
             }
         }
@@ -108,12 +107,12 @@ class CustomerMenuComponent extends React.Component{
 
     showCart(){
         this.toggleWithCart()
-        this.state.cartOpen = true
+        this.setState({cartOpen : true})
     }
 
     closeCart(){
-        if (this.state.cartOpen == true){
-            this.state.cartOpen = false
+        if (this.state.cartOpen === true){
+            this.setState({cartOpen : false})
             this.toggleWithCart()
         }
     }
@@ -131,7 +130,7 @@ class CustomerMenuComponent extends React.Component{
                 <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div id="normlaStateMenu">
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu head background pic" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -155,29 +154,8 @@ class CustomerMenuComponent extends React.Component{
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
-                            {/* <div className="foodBox">
-                                <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
-                                
-                                <div className="textBox">
-                                    <div className="burgerName">{dish.name}</div>
-                                    <div className="burgerDesc">{dish.description}</div>
-                                    <div className="burgerOthers">
-                                        <div className="burgerJoules">{dish.kiloJoule}KJ</div>
-                                        <div className="burgerPrice">${dish.price}</div>
-                                    </div>
-                                </div>
-                                {
-                                    dish.soldOut === false &&
-                                    <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
-                                    onClick={()=>this.viewInDetails(dish)}/>
-                                }
-                                {
-                                    dish.soldOut === true &&
-                                    <div className="soldOutDiv addDishArea">Sold Out</div>
-                                }
-                            </div> */}
                             <div className = "customerMenuGridContainer">
-                                <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} alt="dish pic"/>}</div>
                                 <div className = "customerMenuName"><strong>{dish.name}</strong></div>
                                 <div className = "customerMenuDes">{dish.description}</div>
                                 <div className = "customerMenuCalorie"><strong>{dish.kiloJoule}KJ</strong></div>

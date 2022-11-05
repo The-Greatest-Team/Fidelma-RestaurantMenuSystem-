@@ -59,7 +59,7 @@ class OrderHistoryComponent extends React.Component{
             <>
                 <div>
                     <div className = "historyHead">
-                        <img className = "historyBackIcon" src="/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
+                        <img className = "historyBackIcon" src="/res/images/back.svg" alt="back to previous page" onClick={()=>window.location.href="/staff/dashboard"}/>
                         <h4>Order Summary</h4>
                         <hr className = "historySeparateLine"/>
                     </div>

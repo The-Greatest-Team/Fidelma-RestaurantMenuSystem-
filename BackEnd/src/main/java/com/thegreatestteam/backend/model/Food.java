@@ -9,24 +9,15 @@ public class Food extends Item {
     private Map<String, Double> components;
     private String type;
     private byte[] image;
-
     private String id;
-
     private Boolean isSoldOut;
-
     private String description;
     private int kiloJoule;
-
-
     private boolean isCrash;
 
     public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components, String description){
         super(name, price);
-        this.id = id;
-        this.type = type;
-        this.kiloJoule = kiloJoule;
-        this.components = components;
-        this.description = description;
+
         this.isSoldOut = false;
         this.isCrash = false;
     }

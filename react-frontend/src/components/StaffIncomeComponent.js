@@ -31,8 +31,9 @@ class StaffIncomeComponent extends React.Component{
     withdrawMooney(event) {
         if(this.state.value > this.state.income){
             alert('Withdrawn Unsuccessful: Insufficient Balance!')
-        }else if(this.state.value != 0){
-            alert('Successfully Withdrawn: ' + ' $' + this.state.value + '!');
+        }else if(this.state.value !== 0){
+            let alertW = `Successfully Withdrawn: $${this.state.value}!`
+            alert(alertW);
             this.setState({
                 income:this.state.income - this.state.value,
             });
@@ -47,12 +48,12 @@ class StaffIncomeComponent extends React.Component{
             <>
                 <div>
                     <div className = "incomeHead">
-                        <img className = "historyBackIcon" src="/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
+                        <img className = "historyBackIcon" src="/res/images/back.svg" alt="back to previous page" onClick={()=>window.location.href="/staff/dashboard"}/>
                         <h4>Total Income</h4>
                         <hr className = "historySeparateLine"/>
                     </div>
                     <div className = "incomeIconContainer">
-                        <img src="/res/images/income.png" />
+                        <img src="/res/images/income.png" alt="income icon"/>
                         <h4>My Balance:</h4>
                     </div>
                     <div className = "totalIncome">

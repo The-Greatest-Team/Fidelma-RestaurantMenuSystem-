@@ -1,8 +1,6 @@
 import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
-import axios from "axios";
-import ReactDOM from 'react-dom';
 
 class MenuComponent extends React.Component{
 
@@ -11,7 +9,6 @@ class MenuComponent extends React.Component{
 
         this.state = {foods : [],imageDic:{}};
         this.deleteDish = this.deleteDish.bind(this);
-        // this.requestImage = this.requestImage.bind(this);
     }
 
 
@@ -104,7 +101,7 @@ class MenuComponent extends React.Component{
             <>
                 <div>
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu head background" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -112,7 +109,6 @@ class MenuComponent extends React.Component{
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
-                        {/* <span>Table No.16</span> */}
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
@@ -130,31 +126,9 @@ class MenuComponent extends React.Component{
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
                             <div className="foodBox">
-
-                                {/* {dish.image !== undefined &&<img src={`data:image/jpeg;base64,${dish.image}`} />} */}
-                                {/* <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" /> */}
-                                
-                                {/* <div className="textBox">
-                                    <div className="burgerName">{dish.name}</div>
-                                    <div className="burgerDesc">{dish.description}</div>
-                                    <div className="burgerOthers">
-                                        <div className="burgerJoules">{dish.kiloJoule}KJ</div>
-                                        <div className="burgerPrice">${dish.price}</div>
-                                    </div>
-                                </div>
-                                {
-                                    dish.soldOut === false &&
-                                    <input className="addDishBtn addDishArea" name="addDishBtn" type="image" src="/res/images/addButton.png" alt="add button icon"/>
-                                }
-                                {
-                                    dish.soldOut === true &&
-                                    <div className="soldOutDiv addDishArea">Sold Out</div>
-                                }
-                                <button onClick = {() => this.deleteDish(dish.id)}><input className="delDishBtn" name="delDishBtn" type="image" src="/res/images/deleteButton.png" alt="delete button icon" /></button>
-                                <button onClick = {()=> this.editDish(dish)} className = 'updateButton'> Update</button>          */}
                             </div>
                             <div className = "staffMenuGridContainer">
-                                <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
+                                <div className = "staffMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} alt="dish pic"/>}</div>
                                 {
                                     dish.crash === false && <div className = "staffMenuName"><strong>{dish.name}</strong></div>
                                 }

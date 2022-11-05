@@ -10,11 +10,11 @@ class OrderHistoryService{
     }
 
     deleteOrder(orderId) {
-        return axios.delete(REST_API + '/staff/deleteOrder'+'/' + orderId);
+        return axios.delete(REST_API + '/staff/deleteOrder/' + orderId);
     }
 
     postComplete(orderId) {
-        return axios.post(REST_API + '/staff/completeOrder'+'/' + orderId);
+        return axios.post(REST_API + '/staff/completeOrder/' + orderId);
     }
 }
 

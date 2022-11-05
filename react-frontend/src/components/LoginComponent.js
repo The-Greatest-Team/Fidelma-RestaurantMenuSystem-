@@ -1,6 +1,5 @@
-import Axios from "axios";
 import React from "react";
-import LoginService from "../services/LoginService";
+
 
 class LoginComponent extends React.Component{
 
@@ -27,10 +26,10 @@ class LoginComponent extends React.Component{
     save(event){
         var teamUsername = "comp30022";
         var teamPassword = "tg123123";
-        if(this.state.username != teamUsername){
+        if(this.state.username !== teamUsername){
             alert('Unregistered User! Please Login again!');
             this.reset();
-        } else if(this.state.password != teamPassword){
+        } else if(this.state.password !== teamPassword){
             alert('Wrong Password! Please Login again!');
             this.reset();
         } else{
@@ -65,17 +64,14 @@ class LoginComponent extends React.Component{
                         <div className = "loginInputContainer">
                             <input className = "loginInput" value = {this.state.username} onChange={this.usernameHandler}/>
                         </div>
-                        {/* <hr className = "orderSeparateLine"/> */}
                     </div>
                     <div className = "staffLogin">
                         <h4><strong>Password</strong></h4>
                         <div className = "loginInputContainer">
                             <input className = "loginInput" type="password" value = {this.state.password} onChange={this.passwordHandler}/>
                         </div>
-                        {/* <hr className = "orderSeparateLine"/> */}
                     </div>
                     <div className = "loginContainer">
-                        {/* <button className = "loginButton" onClick = {this.save}>Log in</button> */}
                         <button className = "loginButton" onClick = {this.save}>Log in</button>
                     </div>
                 </div>
