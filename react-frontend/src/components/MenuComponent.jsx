@@ -1,8 +1,6 @@
 import React from "react";
 import MenuService from "../services/MenuService";
 import NewDishService from "../services/NewDishService";
-import axios from "axios";
-import ReactDOM from 'react-dom';
 
 class MenuComponent extends React.Component{
 

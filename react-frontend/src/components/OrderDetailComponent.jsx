@@ -1,6 +1,4 @@
 import React,{Component} from "react";
-import IngredientPopupService from "../services/IngredientPopupService";
-import IngredientService from "../services/IngredientService";
 
 class OrderDetailComponent extends Component {
     constructor(props){
@@ -24,7 +22,7 @@ class OrderDetailComponent extends Component {
         return (
             <div className="orderDetails">
                 <div className="detailHead">
-                    <img className = "historyBackIcon" src="/res/images/back.svg" onClick={()=>window.location.href="/staff/orderHistory"}/>
+                    <img className = "historyBackIcon" src="/res/images/back.svg" alt="back to previous page" onClick={()=>window.location.href="/staff/orderHistory"}/>
                    <h4>Order Details</h4>
                     <hr className = "historySeparateLine"/>
                 </div>

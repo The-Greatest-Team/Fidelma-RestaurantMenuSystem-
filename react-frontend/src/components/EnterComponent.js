@@ -39,13 +39,13 @@ class EnterComponent extends React.Component{
         var tableNumPattern = /^-?[1-9]\d*$/;
         var phonePattern = /0?(4)[0-9]{8}/;
 
-        if(this.state.tableNum == '' || this.state.phone == ''){
+        if(this.state.tableNum === '' || this.state.phone === ''){
             alert('You need to enter all informations, please enter them again!');
             this.reset();
-        }else if(tableNumPattern.test(this.state.tableNum) == false){
+        }else if(tableNumPattern.test(this.state.tableNum) === false){
             alert('Please enter valid table number!');
             this.reset();
-        }else if(phonePattern.test(this.state.phone) == false){
+        }else if(phonePattern.test(this.state.phone) === false){
             alert('Please enter valid phone number!');
             this.reset();
         }else{
@@ -84,7 +84,7 @@ class EnterComponent extends React.Component{
                     <div className = "tableNum">
                         <h4>Table No.</h4>
                         <input className = "tableInput" value = {this.state.tableNum} type = 'number' onChange={this.tableNumHandler} data-testId = "tableNum" min = '0' max = '100'/>
-                        <div className = "errorMsg1">{this.state.tableNum && ((this.state.tableNum < 0 || this.state.tableNum > 100) || (/^-?[1-9]\d*$/).test(this.state.tableNum) == false) && <span className="error" data-testid="error-msg-tableNum">Please enter a valid table number.</span>} 
+                        <div className = "errorMsg1">{this.state.tableNum && ((this.state.tableNum < 0 || this.state.tableNum > 100) || (/^-?[1-9]\d*$/).test(this.state.tableNum) === false) && <span className="error" data-testid="error-msg-tableNum">Please enter a valid table number.</span>} 
                         </div>
                     </div>
                     <div className = "tableNum">
