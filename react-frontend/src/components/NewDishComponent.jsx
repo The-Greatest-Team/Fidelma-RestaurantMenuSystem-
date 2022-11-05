@@ -278,7 +278,7 @@ class NewDishComponent extends Component{
     onionHandler(event,ingredient) {
         var key = ingredient.name;
         var value = event.target.value;
-        let typedComponent = this.state.typedComponents[key];
+        let typedComponent = this.state.typedComponents;
         typedComponent[key] = value;
         this.setState({typedComponents : typedComponent})
     }
