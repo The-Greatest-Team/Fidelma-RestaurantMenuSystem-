@@ -267,8 +267,6 @@ class NewDishComponent extends Component{
     }
 
     priceHandler = (event) => {
-        // let value = event.target.value.replace('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$','')
-        // this.setState({ checkPrice: value })
         this.setState({price:event.target.value});
     }
 
@@ -279,8 +277,6 @@ class NewDishComponent extends Component{
 
 
     onionHandler(event,ingredient) {
-        // let v = event.target.value.replace(/[^\d]/, '');
-        // this.state.checkCode[ingredient.name] = v;
         var key = ingredient.name;
         var value = event.target.value;
         this.state.typedComponents[key] = value;

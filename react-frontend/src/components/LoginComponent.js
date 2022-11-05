@@ -64,17 +64,14 @@ class LoginComponent extends React.Component{
                         <div className = "loginInputContainer">
                             <input className = "loginInput" value = {this.state.username} onChange={this.usernameHandler}/>
                         </div>
-                        {/* <hr className = "orderSeparateLine"/> */}
                     </div>
                     <div className = "staffLogin">
                         <h4><strong>Password</strong></h4>
                         <div className = "loginInputContainer">
                             <input className = "loginInput" type="password" value = {this.state.password} onChange={this.passwordHandler}/>
                         </div>
-                        {/* <hr className = "orderSeparateLine"/> */}
                     </div>
                     <div className = "loginContainer">
-                        {/* <button className = "loginButton" onClick = {this.save}>Log in</button> */}
                         <button className = "loginButton" onClick = {this.save}>Log in</button>
                     </div>
                 </div>

@@ -16,7 +16,6 @@ class MainMenuComponent extends React.Component{
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/dashboard"} src="/res/images/arrow.png" alt="return button icon" />
-                        {/* <span>Table No.</span> */}
                     </div>
 
                     <div>

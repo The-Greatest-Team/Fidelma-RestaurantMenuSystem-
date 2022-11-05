@@ -20,20 +20,6 @@ const vegetables = [
     createData('Mushroom', 100, 10.00),
 ];
 
-// const ingredients = [
-//     createData('Beef', 150, 10.0, 'meats'),
-//     createData('Beef', 150, 10.0, 'meats'),
-//     createData('Beef', 150, 10.0, 'meats'),
-//     createData('Beef', 150, 10.0, 'meats'),
-//     createData('Beef', 150, 10.0, 'vegetables'),
-//     createData('Beef', 150, 10.0, 'vegetables'),
-//     createData('Beef', 150, 10.0, 'vegetables'),
-//     createData('Beef', 150, 10.0, 'vegetables'),
-// ]
-
-
-
-
 function createData(name, quantity, price, type) {
     return { name, quantity, price, type};
 }
@@ -177,7 +163,6 @@ class IngredientComponent extends React.Component{
                                         <th>Quantity(g)</th>
                                         <th>Price</th>
                                         <th>Operation</th>
-                                        {/* <th>Delete</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -195,8 +180,6 @@ class IngredientComponent extends React.Component{
                                             <div>{this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}</div>
                                         </tr>
                                         
-
-
                                     ))}
                                 </tbody>
                             </table>
