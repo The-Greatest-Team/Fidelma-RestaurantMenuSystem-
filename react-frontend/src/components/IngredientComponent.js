@@ -4,7 +4,6 @@ import IngredientPopupComponent from "./IngredientPopupComponent";
 import EditIngredientComponent from "./EditIngredientComponent";
 import IngredientPopupService from "../services/IngredientPopupService";
 
-
 class IngredientComponent extends React.Component{
     constructor(props){
         super(props)
@@ -121,7 +120,6 @@ class IngredientComponent extends React.Component{
                                         <th>Quantity(g)</th>
                                         <th>Price</th>
                                         <th>Operation</th>
-                                        {/* <th>Delete</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,8 +137,6 @@ class IngredientComponent extends React.Component{
                                             <div>{this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}</div>
                                         </tr>
                                         
-
-
                                     ))}
                                 </tbody>
                             </table>

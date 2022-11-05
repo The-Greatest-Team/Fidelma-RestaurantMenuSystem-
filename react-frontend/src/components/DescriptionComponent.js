@@ -179,7 +179,6 @@ class DescriptionComponent extends React.Component{
                 <div>
                     <div className = "dishHead">
                         <img className = "orderBackButton" src="/res/images/arrow.png" alt = "back" onClick={() => this.backToTypeMenu()} />
-                        {/* // onClick={()=>this.props.history.push("/customer/menu/chicken",this.props.location.state)}/> */}
                         <h4>{this.props.location.state[3].name}</h4>
                     </div>
                     <div className = "photoContainer">
@@ -197,7 +196,6 @@ class DescriptionComponent extends React.Component{
                     </div>
                     <div className = "dishIngredient">
                         <h4 className = "descriptionTitle">Ingredients:</h4>
-                        {/* <div className = "allIngredient">{Object.keys(this.props.location.state[3].components).join(', ')}</div> */}
                         <div className = "allIngredient">{this.getIngredient()}</div>
                     </div>
                     <div className = "dishQuantity">

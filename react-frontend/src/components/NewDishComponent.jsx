@@ -276,8 +276,6 @@ class NewDishComponent extends Component{
 
 
     onionHandler(event,ingredient) {
-        // let v = event.target.value.replace(/[^\d]/, '');
-        // this.state.checkCode[ingredient.name] = v;
         var key = ingredient.name;
         var value = event.target.value;
         let typedComponent = this.state.typedComponents[key];

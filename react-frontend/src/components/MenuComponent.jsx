@@ -9,7 +9,6 @@ class MenuComponent extends React.Component{
 
         this.state = {foods : [],imageDic:{}};
         this.deleteDish = this.deleteDish.bind(this);
-        // this.requestImage = this.requestImage.bind(this);
     }
 
 
@@ -110,7 +109,6 @@ class MenuComponent extends React.Component{
                     <div id ="menuBox"><span id="menuWord">menu</span></div>
                     <div className="nav">
                         <input name="returnBtn" type="image" onClick={()=>window.location.href="/staff/mainMenu"} src="/res/images/arrow.png" alt="return button icon" />
-                        {/* <span>Table No.16</span> */}
                     </div>
                     <div className="innerMenuContainer">
                         <div className = "menuTitle">
