@@ -2,7 +2,7 @@
 
 Link: 
 
-### Introduction
+## **Introduction**
 
 This application is a restaurant management system built for the restaurant Fidela. It includes a variety of functionalities for both customers and staff end. 
 For example, customers can place orders. Staff can manage dishes and ingredients.
@@ -11,14 +11,14 @@ For more, visit (https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/2785472/R
 The backend server uses Spring Boot framework and provides restful API service that the React frontend uses. The database used is MongoDB. The project is deployed to two Heroku apps
 
 
-## Check List
+## **Check List**
 - [ ] Requirement
 - [ ] How to start the app
 - [x] Environment Variables
 - [ ] Documentation
 - [ ] Future Improvement
 
-## Requirements
+## **Requirements**
 
 1. Download **node.js** and npm from https://nodejs.org/en/download.
 2. Download **IntelliJ IDEA** from https://www.jetbrains.com/idea/download.
@@ -27,7 +27,7 @@ The backend server uses Spring Boot framework and provides restful API service t
 5. Download Database Visualisation Tool **Mongodb Compass** from https://www.mongodb.com/try/download/compass
 
 
-## Installation Instruction
+## **Installation Instruction**
 
 ### Install Node.js (Choose one of the option below)
 1. Homebrew (Require MacOS, as well as homebrew installed)
@@ -60,6 +60,9 @@ The backend server uses Spring Boot framework and provides restful API service t
 
     And then follow along with the installation process when prompted
 
+3. Download Mongodb Compass for Database Visualisation
+- Head to https://www.mongodb.com/try/download/compass and choose for the compatible OS
+![](react-frontend/public/res/images/MongodbCompass.png)
 
 
 ## How to start the app?
