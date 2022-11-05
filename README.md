@@ -26,7 +26,7 @@ The backend server uses Spring Boot framework and provides restful API service t
 4. Has a valid **Gmail** and **MongoDB account**.
 5. Download Database Visualisation Tool **Mongodb Compass** from https://www.mongodb.com/try/download/compass
 
----
+
 ## Installation Instruction
 
 ### Install Node.js (Choose one of the option below)
@@ -35,13 +35,13 @@ The backend server uses Spring Boot framework and provides restful API service t
 2. General package installation (Choose the right version for your OS)
     ![](react-frontend/public/res/images/nodejs.png)
 
----
+
 
 ### Install Intellij IDEA
 1. Head to https://www.jetbrains.com/idea/download
     ![](react-frontend/public/res/images/intellij Idea.png)
 
----
+
 
 ### Install JDK on your OS
 1. Homebrew (Require MacOS and Homebrew installed)
