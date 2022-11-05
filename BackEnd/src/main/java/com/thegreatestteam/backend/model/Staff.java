@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 @Document("Staff")
 public class Staff {
-
     @Id
     private String id;
     @NonNull
@@ -17,11 +16,8 @@ public class Staff {
     private String firstName;
     private String lastName;
     private String email;
-
     private LocalDate dob;
-
     private String phoneNumber;
-
     private String Address;
 
     public Staff(String id, String username, String firstName, String lastName,
