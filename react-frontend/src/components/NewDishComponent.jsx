@@ -3,7 +3,6 @@ import NewDishService from "../services/NewDishService";
 import {useDropzone} from 'react-dropzone'
 import { v4 as uuid } from 'uuid';
 import NewDishPopupComponent from "./NewDishPopupComponent";
-import BackDrop from "./BackDrop";
 import axios from "axios";
 import {REST_API} from "../constant";
 
@@ -30,7 +29,7 @@ function MyDropzone({childToParent}) {
     console.log(url);
     childToParent(formData);
     }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+    const {getRootProps, getInputProps} = useDropzone({onDrop});
 
     const test = console.log(url);
 
@@ -43,7 +42,7 @@ function MyDropzone({childToParent}) {
           <div id = "camera">
             <div className = "content top">
                 {test}
-                <img className = "cameraImage" src={url}/>
+                <img className = "cameraImage" src={url} alt="put pic here"/>
             </div>
           </div> 
 
@@ -152,18 +151,18 @@ class NewDishComponent extends Component{
         let components = this.state.typedComponents;
         var find = 0;
         let objectArr = Object.entries(components);
-        for (var i = 0; i < this.state.ingredients.length; i++) {
+        for (let i = 0; i < this.state.ingredients.length; i++) {
             find = 0;
             for (var j = 0; j < objectArr.length; j++) {
                 if (objectArr[j][0] === this.state.ingredients[i].name) {
                     find = 1;
                 }
             }
-            if (find == 0) { //staff does not give the input for this ingredient
+            if (find === 0) { //staff does not give the input for this ingredient
                 components[this.state.ingredients[i].name] = 0;
             }
         }
-        for (var i = 0; i < this.state.ingredients.length; i++) {
+        for (let i = 0; i < this.state.ingredients.length; i++) {
             if (components[this.state.ingredients[i].name] === '') {
                 components[this.state.ingredients[i].name] = 0;
             }
@@ -176,12 +175,12 @@ class NewDishComponent extends Component{
             }
         }
 
-        if (allzero == 1) {
+        if (allzero === 1) {
             canSend = 0;
         }
 
 
-        if (canSend == 0) {
+        if (canSend === 0) {
             console.log("need a popup");
             this.setState({display: true});
         } else {
@@ -198,7 +197,7 @@ class NewDishComponent extends Component{
             console.log("dish=> " + JSON.stringify(dish));
 
             this.state.file.append("id", unique_id);
-            for (var pair of this.state.file.entries()) {
+            for (let pair of this.state.file.entries()) {
                 console.log(pair[0] + ', ' + pair[1]);
             }
             NewDishService.createNewDish(dish).then(
@@ -212,7 +211,7 @@ class NewDishComponent extends Component{
             NewDishService.createNewDish(dish);
                 
             let count = 0;
-            while (this.state.formNotSaved == true) {
+            while (this.state.formNotSaved === true) {
                          this.state.formNotSaved = await axios.get(REST_API + "/staff/menu/checkForm/" + unique_id).then((respond) => {
                             console.log(respond.data);
                             return respond.data;
@@ -224,12 +223,12 @@ class NewDishComponent extends Component{
                 while (delay !== 1000000) {
                     delay+=1;
                 }
-                if (count == 50 && this.state.formNotSaved == true) {
+                if (count === 50 && this.state.formNotSaved === true) {
                     break;
                 }
             }
 
-            if (this.state.formNotSaved == true) {
+            if (this.state.formNotSaved === true) {
                 // need a popup here
                 console.log("form is not saved!");
             } else { // start to send image
@@ -267,8 +266,6 @@ class NewDishComponent extends Component{
     }
 
     priceHandler = (event) => {
-        // let value = event.target.value.replace('^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$','')
-        // this.setState({ checkPrice: value })
         this.setState({price:event.target.value});
     }
 
@@ -283,7 +280,9 @@ class NewDishComponent extends Component{
         // this.state.checkCode[ingredient.name] = v;
         var key = ingredient.name;
         var value = event.target.value;
-        this.state.typedComponents[key] = value;
+        let typedComponent = this.state.typedComponents[key];
+        typedComponent[key] = value;
+        this.setState({typedComponents : typedComponent})
     }
 
     beefHandler = (event) => {
@@ -312,7 +311,7 @@ class NewDishComponent extends Component{
                 <div>
                     <div>
                         <button onClick={this.back} className = "min" >
-                        <img className = "backSign" src="/res/images/backSign.jpg"/>
+                        <img className = "backSign" src="/res/images/backSign.jpg" alt="back to the previous page"/>
                         </button>
                     </div>
                     
@@ -339,10 +338,7 @@ class NewDishComponent extends Component{
                             <h2 className="addSubTitle">Description</h2>
                             <textarea className = "inputPartSpecial"  name = "description"  data-testid = "description" maxLength = "80"
                             value = {this.state.description} onChange={this.descriptionHandler}></textarea>
-                            <h2 className="ingredients">Ingredients 
-                                <button  className="min">
-                                <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
-                                </button> </h2>
+                            <h2 className="ingredients">Ingredients</h2>
                             <div id="myDropdown" className="ingredientsList">
                                 {
                                     this.state.ingredients.map(

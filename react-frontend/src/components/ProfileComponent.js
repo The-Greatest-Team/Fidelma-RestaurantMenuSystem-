@@ -3,10 +3,6 @@ import ProfileService from "../services/ProfileService";
 
 class ProfileComponent extends React.Component{
 
-    constructor(props){
-        super(props)
-    }
-
     testPost(){
         ProfileService.postUsers();
     }
@@ -16,7 +12,7 @@ class ProfileComponent extends React.Component{
             <>
                 <div>
                     <div className = "ingredientHeader">
-                        <img className = "backButton" src = "/res/images/back.svg" onClick={()=>window.location.href="/staff/dashboard"}/>
+                        <img className = "backButton" src = "/res/images/back.svg" alt="back to previous page" onClick={()=>window.location.href="/staff/dashboard"}/>
                     </div>
                     <div className = "profileTitle">
                         <h3>Edit Profile</h3>
