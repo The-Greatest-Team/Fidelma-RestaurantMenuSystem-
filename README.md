@@ -20,10 +20,46 @@ The backend server uses Spring Boot framework and provides restful API service t
 
 ## Requirements
 
-1. Download node.js and npm from https://nodejs.org/en/download.
-2. Download IntelliJ IDEA from https://www.jetbrains.com/idea/download.
-3. Update JDK to version 16 or later.
-4. Has a valid Gmail and MongoDB account.
+1. Download **node.js** and npm from https://nodejs.org/en/download.
+2. Download **IntelliJ IDEA** from https://www.jetbrains.com/idea/download.
+3. Update **JDK** to version 17 or later.
+4. Has a valid **Gmail** and **MongoDB account**.
+5. Download Database Visualisation Tool **Mongodb Compass** from https://www.mongodb.com/try/download/compass
+
+---
+## Installation Instruction
+
+### Install Node.js (Choose one of the option below)
+1. Homebrew (Require MacOS, as well as homebrew installed)
+    ```brew install node```
+2. General package installation (Choose the right version for your OS)
+    ![](react-frontend/public/res/images/nodejs.png)
+
+---
+
+### Install Intellij IDEA
+1. Head to https://www.jetbrains.com/idea/download
+    ![](react-frontend/public/res/images/intellij Idea.png)
+
+---
+
+### Install JDK on your OS
+1. Homebrew (Require MacOS and Homebrew installed)
+
+    ```brew install java```
+
+    after which you can test by prompting:
+    
+   ```java --version```
+    
+    if installation is successful it would show
+    
+    ![](react-frontend/public/res/images/javaversion.png)
+2. Official Download (Orecle JDK: https://www.oracle.com/au/java/technologies/downloads/)
+    ![](react-frontend/public/res/images/jdk.png)
+
+    And then follow along with the installation process when prompted
+
 
 
 ## How to start the app?
