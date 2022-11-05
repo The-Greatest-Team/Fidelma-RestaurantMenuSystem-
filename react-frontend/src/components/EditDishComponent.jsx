@@ -22,8 +22,8 @@ function MyDropzone({childToParent}) {
     setUrl(URL.createObjectURL(file));
     console.log(url);
     childToParent(formData);
-    }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+    })
+    const {getRootProps, getInputProps} = useDropzone({onDrop});
 
     const test = console.log(url);
 
@@ -36,7 +36,7 @@ function MyDropzone({childToParent}) {
           <div id = "camera">
             <div className = "content top">
                 {test}
-                <img className = "cameraImage" src={url}/>
+                <img className = "cameraImage" src={url} alt = ''/>
             </div>
           </div> 
 
@@ -100,7 +100,7 @@ class EditDishComponent extends Component{
                         find = 1;
                     }
                 }
-                if (find == 0) {
+                if (find === 0) {
                     objectArr[this.state.allIngredients[i].name] = 0;
                 }
             }
@@ -129,12 +129,12 @@ class EditDishComponent extends Component{
         for (var k = 0; k < this.state.ingredients.length;k++) {
             found = 0;
             for (var z = 0; z < arr.length;z++) {
-                if (arr[z][0] == this.state.ingredients[k][0]) {
+                if (arr[z][0] === this.state.ingredients[k][0]) {
                     found = 1;
                 }
             }
 
-            if (found == 0) {
+            if (found === 0) {
                 components[this.state.ingredients[k][0]] = this.state.ingredients[k][1];
             }
         }
@@ -143,11 +143,11 @@ class EditDishComponent extends Component{
         for (var i = 0; i < this.state.allIngredients.length; i++) {
             find = 0;
             for (var j = 0; j < arr.length; j++) {
-                if (arr[j][0] == this.state.allIngredients[i].name) {
+                if (arr[j][0] === this.state.allIngredients[i].name) {
                     find = 1;
                 }
             }
-            if (find == 0) {
+            if (find === 0) {
                 components[this.state.allIngredients[i].name] = 0;
             }
         }

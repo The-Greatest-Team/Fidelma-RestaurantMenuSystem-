@@ -14,7 +14,7 @@ class EditDIshService{
     }
 
     changeImage(image,id) {
-        return axios.put(REST_API + '/staff/menu/editImage'+'/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
+        return axios.put(REST_API + '/staff/menu/editImage/' + id,image,{headers:{"Content-Type":"multipart/form-data"}});
     }
 }
 
