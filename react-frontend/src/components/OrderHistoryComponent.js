@@ -84,6 +84,7 @@ class OrderHistoryComponent extends React.Component{
                                     } else if (order.phoneNumber.includes(this.state.phone)){
                                         return order;
                                     }
+                                    return null;
                                 })).map((order) => (
                                     <tr key = {order.id}>
                                         <td>{order.tableNumber}</td>
