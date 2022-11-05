@@ -60,12 +60,30 @@ The backend server uses Spring Boot framework and provides restful API service t
 
     And then follow along with the installation process when prompted
 
-3. Download Mongodb Compass for Database Visualisation
+### Download Mongodb Compass for Database Visualisation
 - Head to https://www.mongodb.com/try/download/compass and choose for the compatible OS
 ![](react-frontend/public/res/images/MongodbCompass.png)
 
+### Download Maven 
+1. Homebrew (Require MacOS and Homebrew installed)
 
-## How to start the app?
+    ```brew install mvn```
+    ![](react-frontend/public/res/images/Maven.png)
+2. General installation process
+- most modern IDEs will have the build-in installation option for Maven, Intellij IDEA, Eclipse, NetBeans
+- if there is no option for that, you can visit the Apache Maven download website https://maven.apache.org/download.cgi
+
+
+
+
+## **Start the Localhost Application**
+
+
+
+
+
+
+
 1) open the whole project with IntelliJ IDEA, go to BackEnd/src/main/java/com/thegreatestteam/backend/BackEndApplication to run the main function, if SpringApplication is unrecognised, check "BackEnd Maven instruction" below to recognised it.
 2) open the react-frontend file with Vscode(other tools with terminal also fine), if it's first time run, run 'npm install' to install all the dependency first(if see few warning with word 'deprecated', it's fine to continue, this is because the version we choosed is bit old, we considering to change to a newer version in next few sprint, but for now, all the function works fine with this a bit old version), then run 'npm start run' to run the project, the web app is using localhost:3000, the route of each page is define in the App.js.
 
