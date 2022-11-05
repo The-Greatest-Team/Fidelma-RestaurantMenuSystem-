@@ -50,7 +50,7 @@ public class UserController {
      * Backend calculation for food dish quantity based on the available ingredients
      * A very hevay calculation for the backend, can be improved in the future
      * @param id food id to compute quantity
-     * @return
+     * @return the computed value for dish quantity
      */
     @GetMapping("/foodDes/{id}")
     @ResponseStatus(HttpStatus.OK)
