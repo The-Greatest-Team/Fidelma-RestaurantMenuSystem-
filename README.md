@@ -1,6 +1,9 @@
 # [Fidelma](https://github.com/The-Greatest-Team/comp30022)
 
-Link: 
+App Link: https://fidelma-reactjs.herokuapp.com/
+
+<img src="react-frontend/public/res/images/WechatIMG907.png" alt="drawing" width="200"/>
+
 
 ## **Introduction**
 
@@ -12,7 +15,7 @@ The backend server uses Spring Boot framework and provides restful API service t
 
 
 ## **Check List**
-- [ ] Requirement
+- [x] Requirement
 - [ ] How to start the app
 - [x] Environment Variables
 - [ ] Documentation
@@ -69,20 +72,33 @@ The backend server uses Spring Boot framework and provides restful API service t
 
     ```brew install mvn```
     ![](react-frontend/public/res/images/Maven.png)
+
+    Then check if you successfully installed it
+    
+    ```mvn --version```
+    
+    ![](react-frontend/public/res/images/mvn.png)
 2. General installation process
 - most modern IDEs will have the build-in installation option for Maven, Intellij IDEA, Eclipse, NetBeans
 - if there is no option for that, you can visit the Apache Maven download website https://maven.apache.org/download.cgi
 
 
-
-
 ## **Start the Localhost Application**
 
+The Localhost server and application is located at **DevelopmentFinalise** branch, the **Main** Branch is used for remote deployment and remote hosting version only.
 
-
-
-
-
+#### In order to start the localhost application using command line:
+1. Start the BackEnd server running:
+   - Open up Command line tool such as _Terminal_ or _Iterm_
+   - navigate to the backend project folder: 
+      **comp30022/BackEnd**
+   - make sure you have Apache Maven installed and run command: 
+    
+     ```mvn spring-boot:run```
+   - First time initialisation will do package import and installation of some package dependencies
+   - If the build is successful you will see:
+     ![](react-frontend/public/res/images/springboot_run.png)
+   
 
 1) open the whole project with IntelliJ IDEA, go to BackEnd/src/main/java/com/thegreatestteam/backend/BackEndApplication to run the main function, if SpringApplication is unrecognised, check "BackEnd Maven instruction" below to recognised it.
 2) open the react-frontend file with Vscode(other tools with terminal also fine), if it's first time run, run 'npm install' to install all the dependency first(if see few warning with word 'deprecated', it's fine to continue, this is because the version we choosed is bit old, we considering to change to a newer version in next few sprint, but for now, all the function works fine with this a bit old version), then run 'npm start run' to run the project, the web app is using localhost:3000, the route of each page is define in the App.js.
