@@ -138,6 +138,26 @@ The Localhost server and application is located at **DevelopmentFinalise** branc
        ```npm install```
 
        ```npm start```
+        this can start the application on localhost:3000
+   4. Open up the browser of your choice and type in: **http://localhost:3000/**
+    - As the application is only made compatible with mobile devices, if you are trying to use a desktop browser, you will need to enter the responsive design mode and right the mobile device view
+    - After entering the page, make sure you right click on the web page and select inspect from the drop down menu
+    - Then enter the responsive mode which allows you to choose from different mobile device view:
+      ![Make Sure you click into the responsive mode](react-frontend/public/res/images/Responsive.png)
+
+
+
+
+## **Start the Deployed Application**
+
+Current application is deployed on the heroku cloud, you can access the application by using the URL: https://fidelma-reactjs.herokuapp.com/ or use your mobile device to scan the QR code we provided on the top of this page
+Due to the fact that this is based on the heroku free tier which comes with limited resource, the responsiveness of the website is not superior, if you want this application to be deployed on other platforms or cloud service providers, you can fully explore all options that 
+fit your business need and requirement. For more information about the self-deployment process, you are refer to the Deployment Guide at the [DeploymentGuide](docs/Deployment_Guide.md)
+
+
+
+
+
 
 
 ## Environment Variables:
