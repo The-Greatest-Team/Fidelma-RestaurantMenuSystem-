@@ -17,19 +17,19 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     goToChicken(){
-        this.props.history.push("/customer/menu/" + "chicken", [this.state.tableNum, this.state.phone,this.state.foodsInCart, "chicken"])
+        this.props.history.push("/customer/menu/chicken", [this.state.tableNum, this.state.phone,this.state.foodsInCart, "chicken"])
     }
 
     goToBeef(){
-        this.props.history.push("/customer/menu/" + "beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
+        this.props.history.push("/customer/menu/beef" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "beef"])
     }
 
     goToChips(){
-        this.props.history.push("/customer/menu/" + "chip" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chip"])
+        this.props.history.push("/customer/menu/chip" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "chip"])
     }
 
     goToSides(){
-        this.props.history.push("/customer/menu/" + "side" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "side"])
+        this.props.history.push("/customer/menu/side" ,[this.state.tableNum, this.state.phone,this.state.foodsInCart, "side"])
     }
 
      // shopping cart functions

@@ -26,10 +26,10 @@ class LoginComponent extends React.Component{
     save(event){
         var teamUsername = "comp30022";
         var teamPassword = "tg123123";
-        if(this.state.username != teamUsername){
+        if(this.state.username !== teamUsername){
             alert('Unregistered User! Please Login again!');
             this.reset();
-        } else if(this.state.password != teamPassword){
+        } else if(this.state.password !== teamPassword){
             alert('Wrong Password! Please Login again!');
             this.reset();
         } else{
