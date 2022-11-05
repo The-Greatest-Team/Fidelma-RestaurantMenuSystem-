@@ -14,7 +14,7 @@ The backend server uses Spring Boot framework and provides restful API service t
 ## Check List
 - [ ] Requirement
 - [ ] How to start the app
-- [ ] Environment Variables
+- [x] Environment Variables
 - [ ] Documentation
 - [ ] Future Improvement
 
@@ -39,14 +39,17 @@ select "add as Maven Project". Then right click again the pom.xml and select Mav
 ## Environment Variables:
 - Frontend:
   ```
-  REACT_APP_API_URL=http://localhost:8080
+  frontend.host.local=http://localhost:3000
+  frontend.host.heroku=https://fidelma-reactjs.herokuapp.com
+  frontend.host.heroku2=http://fidelma-reactjs.herokuapp.com
   ```
 - Backend:
   ```
-  MONGO_USERNAME=<mongo-usrname>
-  MONGO_PASSWORD=<mongo-pwd>
-  APP_URL=http://localhost:3000
-  JWT_SECRET=crm
+  spring.data.mongodb.uri=mongodb+srv://app:<password>@cluster0.9kzpmzz.mongodb.net/<<Database name>>?retryWrites=true&w=majority
+  spring.servlet.multipart.max-file-size=2MB
+  spring.servlet.multipart.max-request-size=2MB
+  spring.servlet.multipart.enabled=true
+  
   ```
 
 - Mongo DB Account
@@ -60,6 +63,21 @@ select "add as Maven Project". Then right click again the pom.xml and select Mav
 - Confluence: https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/65538/This+is+the+Confluence+space+for+Team029+----+THE+GREATEST+TEAM
 
 ## Future Improvement:
+- staff side can modify the profile
+
+- responsive design, make sure the website works well on mobile, desktop and tablet
+
+- add more animations make the loading smoother
+
+- add register function for staff to create account
+
+- add functionality that staff can make few dish into discount mode
+
+- improve home page
+
+- make the main menu is dynamic on the type
+
+- Add alert system(maybe with voice) on the staff side when new order been send to staff side
 
 
 

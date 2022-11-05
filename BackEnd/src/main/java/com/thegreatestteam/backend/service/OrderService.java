@@ -22,7 +22,11 @@ public class OrderService {
     private FoodService foodService;
     private IngredientService ingredientService;
 
-
+    /**
+     * Get order by the phoneNumber
+     * @param phoneNumber phonenumber in string format
+     * @return
+     */
     public List<Order> getOrderByPhoneNumber(String phoneNumber){
         return orderRepository.findOrdersByPhoneNumber(phoneNumber);
     }

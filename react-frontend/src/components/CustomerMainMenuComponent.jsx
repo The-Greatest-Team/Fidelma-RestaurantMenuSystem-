@@ -92,8 +92,8 @@ class CustomerMainMenuComponent extends React.Component{
     }
 
     closeCart(){
-        if (this.state.cartOpen == true){
-            this.state.cartOpen = false
+        if (this.state.cartOpen === true){
+            this.setState({cartOpen:false})
             this.toggleWithCart()
         }
     }
@@ -116,7 +116,7 @@ class CustomerMainMenuComponent extends React.Component{
                 <div id="closeCartArea" onClick={()=>this.closeCart()}></div>
                 <div>
                     <div className="menuHead">
-                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu picture" />
+                        <img id="menuPic" src="/res/images/menuBackground.jpg" alt="menu pic" />
                         <img className="logo" src="/res/images/projectIcon.png" alt="logo" />
                         
                     </div>
@@ -131,7 +131,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/beef1.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian grain-fed beef, paired with selected fresh vegetables and delicious sauces,
@@ -149,7 +149,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/chicken2.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">High-quality chicken is chosen from family farms. 100% natual and hormone free.</div>
@@ -166,7 +166,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/cheeseFires.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">Choose fresh potatoes from premium Australian farms</div>
@@ -183,7 +183,7 @@ class CustomerMainMenuComponent extends React.Component{
                         <hr className="separateLine"/>
                         <div className = "menuGridContainer">
                             <div className = "menuPic">
-                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu picture"/>
+                                <img className = "mainMenuPic" src="/res/images/onionRing.jpg" alt="menu pic"/>
                             </div>
                             <div className = "menuDes">
                                 <div className = "mainMenuDescription">100% Australian fresh high quality onions for deep frying and deep frying in high quality corn oil.</div>
