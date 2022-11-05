@@ -64,9 +64,9 @@ class ConfirmComponent extends React.Component{
         axios.post( REST_API + "/customer/orderConfirm",order).then( (res) => {
             console.log(res.data)
 
-            if (res.data == 1){
+            if (res.data === 1){
                 this.openPopUpWindow("ingredientWarning")
-            } else if (res.data == 2){
+            } else if (res.data === 2){
                 this.props.history.push("/submitPage",this.props.location.state);
             } else {
                 this.openPopUpWindow("systemErrorWarning")
@@ -102,7 +102,7 @@ class ConfirmComponent extends React.Component{
             <>
                 <div>
                     <div className = "confirmHead">
-                        <img className = "orderBackButton" src = "/res/images/back.svg" onClick={() => this.backToMainMenu()}/>
+                        <img className = "orderBackButton" src = "/res/images/back.svg" alt="back to previous page" onClick={() => this.backToMainMenu()}/>
                         <h4>Fidelma</h4>
                     </div>
                     <div className = "orderTitle">
@@ -120,7 +120,7 @@ class ConfirmComponent extends React.Component{
                         {this.state.foodsInCart.map((dish) =>(
                             <div className = "grid-container" key = {dish.id}>
                                 <div className = "item1">
-                                    <img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />
+                                    <img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} alt="dish pic"/>
                                 </div>
                                 <div className = "item2"><strong>{dish.name}</strong></div>
                                 <div className = "item3">add-on details: xxxx</div>

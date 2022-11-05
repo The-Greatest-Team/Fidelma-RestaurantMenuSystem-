@@ -154,23 +154,19 @@ class EditDishComponent extends Component{
         console.log(components);
 
         if (!this.state.name) {
-
-            this.state.name = this.props.location.state.name;
+            this.setState({name:this.props.location.state.name})
         }
 
         if (!this.state.price) {
-
-            this.state.price = this.props.location.state.price;
+            this.setState({price:this.props.location.state.price})
         }
 
         if (!this.state.kiloJoule) {
-
-            this.state.kiloJoule = this.props.location.state.kiloJoule;
+            this.setState({kiloJoule:this.props.location.state.kiloJoule})
         }
 
         if (!this.state.description) {
-
-            this.state.description = this.props.location.state.description;
+            this.setState({description:this.props.location.state.description})
         }
 
         let componentsArr = Object.entries(components);
@@ -221,10 +217,10 @@ class EditDishComponent extends Component{
             canSend = 1;
         }
 
-        for (var i = 0 ; i < componentsArr.length; i++) {
-            console.log(typeof(componentsArr[i][1]));
-            console.log(typeof(this.state.ingredients[i][1]));
-            if (componentsArr[i][1] !== this.state.ingredients[i][1]) {
+        for (var y = 0 ; y < componentsArr.length; y++) {
+            console.log(typeof(componentsArr[y][1]));
+            console.log(typeof(this.state.ingredients[y][1]));
+            if (componentsArr[y][1] !== this.state.ingredients[y][1]) {
                 canSend = 1;
                 break;
             }
@@ -293,6 +289,7 @@ onionHandler(event,ingredient) {
     var value = event.target.value;
     console.log(key);
     console.log(value);
+
     this.state.typedComponents[key] = value;
 }
 
@@ -320,7 +317,7 @@ back = (e) => {
                 <div  >
                     <div>
                         <button onClick={this.back} className = "min" >
-                        <img className = "backSign" src="/res/images/backSign.jpg"/>
+                        <img className = "backSign" src="/res/images/backSign.jpg" alt = "back"/>
                         </button>
                     </div>
                     
@@ -349,7 +346,7 @@ back = (e) => {
                             placeholder = {this.props.location.state.description} onChange={this.descriptionHandler}></textarea>
                             <h2 className="ingredients">Ingredients 
                                 <button  className="min">
-                                <img src="/res/images/backButton.jpg" className="icon icon-arrow" />
+                                <img src="/res/images/backButton.jpg" className="icon icon-arrow" alt = "back"/>
                                 </button> </h2>
                             <div id="myDropdown" className="ingredientsList">
                                 {

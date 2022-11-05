@@ -93,7 +93,6 @@ class EnterComponent extends React.Component{
                         </div>
                     </div>
                     <div className = "startOrder">
-                        {/* <button className = "orderButton" onClick={()=>this.props.history.push("/customer/mainMenu",this.props.location.state)} >Start Order</button> */}
                         <button className = "orderButton" onClick = {this.save}>Start Order</button>
                     </div>
                     </form>

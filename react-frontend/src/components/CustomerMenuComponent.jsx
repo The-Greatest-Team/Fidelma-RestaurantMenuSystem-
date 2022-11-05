@@ -154,27 +154,6 @@ class CustomerMenuComponent extends React.Component{
                         {this.state.foods.map((dish) => (
                             <div className="foodUnit" key={dish.id}>
                            <hr className="separateLine"/>
-                            {/* <div className="foodBox">
-                                <img src="/res/images/bigMacChickenBurger.png" alt="Big Mac Chicken Burger picture" />
-                                
-                                <div className="textBox">
-                                    <div className="burgerName">{dish.name}</div>
-                                    <div className="burgerDesc">{dish.description}</div>
-                                    <div className="burgerOthers">
-                                        <div className="burgerJoules">{dish.kiloJoule}KJ</div>
-                                        <div className="burgerPrice">${dish.price}</div>
-                                    </div>
-                                </div>
-                                {
-                                    dish.soldOut === false &&
-                                    <input className="arrowBtn" name="arrowBtn" type="image" src="/res/images/arrowIcon.png" alt="view more arrow icon" 
-                                    onClick={()=>this.viewInDetails(dish)}/>
-                                }
-                                {
-                                    dish.soldOut === true &&
-                                    <div className="soldOutDiv addDishArea">Sold Out</div>
-                                }
-                            </div> */}
                             <div className = "customerMenuGridContainer">
                                 <div className = "customerMenuPic">{dish.image !== undefined &&<img className = "gridPic" src={`data:image/jpeg;base64,${dish.image}`} />}</div>
                                 <div className = "customerMenuName"><strong>{dish.name}</strong></div>
