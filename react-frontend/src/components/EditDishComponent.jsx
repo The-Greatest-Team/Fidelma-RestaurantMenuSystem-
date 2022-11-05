@@ -9,20 +9,20 @@ import {REST_API} from "../constant";
 function MyDropzone({childToParent}) {
     const [url, setUrl] = useState('/res/images/camera.png');
     const onDrop = useCallback(acceptedFiles => {
-    const file = acceptedFiles[0];
+        const file = acceptedFiles[0];
 
-    console.log(file);
+        console.log(file);
 
-    const formData = new FormData();
-    formData.append("file",file);
-    for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
-    }
+        const formData = new FormData();
+        formData.append("file",file);
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]);
+        }
 
-    setUrl(URL.createObjectURL(file));
-    console.log(url);
-    childToParent(formData);
-    })
+        setUrl(URL.createObjectURL(file));
+        console.log(url);
+        childToParent(formData);
+    }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop});
 
     const test = console.log(url);
@@ -289,8 +289,9 @@ onionHandler(event,ingredient) {
     var value = event.target.value;
     console.log(key);
     console.log(value);
-
-    this.state.typedComponents[key] = value;
+    let typeComponent = this.state.typedComponents;
+    typeComponent[key] = value;
+    this.setState({typedComponents : typeComponent});
 }
 
 beefHandler = (event) => {

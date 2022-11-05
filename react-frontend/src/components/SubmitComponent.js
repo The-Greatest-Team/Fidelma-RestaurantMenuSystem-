@@ -3,10 +3,6 @@ import SubmitService from "../services/SubmitService";
 
 class SubmitComponent extends React.Component{
 
-    constructor(props){
-        super(props)
-    }
-
     testPost(){
         SubmitService.postUsers();
     }
@@ -25,7 +21,7 @@ class SubmitComponent extends React.Component{
                         <h5>Thanks for shopping in Fidelma</h5>
                     </div>
                     <div className = "orderHead">
-                        <img className="logo" src="/res/images/submit.png" />
+                        <img className="logo" src="/res/images/submit.png" alt="submit success icon" />
                     </div>
                     <div className = "success">
                         <h5>Your order is submitted to reception</h5>
