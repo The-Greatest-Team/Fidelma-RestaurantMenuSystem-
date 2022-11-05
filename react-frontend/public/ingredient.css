@@ -75,19 +75,19 @@
 
 .editPopupSubTtile1{
     font-size: 5vw;
-    margin-left:3vw;
+    margin-left:-56vw;
     margin-top:6vw;
 }
 
 .editPopupSubTtile2{
     font-size: 5vw;
-    margin-left:3vw;
+    margin-left:-50vw;
     margin-top:6vw;
 }
 
 .editPopupSubTtile3{
     font-size: 5vw;
-    margin-left:3vw;
+    margin-left:-59vw;
     margin-top:6vw;
 }
 
@@ -98,6 +98,8 @@
     border-style:solid;
     border-color: #B9B3B3;
     width:74vw;
+    height:8vw;
+    font-size: 4vw;
 }
 
 .editPopupInput2{
@@ -107,6 +109,8 @@
     border-style:solid;
     border-color: #B9B3B3;
     width:74vw;
+    height:8vw;
+    font-size: 4vw;
 }
 
 .editPopupInput3{
@@ -116,6 +120,8 @@
     border-style:solid;
     border-color: #B9B3B3;
     width:74vw;
+    height:8vw;
+    font-size: 4vw;
 }
 
 .editPopupSubmitButton{
@@ -128,7 +134,7 @@
     /* margin-left:24vw; */
     margin-top:8vw;
     text-align: center;
-    margin-left: 25vw;
+    margin-left: 2vw;
 }
 
 .errorAddPopup{
@@ -140,6 +146,7 @@
     position:absolute;
     margin-left:-74vw;
     margin-top:10vw;
+    font-size: 4vw;
 }
 
 .closeAddPopup{

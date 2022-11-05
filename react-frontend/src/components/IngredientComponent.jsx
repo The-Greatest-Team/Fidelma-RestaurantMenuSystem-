@@ -134,7 +134,7 @@ class IngredientComponent extends React.Component{
                                                 <button className="editIngredientButton" onClick={e => this.handleClick(row.id,e)}>Edit</button>
                                                 <button className="deleteIngredientButton" onClick = {() => this.deleteIngredient(row.id)}>Delete</button>
                                             </td>
-                                            <div>{this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}</div>
+                                            <td>{this.state.show && <EditIngredientComponent close = {this.close} id = {this.state.ingredientId}/>}</td>
                                         </tr>
                                         
                                     ))}
