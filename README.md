@@ -112,15 +112,32 @@ The Localhost server and application is located at **DevelopmentFinalise** branc
     
     - Then we will run ```npm start``` to start the application
 
-3. Open up the browser of your choice and type in: 
-    
-1) open the whole project with IntelliJ IDEA, go to BackEnd/src/main/java/com/thegreatestteam/backend/BackEndApplication to run the main function, if SpringApplication is unrecognised, check "BackEnd Maven instruction" below to recognised it.
-2) open the react-frontend file with Vscode(other tools with terminal also fine), if it's first time run, run 'npm install' to install all the dependency first(if see few warning with word 'deprecated', it's fine to continue, this is because the version we choosed is bit old, we considering to change to a newer version in next few sprint, but for now, all the function works fine with this a bit old version), then run 'npm start run' to run the project, the web app is using localhost:3000, the route of each page is define in the App.js.
+3. Open up the browser of your choice and type in: **http://localhost:3000/**
+   - As the application is only made compatible with mobile devices, if you are trying to use a desktop browser, you will need to enter the responsive design mode and right the mobile device view 
+   - After entering the page, make sure you right click on the web page and select inspect from the drop down menu
+   - Then enter the responsive mode which allows you to choose from different mobile device view:
+   ![Make Sure you click into the responsive mode](react-frontend/public/res/images/Responsive.png)
 
-### BackEnd Maven instruction 
 
-If SpringApplication is unrecognised, navigate to the backend folder and rightclick "pom.xml", 
-select "add as Maven Project". Then right click again the pom.xml and select Maven --> Reload Project
+#### In order to start the localhost application using intellij IDEA:
+1. Starting the Backend Server
+   1. Open up the intellij Idea and open the folder **comp30022**
+   2. Open the project and navigate to the BackEnd/pom.xml, right click on the pom.xml and select "add as Maven Project". Then right click again the pom.xml and select Maven --> Reload Project
+   3. This will let the Maven package management to import necessary libraries and dependencies that is required for the project 
+     ![](react-frontend/public/res/images/MavenImport.png)
+   4. Locate the BackEndApplication file at BackEnd/src/main/java/com/thegreatestteam/backend/BackEndApplication.java, and then click the green triangle icon and click "run BackEndApplication"
+     ![](react-frontend/public/res/images/Runapp.png)
+
+
+2. Starting the frontend Server:
+    1. Open the build-in terminal inside the intellij idea: go to View -> Tool Windows -> Terminal
+    2. Make sure you navigate to the react-frontend folder:
+      ![](react-frontend/public/res/images/TerminalFrontend.png)
+    3. After you are in the right folder, start with these:
+        
+       ```npm install```
+
+       ```npm start```
 
 
 ## Environment Variables:
