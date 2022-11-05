@@ -1,8 +1,11 @@
 # [Fidelma](https://github.com/The-Greatest-Team/comp30022)
 
-Link: 
+App Link: https://fidelma-reactjs.herokuapp.com/
 
-### Introduction
+<img src="react-frontend/public/res/images/WechatIMG907.png" alt="drawing" width="200"/>
+
+
+## **Introduction**
 
 This application is a restaurant management system built for the restaurant Fidela. It includes a variety of functionalities for both customers and staff end. 
 For example, customers can place orders. Staff can manage dishes and ingredients.
@@ -11,14 +14,14 @@ For more, visit (https://zizhzhang.atlassian.net/wiki/spaces/THE/pages/2785472/R
 The backend server uses Spring Boot framework and provides restful API service that the React frontend uses. The database used is MongoDB. The project is deployed to two Heroku apps
 
 
-## Check List
-- [ ] Requirement
+## **Check List**
+- [x] Requirement
 - [ ] How to start the app
 - [x] Environment Variables
 - [ ] Documentation
 - [ ] Future Improvement
 
-## Requirements
+## **Requirements**
 
 1. Download **node.js** and npm from https://nodejs.org/en/download.
 2. Download **IntelliJ IDEA** from https://www.jetbrains.com/idea/download.
@@ -26,8 +29,8 @@ The backend server uses Spring Boot framework and provides restful API service t
 4. Has a valid **Gmail** and **MongoDB account**.
 5. Download Database Visualisation Tool **Mongodb Compass** from https://www.mongodb.com/try/download/compass
 
----
-## Installation Instruction
+
+## **Installation Instruction**
 
 ### Install Node.js (Choose one of the option below)
 1. Homebrew (Require MacOS, as well as homebrew installed)
@@ -35,13 +38,13 @@ The backend server uses Spring Boot framework and provides restful API service t
 2. General package installation (Choose the right version for your OS)
     ![](react-frontend/public/res/images/nodejs.png)
 
----
+
 
 ### Install Intellij IDEA
 1. Head to https://www.jetbrains.com/idea/download
     ![](react-frontend/public/res/images/intellij Idea.png)
 
----
+
 
 ### Install JDK on your OS
 1. Homebrew (Require MacOS and Homebrew installed)
@@ -60,9 +63,43 @@ The backend server uses Spring Boot framework and provides restful API service t
 
     And then follow along with the installation process when prompted
 
+### Download Mongodb Compass for Database Visualisation
+- Head to https://www.mongodb.com/try/download/compass and choose for the compatible OS
+![](react-frontend/public/res/images/MongodbCompass.png)
+
+### Download Maven 
+1. Homebrew (Require MacOS and Homebrew installed)
+
+    ```brew install mvn```
+    ![](react-frontend/public/res/images/Maven.png)
+
+    Then check if you successfully installed it
+    
+    ```mvn --version```
+    
+    ![](react-frontend/public/res/images/mvn.png)
+2. General installation process
+- most modern IDEs will have the build-in installation option for Maven, Intellij IDEA, Eclipse, NetBeans
+- if there is no option for that, you can visit the Apache Maven download website https://maven.apache.org/download.cgi
 
 
-## How to start the app?
+## **Start the Localhost Application**
+
+The Localhost server and application is located at **DevelopmentFinalise** branch, the **Main** Branch is used for remote deployment and remote hosting version only.
+
+#### In order to start the localhost application using command line:
+1. Start the BackEnd server running:
+   - Open up Command line tool such as _Terminal_ or _Iterm_
+   - navigate to the backend project folder: 
+      **comp30022/BackEnd**
+   - make sure you have Apache Maven installed and run command: 
+    
+     ```mvn spring-boot:run```
+   - First time initialisation will do package import and installation of some package dependencies
+   - If the build is successful you will see:
+     ![](react-frontend/public/res/images/springboot_run.png)
+   
+
 1) open the whole project with IntelliJ IDEA, go to BackEnd/src/main/java/com/thegreatestteam/backend/BackEndApplication to run the main function, if SpringApplication is unrecognised, check "BackEnd Maven instruction" below to recognised it.
 2) open the react-frontend file with Vscode(other tools with terminal also fine), if it's first time run, run 'npm install' to install all the dependency first(if see few warning with word 'deprecated', it's fine to continue, this is because the version we choosed is bit old, we considering to change to a newer version in next few sprint, but for now, all the function works fine with this a bit old version), then run 'npm start run' to run the project, the web app is using localhost:3000, the route of each page is define in the App.js.
 
