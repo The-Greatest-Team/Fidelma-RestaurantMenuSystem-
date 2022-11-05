@@ -17,7 +17,11 @@ public class Food extends Item {
 
     public Food(String id, String name, double price , String type, int kiloJoule, Map<String, Double> components, String description){
         super(name, price);
-
+        this.type = type;
+        this.kiloJoule = kiloJoule;
+        this.id = id;
+        this.components = components;
+        this.description = description;
         this.isSoldOut = false;
         this.isCrash = false;
     }
