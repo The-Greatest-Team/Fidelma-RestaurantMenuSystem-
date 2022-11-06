@@ -16,10 +16,10 @@ The backend server uses Spring Boot framework and provides restful API service t
 
 ## **Check List**
 - [x] Requirement
-- [ ] How to start the app
+- [x] How to start the app
 - [x] Environment Variables
-- [ ] Documentation
-- [ ] Future Improvement
+- [x] Documentation
+- [x] Future Improvement
 
 ## **Requirements**
 
@@ -66,6 +66,10 @@ The backend server uses Spring Boot framework and provides restful API service t
 ### Download Mongodb Compass for Database Visualisation
 - Head to https://www.mongodb.com/try/download/compass and choose for the compatible OS
 ![](react-frontend/public/res/images/MongodbCompass.png)
+
+### Start up Mongodb 
+- See link: https://www.mongodb.com/basics/create-database
+- Sign up: https://www.mongodb.com/cloud/atlas/register
 
 ### Download Maven 
 1. Homebrew (Require MacOS and Homebrew installed)
