@@ -52,6 +52,18 @@ class IngredientControllerTest {
      */
     @Test
     void getIngredientById() throws Exception {
+        gson = new Gson();
+        Ingredient ingredient = new Ingredient("IngredientTest","IngredientTest",1,10.0);
+        request = MockMvcRequestBuilders.post("/staff/ingredient").
+                contentType(MediaType.APPLICATION_JSON).
+                content(gson.toJson(ingredient)).
+                accept(MediaType.APPLICATION_JSON);
+        mcv.perform(request).
+                andDo(print()).
+                andExpect(status().isCreated()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
+
         request = MockMvcRequestBuilders.get("/staff/ingredient/IngredientTest").
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
@@ -59,6 +71,8 @@ class IngredientControllerTest {
                 andExpect(status().isOk()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
+
+        deleteIngredient();
     }
 
     /**
@@ -80,6 +94,8 @@ class IngredientControllerTest {
                 andExpect(status().isCreated()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
+
+        deleteIngredient();
     }
 
     /**
@@ -91,15 +107,44 @@ class IngredientControllerTest {
     @Test
     void updateIngredient() throws Exception {
         gson = new Gson();
-        Ingredient ingredient = new Ingredient("IngredientTest","IngredientTest-2",1,10.0);
-        request = MockMvcRequestBuilders.put("/staff/ingredient/IngredientTest").
+
+        Ingredient ingredient = new Ingredient("IngredientTest","IngredientTest",1,10.0);
+        request = MockMvcRequestBuilders.post("/staff/ingredient").
                 contentType(MediaType.APPLICATION_JSON).
                 content(gson.toJson(ingredient)).
+                accept(MediaType.APPLICATION_JSON);
+        mcv.perform(request).
+                andDo(print()).
+                andExpect(status().isCreated()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest"));
+
+        Ingredient upgradedIngredient = new Ingredient("IngredientTest","IngredientTest-2",1,10.0);
+        request = MockMvcRequestBuilders.put("/staff/ingredient/IngredientTest").
+                contentType(MediaType.APPLICATION_JSON).
+                content(gson.toJson(upgradedIngredient)).
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isNoContent()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").value("IngredientTest-2"));
+
+        deleteIngredient();
+    }
+
+    /**
+     *  Delete ingredient class
+     *  Using the combination of JUnit 5 with MockMVC to test HTTP DELETE request
+     *  This test should return an HTTP response of 204
+     *  Delete testing Ingredient
+     */
+    void deleteIngredient() throws Exception {
+        request = MockMvcRequestBuilders.delete("/staff/ingredient/IngredientTest").
+                contentType(MediaType.APPLICATION_JSON).
+                accept(MediaType.APPLICATION_JSON);
+        mcv.perform(request).
+                andDo(print()).
+                andExpect(status().isNoContent());
     }
 }

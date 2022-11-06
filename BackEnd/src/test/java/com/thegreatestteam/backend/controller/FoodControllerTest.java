@@ -131,7 +131,7 @@ class FoodControllerTest {
         Map<String, Double> components = new HashMap<>();
         components.put("beef",1.0);
         gson = new Gson();
-        Food food = new Food("TEST","TestFOOD",1,"testing",10,components,"Test");
+        Food food = new Food("TestFood","TestFOOD",1,"testing",10,components,"Test");
         request = MockMvcRequestBuilders.post("/staff/menu/newDish").
                 contentType(MediaType.APPLICATION_JSON).
                 content(gson.toJson(food)).
@@ -140,7 +140,8 @@ class FoodControllerTest {
                 andDo(print()).
                 andExpect(status().isCreated()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
-                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD"));;
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD"));
+        deleteFood();
     }
 
     /**
@@ -153,18 +154,34 @@ class FoodControllerTest {
     @Test
     void updateDish() throws Exception {
         gson = new Gson();
+
         Map<String, Double> components = new HashMap<>();
-        components.put("beef",10000.0);
-        Food food = new Food("TEST","TestFOOD-2",1,"testing",10,components,"Test");
-        request = MockMvcRequestBuilders.put("/staff/menu/edit/TEST").
+        components.put("beef",1.0);
+        gson = new Gson();
+        Food food = new Food("TestFood","TestFood",1,"testing",10,components,"Test");
+        request = MockMvcRequestBuilders.post("/staff/menu/newDish").
                 contentType(MediaType.APPLICATION_JSON).
                 content(gson.toJson(food)).
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
                 andDo(print()).
+                andExpect(status().isCreated()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFood"));
+
+        Map<String, Double> components1 = new HashMap<>();
+        components1.put("beef",10000.0);
+        Food UpdatedFood = new Food("TestFood","TestFood-2",1,"testing",10,components,"Test");
+        request = MockMvcRequestBuilders.put("/staff/menu/edit/TestFood").
+                contentType(MediaType.APPLICATION_JSON).
+                content(gson.toJson(UpdatedFood)).
+                accept(MediaType.APPLICATION_JSON);
+        mcv.perform(request).
+                andDo(print()).
                 andExpect(status().isNoContent()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
-                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD-2"));
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFood-2"));
+        deleteFood();
     }
 
     /**
@@ -176,13 +193,30 @@ class FoodControllerTest {
      */
     @Test
     void checkSoldOut() throws Exception{
+        Map<String, Double> components = new HashMap<>();
+        components.put("beef",100000.0);
+        gson = new Gson();
+        Food food = new Food("TestFood","TestFOOD",1,"testing",10,components,"Test");
+
+        request = MockMvcRequestBuilders.post("/staff/menu/newDish").
+                contentType(MediaType.APPLICATION_JSON).
+                content(gson.toJson(food)).
+                accept(MediaType.APPLICATION_JSON);
+        mcv.perform(request).
+                andDo(print()).
+                andExpect(status().isCreated()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").exists()).
+                andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFOOD"));;
+
         request = MockMvcRequestBuilders.get("/staff/menu/testing").
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isOk()).
                 andExpect(MockMvcResultMatchers.jsonPath("$[0].soldOut").value(true));
+        deleteFood();
     }
+
     /**
      *  checkCrash Test class
      *  Using the combination of JUnit 5 with MockMVC to test if the server can set food state to crash
@@ -195,18 +229,35 @@ class FoodControllerTest {
         Map<String, Double> components = new HashMap<>();
         components.put("testing",1.0);
         gson = new Gson();
-        Food food = new Food("TEST-2","TestCrushFood",1,"testing",10,components,"Test");
+        Food food = new Food("TestFood","TestCrushFood",1,"testing",10,components,"Test");
         request = MockMvcRequestBuilders.post("/staff/menu/newDish").
                 contentType(MediaType.APPLICATION_JSON).
                 content(gson.toJson(food)).
                 accept(MediaType.APPLICATION_JSON);
+
         mcv.perform(request).andExpect(status().isCreated());
         request = MockMvcRequestBuilders.get("/staff/menu/testing").
                 accept(MediaType.APPLICATION_JSON);
         mcv.perform(request).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(MockMvcResultMatchers.jsonPath("$[1].crash").value(true));
+                andExpect(MockMvcResultMatchers.jsonPath("$[0].crash").value(true));
 
+        deleteFood();
+    }
+
+    /**
+     *  DeleteFood class
+     *  Using the combination of JUnit 5 with MockMVC to test DELETE request
+     *  This test should return an HTTP response of 204 (NoContent)
+     *  Delete the selected food
+     */
+    void deleteFood() throws Exception {
+        request = MockMvcRequestBuilders.delete("/staff/menu/newDish/TestFood").
+                accept(MediaType.APPLICATION_JSON);
+
+        mcv.perform(request).
+                andDo(print()).
+                andExpect(status().isNoContent());
     }
 }

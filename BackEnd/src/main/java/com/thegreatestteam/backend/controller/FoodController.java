@@ -162,7 +162,6 @@ public class FoodController {
      *             after receiving this will be decoded and parsed for store-able object format
      * @since 1.0
      */
-    // for editing the dish
     @PostMapping("/dish/imageEdit/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void updateImage(@RequestParam("file") MultipartFile file,@PathVariable String id) throws IOException {
@@ -231,7 +230,4 @@ public class FoodController {
     public void deleteImage(@PathVariable String id){
         imageService.deleteImage(id);
     }
-
-
-
 }
