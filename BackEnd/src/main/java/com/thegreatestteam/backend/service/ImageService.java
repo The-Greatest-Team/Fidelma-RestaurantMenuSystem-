@@ -44,7 +44,7 @@ public class ImageService {
     }
 
     /**
-     *
+     * Get Image Id
      * @param id image id
      * @return image
      * @throws Exception if the image retrival is unsuccessful

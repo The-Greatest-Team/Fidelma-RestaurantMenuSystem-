@@ -20,7 +20,7 @@ public class StaffService {
     }
 
     /**
-     * Add staff member to the databse
+     * Add staff member to the database
      * @param staff
      * @since 1.0
      */
